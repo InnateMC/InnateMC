@@ -51,6 +51,7 @@
 		64C33504292252B500BB8570 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		64C33506292256C500BB8570 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		64C33508292272F500BB8570 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		64C334CC2922523500BB8570 = {
 			isa = PBXGroup;
 			children = (
+				64C3350A2922734400BB8570 /* README.md */,
 				64C33508292272F500BB8570 /* .gitignore */,
 				64C334D72922523600BB8570 /* InnateMC */,
 				64C334E92922524000BB8570 /* InnateMCTests */,
@@ -451,6 +453,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -478,6 +481,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
