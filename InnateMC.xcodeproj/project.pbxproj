@@ -14,6 +14,8 @@
 		64C334EB2922524000BB8570 /* InnateMCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334EA2922524000BB8570 /* InnateMCTests.swift */; };
 		64C334F52922524000BB8570 /* InnateMCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334F42922524000BB8570 /* InnateMCUITests.swift */; };
 		64C334F72922524000BB8570 /* InnateMCUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334F62922524000BB8570 /* InnateMCUITestsLaunchTests.swift */; };
+		64C33505292252B500BB8570 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C33504292252B500BB8570 /* PreferencesView.swift */; };
+		64C33507292256C500BB8570 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C33506292256C500BB8570 /* TodoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		64C334F02922524000BB8570 /* InnateMCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334F42922524000BB8570 /* InnateMCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCUITests.swift; sourceTree = "<group>"; };
 		64C334F62922524000BB8570 /* InnateMCUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		64C33504292252B500BB8570 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		64C33506292256C500BB8570 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
+				64C335032922526A00BB8570 /* View */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
@@ -127,6 +132,15 @@
 				64C334F62922524000BB8570 /* InnateMCUITestsLaunchTests.swift */,
 			);
 			path = InnateMCUITests;
+			sourceTree = "<group>";
+		};
+		64C335032922526A00BB8570 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64C33504292252B500BB8570 /* PreferencesView.swift */,
+				64C33506292256C500BB8570 /* TodoView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
+				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

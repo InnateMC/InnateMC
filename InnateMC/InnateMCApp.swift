@@ -13,5 +13,9 @@ struct InnateMCApp: App {
         WindowGroup {
             ContentView()
         }
+        Settings {
+            PreferencesView()
+                .frame(width: 600, height: 400)
+        }
     }
 }
