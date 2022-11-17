@@ -10,23 +10,23 @@ import SwiftUI
 struct PreferencesView: View {
     var body: some View {
         TabView {
-            TodoView()
+            RuntimePreferencesView()
                 .tabItem({
                     Label("Runtime", systemImage: "bolt")
                 })
-            TodoView()
+            AccountsPreferencesView()
                 .tabItem({
                     Label("Accounts", systemImage: "person.circle")
                 })
-            TodoView()
+            GamePreferencesView()
                 .tabItem({
                     Label("Game", systemImage: "gamecontroller")
                 })
-            TodoView()
+            ConsolePreferencesView()
                 .tabItem({
                     Label("Console", systemImage: "terminal")
                 })
-            TodoView()
+            MiscPreferencesView()
                 .tabItem({
                     Label("Misc", systemImage: "drop")
                 })

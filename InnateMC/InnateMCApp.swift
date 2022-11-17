@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct InnateMCApp: App {
+    init() {
+        // TODO
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

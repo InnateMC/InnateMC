@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State public var searchTerm: String = ""
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            NavigationView {
+                TextField("Search...", text: $searchTerm)
+                    .padding(.all, 6)
+            }
+            Spacer()
+        }
     }
 }
 

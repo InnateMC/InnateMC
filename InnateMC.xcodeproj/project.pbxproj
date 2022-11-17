@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678502923B6D40012C9CC /* RuntimePreferencesView.swift */; };
+		641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678522923B6F90012C9CC /* AccountsPreferencesView.swift */; };
+		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
+		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
+		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
+		643B39D22926829200AEC71C /*  Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B39D12926829200AEC71C /*  Instance.swift */; };
+		643B39D4292683F200AEC71C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B39D3292683F200AEC71C /* Data.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
 		64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C334DC2922523F00BB8570 /* Assets.xcassets */; };
@@ -38,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
+		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
+		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
+		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
+		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
+		643B39D12926829200AEC71C /*  Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Instance.swift"; sourceTree = "<group>"; };
+		643B39D3292683F200AEC71C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334D82922523600BB8570 /* InnateMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCApp.swift; sourceTree = "<group>"; };
 		64C334DA2922523600BB8570 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +95,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6416784F2923B6450012C9CC /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				64C33504292252B500BB8570 /* PreferencesView.swift */,
+				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
+				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
+				641678542923B70F0012C9CC /* GamePreferencesView.swift */,
+				641678562923B7220012C9CC /* ConsolePreferencesView.swift */,
+				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		643B39D029266DD600AEC71C /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				643B39D12926829200AEC71C /*  Instance.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		64C334CC2922523500BB8570 = {
 			isa = PBXGroup;
 			children = (
@@ -107,12 +142,14 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
+				643B39D029266DD600AEC71C /* Config */,
 				64C335032922526A00BB8570 /* View */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
+				643B39D3292683F200AEC71C /* Data.swift */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
@@ -145,7 +182,7 @@
 		64C335032922526A00BB8570 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				64C33504292252B500BB8570 /* PreferencesView.swift */,
+				6416784F2923B6450012C9CC /* Preferences */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
 			);
 			path = View;
@@ -283,10 +320,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
+				643B39D22926829200AEC71C /*  Instance.swift in Sources */,
+				643B39D4292683F200AEC71C /* Data.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
+				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
+				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
+				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
