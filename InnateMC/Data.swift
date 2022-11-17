@@ -7,4 +7,6 @@
 
 import Foundation
 
-public var instances: [Instance] = []
+public class InnateMCData {
+    public static var instances: [Instance] = []
+}

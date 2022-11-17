@@ -10,7 +10,9 @@ import SwiftUI
 @main
 struct InnateMCApp: App {
     init() {
-        // TODO
+        InnateMCData.instances.append(Instance(name: "1.19.2", id: "1.19.2", imageSystemName: ""))
+        InnateMCData.instances.append(Instance(name: "1.17.1", id: "1.17.1", imageSystemName: ""))
+        InnateMCData.instances.append(Instance(name: "1.12.2", id: "1.12.2", imageSystemName: ""))
     }
     
     var body: some Scene {

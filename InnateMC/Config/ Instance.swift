@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Instance {
+public struct Instance: Identifiable {
     public var name: String
     public var id: String
     public var imageSystemName: String
