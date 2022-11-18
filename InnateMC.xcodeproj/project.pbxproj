@@ -38,6 +38,7 @@
 		64CF0CC92928117D00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; };
+		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateJsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
+		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 			children = (
 				64CF0CB0292810EC00535DC8 /* InnateJson.h */,
 				64CF0CCE2928167800535DC8 /* InnateLexer.h */,
+				64CF0CD029281E8A00535DC8 /* InnateLexer.m */,
 			);
 			path = InnateJson;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

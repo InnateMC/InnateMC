@@ -13,9 +13,9 @@
 @property (readonly) NSString *original;
 @property NSMutableString *current;
 
-- (id)init;
+- (instancetype) init:(NSString *)json;
 
-- (void)lex;
+- (void) lex;
 
 - (NSString *) lexString:(NSString *)value;
 
