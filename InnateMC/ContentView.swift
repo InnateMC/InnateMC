@@ -15,9 +15,6 @@ struct ContentView: View {
             NavigationView {
                 TextField("Search...", text: $searchTerm)
                     .padding(.all, 6)
-                List(InnateMCData.instances) { instance in
-                    NavigationLink(instance.name, destination: Text(instance.name))
-                }
             }
             Spacer()
         }
