@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C462839F5B8DF4E24925B3F /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4623D7EA74E868AD3AECE9 /* Progress.swift */; };
+		3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */; };
+		3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462326A090F1BD4C08B7CD /* VersionManifest.swift */; };
 		641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678502923B6D40012C9CC /* RuntimePreferencesView.swift */; };
 		641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678522923B6F90012C9CC /* AccountsPreferencesView.swift */; };
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
@@ -29,6 +32,12 @@
 		64C33507292256C500BB8570 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C33506292256C500BB8570 /* TodoView.swift */; };
 		64C33509292272F600BB8570 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64C33508292272F500BB8570 /* .gitignore */; };
 		64C3350C2922B0B500BB8570 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64C3350B2922B0B400BB8570 /* LICENSE */; };
+		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
+		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
+		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64CF0CC92928117D00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
+		64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +61,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 64C334D42922523600BB8570;
 			remoteInfo = InnateMC;
+		};
+		64CF0CB7292810ED00535DC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64CF0CAD292810EC00535DC8;
+			remoteInfo = InnateJson;
+		};
+		64CF0CB9292810ED00535DC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64C334D42922523600BB8570;
+			remoteInfo = InnateMC;
+		};
+		64CF0CCB2928117D00535DC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64CF0CAD292810EC00535DC8;
+			remoteInfo = InnateJson;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -87,9 +117,23 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64CF0CCD2928117D00535DC8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C462326A090F1BD4C08B7CD /* VersionManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionManifest.swift; sourceTree = "<group>"; };
+		3C4623D7EA74E868AD3AECE9 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryHandler.swift; sourceTree = "<group>"; };
 		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
 		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
@@ -114,6 +158,11 @@
 		64C33508292272F500BB8570 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
+		64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateJsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
+		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CF0CC92928117D00535DC8 /* InnateJson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +194,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CF0CAB292810EC00535DC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CF0CB2292810ED00535DC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +257,9 @@
 			children = (
 				643C7FF42927695E00DDC1B3 /* DataHandler.swift */,
 				643C7FF6292769C900DDC1B3 /* Instance.swift */,
+				3C4623D7EA74E868AD3AECE9 /* Progress.swift */,
+				3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */,
+				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -206,6 +274,8 @@
 				64C334E92922524000BB8570 /* InnateMCTests */,
 				643B39E629273D1300AEC71C /* InnateMCCli */,
 				643C7FE32927566400DDC1B3 /* InnateKit */,
+				64CF0CAF292810EC00535DC8 /* InnateJson */,
+				64CF0CBB292810ED00535DC8 /* InnateJsonTests */,
 				64C334D62922523600BB8570 /* Products */,
 				643B39FA29274F6100AEC71C /* Frameworks */,
 			);
@@ -218,6 +288,8 @@
 				64C334E62922524000BB8570 /* InnateMCTests.xctest */,
 				643B39E529273D1200AEC71C /* InnateMCCli */,
 				643C7FE22927566400DDC1B3 /* InnateKit.framework */,
+				64CF0CAE292810EC00535DC8 /* InnateJson.framework */,
+				64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -260,6 +332,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		64CF0CAF292810EC00535DC8 /* InnateJson */ = {
+			isa = PBXGroup;
+			children = (
+				64CF0CB0292810EC00535DC8 /* InnateJson.h */,
+				64CF0CCE2928167800535DC8 /* InnateLexer.h */,
+			);
+			path = InnateJson;
+			sourceTree = "<group>";
+		};
+		64CF0CBB292810ED00535DC8 /* InnateJsonTests */ = {
+			isa = PBXGroup;
+			children = (
+				64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */,
+			);
+			path = InnateJsonTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -268,6 +357,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				643C7FE52927566400DDC1B3 /* InnateKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CF0CA9292810EC00535DC8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */,
+				64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +399,12 @@
 				643C7FDE2927566400DDC1B3 /* Sources */,
 				643C7FDF2927566400DDC1B3 /* Frameworks */,
 				643C7FE02927566400DDC1B3 /* Resources */,
+				64CF0CCD2928117D00535DC8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				64CF0CCC2928117D00535DC8 /* PBXTargetDependency */,
 			);
 			name = InnateKit;
 			productName = InnateKit;
@@ -348,6 +448,43 @@
 			productReference = 64C334E62922524000BB8570 /* InnateMCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		64CF0CAD292810EC00535DC8 /* InnateJson */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64CF0CC7292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJson" */;
+			buildPhases = (
+				64CF0CA9292810EC00535DC8 /* Headers */,
+				64CF0CAA292810EC00535DC8 /* Sources */,
+				64CF0CAB292810EC00535DC8 /* Frameworks */,
+				64CF0CAC292810EC00535DC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InnateJson;
+			productName = InnateJson;
+			productReference = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		64CF0CB4292810ED00535DC8 /* InnateJsonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64CF0CC8292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJsonTests" */;
+			buildPhases = (
+				64CF0CB1292810ED00535DC8 /* Sources */,
+				64CF0CB2292810ED00535DC8 /* Frameworks */,
+				64CF0CB3292810ED00535DC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64CF0CB8292810ED00535DC8 /* PBXTargetDependency */,
+				64CF0CBA292810ED00535DC8 /* PBXTargetDependency */,
+			);
+			name = InnateJsonTests;
+			productName = InnateJsonTests;
+			productReference = 64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -372,6 +509,13 @@
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 64C334D42922523600BB8570;
 					};
+					64CF0CAD292810EC00535DC8 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					64CF0CB4292810ED00535DC8 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 64C334D42922523600BB8570;
+					};
 				};
 			};
 			buildConfigurationList = 64C334D02922523500BB8570 /* Build configuration list for PBXProject "InnateMC" */;
@@ -391,6 +535,8 @@
 				64C334E52922524000BB8570 /* InnateMCTests */,
 				643B39E429273D1200AEC71C /* InnateMCCli */,
 				643C7FE12927566400DDC1B3 /* InnateKit */,
+				64CF0CAD292810EC00535DC8 /* InnateJson */,
+				64CF0CB4292810ED00535DC8 /* InnateJsonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -421,6 +567,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64CF0CAC292810EC00535DC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CF0CB3292810ED00535DC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -438,6 +598,9 @@
 			files = (
 				643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */,
 				643C7FF52927695E00DDC1B3 /* DataHandler.swift in Sources */,
+				3C462839F5B8DF4E24925B3F /* Progress.swift in Sources */,
+				3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */,
+				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +628,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64CF0CAA292810EC00535DC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64CF0CB1292810ED00535DC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -482,6 +660,21 @@
 			isa = PBXTargetDependency;
 			target = 64C334D42922523600BB8570 /* InnateMC */;
 			targetProxy = 64C334E72922524000BB8570 /* PBXContainerItemProxy */;
+		};
+		64CF0CB8292810ED00535DC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64CF0CAD292810EC00535DC8 /* InnateJson */;
+			targetProxy = 64CF0CB7292810ED00535DC8 /* PBXContainerItemProxy */;
+		};
+		64CF0CBA292810ED00535DC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64C334D42922523600BB8570 /* InnateMC */;
+			targetProxy = 64CF0CB9292810ED00535DC8 /* PBXContainerItemProxy */;
+		};
+		64CF0CCC2928117D00535DC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64CF0CAD292810EC00535DC8 /* InnateJson */;
+			targetProxy = 64CF0CCB2928117D00535DC8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -788,6 +981,96 @@
 			};
 			name = Release;
 		};
+		64CF0CC3292810ED00535DC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJson;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		64CF0CC4292810ED00535DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJson;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		64CF0CC5292810ED00535DC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJsonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InnateMC.app/Contents/MacOS/InnateMC";
+			};
+			name = Debug;
+		};
+		64CF0CC6292810ED00535DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJsonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InnateMC.app/Contents/MacOS/InnateMC";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -832,6 +1115,24 @@
 			buildConfigurations = (
 				64C334FE2922524000BB8570 /* Debug */,
 				64C334FF2922524000BB8570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64CF0CC7292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJson" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64CF0CC3292810ED00535DC8 /* Debug */,
+				64CF0CC4292810ED00535DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64CF0CC8292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJsonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64CF0CC5292810ED00535DC8 /* Debug */,
+				64CF0CC6292810ED00535DC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

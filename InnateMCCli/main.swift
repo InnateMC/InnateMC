@@ -9,4 +9,6 @@ import Foundation
 import InnateKit
 
 print("Hello, World!")
+#if DEBUG
 DataHandler.createTestInstances()
+#endif

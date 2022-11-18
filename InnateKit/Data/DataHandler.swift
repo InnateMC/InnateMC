@@ -15,6 +15,22 @@ public class DataHandler {
         if !fileManager.fileExists(atPath: folderUrl.path) {
             do {
                 try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Instances"), withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Libraries"), withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Assets"), withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating folder: \(error)")
+            }
+        }
+        return folderUrl
+    }
+
+    public static func getOrCreateFolder(_ name: String) -> URL {
+        let fileManager = FileManager.default
+        let folderUrl = getOrCreateFolder().appendingPathComponent(name)
+        if !fileManager.fileExists(atPath: folderUrl.path) {
+            do {
+                try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 print("Error creating folder: \(error)")
             }
@@ -70,7 +86,7 @@ extension DataHandler {
     public static func createTestInstances()  {
         let names = ["Test1", "Test2", "Test3"]
         for name in names {
-            let instanceFolder = getOrCreateFolder().appendingPathComponent(name + ".innate")
+            let instanceFolder = getOrCreateFolder("Instances").appendingPathComponent(name + ".innate")
             if FileManager.default.fileExists(atPath: instanceFolder.path) {
                 continue
             }
