@@ -8,11 +8,22 @@
 #ifndef InnateLexer_h
 #define InnateLexer_h
 
-@interface InnateLexer : NSObject
+@interface InnateLexer : NSObject;
 
-@property (readonly) NSString *original
+@property (readonly) NSString *original;
+@property NSMutableString *current;
 
+- (id)init;
 
+- (void)lex;
+
+- (NSString *) lexString:(NSString *)value;
+
+- (NSString *) lexNumber:(NSString *)value;
+
+- (NSString *) lexBool:(NSString *)value;
+
+- (NSString *) lexNull:(NSString *)value;
 
 @end
 
