@@ -59,4 +59,8 @@
     return nil; // TODO
 }
 
+- (NSString *)getType {
+    return @"array";
+}
+
 @end

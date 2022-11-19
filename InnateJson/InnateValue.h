@@ -40,4 +40,6 @@
 
 - (NSString *) toString;
 
+- (NSString *) getType;
+
 @end

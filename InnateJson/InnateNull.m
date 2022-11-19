@@ -63,4 +63,8 @@
     return nil;
 }
 
+- (NSString *)getType {
+    return @"null";
+}
+
 @end

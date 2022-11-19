@@ -65,4 +65,8 @@
     return nil;
 }
 
+- (NSString *)getType {
+    return @"boolean";
+}
+
 @end

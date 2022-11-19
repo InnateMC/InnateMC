@@ -58,4 +58,8 @@
     return self;
 }
 
+- (NSString *)getType {
+    return @"string";
+}
+
 @end

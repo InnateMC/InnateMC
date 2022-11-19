@@ -22,18 +22,14 @@
 }
 
 - (NSString *)nextToken {
-    if (self->current >= self->tokens.count) {
-        return nil;
-    }
-    return self->tokens[self->current++];
+    NSString *token = tokens[current];
+    current++;
+    return token;
 }
 
 - (NSDictionary<NSString *, id<InnateValue>> *)parseObject {
     NSMutableDictionary<NSString *, id<InnateValue>> *dict = [NSMutableDictionary dictionary];
-    NSString *token = [self nextToken];
-    if ([token isEqualToString:@"}"]) {
-        return dict;
-    }
+    NSString *token = @"";
     while (token != nil) {
         id<InnateValue> key = [self parse];
         if (![key isString]) {
@@ -53,7 +49,7 @@
             @throw [NSException exceptionWithName:@"InnateParserException" reason:@"Expected ','" userInfo:nil];
         }
     }
-    return nil;
+    @throw [NSException exceptionWithName:@"InnateParserException" reason:@"Expected '}'" userInfo:nil];
 }
 
 - (NSArray<id<InnateValue>> *)parseArray {
@@ -77,14 +73,6 @@
     @throw [NSException exceptionWithName:@"InvalidJson" reason:@"No closing right bracket" userInfo:nil];
 }
 
-- (NSString *)parseString {
-    return [self nextToken];
-}
-
-- (NSNumber *)parseNumber {
-    return [self parseString].asNumber;
-}
-
 - (id <InnateValue>)parse {
     NSString *token = [self nextToken];
     if ([token isEqualToString:@"{"]) {
@@ -98,9 +86,9 @@
     } else if ([token isEqualToString:@"null"]) {
         return [InnateNull init];
     } else if ([token characterAtIndex:0] == '"') {
-        return [self parseString];
+        return [token substringWithRange:NSMakeRange(1, token.length - 2)];
     } else {
-        return [self parseNumber];
+        return token.asNumber;
     }
 }
 

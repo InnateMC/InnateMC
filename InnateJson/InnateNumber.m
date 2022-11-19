@@ -57,4 +57,8 @@
     return nil; // TODO
 }
 
+- (NSString *)getType {
+    return @"number";
+}
+
 @end

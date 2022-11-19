@@ -57,4 +57,8 @@
     return nil;
 }
 
+- (NSString *)getType {
+    return @"object";
+}
+
 @end
