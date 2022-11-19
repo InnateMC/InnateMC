@@ -189,6 +189,7 @@
 		64C33508292272F500BB8570 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		64CDBCD329294CB700DF0592 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
 		64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateJsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,6 +386,7 @@
 				3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */,
 				3C4629FCAF43080FBC058A8D /* InnateBoolean.m */,
 				3C4625B085558E3B559E118E /* InnateBoolean.h */,
+				64CDBCD329294CB700DF0592 /* module.modulemap */,
 			);
 			path = InnateJson;
 			sourceTree = "<group>";
@@ -793,7 +795,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/InnateJson\n$(SRCROOT)/KochavaTracker\n$(SRCROOT)/KochavaTracker\n$(SRCROOT)/InnateJson";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -827,7 +829,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/InnateJson\n$(SRCROOT)/KochavaTracker\n$(SRCROOT)/KochavaTracker\n$(SRCROOT)/InnateJson";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1053,7 +1055,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 52FGDYD382;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1083,7 +1085,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 52FGDYD382;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

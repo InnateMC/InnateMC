@@ -11,4 +11,5 @@ import InnateKit
 print("Hello, World!")
 #if DEBUG
 DataHandler.createTestInstances()
+VersionManifest.download()
 #endif

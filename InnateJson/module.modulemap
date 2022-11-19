@@ -1,0 +1,4 @@
+module InnateJson {
+    header "InnateJson.h"
+    export *
+}

@@ -15,12 +15,12 @@ FOUNDATION_EXPORT const unsigned char InnateJsonVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <InnateJson/PublicHeader.h>
 
-#import <InnateJson/InnateArray.h>
-#import <InnateJson/InnateBoolean.h>
-#import <InnateJson/InnateLexer.h>
-#import <InnateJson/InnateNull.h>
-#import <InnateJson/InnateNumber.h>
-#import <InnateJson/InnateObject.h>
-#import <InnateJson/InnateParser.h>
-#import <InnateJson/InnateString.h>
-#import <InnateJson/InnateString.h>
+#import "InnateArray.h"
+#import "InnateBoolean.h"
+#import "InnateLexer.h"
+#import "InnateNull.h"
+#import "InnateNumber.h"
+#import "InnateObject.h"
+#import "InnateParser.h"
+#import "InnateString.h"
+#import "InnateString.h"

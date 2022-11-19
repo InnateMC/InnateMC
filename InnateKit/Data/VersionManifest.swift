@@ -3,8 +3,11 @@
 //
 
 import Foundation
+import InnateJson
 
-class VersionManifest {
+public class VersionManifest {
     public static func download() {
+        var _ = InnateParser(tokens: [])
     }
 }
+
