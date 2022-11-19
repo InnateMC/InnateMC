@@ -4,10 +4,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol InnateValue;
+
 
 @interface InnateParser : NSObject {
     NSArray<NSString *> *tokens;
-    int current;
+    NSUInteger current;
 }
+
++ (InnateParser *)parserWithTokens:(NSArray<NSString *> *)tokens;
+
+- (id <InnateValue>)parse;
 
 @end

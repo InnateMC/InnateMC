@@ -7,6 +7,9 @@
 
 @implementation InnateNull {
 }
++ (instancetype)init {
+    return [[InnateNull alloc] init];
+}
 
 - (BOOL)isObject {
     return NO;

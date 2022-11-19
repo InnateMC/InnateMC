@@ -7,4 +7,7 @@
 
 
 @interface InnateNull : NSObject <InnateValue>
+
++ (instancetype) init;
+
 @end
