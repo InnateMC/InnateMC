@@ -6,6 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "InnateLexer.h"
 
 @interface InnateJsonTests : XCTestCase
 
@@ -14,23 +15,20 @@
 @implementation InnateJsonTests
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
+- (void)testLexing {
+    __block InnateLexer *lexer;
+    __block NSArray<NSString *> *tokens;
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+        lexer = [[InnateLexer alloc] init:@"{\"glossary\":{\"title\":\"example glossary\",\"GlossDiv\":{\"title\":\"S\",\"GlossList\":{\"GlossEntry\":{\"ID\":\"SGML\",\"SortAs\":\"SGML\",\"GlossTerm\":\"Standard Generalized Markup Language\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\",\"GlossDef\":{\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\",\"GlossSeeAlso\":[\"GML\",\"XML\"]},\"GlossSee\":\"markup\"}}}}}"];
+        tokens = [lexer lex];
     }];
+    NSArray<NSString *> *expected = @[@"{", @"\"glossary\"", @":", @"{", @"\"title\"", @":", @"\"example glossary\"", @",", @"\"GlossDiv\"", @":", @"{", @"\"title\"", @":", @"\"S\"", @",", @"\"GlossList\"", @":", @"{", @"\"GlossEntry\"", @":", @"{", @"\"ID\"", @":", @"\"SGML\"", @",", @"\"SortAs\"", @":", @"\"SGML\"", @",", @"\"GlossTerm\"", @":", @"\"Standard Generalized Markup Language\"", @",", @"\"Acronym\"", @":", @"\"SGML\"", @",", @"\"Abbrev\"", @":", @"\"ISO 8879:1986\"", @",", @"\"GlossDef\"", @":", @"{", @"\"para\"", @":", @"\"A meta-markup language, used to create markup languages such as DocBook.\"", @",", @"\"GlossSeeAlso\"", @":", @"[", @"\"GML\"", @",", @"\"XML\"", @"]", @"}", @",", @"\"GlossSee\"", @":", @"\"markup\"", @"}", @"}", @"}", @"}", @"}"];
+    XCTAssertEqualObjects(tokens, expected);
 }
 
 @end
