@@ -10,8 +10,15 @@
 #import "InnateBoolean.h"
 #import "InnateString.h"
 #import "InnateNumber.h"
+#import "InnateLexer.h"
 
 @implementation InnateParser {
+}
+
++ (NSDictionary<NSString *, id <InnateValue>> *)readJson:(NSString *)tokens {
+    InnateLexer *lexer = [[InnateLexer alloc] init:tokens];
+    InnateParser *parser = [InnateParser parserWithTokens:[lexer lex]];
+    return [parser parse].asObject;
 }
 
 + (InnateParser *)parserWithTokens:(NSArray<NSString *> *)tokens {

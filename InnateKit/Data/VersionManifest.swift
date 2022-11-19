@@ -5,4 +5,7 @@
 import Foundation
 
 class VersionManifest {
+    public static func download() {
+
+    }
 }

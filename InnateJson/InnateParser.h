@@ -12,6 +12,8 @@
     NSUInteger current;
 }
 
++ (NSDictionary<NSString *, id<InnateValue>> *)readJson:(NSString*)tokens;
+
 + (InnateParser *)parserWithTokens:(NSArray<NSString *> *)tokens;
 
 - (id <InnateValue>)parse;
