@@ -3,12 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InnateValue.h"
 
 
-@interface InnateNumber : NSObject {
-    NSNumber *numberValue;
-}
-
-+ (instancetype) initWithNumber:(NSNumber *)number;
+@interface NSNumber (InnateNumber) <InnateValue>
 
 @end

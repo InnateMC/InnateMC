@@ -5,17 +5,57 @@
 #import "InnateString.h"
 
 
-@implementation InnateString {
+@implementation NSString (InnateString)
+- (BOOL)isObject {
+    return NO;
 }
 
-+ (instancetype) initWithString:(NSString *)string {
-    InnateString *innateString = [[InnateString alloc] init];
-    innateString->stringValue = string;
-    return innateString;
+- (BOOL)isArray {
+    return NO;
 }
 
 - (BOOL)isString {
     return YES;
+}
+
+- (BOOL)isNumber {
+    return NO;
+}
+
+- (BOOL)isBool {
+    return NO;
+}
+
+- (BOOL)isNull {
+    return NO;
+}
+
+- (NSDictionary<NSString *, id <InnateValue>> *)asObject {
+    return nil;
+}
+
+- (NSArray<id <InnateValue>> *)asArray {
+    return nil;
+}
+
+- (NSString *)asString {
+    return self;
+}
+
+- (NSNumber *)asNumber {
+    return nil;
+}
+
+- (InnateBoolean *)asBool {
+    return nil;
+}
+
+- (InnateNull *)asNull {
+    return nil;
+}
+
+- (NSString *)toString {
+    return self;
 }
 
 @end

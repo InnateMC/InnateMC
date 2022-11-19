@@ -6,10 +6,6 @@
 #import "InnateValue.h"
 
 
-@interface InnateArray : InnateValue
-+ (instancetype) initWithArray:(NSArray<InnateValue *> *)array;
+@interface NSArray (InnateArray) <InnateValue>
 
-- (InnateValue *)get:(NSUInteger)index;
-
-- (NSUInteger)size;
 @end

@@ -6,7 +6,7 @@
 #import "InnateValue.h"
 
 
-@interface InnateBoolean : InnateValue {
+@interface InnateBoolean: NSObject <InnateValue> {
     BOOL booleanValue;
 }
 

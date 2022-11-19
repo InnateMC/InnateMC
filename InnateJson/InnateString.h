@@ -3,12 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InnateValue.h"
 
 
-@interface InnateString : NSObject {
-    NSString *stringValue;
-}
-
-+ (instancetype) initWithString:(NSString *)string;
+@interface NSString (InnateString) <InnateValue>
 
 @end

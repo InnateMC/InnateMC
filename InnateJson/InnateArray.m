@@ -5,25 +5,58 @@
 #import "InnateArray.h"
 
 
-@implementation InnateArray {
-    NSArray<InnateValue *> *_array;
-}
-+ (instancetype)initWithArray:(NSArray<InnateValue *> *)array {
-    InnateArray* arr = [[InnateArray alloc] init];
-    arr->_array = array;
-    return arr;
-}
-
-- (InnateValue *)get:(NSUInteger)index {
-    return _array[index];
-}
-
-- (NSUInteger)size {
-    return _array.count;
-}
+@implementation NSArray (InnateArray)
 
 - (BOOL)isArray {
     return YES;
+}
+
+- (BOOL)isObject {
+    return NO;
+}
+
+- (BOOL)isString {
+    return NO;
+}
+
+- (BOOL)isNumber {
+    return NO;
+}
+
+- (BOOL)isBool {
+    return NO;
+}
+
+- (BOOL)isNull {
+    return NO;
+}
+
+- (NSDictionary<NSString *, id<InnateValue>> *)asObject {
+    return nil;
+}
+
+- (NSArray<id<InnateValue>>  *)asArray {
+    return self;
+}
+
+- (NSString *)asString {
+    return nil;
+}
+
+- (NSNumber *)asNumber {
+    return nil;
+}
+
+- (InnateBoolean *)asBool {
+    return nil;
+}
+
+- (InnateNull *)asNull {
+    return nil;
+}
+
+- (NSString *)toString {
+    return nil; // TODO
 }
 
 @end

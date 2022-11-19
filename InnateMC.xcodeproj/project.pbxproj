@@ -18,7 +18,6 @@
 		3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */; };
 		3C462839F5B8DF4E24925B3F /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4623D7EA74E868AD3AECE9 /* Progress.swift */; };
 		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; };
-		3C4628FFC57ECD73B0DB2904 /* InnateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4627F75510AF5D03F07B1D /* InnateValue.m */; };
 		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; };
 		3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */; };
 		3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462F354523F3EA752A760A /* InnateArray.m */; };
@@ -157,7 +156,6 @@
 		3C4624EDDF250627542A3114 /* InnateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateArray.h; sourceTree = "<group>"; };
 		3C4625B085558E3B559E118E /* InnateBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateBoolean.h; sourceTree = "<group>"; };
 		3C46260D0A5695B57DBD817E /* InnateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateObject.m; sourceTree = "<group>"; };
-		3C4627F75510AF5D03F07B1D /* InnateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateValue.m; sourceTree = "<group>"; };
 		3C462891CBBA226529C263E5 /* InnateString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateString.m; sourceTree = "<group>"; };
 		3C462939D31A2B994F0433E4 /* InnateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateParser.h; sourceTree = "<group>"; };
 		3C4629FCAF43080FBC058A8D /* InnateBoolean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateBoolean.m; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 				3C462939D31A2B994F0433E4 /* InnateParser.h */,
 				3C46260D0A5695B57DBD817E /* InnateObject.m */,
 				3C462CB7177919B5451B04C2 /* InnateObject.h */,
-				3C4627F75510AF5D03F07B1D /* InnateValue.m */,
 				3C46223ADA27D50D300A7538 /* InnateValue.h */,
 				3C462F354523F3EA752A760A /* InnateArray.m */,
 				3C4624EDDF250627542A3114 /* InnateArray.h */,
@@ -694,7 +691,6 @@
 				64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */,
 				3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */,
 				3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */,
-				3C4628FFC57ECD73B0DB2904 /* InnateValue.m in Sources */,
 				3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */,
 				3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */,
 				3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */,

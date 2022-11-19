@@ -4,18 +4,57 @@
 
 #import "InnateNumber.h"
 
-
-@implementation InnateNumber {
+@implementation NSNumber (InnateNumber)
+- (BOOL)isObject {
+    return NO;
 }
 
-+ (instancetype)initWithNumber:(NSNumber *)number {
-    InnateNumber *innateNumber = [[InnateNumber alloc] init];
-    innateNumber->numberValue = number;
-    return innateNumber;
+- (BOOL)isArray {
+    return NO;
+}
+
+- (BOOL)isString {
+    return NO;
 }
 
 - (BOOL)isNumber {
-    return YES;
+    return NO;
+}
+
+- (BOOL)isBool {
+    return NO;
+}
+
+- (BOOL)isNull {
+    return NO;
+}
+
+- (NSDictionary<NSString *, id<InnateValue>> *)asObject {
+    return nil;
+}
+
+- (NSArray<id<InnateValue>>  *)asArray {
+    return nil;
+}
+
+- (NSString *)asString {
+    return nil;
+}
+
+- (NSNumber *)asNumber {
+    return self;
+}
+
+- (InnateBoolean *)asBool {
+    return nil;
+}
+
+- (InnateNull *)asNull {
+    return nil;
+}
+
+- (NSString *)toString {
+    return nil; // TODO
 }
 
 @end

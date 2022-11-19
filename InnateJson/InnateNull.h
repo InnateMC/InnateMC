@@ -6,5 +6,5 @@
 #import "InnateValue.h"
 
 
-@interface InnateNull : InnateValue
+@interface InnateNull : NSObject <InnateValue>
 @end

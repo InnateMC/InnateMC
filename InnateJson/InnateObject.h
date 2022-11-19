@@ -6,12 +6,6 @@
 #import "InnateValue.h"
 
 
-@interface InnateObject : InnateValue {
-
-}
-
-+ (instancetype) initWithDictionary:(NSDictionary<NSString *, InnateValue *> *)dictionary;
-
-- (InnateValue *)get:(NSString *)key;
+@interface NSDictionary (InnateObject) <InnateValue>
 
 @end

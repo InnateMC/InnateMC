@@ -4,15 +4,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class InnateArray;
-@class InnateObject;
-@class InnateString;
-@class InnateNumber;
+@class NSArray;
+@class NSDictionary;
+@class NSNumber;
+@class NSString;
 @class InnateBoolean;
 @class InnateNull;
 
 
-@interface InnateValue : NSObject
+@protocol InnateValue
 
 - (BOOL) isObject;
 
@@ -26,13 +26,13 @@
 
 - (BOOL) isNull;
 
-- (InnateObject *) asObject;
+- (NSDictionary<NSString *, id<InnateValue>> *) asObject;
 
-- (InnateArray *) asArray;
+- (NSArray<id<InnateValue>> *) asArray;
 
-- (InnateString *) asString;
+- (NSString *) asString;
 
-- (InnateNumber *) asNumber;
+- (NSNumber *) asNumber;
 
 - (InnateBoolean *) asBool;
 
