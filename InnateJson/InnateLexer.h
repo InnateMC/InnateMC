@@ -8,22 +8,31 @@
 #ifndef InnateLexer_h
 #define InnateLexer_h
 
-@interface InnateLexer : NSObject;
+#define JSON_COLON ':'
+#define JSON_COMMA ','
+#define JSON_LBRACE '{'
+#define JSON_RBRACE '}'
+#define JSON_LBRACKET '['
+#define JSON_RBRACKET ']'
+#define JSON_QUOTE '"'
 
-@property (readonly) NSString *original;
-@property NSMutableString *current;
+
+@interface InnateLexer : NSObject {
+    NSString *original;
+    NSMutableString *current;
+}
 
 - (instancetype) init:(NSString *)json;
 
-- (void) lex;
+- (NSArray *) lex;
 
-- (NSString *) lexString:(NSString *)value;
+- (NSString *) lexString;
 
-- (NSString *) lexNumber:(NSString *)value;
+- (NSString *) lexNumber;
 
-- (NSString *) lexBool:(NSString *)value;
+- (NSString *) lexBool;
 
-- (NSString *) lexNull:(NSString *)value;
+- (NSString *) lexNull;
 
 @end
 
