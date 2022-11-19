@@ -7,9 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4624EDDF250627542A3114 /* InnateArray.h */; };
+		3C4620F0F4ADD56EB3E30147 /* InnateBoolean.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4629FCAF43080FBC058A8D /* InnateBoolean.m */; };
+		3C46212CC2404877784168E0 /* InnateNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46242186F56F806736F741 /* InnateNull.m */; };
+		3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46260D0A5695B57DBD817E /* InnateObject.m */; };
+		3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462BB28A43B0902FDFFCA0 /* InnateString.h */; };
+		3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462C44B2674893DA840D83 /* InnateParser.m */; };
+		3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CF5EE54A244D7B317BF /* InnateNumber.h */; };
+		3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C46223ADA27D50D300A7538 /* InnateValue.h */; };
+		3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */; };
 		3C462839F5B8DF4E24925B3F /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4623D7EA74E868AD3AECE9 /* Progress.swift */; };
+		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; };
+		3C4628FFC57ECD73B0DB2904 /* InnateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4627F75510AF5D03F07B1D /* InnateValue.m */; };
+		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; };
 		3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */; };
+		3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462F354523F3EA752A760A /* InnateArray.m */; };
+		3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462891CBBA226529C263E5 /* InnateString.m */; };
+		3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4625B085558E3B559E118E /* InnateBoolean.h */; };
 		3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462326A090F1BD4C08B7CD /* VersionManifest.swift */; };
+		3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */; };
 		641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678502923B6D40012C9CC /* RuntimePreferencesView.swift */; };
 		641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678522923B6F90012C9CC /* AccountsPreferencesView.swift */; };
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
@@ -132,9 +148,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNumber.m; sourceTree = "<group>"; };
+		3C46223ADA27D50D300A7538 /* InnateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateValue.h; sourceTree = "<group>"; };
+		3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNull.h; sourceTree = "<group>"; };
 		3C462326A090F1BD4C08B7CD /* VersionManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionManifest.swift; sourceTree = "<group>"; };
 		3C4623D7EA74E868AD3AECE9 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		3C46242186F56F806736F741 /* InnateNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNull.m; sourceTree = "<group>"; };
+		3C4624EDDF250627542A3114 /* InnateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateArray.h; sourceTree = "<group>"; };
+		3C4625B085558E3B559E118E /* InnateBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateBoolean.h; sourceTree = "<group>"; };
+		3C46260D0A5695B57DBD817E /* InnateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateObject.m; sourceTree = "<group>"; };
+		3C4627F75510AF5D03F07B1D /* InnateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateValue.m; sourceTree = "<group>"; };
+		3C462891CBBA226529C263E5 /* InnateString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateString.m; sourceTree = "<group>"; };
+		3C462939D31A2B994F0433E4 /* InnateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateParser.h; sourceTree = "<group>"; };
+		3C4629FCAF43080FBC058A8D /* InnateBoolean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateBoolean.m; sourceTree = "<group>"; };
+		3C462BB28A43B0902FDFFCA0 /* InnateString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateString.h; sourceTree = "<group>"; };
+		3C462C44B2674893DA840D83 /* InnateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateParser.m; sourceTree = "<group>"; };
+		3C462CB7177919B5451B04C2 /* InnateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateObject.h; sourceTree = "<group>"; };
+		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
 		3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryHandler.swift; sourceTree = "<group>"; };
+		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
 		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
@@ -340,6 +372,22 @@
 				64CF0CB0292810EC00535DC8 /* InnateJson.h */,
 				64CF0CCE2928167800535DC8 /* InnateLexer.h */,
 				64CF0CD029281E8A00535DC8 /* InnateLexer.m */,
+				3C462C44B2674893DA840D83 /* InnateParser.m */,
+				3C462939D31A2B994F0433E4 /* InnateParser.h */,
+				3C46260D0A5695B57DBD817E /* InnateObject.m */,
+				3C462CB7177919B5451B04C2 /* InnateObject.h */,
+				3C4627F75510AF5D03F07B1D /* InnateValue.m */,
+				3C46223ADA27D50D300A7538 /* InnateValue.h */,
+				3C462F354523F3EA752A760A /* InnateArray.m */,
+				3C4624EDDF250627542A3114 /* InnateArray.h */,
+				3C462891CBBA226529C263E5 /* InnateString.m */,
+				3C462BB28A43B0902FDFFCA0 /* InnateString.h */,
+				3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */,
+				3C462CF5EE54A244D7B317BF /* InnateNumber.h */,
+				3C46242186F56F806736F741 /* InnateNull.m */,
+				3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */,
+				3C4629FCAF43080FBC058A8D /* InnateBoolean.m */,
+				3C4625B085558E3B559E118E /* InnateBoolean.h */,
 			);
 			path = InnateJson;
 			sourceTree = "<group>";
@@ -369,6 +417,14 @@
 			files = (
 				64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */,
 				64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */,
+				3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */,
+				3C46287672378C785C25DDE5 /* InnateObject.h in Headers */,
+				3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */,
+				3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */,
+				3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */,
+				3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */,
+				3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */,
+				3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +692,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */,
+				3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */,
+				3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */,
+				3C4628FFC57ECD73B0DB2904 /* InnateValue.m in Sources */,
+				3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */,
+				3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */,
+				3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */,
+				3C46212CC2404877784168E0 /* InnateNull.m in Sources */,
+				3C4620F0F4ADD56EB3E30147 /* InnateBoolean.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
