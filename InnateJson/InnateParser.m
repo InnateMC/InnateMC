@@ -61,10 +61,7 @@
 
 - (NSArray<id<InnateValue>> *)parseArray {
     NSMutableArray<id<InnateValue>> *arr = [NSMutableArray array];
-    NSString *token = [self nextToken];
-    if ([token isEqualToString:@"]"]) {
-        return arr;
-    }
+    NSString *token = @"";
 
     while (token != nil) {
         [arr addObject:[self parse]];
@@ -73,7 +70,7 @@
             return arr;
         }
         if (![token isEqualToString:@","]) {
-            @throw [NSException exceptionWithName:@"InvalidJson" reason:@"No closing right bracket" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidJson" reason:@"Missing Comma" userInfo:nil];
         }
     }
 

@@ -11,5 +11,8 @@ import InnateKit
 print("Hello, World!")
 #if DEBUG
 DataHandler.createTestInstances()
-VersionManifest.download()
+let versions = try VersionManifest.download()
+for version in versions {
+    print(version.id + " " + version.type)
+}
 #endif

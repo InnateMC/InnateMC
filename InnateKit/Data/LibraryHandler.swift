@@ -4,5 +4,5 @@
 
 import Foundation
 
-class LibraryHandler {
+public class LibraryHandler {
 }

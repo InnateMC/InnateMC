@@ -4,13 +4,13 @@
 
 import Foundation
 
-struct Progress {
-    var current: Int
-    var total: Int
-    var fraction: Double {
+public struct Progress {
+    public var current: Int
+    public var total: Int
+    public var fraction: Double {
         return Double(current) / Double(total)
     }
-    var percentString: String {
+    public var percentString: String {
         return String(format: "%.2f", fraction * 100) + "%"
     }
 }
