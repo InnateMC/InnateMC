@@ -30,12 +30,9 @@
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
 		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
-		643B39E829273D1300AEC71C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B39E729273D1300AEC71C /* main.swift */; };
 		643C7FE52927566400DDC1B3 /* InnateKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 643C7FE42927566400DDC1B3 /* InnateKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		643C7FED2927567000DDC1B3 /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
-		643C7FEE2927567000DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		643C7FF52927695E00DDC1B3 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF42927695E00DDC1B3 /* DataHandler.swift */; };
 		643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF6292769C900DDC1B3 /* Instance.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
@@ -54,17 +51,12 @@
 		64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
+		64EB537F2929CD7800D6CDDD /* InnateKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */; };
+		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		643C7FE62927566400DDC1B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 643C7FE12927566400DDC1B3;
-			remoteInfo = InnateKit;
-		};
-		643C7FEF2927567000DDC1B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
 			proxyType = 1;
@@ -99,18 +91,16 @@
 			remoteGlobalIDString = 64CF0CAD292810EC00535DC8;
 			remoteInfo = InnateJson;
 		};
+		64EB53812929CD7800D6CDDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 643C7FE12927566400DDC1B3;
+			remoteInfo = InnateKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		643B39E329273D1200AEC71C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		643B3A1129274FCB00AEC71C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,17 +108,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		643B3A1629274FD800AEC71C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				643C7FEE2927567000DDC1B3 /* InnateKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,8 +149,6 @@
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
 		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
 		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
-		643B39E529273D1200AEC71C /* InnateMCCli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = InnateMCCli; sourceTree = BUILT_PRODUCTS_DIR; };
-		643B39E729273D1300AEC71C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		643C7FE22927566400DDC1B3 /* InnateKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		643C7FE42927566400DDC1B3 /* InnateKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateKit.h; sourceTree = "<group>"; };
 		643C7FF42927695E00DDC1B3 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
@@ -196,17 +173,11 @@
 		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
+		64EB537C2929CD7800D6CDDD /* InnateKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateKitTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		643B39E229273D1200AEC71C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				643C7FED2927567000DDC1B3 /* InnateKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		643C7FDF2927566400DDC1B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +216,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64EB53792929CD7800D6CDDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -259,14 +238,6 @@
 				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
 			);
 			path = Preferences;
-			sourceTree = "<group>";
-		};
-		643B39E629273D1300AEC71C /* InnateMCCli */ = {
-			isa = PBXGroup;
-			children = (
-				643B39E729273D1300AEC71C /* main.swift */,
-			);
-			path = InnateMCCli;
 			sourceTree = "<group>";
 		};
 		643B39FA29274F6100AEC71C /* Frameworks */ = {
@@ -305,10 +276,10 @@
 				64C33508292272F500BB8570 /* .gitignore */,
 				64C334D72922523600BB8570 /* InnateMC */,
 				64C334E92922524000BB8570 /* InnateMCTests */,
-				643B39E629273D1300AEC71C /* InnateMCCli */,
 				643C7FE32927566400DDC1B3 /* InnateKit */,
 				64CF0CAF292810EC00535DC8 /* InnateJson */,
 				64CF0CBB292810ED00535DC8 /* InnateJsonTests */,
+				64EB537D2929CD7800D6CDDD /* InnateKitTests */,
 				64C334D62922523600BB8570 /* Products */,
 				643B39FA29274F6100AEC71C /* Frameworks */,
 			);
@@ -319,10 +290,10 @@
 			children = (
 				64C334D52922523600BB8570 /* InnateMC.app */,
 				64C334E62922524000BB8570 /* InnateMCTests.xctest */,
-				643B39E529273D1200AEC71C /* InnateMCCli */,
 				643C7FE22927566400DDC1B3 /* InnateKit.framework */,
 				64CF0CAE292810EC00535DC8 /* InnateJson.framework */,
 				64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */,
+				64EB537C2929CD7800D6CDDD /* InnateKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,6 +370,14 @@
 			path = InnateJsonTests;
 			sourceTree = "<group>";
 		};
+		64EB537D2929CD7800D6CDDD /* InnateKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */,
+			);
+			path = InnateKitTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -430,25 +409,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		643B39E429273D1200AEC71C /* InnateMCCli */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 643B39E929273D1300AEC71C /* Build configuration list for PBXNativeTarget "InnateMCCli" */;
-			buildPhases = (
-				643B39E129273D1200AEC71C /* Sources */,
-				643B39E229273D1200AEC71C /* Frameworks */,
-				643B39E329273D1200AEC71C /* CopyFiles */,
-				643B3A1629274FD800AEC71C /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				643C7FF02927567000DDC1B3 /* PBXTargetDependency */,
-			);
-			name = InnateMCCli;
-			productName = InnateMCCli;
-			productReference = 643B39E529273D1200AEC71C /* InnateMCCli */;
-			productType = "com.apple.product-type.tool";
-		};
 		643C7FE12927566400DDC1B3 /* InnateKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 643C7FEA2927566400DDC1B3 /* Build configuration list for PBXNativeTarget "InnateKit" */;
@@ -543,6 +503,24 @@
 			productReference = 64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		64EB537B2929CD7800D6CDDD /* InnateKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64EB53832929CD7800D6CDDD /* Build configuration list for PBXNativeTarget "InnateKitTests" */;
+			buildPhases = (
+				64EB53782929CD7800D6CDDD /* Sources */,
+				64EB53792929CD7800D6CDDD /* Frameworks */,
+				64EB537A2929CD7800D6CDDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64EB53822929CD7800D6CDDD /* PBXTargetDependency */,
+			);
+			name = InnateKitTests;
+			productName = InnateKitTests;
+			productReference = 64EB537C2929CD7800D6CDDD /* InnateKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -553,9 +531,6 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					643B39E429273D1200AEC71C = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 					643C7FE12927566400DDC1B3 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -574,6 +549,9 @@
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 64C334D42922523600BB8570;
 					};
+					64EB537B2929CD7800D6CDDD = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 64C334D02922523500BB8570 /* Build configuration list for PBXProject "InnateMC" */;
@@ -591,10 +569,10 @@
 			targets = (
 				64C334D42922523600BB8570 /* InnateMC */,
 				64C334E52922524000BB8570 /* InnateMCTests */,
-				643B39E429273D1200AEC71C /* InnateMCCli */,
 				643C7FE12927566400DDC1B3 /* InnateKit */,
 				64CF0CAD292810EC00535DC8 /* InnateJson */,
 				64CF0CB4292810ED00535DC8 /* InnateJsonTests */,
+				64EB537B2929CD7800D6CDDD /* InnateKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -639,17 +617,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		643B39E129273D1200AEC71C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		64EB537A2929CD7800D6CDDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643B39E829273D1300AEC71C /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		643C7FDE2927566400DDC1B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,6 +686,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64EB53782929CD7800D6CDDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64EB537F2929CD7800D6CDDD /* InnateKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -716,11 +701,6 @@
 			isa = PBXTargetDependency;
 			target = 643C7FE12927566400DDC1B3 /* InnateKit */;
 			targetProxy = 643C7FE62927566400DDC1B3 /* PBXContainerItemProxy */;
-		};
-		643C7FF02927567000DDC1B3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 643C7FE12927566400DDC1B3 /* InnateKit */;
-			targetProxy = 643C7FEF2927567000DDC1B3 /* PBXContainerItemProxy */;
 		};
 		64C334E82922524000BB8570 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -742,33 +722,14 @@
 			target = 64CF0CAD292810EC00535DC8 /* InnateJson */;
 			targetProxy = 64CF0CCB2928117D00535DC8 /* PBXContainerItemProxy */;
 		};
+		64EB53822929CD7800D6CDDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 643C7FE12927566400DDC1B3 /* InnateKit */;
+			targetProxy = 64EB53812929CD7800D6CDDD /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		643B39EA29273D1300AEC71C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52FGDYD382;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		643B39EB29273D1300AEC71C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52FGDYD382;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		643C7FEB2927566400DDC1B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1141,18 +1102,39 @@
 			};
 			name = Release;
 		};
+		64EB53842929CD7800D6CDDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		64EB53852929CD7800D6CDDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 52FGDYD382;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		643B39E929273D1300AEC71C /* Build configuration list for PBXNativeTarget "InnateMCCli" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				643B39EA29273D1300AEC71C /* Debug */,
-				643B39EB29273D1300AEC71C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		643C7FEA2927566400DDC1B3 /* Build configuration list for PBXNativeTarget "InnateKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1203,6 +1185,15 @@
 			buildConfigurations = (
 				64CF0CC5292810ED00535DC8 /* Debug */,
 				64CF0CC6292810ED00535DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64EB53832929CD7800D6CDDD /* Build configuration list for PBXNativeTarget "InnateKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64EB53842929CD7800D6CDDD /* Debug */,
+				64EB53852929CD7800D6CDDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

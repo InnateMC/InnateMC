@@ -10,7 +10,7 @@ import Foundation
 public class DataHandler {
     public static func getOrCreateFolder() -> URL {
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        var documentsUrl = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let folderUrl = documentsUrl.appendingPathComponent("InnateMC")
         if !fileManager.fileExists(atPath: folderUrl.path) {
             do {
