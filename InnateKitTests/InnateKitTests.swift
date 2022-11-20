@@ -10,7 +10,6 @@ import InnateKit
 
 class InnateKitTests: XCTestCase {
     override func setUpWithError() throws {
-        DataHandler.createTestInstances()
         DataHandler.getOrCreateFolder()
     }
 
