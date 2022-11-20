@@ -15,6 +15,7 @@ public struct Version {
     public let libraries: [Library]
     public let mainClass: String
     public let type: String
+    public let releaseTime: String
 
     public static func download(_ url: String, sha1: String) throws -> Version {
         if let url = URL(string: url) {
@@ -33,7 +34,8 @@ public struct Version {
         let libraries = Library.deserializeArray(dict["libraries"]!.asArray()!)
         let mainClass = dict["mainClass"]!.asString()!
         let type = dict["type"]!.asString()!
-        return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, libraries: libraries, mainClass: mainClass, type: type)
+        let releaseTime = dict["releaseTime"]!.asString()!
+        return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
     
     public struct Arguments {
