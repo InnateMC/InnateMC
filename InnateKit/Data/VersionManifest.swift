@@ -6,7 +6,7 @@ import Foundation
 import InnateJson
 
 public class VersionManifest {
-    public static func download() throws -> [Version] {
+    public static func download() throws -> [ManifestVersion] {
         if let url = URL(string: "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json") {
             let contents = try String(contentsOf: url)
             let json = InnateParser.readJson(contents)!
@@ -16,18 +16,18 @@ public class VersionManifest {
         }
     }
     
-    public static func readFromDict(_ dict: [String: InnateValue]) -> [Version] {
-        var versions: [Version] = []
+    public static func readFromDict(_ dict: [String: InnateValue]) -> [ManifestVersion] {
+        var versions: [ManifestVersion] = []
         let versionsJsonArray = dict["versions"]!.asArray()!
         for versionJson in versionsJsonArray {
             let versionObj = versionJson.asObject()!
-            versions.append(Version(id: versionObj["id"]!.asString()!, type: versionObj["type"]!.asString()!, url: versionObj["url"]!.asString()!, time: versionObj["time"]!.asString()!, releaseTime: versionObj["releaseTime"]!.asString()!, sha1: versionObj["sha1"]!.asString()!))
+            versions.append(ManifestVersion(id: versionObj["id"]!.asString()!, type: versionObj["type"]!.asString()!, url: versionObj["url"]!.asString()!, time: versionObj["time"]!.asString()!, releaseTime: versionObj["releaseTime"]!.asString()!, sha1: versionObj["sha1"]!.asString()!))
         }
         return versions;
     }
 }
 
-public struct Version {
+public struct ManifestVersion {
     public var id: String
     public var type: String
     public var url: String

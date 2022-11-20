@@ -52,6 +52,7 @@
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64EB537F2929CD7800D6CDDD /* InnateKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */; };
 		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
+		64EB53872929E6A600D6CDDD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB53862929E6A600D6CDDD /* Version.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 		64EB537C2929CD7800D6CDDD /* InnateKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateKitTests.swift; sourceTree = "<group>"; };
+		64EB53862929E6A600D6CDDD /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 				3C4623D7EA74E868AD3AECE9 /* Progress.swift */,
 				3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */,
 				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
+				64EB53862929E6A600D6CDDD /* Version.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				643C7FF52927695E00DDC1B3 /* DataHandler.swift in Sources */,
 				3C462839F5B8DF4E24925B3F /* Progress.swift in Sources */,
 				3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */,
+				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
