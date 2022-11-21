@@ -18,7 +18,7 @@
 + (NSDictionary<NSString *, id <InnateValue>> *)readJson:(NSString *)tokens {
     InnateLexer *lexer = [[InnateLexer alloc] init:tokens];
     InnateParser *parser = [InnateParser parserWithTokens:[lexer lex]];
-    return [parser parse].asObject;
+    return [[parser parse] asObject];
 }
 
 + (InnateParser *)parserWithTokens:(NSArray<NSString *> *)tokens {
