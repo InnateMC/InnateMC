@@ -12,8 +12,8 @@ class InnateKitTests: XCTestCase {
     private var manifest: [ManifestVersion] = []
 
     override func setUpWithError() throws {
-        try FileManager.default.removeItem(at: DataHandler.getOrCreateFolder("Assets"))
-        DataHandler.getOrCreateFolder("Assets")
+        try FileManager.default.removeItem(at: FolderHandler.getOrCreateFolder("Assets"))
+        FolderHandler.getOrCreateFolder("Assets")
         manifest = try VersionManifest.download()
     }
 
@@ -22,7 +22,7 @@ class InnateKitTests: XCTestCase {
     }
 
     func testInstancesCreation() throws {
-        DataHandler.createTestInstances()
+        FolderHandler.createTestInstances()
     }
 
     func testDownloadVersionManifest() throws {

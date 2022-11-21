@@ -33,7 +33,7 @@ public class AssetIndex {
     public func download(progress: inout DownloadProgress) throws {
         progress.total = objects.count
         progress.current = 0
-        let assetsRoot: URL = DataHandler.getOrCreateFolder("Assets")
+        let assetsRoot: URL = try FolderHandler.getOrCreateFolder("Assets")
         let indexes: URL = assetsRoot.appendingPathComponent("indexes", isDirectory: true)
         let fm = FileManager.default
         if !fm.fileExists(atPath: indexes.path) {
@@ -57,8 +57,7 @@ public class AssetIndex {
             let file = hashFolder.appendingPathComponent(hash)
             if !fm.fileExists(atPath: file.path) {
                 let url = URL(string: "http://resources.download.minecraft.net/" + hashPre + "/" + hash)!
-                let contents = try Data(contentsOf: url)
-                fm.createFile(atPath: file.path, contents: contents)
+                try FileHandler.saveData(file, Data(contentsOf: url))
             }
             progress.current += 1
         }

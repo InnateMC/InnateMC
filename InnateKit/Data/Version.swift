@@ -113,7 +113,7 @@ public struct Version {
             public static func deserialize(_ downloadsObj: [String: InnateValue]) -> Downloads {
                 let artifactObj = downloadsObj["artifact"]
                 if let artifactObj = artifactObj {
-                    return Downloads(artifact: Artifact.deserialize(downloadsObj["artifact"]!.asObject()!))
+                    return Downloads(artifact: Artifact.deserialize(artifactObj.asObject()!))
                 }
                 return Downloads(artifact: Artifact.deserialize(downloadsObj["classifiers"]!.asObject()!["natives-osx"]!.asObject()!))
             }
