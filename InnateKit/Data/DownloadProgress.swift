@@ -18,13 +18,13 @@ public class DownloadProgress {
     public func percentString() -> String {
         return String(format: "%.2f", fraction() * 100) + "%"
     }
-    
+
     public func intPercent() -> Int {
         return Int((fraction() * 100).rounded())
     }
     
     public func isDone() -> Bool {
-        return current == total
+        return current >= (total - 1)
     }
 
     public init(current: Int, total: Int) {

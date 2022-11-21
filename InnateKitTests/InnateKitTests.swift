@@ -43,13 +43,11 @@ class InnateKitTests: XCTestCase {
         let version = try Version.download(manifestVer.url, sha1: manifestVer.sha1)
         let assetIndex = try AssetIndex.download(version: manifestVer.id, urlStr: version.assetIndex.url)
         let progress: DownloadProgress = try assetIndex.downloadParallel()
-        var last = -1
         while (!progress.isDone()) {
-            let per = progress.intPercent()
-            if (last != per) {
-                print(per)
-                last = per
-            }
+            print(progress.fraction())
+            print(progress.current)
+            print(progress.total)
+            Thread.sleep(forTimeInterval: 2)
         }
     }
 }

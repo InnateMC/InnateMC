@@ -16,18 +16,20 @@ public class ParallelDownloader {
         let fm = FileManager.default
 
         func dispatch(_ task: DownloadTask) {
-            DispatchQueue.global().async {
+            print("Dispatched " + task.filePath.path)
+            dispatchQueue.async {
                 if !fm.fileExists(atPath: task.filePath.path) {
                     let data = try! Data(contentsOf: task.url)
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
                         dispatch(task)
                     } else {
-                        let parent = task.url.deletingLastPathComponent()
+                        let parent = task.filePath.deletingLastPathComponent()
                         if !fm.fileExists(atPath: parent.path) {
                             try! fm.createDirectory(at: parent, withIntermediateDirectories: true)
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
                         progress.current += 1
+                        print("Finished " + task.filePath.path)
                     }
                 }
             }
