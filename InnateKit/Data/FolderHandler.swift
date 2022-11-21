@@ -8,6 +8,10 @@
 import Foundation
 
 public class FolderHandler {
+    public static let instancesFolder = try! getOrCreateFolder("Instances")
+    public static let assetsFolder = try! getOrCreateFolder("Assets")
+    public static let librariesFolder = try! getOrCreateFolder("Libraries")
+    
     public static func getOrCreateFolder() throws -> URL {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!

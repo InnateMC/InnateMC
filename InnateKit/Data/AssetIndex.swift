@@ -30,7 +30,7 @@ public class AssetIndex {
         }
     }
     
-    public func download(progress: inout DownloadProgress) throws {
+    public func download(progress: DownloadProgress) throws {
         progress.total = objects.count
         progress.current = 0
         let assetsRoot: URL = try FolderHandler.getOrCreateFolder("Assets")

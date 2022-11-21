@@ -57,11 +57,11 @@ extension Instance {
     public static func createTestInstances() throws {
         let names = ["Test1", "Test2", "Test3"]
         for name in names {
-            let instanceFolder = try FolderHandler.getOrCreateFolder("Instances").appendingPathComponent(name + ".innate")
+            let instanceFolder = FolderHandler.instancesFolder.appendingPathComponent("name")
             if FileManager.default.fileExists(atPath: instanceFolder.path) {
                 continue
             }
-            try! FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
             let instance = Instance(path: instanceFolder, name: name, assetIndex: "1.18.2")
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let data = try instance.serialize()

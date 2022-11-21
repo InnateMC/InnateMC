@@ -12,8 +12,8 @@ class InnateKitTests: XCTestCase {
     private var manifest: [ManifestVersion] = []
 
     override func setUpWithError() throws {
-        try FileManager.default.removeItem(at: FolderHandler.getOrCreateFolder("Assets"))
-        FolderHandler.getOrCreateFolder("Assets")
+        try FileManager.default.removeItem(at: FolderHandler.assetsFolder)
+        try FolderHandler.getOrCreateFolder("Assets")
         manifest = try VersionManifest.download()
     }
 
@@ -22,7 +22,7 @@ class InnateKitTests: XCTestCase {
     }
 
     func testInstancesCreation() throws {
-        FolderHandler.createTestInstances()
+        try Instance.createTestInstances()
     }
 
     func testDownloadVersionManifest() throws {
@@ -34,15 +34,15 @@ class InnateKitTests: XCTestCase {
     func testDownloadVersion() throws {
         measure {
             let manifestVer = manifest.randomElement()!
-            try! Version.download(manifestVer.url, sha1: manifestVer.sha1)
+            let _ = try! Version.download(manifestVer.url, sha1: manifestVer.sha1)
         }
     }
     
     func testDownloadAssets() throws {
         let manifestVer = manifest.randomElement()!
-        let version = try! Version.download(manifestVer.url, sha1: manifestVer.sha1)
-        let assetIndex = try! AssetIndex.download(version: manifestVer.id, urlStr: version.assetIndex.url)
-        var progress: DownloadProgress = DownloadProgress(current: 0, total: 0)
-        try! assetIndex.download(progress: &progress)
+        let version = try Version.download(manifestVer.url, sha1: manifestVer.sha1)
+        let assetIndex = try AssetIndex.download(version: manifestVer.id, urlStr: version.assetIndex.url)
+        let progress: DownloadProgress = DownloadProgress()
+        try assetIndex.download(progress: progress)
     }
 }

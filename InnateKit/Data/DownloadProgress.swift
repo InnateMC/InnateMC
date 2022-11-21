@@ -4,9 +4,13 @@
 
 import Foundation
 
-public struct DownloadProgress {
-    public var current: Int
-    public var total: Int
+public class DownloadProgress {
+    public var current: Int = 0
+    public var total: Int = 0
+    
+    public init() {
+    }
+    
     public func fraction() -> Double {
         return Double(current) / Double(total)
     }
