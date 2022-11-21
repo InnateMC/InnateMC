@@ -59,15 +59,15 @@ public class DataHandler {
         return instances
     }
 
-    public static func loadPlist(_ url: URL) -> [String: Any] {
+    public static func loadPlist(_ url: URL) throws -> [String: Any] {
         if url.pathExtension != "plist" {
             fatalError("Not a plist file")
         }
         if !FileManager.default.fileExists(atPath: url.path) {
             return [:]
         }
-        let data = try! Data(contentsOf: url)
-        let dict = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String: Any]
+        let data = try Data(contentsOf: url)
+        let dict = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String: Any]
         return dict
     }
 
@@ -91,7 +91,7 @@ extension DataHandler {
                 continue
             }
             try! FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
-            let instance = Instance(path: instanceFolder, name: name)
+            let instance = Instance(path: instanceFolder, name: name, version: "1.18.2")
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let dict = instance.serialize()
             savePlist(instancePlist, dict)
