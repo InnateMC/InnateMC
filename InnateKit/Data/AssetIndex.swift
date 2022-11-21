@@ -30,6 +30,31 @@ public class AssetIndex {
         }
     }
     
+    public func downloadParallel() throws -> DownloadProgress {
+        let fm = FileManager.default
+        let objects: URL = FolderHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
+        let indexes: URL = FolderHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
+        if !fm.fileExists(atPath: objects.path) {
+            try fm.createDirectory(at: objects, withIntermediateDirectories: true)
+        }
+        let indexesFile: URL = indexes.appendingPathComponent(self.version + ".json", isDirectory: false)
+        if !fm.fileExists(atPath: indexesFile.path) {
+            fm.createFile(atPath: indexesFile.path, contents: self.json.data(using: .utf8))
+        }
+        var tasks: [DownloadTask] = []
+        for (_, v) in self.objects {
+            let hash = v.asObject()!["hash"]!.asString()!
+            let hashPre = String(hash.substring(to: hash.index(after: hash.index(after: hash.startIndex))))
+            let hashFolder = objects.appendingPathComponent(hashPre, isDirectory: true)
+            let path = hashFolder.appendingPathComponent(hash, isDirectory: false)
+            let url = URL(string: "http://resources.download.minecraft.net/" + hashPre + "/" + hash)!
+            tasks.append(DownloadTask(url: url, filePath: path, sha1: nil))
+        }
+        let progress = DownloadProgress()
+        ParallelDownloader.download(tasks, progress: progress)
+        return progress
+    }
+
     public func download(progress: DownloadProgress) throws {
         progress.total = objects.count
         progress.current = 0

@@ -55,6 +55,7 @@
 		64EB53872929E6A600D6CDDD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB53862929E6A600D6CDDD /* Version.swift */; };
 		64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F42647292B79FD00BF4DF6 /* AssetIndex.swift */; };
 		64F4264A292BB21A00BF4DF6 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F42649292BB21A00BF4DF6 /* FileHandler.swift */; };
+		64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		64EB53862929E6A600D6CDDD /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		64F42647292B79FD00BF4DF6 /* AssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIndex.swift; sourceTree = "<group>"; };
 		64F42649292BB21A00BF4DF6 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
+		64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				64EB53862929E6A600D6CDDD /* Version.swift */,
 				64F42647292B79FD00BF4DF6 /* AssetIndex.swift */,
 				64F42649292BB21A00BF4DF6 /* FileHandler.swift */,
+				64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				643C7FF52927695E00DDC1B3 /* FolderHandler.swift in Sources */,
 				3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */,
 				3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */,
+				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
 				64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */,
