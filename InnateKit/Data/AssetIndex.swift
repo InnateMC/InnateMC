@@ -57,37 +57,4 @@ public class AssetIndex {
         ParallelDownloader.download(tasks, progress: progress)
         return progress
     }
-
-    public func download(progress: DownloadProgress) throws {
-        progress.total = objects.count
-        progress.current = 0
-        let assetsRoot: URL = try FolderHandler.getOrCreateFolder("Assets")
-        let indexes: URL = assetsRoot.appendingPathComponent("indexes", isDirectory: true)
-        let fm = FileManager.default
-        if !fm.fileExists(atPath: indexes.path) {
-            try fm.createDirectory(at: indexes, withIntermediateDirectories: true)
-        }
-        let objects: URL = assetsRoot.appendingPathComponent("objects", isDirectory: true)
-        if !fm.fileExists(atPath: objects.path) {
-            try fm.createDirectory(at: objects, withIntermediateDirectories: true)
-        }
-        let indexesFile: URL = indexes.appendingPathComponent(self.version + ".json", isDirectory: false)
-        if !fm.fileExists(atPath: indexesFile.path) {
-            fm.createFile(atPath: indexesFile.path, contents: self.json.data(using: .utf8))
-        }
-        for (_, v) in self.objects {
-            let hash = v.asObject()!["hash"]!.asString()!
-            let hashPre = String(hash.substring(to: hash.index(after: hash.index(after: hash.startIndex))))
-            let hashFolder = objects.appendingPathComponent(hashPre)
-            if !fm.fileExists(atPath: hashFolder.path) {
-                try fm.createDirectory(at: hashFolder, withIntermediateDirectories: true)
-            }
-            let file = hashFolder.appendingPathComponent(hash)
-            if !fm.fileExists(atPath: file.path) {
-                let url = URL(string: "http://resources.download.minecraft.net/" + hashPre + "/" + hash)!
-                try FileHandler.saveData(file, Data(contentsOf: url))
-            }
-            progress.current += 1
-        }
-    }
 }
