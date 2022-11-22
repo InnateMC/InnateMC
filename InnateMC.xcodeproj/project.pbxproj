@@ -54,7 +54,6 @@
 		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 		64EB53872929E6A600D6CDDD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB53862929E6A600D6CDDD /* Version.swift */; };
 		64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F42647292B79FD00BF4DF6 /* AssetIndex.swift */; };
-		64F4264A292BB21A00BF4DF6 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F42649292BB21A00BF4DF6 /* FileHandler.swift */; };
 		64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */; };
 /* End PBXBuildFile section */
 
@@ -171,7 +170,6 @@
 		64EB537E2929CD7800D6CDDD /* InnateKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateKitTests.swift; sourceTree = "<group>"; };
 		64EB53862929E6A600D6CDDD /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		64F42647292B79FD00BF4DF6 /* AssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIndex.swift; sourceTree = "<group>"; };
-		64F42649292BB21A00BF4DF6 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,7 +255,6 @@
 				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
 				64EB53862929E6A600D6CDDD /* Version.swift */,
 				64F42647292B79FD00BF4DF6 /* AssetIndex.swift */,
-				64F42649292BB21A00BF4DF6 /* FileHandler.swift */,
 				64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */,
 			);
 			path = Data;
@@ -594,7 +591,6 @@
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
 				64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */,
-				64F4264A292BB21A00BF4DF6 /* FileHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

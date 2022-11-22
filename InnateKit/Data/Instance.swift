@@ -26,10 +26,9 @@ extension Instance {
     }
 
     public static func loadFromDirectory(_ url: URL) throws -> Instance {
-        let plistUrl = url.appendingPathComponent("Instance.plist")
-        return try deserialize(try Data(contentsOf: plistUrl), path: url)
+        return try deserialize(FolderHandler.getData(url.appendingPathComponent("Instance.plist"))!, path: url)
     }
-    
+
     public static func loadInstances() throws -> [Instance] {
         let appSupportFolder = try FolderHandler.getOrCreateFolder()
         var instances: [Instance] = []
@@ -65,7 +64,7 @@ extension Instance {
             let instance = Instance(path: instanceFolder, name: name, assetIndex: "1.18.2")
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let data = try instance.serialize()
-            try FileHandler.saveData(instancePlist, data)
+            try FolderHandler.saveData(instancePlist, data)
         }
     }
 }

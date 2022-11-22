@@ -13,7 +13,7 @@ class InnateKitTests: XCTestCase {
 
     override func setUpWithError() throws {
         try FileManager.default.removeItem(at: FolderHandler.assetsFolder)
-        try FolderHandler.getOrCreateFolder("Assets")
+        let _ = try FolderHandler.getOrCreateFolder("Assets")
         manifest = try VersionManifest.download()
     }
 
