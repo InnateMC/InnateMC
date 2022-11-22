@@ -262,7 +262,11 @@ extension Version {
             for component in pathComponents {
                 fileUrl = fileUrl.appendingPathComponent(String(component))
             }
-            tasks.append(DownloadTask(url: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: library.downloads.artifact.sha1))
+            let task = DownloadTask(url: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: nil)
+            print(task.url)
+            print(task.filePath)
+            print("")
+            tasks.append(task)
         }
         ParallelDownloader.download(tasks, progress: progress)
         return progress

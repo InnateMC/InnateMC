@@ -54,7 +54,17 @@ class InnateKitTests: XCTestCase {
         let assetIndex = try AssetIndex.download(version: manifestVer.id, urlStr: version.assetIndex.url)
         let progress: DownloadProgress = try assetIndex.downloadParallel()
         while (!progress.isDone()) {
-            print(progress.fraction())
+            print(progress.current)
+            print(progress.total)
+            Thread.sleep(forTimeInterval: 2)
+        }
+    }
+    
+    func testDownloadLibraries() throws {
+        let manifestVer = manifest.randomElement()!
+        let version = try Version.download(manifestVer.url, sha1: manifestVer.sha1)
+        let progress: DownloadProgress = version.downloadLibraries()
+        while (!progress.isDone()) {
             print(progress.current)
             print(progress.total)
             Thread.sleep(forTimeInterval: 2)

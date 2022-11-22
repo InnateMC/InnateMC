@@ -19,7 +19,6 @@
 		3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4623D7EA74E868AD3AECE9 /* DownloadProgress.swift */; };
 		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; };
 		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; };
-		3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */; };
 		3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462F354523F3EA752A760A /* InnateArray.m */; };
 		3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462891CBBA226529C263E5 /* InnateString.m */; };
 		3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4625B085558E3B559E118E /* InnateBoolean.h */; };
@@ -137,7 +136,6 @@
 		3C462C44B2674893DA840D83 /* InnateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateParser.m; sourceTree = "<group>"; };
 		3C462CB7177919B5451B04C2 /* InnateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateObject.h; sourceTree = "<group>"; };
 		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
-		3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryHandler.swift; sourceTree = "<group>"; };
 		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
 		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 				643C7FF42927695E00DDC1B3 /* FileHandler.swift */,
 				643C7FF6292769C900DDC1B3 /* Instance.swift */,
 				3C4623D7EA74E868AD3AECE9 /* DownloadProgress.swift */,
-				3C462EDDE2790013F0ED32E0 /* LibraryHandler.swift */,
 				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
 				64EB53862929E6A600D6CDDD /* Version.swift */,
 				64F42647292B79FD00BF4DF6 /* AssetIndex.swift */,
@@ -588,7 +585,6 @@
 				643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */,
 				643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */,
 				3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */,
-				3C462B244CDD86A1611EDD9B /* LibraryHandler.swift in Sources */,
 				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
