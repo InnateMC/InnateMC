@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class FolderHandler {
+public class FileHandler {
     public static let instancesFolder = try! getOrCreateFolder("Instances")
     public static let assetsFolder = try! getOrCreateFolder("Assets")
     public static let librariesFolder = try! getOrCreateFolder("Libraries")

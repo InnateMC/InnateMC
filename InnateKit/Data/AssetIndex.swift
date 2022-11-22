@@ -32,8 +32,8 @@ public class AssetIndex {
 
     public func downloadParallel() throws -> DownloadProgress {
         let fm = FileManager.default
-        let objects: URL = FolderHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
-        let indexes: URL = FolderHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
+        let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
+        let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
         if !fm.fileExists(atPath: objects.path) {
             try fm.createDirectory(at: objects, withIntermediateDirectories: true)
         }

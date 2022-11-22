@@ -12,8 +12,8 @@ class InnateKitTests: XCTestCase {
     private var manifest: [ManifestVersion] = []
 
     override func setUpWithError() throws {
-        try FileManager.default.removeItem(at: FolderHandler.assetsFolder)
-        let _ = try FolderHandler.getOrCreateFolder("Assets")
+        try FileManager.default.removeItem(at: FileHandler.assetsFolder)
+        let _ = try FileHandler.getOrCreateFolder("Assets")
         manifest = try VersionManifest.download()
     }
 

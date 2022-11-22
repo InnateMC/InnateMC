@@ -26,11 +26,11 @@ extension Instance {
     }
 
     public static func loadFromDirectory(_ url: URL) throws -> Instance {
-        return try deserialize(FolderHandler.getData(url.appendingPathComponent("Instance.plist"))!, path: url)
+        return try deserialize(FileHandler.getData(url.appendingPathComponent("Instance.plist"))!, path: url)
     }
 
     public static func loadInstances() throws -> [Instance] {
-        let appSupportFolder = try FolderHandler.getOrCreateFolder()
+        let appSupportFolder = try FileHandler.getOrCreateFolder()
         var instances: [Instance] = []
         // Walk through directories in innateMcUrl
         let directoryContents = try FileManager.default.contentsOfDirectory(
@@ -56,7 +56,7 @@ extension Instance {
     public static func createTestInstances() throws {
         let names = ["Test1", "Test2", "Test3"]
         for name in names {
-            let instanceFolder = FolderHandler.instancesFolder.appendingPathComponent("name")
+            let instanceFolder = FileHandler.instancesFolder.appendingPathComponent("name")
             if FileManager.default.fileExists(atPath: instanceFolder.path) {
                 continue
             }
@@ -64,7 +64,7 @@ extension Instance {
             let instance = Instance(path: instanceFolder, name: name, assetIndex: "1.18.2")
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let data = try instance.serialize()
-            try FolderHandler.saveData(instancePlist, data)
+            try FileHandler.saveData(instancePlist, data)
         }
     }
 }
