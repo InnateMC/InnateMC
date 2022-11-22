@@ -19,7 +19,6 @@
 import Foundation
 
 public class Instance: Codable {
-    public var path: URL?
     public var name: String
     // Minecraft version to use for assets index
     public var assetIndex: String
@@ -28,8 +27,7 @@ public class Instance: Codable {
     public var mainClass: String
     public var minecraftJar: String
     
-    public init(path: URL?, name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String) {
-        self.path = path
+    public init(name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
@@ -86,7 +84,6 @@ extension Instance {
             }
             try FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
             let instance = Instance(
-                path: instanceFolder,
                 name: name,
                 assetIndex: "1.18.2",
                 libraries: ["e", "e2"],
