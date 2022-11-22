@@ -7,11 +7,24 @@
 
 import Foundation
 
-public struct Instance: Codable {
+public class Instance: Codable {
     public var path: URL?
     public var name: String
     // Minecraft version to use for assets index
     public var assetIndex: String
+    // List of relative paths in the Libraries directory
+    public var libraries: [String]
+    public var mainClass: String
+    public var minecraftJar: String
+    
+    public init(path: URL?, name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String) {
+        self.path = path
+        self.name = name
+        self.assetIndex = assetIndex
+        self.libraries = libraries
+        self.mainClass = mainClass
+        self.minecraftJar = minecraftJar
+    }
 }
 
 extension Instance {
@@ -61,7 +74,14 @@ extension Instance {
                 continue
             }
             try FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
-            let instance = Instance(path: instanceFolder, name: name, assetIndex: "1.18.2")
+            let instance = Instance(
+                path: instanceFolder,
+                name: name,
+                assetIndex: "1.18.2",
+                libraries: ["e", "e2"],
+                mainClass: "",
+                minecraftJar: "bruh.jar"
+            )
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let data = try instance.serialize()
             try FileHandler.saveData(instancePlist, data)
