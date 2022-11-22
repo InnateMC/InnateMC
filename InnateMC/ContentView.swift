@@ -19,14 +19,32 @@ import SwiftUI
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    
+
     var body: some View {
-        VStack {
-            NavigationView {
+        NavigationView {
+            List {
                 TextField("Search...", text: $searchTerm)
-                    .padding(.all, 6)
+                    .accessibilityLabel("Search for Instance")
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                NavigationLink("Mint") {
+                    Text("bruh")
+                }
+                NavigationLink("Winter") {
+                    Text("huh???")
+                }
             }
-            Spacer()
+            .navigationTitle("Instances")
+            .toolbar {
+                ToolbarItemGroup(placement: ToolbarItemPlacement.navigation) {
+                    Button("Add Instance") {
+                    }
+                    .keyboardShortcut("n")
+                    Button("Preferences") {
+                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    }
+                }
+            }
+            Text("Select an instance")
         }
     }
 }
