@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
@@ -16,13 +17,13 @@ public class ParallelDownloader {
         let fm = FileManager.default
 
         func dispatch(_ task: DownloadTask) {
-            print("Dispatched " + task.filePath.path)
             dispatchQueue.async {
                 if fm.fileExists(atPath: task.filePath.path) {
                     progress.current += 1
                 } else {
                     let data = try! Data(contentsOf: task.url)
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
+                        print("INVALID SHA HASH, RETRYING")
                         dispatch(task)
                     } else {
                         let parent = task.filePath.deletingLastPathComponent()
@@ -31,7 +32,6 @@ public class ParallelDownloader {
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
                         progress.current += 1
-                        print("Finished " + task.filePath.path)
                         progress.current += 1
                     }
                 }
@@ -44,7 +44,10 @@ public class ParallelDownloader {
     }
 
     internal static func isSha1Valid(data: Data, expected: String?) -> Bool {
-        return true // TODO
+        guard let expected = expected else {
+            return true
+        }
+        return Insecure.SHA1.hash(data: data).description == expected
     }
 }
 

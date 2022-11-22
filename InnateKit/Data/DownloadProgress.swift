@@ -24,7 +24,7 @@ public class DownloadProgress {
     }
     
     public func isDone() -> Bool {
-        return current >= (total - 1)
+        return current >= total
     }
 
     public init(current: Int, total: Int) {
