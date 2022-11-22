@@ -34,6 +34,10 @@ public class Instance: Codable {
         self.mainClass = mainClass
         self.minecraftJar = minecraftJar
     }
+    
+    public func getPath() -> URL {
+        return FileHandler.instancesFolder.appendingPathComponent(self.name + ".innate", isDirectory: true)
+    }
 }
 
 extension Instance {
