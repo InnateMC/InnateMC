@@ -18,7 +18,7 @@
 import Foundation
 import InnateJson
 
-public struct Version {
+public class Version {
     public let arguments: Arguments
     public let assetIndex: PartialAssetIndex
     public let downloads: Downloads
@@ -26,6 +26,16 @@ public struct Version {
     public let mainClass: String
     public let type: String
     public let releaseTime: String
+    
+    public init(arguments: Arguments, assetIndex: PartialAssetIndex, downloads: Downloads, libraries: [Library], mainClass: String, type: String, releaseTime: String) {
+        self.arguments = arguments
+        self.assetIndex = assetIndex
+        self.downloads = downloads
+        self.libraries = libraries
+        self.mainClass = mainClass
+        self.type = type
+        self.releaseTime = releaseTime
+    }
 
     public static func download(_ url: String, sha1: String) throws -> Version {
         if let url = URL(string: url) {
@@ -37,7 +47,7 @@ public struct Version {
             fatalError("Invalid url")
         }
     }
-    
+
     public static func deserialize(_ dict: [String: InnateValue]) -> Version {
         let args = Arguments.deserialize(dict)
         let assetIndex = PartialAssetIndex.deserialize(dict["assetIndex"]!.asObject()!)
@@ -48,10 +58,15 @@ public struct Version {
         let releaseTime = dict["releaseTime"]!.asString()!
         return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
-    
-    public struct Arguments {
+
+    public class Arguments {
         public let game: [String]
         public let jvm: [String]
+        
+        public init(game: [String], jvm: [String]) {
+            self.game = game
+            self.jvm = jvm
+        }
 
         public static func deserialize(_ argumentsObj: [String: InnateValue]) -> Arguments {
             let root = argumentsObj["arguments"]?.asObject()
@@ -76,22 +91,37 @@ public struct Version {
         }
     }
     
-    public struct PartialAssetIndex {
+    public class PartialAssetIndex {
         public let id: String
         public let sha1: String
         public let url: String
+        
+        public init(id: String, sha1: String, url: String) {
+            self.id = id
+            self.sha1 = sha1
+            self.url = url
+        }
         
         public static func deserialize(_ assetIndexObj: [String: InnateValue]) -> PartialAssetIndex {
             PartialAssetIndex(id: assetIndexObj["id"]!.asString()!, sha1: assetIndexObj["sha1"]!.asString()!, url: assetIndexObj["url"]!.asString()!)
         }
     }
     
-    public struct Downloads {
+    public class Downloads {
         public let client: Download
+        
+        public init(client: Download) {
+            self.client = client
+        }
         
         public struct Download {
             public let sha1: String
             public let url: String
+            
+            public init(sha1: String, url: String) {
+                self.sha1 = sha1
+                self.url = url
+            }
             
             public static func deserialize(_ downloadObj: [String: InnateValue]) -> Download {
                 Download(sha1: downloadObj["sha1"]!.asString()!, url: downloadObj["url"]!.asString()!)
@@ -103,17 +133,32 @@ public struct Version {
         }
     }
 
-    public struct Library {
+    public class Library {
         public let downloads: Downloads
         public let name: String
         
-        public struct Downloads {
+        public init(downloads: Downloads, name: String) {
+            self.downloads = downloads
+            self.name = name
+        }
+        
+        public class Downloads {
             public let artifact: Artifact
             
-            public struct Artifact {
+            public init(artifact: Artifact) {
+                self.artifact = artifact
+            }
+            
+            public class Artifact {
                 public let path: String
                 public let sha1: String
                 public let url: String
+                
+                public init(path: String, sha1: String, url: String) {
+                    self.path = path
+                    self.sha1 = sha1
+                    self.url = url
+                }
 
                 public static func deserialize(_ artifactObj: [String: InnateValue]) -> Artifact {
                     Artifact(path: artifactObj["path"]!.asString()!, sha1: artifactObj["sha1"]!.asString()!, url: artifactObj["url"]!.asString()!)
@@ -156,13 +201,23 @@ public struct Version {
         }
     }
 
-    public struct Rule {
+    public class Rule {
         public let action: String
         public let os: OS
+        
+        public init(action: String, os: OS) {
+            self.action = action
+            self.os = os
+        }
 
-        public struct OS {
+        public class OS {
             public let name: String?
             public let arch: String?
+            
+            public init(name: String?, arch: String?) {
+                self.name = name
+                self.arch = arch
+            }
 
             public static func deserialize(_ osObj: [String: InnateValue]?) -> OS {
                 guard let osObj = osObj else {
@@ -194,5 +249,22 @@ public struct Version {
             }
             return rules
         }
+    }
+}
+
+extension Version {
+    public func downloadLibraries() -> DownloadProgress {
+        let progress = DownloadProgress()
+        var tasks: [DownloadTask] = []
+        for library in libraries {
+            let pathComponents = library.downloads.artifact.path.split(separator: "/")
+            var fileUrl = FileHandler.librariesFolder
+            for component in pathComponents {
+                fileUrl = fileUrl.appendingPathComponent(String(component))
+            }
+            tasks.append(DownloadTask(url: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: library.downloads.artifact.sha1))
+        }
+        ParallelDownloader.download(tasks, progress: progress)
+        return progress
     }
 }
