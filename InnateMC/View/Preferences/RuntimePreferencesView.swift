@@ -18,25 +18,20 @@
 import SwiftUI
 
 struct RuntimePreferencesView: View {
+    let columns = [GridItem(.fixed(150), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
+
     var body: some View {
-            HStack {
-                Form {
-                    Toggle("Send read receipts", isOn: .constant(false))
-
-                    TextField("Pls work", text: .constant("1826"))
-                    
-                    Picker("Profile Image Size:", selection: .constant("lg")) {
-                        Text("Large").tag("lg")
-                        Text("Medium").tag("md")
-                        Text("Small").tag("sm")
-                    }
-                    .pickerStyle(.inline)
-
-                    Button("Clear Image Cache") {}
-                }
-                
+        Form {
+            LazyVGrid(columns: columns) {
+                Text("Java executable")
+                TextField("", text: .constant("java")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Minimum Memory (MiB)")
+                TextField("", text: .constant("1024")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Minimum Memory (MiB)")
+                TextField("", text: .constant("1024")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            .padding(.all, 16.0)
+        }
+        .padding(.all, 16.0)
     }
 }
 
