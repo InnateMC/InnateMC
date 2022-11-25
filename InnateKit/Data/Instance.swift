@@ -85,7 +85,7 @@ extension Instance {
     public static func createTestInstances() throws {
         let names = ["Test1", "Test2", "Test3"]
         for name in names {
-            let instanceFolder = FileHandler.instancesFolder.appendingPathComponent("name")
+            let instanceFolder = FileHandler.instancesFolder.appendingPathComponent(name)
             if FileManager.default.fileExists(atPath: instanceFolder.path) {
                 continue
             }
