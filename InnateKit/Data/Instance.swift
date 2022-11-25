@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 import Foundation
 
 public class Instance: Codable {
@@ -26,13 +25,17 @@ public class Instance: Codable {
     public var libraries: [String]
     public var mainClass: String
     public var minecraftJar: String
+    public var isStarred: Bool
+    public var logo: String
     
-    public init(name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String) {
+    public init(name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String, isStarred: Bool, logo: String) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
         self.mainClass = mainClass
         self.minecraftJar = minecraftJar
+        self.isStarred = isStarred
+        self.logo = logo
     }
     
     public func getPath() -> URL {
@@ -92,7 +95,9 @@ extension Instance {
                 assetIndex: "1.18.2",
                 libraries: ["e", "e2"],
                 mainClass: "",
-                minecraftJar: "bruh.jar"
+                minecraftJar: "bruh.jar",
+                isStarred: name.hasSuffix("2"),
+                logo: "test.png"
             )
             let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
             let data = try instance.serialize()

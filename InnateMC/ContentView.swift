@@ -19,13 +19,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
+    
+    
 
     var body: some View {
         NavigationView {
             List {
                 TextField("Search...", text: $searchTerm)
+                    .padding(.bottom, 10.0)
                     .accessibilityLabel("Search for Instance")
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                Toggle(isOn: .constant(false)) {
+                    Text("Starred only")
+                }
                 NavigationLink("Mint") {
                     Text("bruh")
                 }
