@@ -30,6 +30,14 @@ public class VanillaInstanceCreator: InstanceCreator {
     
     public func install() throws {
         let version = try Version.download(versionUrl.path, sha1: self.sha1)
-        
+        var libraries: [Library] = []
+        for lib in version.libraries {
+            libraries.append(
+                Library(type: .local, path: lib.downloads.artifact.path, url: lib.downloads.artifact.url, sha1: lib.downloads.artifact.sha1)
+            )
+        }
+        let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
+        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex.id, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: "test.png")
+        instance.createAsNewInstance()
     }
 }

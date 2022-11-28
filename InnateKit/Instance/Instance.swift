@@ -50,10 +50,12 @@ public class Instance: Codable {
 public class MinecraftJar: Codable {
     public let type: FileType
     public let url: String?
+    public let sha1: String?
     
-    public init(type: FileType, url: String?) {
+    public init(type: FileType, url: String?, sha1: String?) {
         self.type = type
         self.url = url
+        self.sha1 = sha1
     }
 }
 
@@ -129,5 +131,15 @@ extension Instance {
             tasks.append(library.asDownloadTask())
         }
         return ParallelDownloader.download(tasks, progress: DownloadProgress())
+    }
+    
+    func createAsNewInstance() throws {
+        let instancePath = getPath()
+        let fm = FileManager.default
+        if fm.fileExists(atPath: instancePath.path) {
+            try fm.removeItem(at: instancePath)
+        }
+        try fm.createDirectory(at: instancePath, withIntermediateDirectories: true)
+        try FileHandler.saveData(instancePath.appendingPathComponent("Instance.plist"), serialize())
     }
 }
