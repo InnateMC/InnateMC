@@ -19,8 +19,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    
-    
+    @State private var showNew = false
 
     var body: some View {
         NavigationView {
@@ -39,10 +38,16 @@ struct ContentView: View {
                     Text("huh???")
                 }
             }
+            .background(
+                NavigationLink(isActive: $showNew, destination: {
+                    Text("coming soon tm tm tm tm tm")
+                }, label: { Text("") })
+            )
             .navigationTitle("Instances")
             .toolbar {
                 ToolbarItemGroup(placement: ToolbarItemPlacement.navigation) {
-                    Button("Add Instance") {
+                    Button("New Instance") {
+                        self.showNew = true
                     }
                     .keyboardShortcut("n")
                     Button("Preferences") {

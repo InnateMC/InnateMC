@@ -12,31 +12,20 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import SwiftUI
+import Cocoa
 
-@main
-struct InnateMCApp: App {
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+class AppDelegate: NSObject, NSApplicationDelegate {
+    @IBOutlet var window: NSWindow!
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        if let m = NSApp.mainMenu?.item(withTitle: "Edit") {
+            NSApp.mainMenu?.removeItem(m)
         }
-        .commands {
-            CommandMenu("Edit") {
-                Button("New Instance") {
-                    print("Bruh")
-                    
-                }
-                .keyboardShortcut("n") // TODO: make this work
-            }
-        }
-        Settings {
-            PreferencesView()
-                .frame(width: 600, height: 400)
-        }
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
     }
 }
