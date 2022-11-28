@@ -40,7 +40,7 @@ struct ContentView: View {
             }
             .background(
                 NavigationLink(isActive: $showNew, destination: {
-                    Text("coming soon tm tm tm tm tm")
+                    NewInstanceView()
                 }, label: { Text("") })
             )
             .navigationTitle("Instances")

@@ -15,4 +15,31 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import Foundation
+import SwiftUI
+
+struct NewInstanceView: View {
+    var body: some View {
+        TabView {
+            TodoView()
+                .tabItem {
+                    Text("Vanilla")
+                }
+            TodoView()
+                .tabItem {
+                    Text("Modrinth")
+                }
+            TodoView()
+                .tabItem {
+                    Text("Import")
+                }
+        }
+        .border(.red, width: 0)
+        .padding(.all, 14.0)
+    }
+}
+
+struct NewInstanceView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewInstanceView()
+    }
+}
