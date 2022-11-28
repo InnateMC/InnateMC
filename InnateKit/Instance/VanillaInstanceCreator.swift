@@ -38,6 +38,6 @@ public class VanillaInstanceCreator: InstanceCreator {
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
         let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex.id, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: "test.png")
-        instance.createAsNewInstance()
+        try instance.createAsNewInstance()
     }
 }
