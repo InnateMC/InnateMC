@@ -238,6 +238,7 @@
 		643C7FE32927566400DDC1B3 /* InnateKit */ = {
 			isa = PBXGroup;
 			children = (
+				64DF802F2934CFEF00F624F2 /* Instance */,
 				643C7FF12927588000DDC1B3 /* Data */,
 				643C7FE42927566400DDC1B3 /* InnateKit.h */,
 			);
@@ -248,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				643C7FF42927695E00DDC1B3 /* FileHandler.swift */,
-				643C7FF6292769C900DDC1B3 /* Instance.swift */,
 				3C4623D7EA74E868AD3AECE9 /* DownloadProgress.swift */,
 				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
 				64EB53862929E6A600D6CDDD /* Version.swift */,
@@ -349,6 +349,14 @@
 				64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */,
 			);
 			path = InnateJsonTests;
+			sourceTree = "<group>";
+		};
+		64DF802F2934CFEF00F624F2 /* Instance */ = {
+			isa = PBXGroup;
+			children = (
+				643C7FF6292769C900DDC1B3 /* Instance.swift */,
+			);
+			path = Instance;
 			sourceTree = "<group>";
 		};
 		64EB537D2929CD7800D6CDDD /* InnateKitTests */ = {
