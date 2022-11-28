@@ -31,10 +31,6 @@ class InnateKitTests: XCTestCase {
         manifest = []
     }
 
-    func testInstancesCreation() throws {
-        try Instance.createTestInstances()
-    }
-
     func testDownloadVersionManifest() throws {
         measure {
             let _ = try! VersionManifest.download()

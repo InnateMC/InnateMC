@@ -22,13 +22,13 @@ public class Instance: Codable {
     // Minecraft version to use for assets index
     public var assetIndex: String
     // List of relative paths in the Libraries directory
-    public var libraries: [String]
+    public var libraries: [Library]
     public var mainClass: String
     public var minecraftJar: String
     public var isStarred: Bool
     public var logo: String
-    
-    public init(name: String, assetIndex: String, libraries: [String], mainClass: String, minecraftJar: String, isStarred: Bool, logo: String) {
+
+    public init(name: String, assetIndex: String, libraries: [Library], mainClass: String, minecraftJar: String, isStarred: Bool, logo: String) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
@@ -43,8 +43,35 @@ public class Instance: Codable {
     }
 }
 
+public class Library: Codable {
+    public let type: LibraryType
+    public let path: String
+    public let url: String?
+    public let sha1: String?
+
+    public init(type: LibraryType, path: String, url: String?, sha1: String?) {
+        self.type = type
+        self.path = path
+        self.url = url
+        self.sha1 = sha1
+    }
+
+    public func getAbsolutePath() -> URL {
+        return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: true)
+    }
+
+    public enum LibraryType: Codable, CaseIterable {
+        case remote
+        case local
+    }
+    
+    public func asDownloadTask() -> DownloadTask {
+        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1)
+    }
+}
+
 extension Instance {
-    public func serialize() throws -> Data {
+    func serialize() throws -> Data {
         let encoder = PropertyListEncoder()
         return try encoder.encode(self)
     }
@@ -54,11 +81,11 @@ extension Instance {
         return try decoder.decode(Instance.self, from: data)
     }
 
-    public static func loadFromDirectory(_ url: URL) throws -> Instance {
+    static func loadFromDirectory(_ url: URL) throws -> Instance {
         return try deserialize(FileHandler.getData(url.appendingPathComponent("Instance.plist"))!, path: url)
     }
 
-    public static func loadInstances() throws -> [Instance] {
+    static func loadInstances() throws -> [Instance] {
         let appSupportFolder = try FileHandler.getOrCreateFolder()
         var instances: [Instance] = []
         // Walk through directories in innateMcUrl
@@ -78,31 +105,15 @@ extension Instance {
         }
         return instances
     }
-}
-
-#if DEBUG
-extension Instance {
-    public static func createTestInstances() throws {
-        let names = ["Test1", "Test2", "Test3"]
-        for name in names {
-            let instanceFolder = FileHandler.instancesFolder.appendingPathComponent(name)
-            if FileManager.default.fileExists(atPath: instanceFolder.path) {
+    
+    func downloadLibs() -> DownloadProgress {
+        var tasks: [DownloadTask] = []
+        for library in libraries {
+            if library.type == .local {
                 continue
             }
-            try FileManager.default.createDirectory(at: instanceFolder, withIntermediateDirectories: true, attributes: nil)
-            let instance = Instance(
-                name: name,
-                assetIndex: "1.18.2",
-                libraries: ["e", "e2"],
-                mainClass: "",
-                minecraftJar: "bruh.jar",
-                isStarred: name.hasSuffix("2"),
-                logo: "test.png"
-            )
-            let instancePlist = instanceFolder.appendingPathComponent("Instance.plist")
-            let data = try instance.serialize()
-            try FileHandler.saveData(instancePlist, data)
+            tasks.append(library.asDownloadTask())
         }
+        return ParallelDownloader.download(tasks, progress: DownloadProgress())
     }
 }
-#endif
