@@ -37,7 +37,7 @@ public class Version {
         self.releaseTime = releaseTime
     }
 
-    public static func download(_ url: String, sha1: String) throws -> Version {
+    public static func download(_ url: String, sha1: String?) throws -> Version {
         if let url = URL(string: url) {
             let contents = try String(contentsOf: url)
             let json = InnateParser.readJson(contents)!

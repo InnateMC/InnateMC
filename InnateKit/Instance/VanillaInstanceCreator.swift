@@ -16,3 +16,20 @@
 //
 
 import Foundation
+
+public class VanillaInstanceCreator: InstanceCreator {
+    public let name: String
+    public let versionUrl: URL
+    public let sha1: String
+    
+    public init(name: String, versionUrl: URL, sha1: String) {
+        self.name = name
+        self.versionUrl = versionUrl
+        self.sha1 = sha1
+    }
+    
+    public func install() throws {
+        let version = try Version.download(versionUrl.path, sha1: self.sha1)
+        
+    }
+}

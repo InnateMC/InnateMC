@@ -24,11 +24,11 @@ public class Instance: Codable {
     // List of relative paths in the Libraries directory
     public var libraries: [Library]
     public var mainClass: String
-    public var minecraftJar: String
+    public var minecraftJar: MinecraftJar
     public var isStarred: Bool
     public var logo: String
 
-    public init(name: String, assetIndex: String, libraries: [Library], mainClass: String, minecraftJar: String, isStarred: Bool, logo: String) {
+    public init(name: String, assetIndex: String, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
@@ -37,19 +37,33 @@ public class Instance: Codable {
         self.isStarred = isStarred
         self.logo = logo
     }
-    
+
     public func getPath() -> URL {
         return FileHandler.instancesFolder.appendingPathComponent(self.name + ".innate", isDirectory: true)
+    }
+
+    public func getMcJarPath() -> URL {
+        return getPath().appendingPathComponent("minecraft.jar")
+    }
+}
+
+public class MinecraftJar: Codable {
+    public let type: FileType
+    public let url: String?
+    
+    public init(type: FileType, url: String?) {
+        self.type = type
+        self.url = url
     }
 }
 
 public class Library: Codable {
-    public let type: LibraryType
+    public let type: FileType
     public let path: String
     public let url: String?
     public let sha1: String?
 
-    public init(type: LibraryType, path: String, url: String?, sha1: String?) {
+    public init(type: FileType, path: String, url: String?, sha1: String?) {
         self.type = type
         self.path = path
         self.url = url
@@ -59,15 +73,15 @@ public class Library: Codable {
     public func getAbsolutePath() -> URL {
         return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: true)
     }
-
-    public enum LibraryType: Codable, CaseIterable {
-        case remote
-        case local
-    }
     
     public func asDownloadTask() -> DownloadTask {
         return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1)
     }
+}
+
+public enum FileType: Codable, CaseIterable {
+    case remote
+    case local
 }
 
 extension Instance {
