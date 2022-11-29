@@ -20,7 +20,6 @@ import Foundation
 public class Instance: Codable {
     public var name: String
     public var assetIndex: PartialAssetIndex
-    // List of relative paths in the Libraries directory
     public var libraries: [Library]
     public var mainClass: String
     public var minecraftJar: MinecraftJar
