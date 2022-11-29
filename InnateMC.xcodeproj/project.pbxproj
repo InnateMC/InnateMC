@@ -321,9 +321,11 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
-				64C335032922526A00BB8570 /* View */,
-				64C334D82922523600BB8570 /* InnateMCApp.swift */,
+				64C33506292256C500BB8570 /* TodoView.swift */,
+				6416784F2923B6450012C9CC /* Preferences */,
+				649762BC2935A2D600977467 /* Create */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
+				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
@@ -338,16 +340,6 @@
 				64C334DF2922523F00BB8570 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		64C335032922526A00BB8570 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				649762BC2935A2D600977467 /* Create */,
-				6416784F2923B6450012C9CC /* Preferences */,
-				64C33506292256C500BB8570 /* TodoView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		64CF0CAF292810EC00535DC8 /* InnateJson */ = {
