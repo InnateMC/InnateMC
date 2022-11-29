@@ -23,11 +23,13 @@ struct NewVanillaInstanceView: View {
     @State var showBeta = false
     @State var showAlpha = false
     @State var selectedVersion: ManifestVersion = AppDelegate.versionManifest.first!
+    @State var name = ""
 
     var body: some View {
         HStack {
             Spacer()
             Form {
+                TextField("Name", text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
                 Picker("Version", selection: $selectedVersion) {
                     ForEach(AppDelegate.versionManifest) { ver in
                         if (ver.type == "old_alpha" && showAlpha
@@ -41,7 +43,9 @@ struct NewVanillaInstanceView: View {
                 Toggle("Show snapshots", isOn: $showSnapshots)
                 Toggle("Show old beta", isOn: $showBeta)
                 Toggle("Show old alpha", isOn: $showAlpha)
-                TextField("Name", text: .constant("")).frame(width: 200, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
+                Button("Install") {
+                    
+                }
             }
             Spacer()
         }
