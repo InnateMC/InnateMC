@@ -18,17 +18,24 @@
 import SwiftUI
 
 struct RuntimePreferencesView: View {
-    let columns = [GridItem(.fixed(150), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
+    let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
+    
+    @AppStorage("innatemc.javaExecutable") private var javaExecutable: String = "java"
+    @AppStorage("innatemc.minMemory") private var minMemory: Int = 1024
+    @AppStorage("innatemc.maxMemory") private var maxMemory: Int = 1024
+    @AppStorage("innatemc.javaArgs") private var javaArgs: String = ""
 
     var body: some View {
         Form {
             LazyVGrid(columns: columns) {
                 Text("Java executable")
-                TextField("", text: .constant("java")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("", text: $javaExecutable).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
                 Text("Minimum Memory (MiB)")
-                TextField("", text: .constant("1024")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Minimum Memory (MiB)")
-                TextField("", text: .constant("1024")).frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("", value: $minMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Maximum Memory (MiB)")
+                TextField("", value: $maxMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Java Arguments")
+                TextField("", text: $javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
         .padding(.all, 16.0)

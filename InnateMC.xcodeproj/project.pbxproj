@@ -55,6 +55,7 @@
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */; };
 		64DF80332934D04A00F624F2 /* InstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF80322934D04A00F624F2 /* InstanceCreator.swift */; };
+		64E900392935EC500035181B /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 64E900382935EC500035181B /* Preferences */; };
 		64EB537F2929CD7800D6CDDD /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB537E2929CD7800D6CDDD /* DownloadTests.swift */; };
 		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 		64EB53872929E6A600D6CDDD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB53862929E6A600D6CDDD /* Version.swift */; };
@@ -198,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */,
+				64E900392935EC500035181B /* Preferences in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +469,9 @@
 				643C7FE72927566400DDC1B3 /* PBXTargetDependency */,
 			);
 			name = InnateMC;
+			packageProductDependencies = (
+				64E900382935EC500035181B /* Preferences */,
+			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
 			productType = "com.apple.product-type.application";
@@ -564,6 +569,9 @@
 				Base,
 			);
 			mainGroup = 64C334CC2922523500BB8570;
+			packageReferences = (
+				64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */,
+			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1142,6 +1150,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Preferences";
+			requirement = {
+				kind = exactVersion;
+				version = 2.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64E900382935EC500035181B /* Preferences */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */;
+			productName = Preferences;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 64C334CD2922523500BB8570 /* Project object */;
 }
