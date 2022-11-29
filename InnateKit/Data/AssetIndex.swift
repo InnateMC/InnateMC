@@ -46,7 +46,7 @@ public class AssetIndex: Codable {
     public static func fromJson(_ jsonStr: String, version: String) -> AssetIndex {
         let json = InnateParser.readJson(jsonStr)!
         let objects = json["objects"]!.asObject()!
-        let strs = objects.mapValues { $0.asObject()!.mapValues({(v: InnateValue) -> String in v.asString()!} ) }
+        let strs = objects.mapValues { $0.asObject()!.mapValues({v in return v.asString()!} ) }
         return AssetIndex(version: version, json: jsonStr, objects: strs)
     }
 
