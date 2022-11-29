@@ -18,5 +18,5 @@
 import Foundation
 
 protocol InstanceCreator {
-    func install() throws
+    func install() throws -> Instance
 }

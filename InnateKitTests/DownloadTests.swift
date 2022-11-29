@@ -18,7 +18,7 @@
 import XCTest
 import InnateKit
 
-class InnateKitTests: XCTestCase {
+class DownloadTests: XCTestCase {
     private var manifest: [ManifestVersion] = []
 
     override func setUpWithError() throws {

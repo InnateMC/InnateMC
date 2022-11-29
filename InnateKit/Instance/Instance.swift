@@ -97,7 +97,7 @@ public enum FileType: Codable, CaseIterable {
 }
 
 extension Instance {
-    func serialize() throws -> Data {
+    public func serialize() throws -> Data {
         let encoder = PropertyListEncoder()
         return try encoder.encode(self)
     }
@@ -107,11 +107,11 @@ extension Instance {
         return try decoder.decode(Instance.self, from: data)
     }
 
-    static func loadFromDirectory(_ url: URL) throws -> Instance {
+    public static func loadFromDirectory(_ url: URL) throws -> Instance {
         return try deserialize(FileHandler.getData(url.appendingPathComponent("Instance.plist"))!, path: url)
     }
 
-    static func loadInstances() throws -> [Instance] {
+    public static func loadInstances() throws -> [Instance] {
         let appSupportFolder = try FileHandler.getOrCreateFolder()
         var instances: [Instance] = []
         // Walk through directories in innateMcUrl
@@ -132,14 +132,14 @@ extension Instance {
         return instances
     }
 
-    func downloadMcJar() throws -> DownloadProgress {
+    public func downloadMcJar() throws -> DownloadProgress {
         if (self.minecraftJar.type == .local) {
             return DownloadProgress.completed()
         }
         return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress())
     }
 
-    func downloadLibs() -> DownloadProgress {
+    public func downloadLibs() -> DownloadProgress {
         var tasks: [DownloadTask] = []
         for library in libraries {
             if library.type == .local {
@@ -150,7 +150,7 @@ extension Instance {
         return ParallelDownloader.download(tasks, progress: DownloadProgress())
     }
     
-    func downloadAssets() throws -> DownloadProgress {
+    public func downloadAssets() throws -> DownloadProgress {
         let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
         return try index.downloadParallel()
     }

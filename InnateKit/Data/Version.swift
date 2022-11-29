@@ -39,13 +39,17 @@ public class Version {
 
     public static func download(_ url: String, sha1: String?) throws -> Version {
         if let url = URL(string: url) {
-            let contents = try String(contentsOf: url)
-            let json = InnateParser.readJson(contents)!
-            // TODO verify sha1
-            return deserialize(json)
+            return try download(url, sha1: sha1)
         } else {
             fatalError("Invalid url")
         }
+    }
+
+    public static func download(_ url: URL, sha1: String?) throws -> Version {
+        let contents = try String(contentsOf: url)
+        let json = InnateParser.readJson(contents)!
+        // TODO verify sha1
+        return deserialize(json)
     }
 
     public static func deserialize(_ dict: [String: InnateValue]) -> Version {
