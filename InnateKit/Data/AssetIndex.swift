@@ -18,26 +18,36 @@
 import Foundation
 import InnateJson
 
-public class AssetIndex {
-    private let version: String
-    private let json: String
-    private let objects: [String: InnateValue]
-    
-    init(version: String, json: String, objects: [String: InnateValue]) {
+public class AssetIndex: Codable {
+    public let version: String
+    public let json: String
+    public let objects: [String: [String: String]]
+
+    init(version: String, json: String, objects: [String: [String: String]]) {
         self.version = version
         self.json = json
         self.objects = objects
     }
-    
-    public static func download(version: String, urlStr: String) throws -> AssetIndex {
+
+    public static func get(version: String, urlStr: String) throws -> AssetIndex {
+        let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
+        let indexesFile: URL = indexes.appendingPathComponent(version + ".json", isDirectory: false)
+        if FileManager.default.fileExists(atPath: indexesFile.path) {
+            return fromJson(try String(contentsOf: indexesFile), version: version)
+        }
         if let url = URL(string: urlStr) {
             let contents = try String(contentsOf: url)
-            let json = InnateParser.readJson(contents)!
-            let objects = json["objects"]!.asObject()!
-            return AssetIndex(version: version, json: contents, objects: objects)
+            return fromJson(contents, version: version)
         } else {
             fatalError("Not possible")
         }
+    }
+
+    public static func fromJson(_ jsonStr: String, version: String) -> AssetIndex {
+        let json = InnateParser.readJson(jsonStr)!
+        let objects = json["objects"]!.asObject()!
+        let strs = objects.mapValues { $0.asObject()!.mapValues({(v: InnateValue) -> String in v.asString()!} ) }
+        return AssetIndex(version: version, json: jsonStr, objects: strs)
     }
 
     public func downloadParallel() throws -> DownloadProgress {
@@ -56,15 +66,13 @@ public class AssetIndex {
         }
         var tasks: [DownloadTask] = []
         for (_, v) in self.objects {
-            let hash = v.asObject()!["hash"]!.asString()!
+            let hash = v["hash"]!
             let hashPre = String(hash.substring(to: hash.index(after: hash.index(after: hash.startIndex))))
             let hashFolder = objects.appendingPathComponent(hashPre, isDirectory: true)
             let path = hashFolder.appendingPathComponent(hash, isDirectory: false)
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
             tasks.append(DownloadTask(url: url, filePath: path, sha1: nil))
         }
-        let progress = DownloadProgress()
-        ParallelDownloader.download(tasks, progress: progress)
-        return progress
+        return ParallelDownloader.download(tasks, progress: DownloadProgress())
     }
 }

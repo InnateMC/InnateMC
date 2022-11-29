@@ -19,8 +19,7 @@ import Foundation
 
 public class Instance: Codable {
     public var name: String
-    // Minecraft version to use for assets index
-    public var assetIndex: String
+    public var assetIndex: PartialAssetIndex
     // List of relative paths in the Libraries directory
     public var libraries: [Library]
     public var mainClass: String
@@ -28,7 +27,7 @@ public class Instance: Codable {
     public var isStarred: Bool
     public var logo: String
 
-    public init(name: String, assetIndex: String, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String) {
+    public init(name: String, assetIndex: PartialAssetIndex, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
@@ -81,6 +80,18 @@ public class Library: Codable {
     }
 }
 
+public class PartialAssetIndex: Codable {
+    public let id: String
+    public let sha1: String
+    public let url: String
+    
+    public init(id: String, sha1: String, url: String) {
+        self.id = id
+        self.sha1 = sha1
+        self.url = url
+    }
+}
+
 public enum FileType: Codable, CaseIterable {
     case remote
     case local
@@ -121,7 +132,14 @@ extension Instance {
         }
         return instances
     }
-    
+
+    func downloadMcJar() throws -> DownloadProgress {
+        if (self.minecraftJar.type == .local) {
+            return DownloadProgress.completed()
+        }
+        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress())
+    }
+
     func downloadLibs() -> DownloadProgress {
         var tasks: [DownloadTask] = []
         for library in libraries {
@@ -133,6 +151,11 @@ extension Instance {
         return ParallelDownloader.download(tasks, progress: DownloadProgress())
     }
     
+    func downloadAssets() throws -> DownloadProgress {
+        let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
+        return try index.downloadParallel()
+    }
+
     func createAsNewInstance() throws {
         let instancePath = getPath()
         let fm = FileManager.default

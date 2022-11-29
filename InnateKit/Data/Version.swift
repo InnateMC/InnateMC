@@ -91,22 +91,6 @@ public class Version {
         }
     }
     
-    public class PartialAssetIndex {
-        public let id: String
-        public let sha1: String
-        public let url: String
-        
-        public init(id: String, sha1: String, url: String) {
-            self.id = id
-            self.sha1 = sha1
-            self.url = url
-        }
-        
-        public static func deserialize(_ assetIndexObj: [String: InnateValue]) -> PartialAssetIndex {
-            PartialAssetIndex(id: assetIndexObj["id"]!.asString()!, sha1: assetIndexObj["sha1"]!.asString()!, url: assetIndexObj["url"]!.asString()!)
-        }
-    }
-    
     public class Downloads {
         public let client: Download
         
@@ -270,5 +254,12 @@ extension Version {
         }
         ParallelDownloader.download(tasks, progress: progress)
         return progress
+    }
+}
+
+
+extension PartialAssetIndex {
+    public static func deserialize(_ assetIndexObj: [String: InnateValue]) -> PartialAssetIndex {
+        PartialAssetIndex(id: assetIndexObj["id"]!.asString()!, sha1: assetIndexObj["sha1"]!.asString()!, url: assetIndexObj["url"]!.asString()!)
     }
 }

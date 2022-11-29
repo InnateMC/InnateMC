@@ -45,4 +45,8 @@ public class DownloadProgress {
         self.current = current
         self.total = total
     }
+    
+    public static func completed(): DownloadProgress {
+        return new DownloadProgress(1, 1)
+    }
 }
