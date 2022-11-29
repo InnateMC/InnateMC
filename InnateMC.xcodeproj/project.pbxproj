@@ -46,6 +46,7 @@
 		64C33507292256C500BB8570 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C33506292256C500BB8570 /* TodoView.swift */; };
 		64C33509292272F600BB8570 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64C33508292272F500BB8570 /* .gitignore */; };
 		64C3350C2922B0B500BB8570 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64C3350B2922B0B400BB8570 /* LICENSE */; };
+		64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */; };
 		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
 		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -169,6 +170,7 @@
 		64C33508292272F500BB8570 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKeys.swift; sourceTree = "<group>"; };
 		64CDBCD329294CB700DF0592 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
 				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
+				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
+				64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,

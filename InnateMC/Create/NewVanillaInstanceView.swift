@@ -19,10 +19,11 @@ import SwiftUI
 import InnateKit
 
 struct NewVanillaInstanceView: View {
+    @Environment(\.versionManifest) var versionManifest: [ManifestVersion]
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
-    @State var selectedVersion: ManifestVersion = AppDelegate.versionManifest.first!
+    @State var selectedVersion: ManifestVersion = VersionManifestKey.defaultValue.first!
     @State var name = ""
 
     var body: some View {
@@ -31,7 +32,7 @@ struct NewVanillaInstanceView: View {
             Form {
                 TextField("Name", text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
                 Picker("Version", selection: $selectedVersion) {
-                    ForEach(AppDelegate.versionManifest) { ver in
+                    ForEach(versionManifest) { ver in
                         if (ver.type == "old_alpha" && showAlpha
                             || ver.type == "old_beta" && showBeta
                             || ver.type == "snapshot" && showSnapshots

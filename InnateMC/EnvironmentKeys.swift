@@ -15,21 +15,16 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import Cocoa
 import InnateKit
+import SwiftUI
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet var window: NSWindow!
+struct VersionManifestKey: EnvironmentKey {
+    static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
+}
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let m = NSApp.mainMenu?.item(withTitle: "Edit") {
-            NSApp.mainMenu?.removeItem(m)
-        }
-    }
-    
-    func applicationWillFinishLaunching(_ notification: Notification) {
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
+extension EnvironmentValues {
+    var versionManifest: [ManifestVersion] {
+        get { self[VersionManifestKey.self] }
+        set { self[VersionManifestKey.self] = newValue }
     }
 }
