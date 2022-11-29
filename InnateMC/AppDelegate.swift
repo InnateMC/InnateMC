@@ -16,14 +16,20 @@
 //
 
 import Cocoa
+import InnateKit
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    public static var versionManifest: [ManifestVersion] = []
     @IBOutlet var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let m = NSApp.mainMenu?.item(withTitle: "Edit") {
             NSApp.mainMenu?.removeItem(m)
         }
+    }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        AppDelegate.versionManifest = VersionManifest.downloadThrow()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

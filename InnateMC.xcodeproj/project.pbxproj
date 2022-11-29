@@ -34,9 +34,10 @@
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
 		643C7FE52927566400DDC1B3 /* InnateKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 643C7FE42927566400DDC1B3 /* InnateKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
-		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF42927695E00DDC1B3 /* FileHandler.swift */; };
 		643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF6292769C900DDC1B3 /* Instance.swift */; };
+		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
 		64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C334DC2922523F00BB8570 /* Assets.xcassets */; };
@@ -49,7 +50,7 @@
 		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
 		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CC92928117D00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
-		64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		64CF0CCA2928117D00535DC8 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */; };
@@ -155,6 +156,7 @@
 		643C7FF42927695E00DDC1B3 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		643C7FF6292769C900DDC1B3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
+		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334D82922523600BB8570 /* InnateMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCApp.swift; sourceTree = "<group>"; };
 		64C334DA2922523600BB8570 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		643C7FE32927566400DDC1B3 /* InnateKit */ = {
 			isa = PBXGroup;
 			children = (
+				649762B92935969100977467 /* Launcher */,
 				64DF802F2934CFEF00F624F2 /* Instance */,
 				643C7FF12927588000DDC1B3 /* Data */,
 				643C7FE42927566400DDC1B3 /* InnateKit.h */,
@@ -266,6 +269,22 @@
 				64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		649762B92935969100977467 /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Launcher;
+			sourceTree = "<group>";
+		};
+		649762BC2935A2D600977467 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				640DC1F02934F14200943213 /* NewInstanceView.swift */,
+				649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 		64C334CC2922523500BB8570 = {
@@ -322,9 +341,9 @@
 		64C335032922526A00BB8570 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				649762BC2935A2D600977467 /* Create */,
 				6416784F2923B6450012C9CC /* Preferences */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
-				640DC1F02934F14200943213 /* NewInstanceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -621,6 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
@@ -887,6 +907,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InnateMC/InnateMC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -917,6 +938,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = InnateMC/InnateMC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

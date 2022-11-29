@@ -20,7 +20,7 @@ import SwiftUI
 struct NewInstanceView: View {
     var body: some View {
         TabView {
-            TodoView()
+            NewVanillaInstanceView()
                 .tabItem {
                     Text("Vanilla")
                 }

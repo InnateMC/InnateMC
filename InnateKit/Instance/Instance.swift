@@ -96,6 +96,16 @@ public enum FileType: Codable, CaseIterable {
     case local
 }
 
+public class Arguments: Codable {
+    public let game: [String]
+    public let jvm: [String]
+
+    public init(game: [String], jvm: [String]) {
+        self.game = game
+        self.jvm = jvm
+    }
+}
+
 extension Instance {
     public func serialize() throws -> Data {
         let encoder = PropertyListEncoder()

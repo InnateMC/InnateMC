@@ -62,38 +62,6 @@ public class Version {
         let releaseTime = dict["releaseTime"]!.asString()!
         return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
-
-    public class Arguments {
-        public let game: [String]
-        public let jvm: [String]
-        
-        public init(game: [String], jvm: [String]) {
-            self.game = game
-            self.jvm = jvm
-        }
-
-        public static func deserialize(_ argumentsObj: [String: InnateValue]) -> Arguments {
-            let root = argumentsObj["arguments"]?.asObject()
-            guard let root = root else {
-                return Arguments(game: [argumentsObj["minecraftArguments"]!.asString()!], jvm: [])
-            }
-            let gameArr = root["game"]!.asArray()!
-            var gameArgs: [String] = []
-            for gameJson in gameArr {
-                if gameJson.isString() {
-                    gameArgs.append(gameJson.asString()!)
-                }
-            }
-            let jvmArr = root["jvm"]!.asArray()!
-            var jvmArgs: [String] = []
-            for jvmJson in jvmArr {
-                if jvmJson.isString() {
-                    jvmArgs.append(jvmJson.asString()!)
-                }
-            }
-            return Arguments(game: gameArgs, jvm: jvmArgs)
-        }
-    }
     
     public class Downloads {
         public let client: Download
@@ -242,7 +210,6 @@ public class Version {
 
 extension Version {
     public func downloadLibraries() -> DownloadProgress {
-        let progress = DownloadProgress()
         var tasks: [DownloadTask] = []
         for library in libraries {
             let pathComponents = library.downloads.artifact.path.split(separator: "/")
@@ -256,14 +223,36 @@ extension Version {
             print("")
             tasks.append(task)
         }
-        ParallelDownloader.download(tasks, progress: progress)
-        return progress
+        return ParallelDownloader.download(tasks, progress: DownloadProgress())
     }
 }
-
 
 extension PartialAssetIndex {
     public static func deserialize(_ assetIndexObj: [String: InnateValue]) -> PartialAssetIndex {
         PartialAssetIndex(id: assetIndexObj["id"]!.asString()!, sha1: assetIndexObj["sha1"]!.asString()!, url: assetIndexObj["url"]!.asString()!)
+    }
+}
+
+extension Arguments {
+    public static func deserialize(_ argumentsObj: [String: InnateValue]) -> Arguments {
+        let root = argumentsObj["arguments"]?.asObject()
+        guard let root = root else {
+            return Arguments(game: [argumentsObj["minecraftArguments"]!.asString()!], jvm: [])
+        }
+        let gameArr = root["game"]!.asArray()!
+        var gameArgs: [String] = []
+        for gameJson in gameArr {
+            if gameJson.isString() {
+                gameArgs.append(gameJson.asString()!)
+            }
+        }
+        let jvmArr = root["jvm"]!.asArray()!
+        var jvmArgs: [String] = []
+        for jvmJson in jvmArr {
+            if jvmJson.isString() {
+                jvmArgs.append(jvmJson.asString()!)
+            }
+        }
+        return Arguments(game: gameArgs, jvm: jvmArgs)
     }
 }

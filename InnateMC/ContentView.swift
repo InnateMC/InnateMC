@@ -16,6 +16,7 @@
 //
 
 import SwiftUI
+import InnateKit
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
