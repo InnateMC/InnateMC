@@ -67,7 +67,8 @@ public class AssetIndex: Codable {
         var tasks: [DownloadTask] = []
         for (_, v) in self.objects {
             let hash = v["hash"]!
-            let hashPre = String(hash.substring(to: hash.index(after: hash.index(after: hash.startIndex))))
+            let fromIndex = hash.index(hash.startIndex, offsetBy: 2)
+            let hashPre = String(hash[fromIndex...])
             let hashFolder = objects.appendingPathComponent(hashPre, isDirectory: true)
             let path = hashFolder.appendingPathComponent(hash, isDirectory: false)
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
