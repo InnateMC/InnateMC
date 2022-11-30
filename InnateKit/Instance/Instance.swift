@@ -17,7 +17,7 @@
 
 import Foundation
 
-public class Instance: Codable {
+public class Instance: Codable, Identifiable {
     public var name: String
     public var assetIndex: PartialAssetIndex
     public var libraries: [Library]
@@ -45,7 +45,7 @@ public class Instance: Codable {
     }
 }
 
-public class MinecraftJar: Codable {
+public class MinecraftJar: Codable, Identifiable {
     public let type: FileType
     public let url: String?
     public let sha1: String?
@@ -57,7 +57,7 @@ public class MinecraftJar: Codable {
     }
 }
 
-public class Library: Codable {
+public class Library: Codable, Identifiable {
     public let type: FileType
     public let path: String
     public let url: String?
@@ -79,7 +79,7 @@ public class Library: Codable {
     }
 }
 
-public class PartialAssetIndex: Codable {
+public class PartialAssetIndex: Codable, Identifiable {
     public let id: String
     public let sha1: String
     public let url: String
@@ -91,12 +91,12 @@ public class PartialAssetIndex: Codable {
     }
 }
 
-public enum FileType: Codable, CaseIterable {
-    case remote
-    case local
+public enum FileType: String, Codable, CaseIterable {
+    case remote = "remote"
+    case local = "local"
 }
 
-public class Arguments: Codable {
+public class Arguments: Codable, Identifiable {
     public let game: [String]
     public let jvm: [String]
 
@@ -122,11 +122,9 @@ extension Instance {
     }
 
     public static func loadInstances() throws -> [Instance] {
-        let appSupportFolder = try FileHandler.getOrCreateFolder()
         var instances: [Instance] = []
-        // Walk through directories in innateMcUrl
-        let directoryContents = try FileManager.default.contentsOfDirectory(
-                at: appSupportFolder,
+        let directoryContents: [URL] = try FileManager.default.contentsOfDirectory(
+                at: FileHandler.instancesFolder,
                 includingPropertiesForKeys: nil
         )
         for url in directoryContents {
@@ -140,6 +138,10 @@ extension Instance {
             instances.append(instance)
         }
         return instances
+    }
+
+    public static func loadInstancesThrow() -> [Instance] {
+        return try! loadInstances()
     }
 
     public func downloadMcJar() throws -> DownloadProgress {

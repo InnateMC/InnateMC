@@ -22,9 +22,18 @@ struct VersionManifestKey: EnvironmentKey {
     static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
 }
 
+struct InstancesKey: EnvironmentKey {
+    static let defaultValue: [Instance] = Instance.loadInstancesThrow()
+}
+
 extension EnvironmentValues {
     var versionManifest: [ManifestVersion] {
         get { self[VersionManifestKey.self] }
         set { self[VersionManifestKey.self] = newValue }
+    }
+    
+    var instances: [Instance] {
+        get { self[InstancesKey.self] }
+        set { self[InstancesKey.self] = newValue }
     }
 }

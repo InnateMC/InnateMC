@@ -33,7 +33,7 @@ public class VanillaInstanceCreator: InstanceCreator {
         var libraries: [Library] = []
         for lib in version.libraries {
             libraries.append(
-                Library(type: .local, path: lib.downloads.artifact.path, url: lib.downloads.artifact.url, sha1: lib.downloads.artifact.sha1)
+                Library(type: .remote, path: lib.downloads.artifact.path, url: lib.downloads.artifact.url, sha1: lib.downloads.artifact.sha1)
             )
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)

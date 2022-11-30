@@ -21,6 +21,7 @@ import InnateKit
 @main
 struct InnateMCApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.instances) var instances: [Instance]
 
     var body: some Scene {
         WindowGroup {

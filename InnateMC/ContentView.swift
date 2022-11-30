@@ -20,7 +20,8 @@ import InnateKit
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    @State private var showNew = false
+    @State public var showNew = false
+    @Environment(\.instances) public var instances: [Instance]
 
     var body: some View {
         NavigationView {
@@ -32,11 +33,10 @@ struct ContentView: View {
                 Toggle(isOn: .constant(false)) {
                     Text("Starred only")
                 }
-                NavigationLink("Mint") {
-                    Text("bruh")
-                }
-                NavigationLink("Winter") {
-                    Text("huh???")
+                ForEach(instances) { instance in
+                    NavigationLink(instance.name) {
+                        Text(instance.name)
+                    }
                 }
             }
             .background(
