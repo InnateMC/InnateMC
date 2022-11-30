@@ -30,7 +30,7 @@ class InstanceTests: XCTestCase {
     }
 
     func testCreateVanillaInstance() throws {
-        let suffixes = ["Alpha", "X", "Y", "Z"]
+        let suffixes = ["Alpha", "Z", "Millenial", "X", "Boomer", "Silent", "Greatest", "Lost", "Missionary", "Progressive", "Gilded", "Transcendental"]
         for suffix in suffixes {
             let fm = FileManager.default
             let manver = manifest.randomElement()!

@@ -22,15 +22,17 @@ public class Version {
     public let arguments: Arguments
     public let assetIndex: PartialAssetIndex
     public let downloads: Downloads
+    public let id: String
     public let libraries: [Library]
     public let mainClass: String
     public let type: String
     public let releaseTime: String
     
-    public init(arguments: Arguments, assetIndex: PartialAssetIndex, downloads: Downloads, libraries: [Library], mainClass: String, type: String, releaseTime: String) {
+    public init(arguments: Arguments, assetIndex: PartialAssetIndex, downloads: Downloads, id: String, libraries: [Library], mainClass: String, type: String, releaseTime: String) {
         self.arguments = arguments
         self.assetIndex = assetIndex
         self.downloads = downloads
+        self.id = id
         self.libraries = libraries
         self.mainClass = mainClass
         self.type = type
@@ -56,11 +58,12 @@ public class Version {
         let args = Arguments.deserialize(dict)
         let assetIndex = PartialAssetIndex.deserialize(dict["assetIndex"]!.asObject()!)
         let downloads = Downloads.deserialize(dict["downloads"]!.asObject()!)
+        let id = dict["id"]!.asString()!
         let libraries = Library.deserializeArray(dict["libraries"]!.asArray()!)
         let mainClass = dict["mainClass"]!.asString()!
         let type = dict["type"]!.asString()!
         let releaseTime = dict["releaseTime"]!.asString()!
-        return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
+        return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, id: id, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
     
     public class Downloads {
