@@ -25,7 +25,7 @@ struct InstanceNavigationLink: View {
 
     var body: some View {
         HStack {
-            ZStack(alignment: .topLeading) {
+            ZStack(alignment: .topTrailing) {
                 if (compactList) {
                     AsynchronousImage(instance.getLogoPath())
                         .frame(width: 32, height: 32)
