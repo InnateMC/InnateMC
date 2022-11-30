@@ -37,6 +37,7 @@
 		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF42927695E00DDC1B3 /* FileHandler.swift */; };
 		643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF6292769C900DDC1B3 /* Instance.swift */; };
+		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
@@ -157,6 +158,7 @@
 		643C7FE42927566400DDC1B3 /* InnateKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateKit.h; sourceTree = "<group>"; };
 		643C7FF42927695E00DDC1B3 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		643C7FF6292769C900DDC1B3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +335,7 @@
 				64C334DE2922523F00BB8570 /* Preview Content */,
 				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
+				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
+				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 				64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,

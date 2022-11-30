@@ -25,8 +25,14 @@ public class Instance: Codable, Identifiable {
     public var minecraftJar: MinecraftJar
     public var isStarred: Bool
     public var logo: String
+    public var description: String?
+    public var debugString: String?
+    public var someDebugString: String {
+        get { return debugString ?? assetIndex.id }
+        set(newValue) { self.debugString = newValue }
+    }
 
-    public init(name: String, assetIndex: PartialAssetIndex, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String) {
+    public init(name: String, assetIndex: PartialAssetIndex, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String, description: String?, debugString: String?) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
@@ -34,6 +40,8 @@ public class Instance: Codable, Identifiable {
         self.minecraftJar = minecraftJar
         self.isStarred = isStarred
         self.logo = logo
+        self.description = description
+        self.debugString = debugString
     }
 
     public func getPath() -> URL {
