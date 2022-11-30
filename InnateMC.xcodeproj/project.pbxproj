@@ -282,6 +282,22 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		644DE1D12937C0D300C4A03E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		644DE1D22937C13F00C4A03E /* Instance */ = {
+			isa = PBXGroup;
+			children = (
+				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
+			);
+			path = Instance;
+			sourceTree = "<group>";
+		};
 		649762B92935969100977467 /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,18 +346,18 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
-				64C33506292256C500BB8570 /* TodoView.swift */,
+				644DE1D22937C13F00C4A03E /* Instance */,
+				644DE1D12937C0D300C4A03E /* Util */,
 				6416784F2923B6450012C9CC /* Preferences */,
 				649762BC2935A2D600977467 /* Create */,
+				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
+				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
-				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
-				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
-				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
-				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
+				64C33506292256C500BB8570 /* TodoView.swift */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
