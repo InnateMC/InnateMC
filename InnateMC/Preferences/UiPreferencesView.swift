@@ -19,10 +19,12 @@ import SwiftUI
 
 struct UiPreferencesView: View {
     @AppStorage("innatemc.compactList") private var compactList: Bool = false
+    @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
 
     var body: some View {
         Form {
             Toggle("Compact Instance List", isOn: $compactList)
+            Toggle("Right-Aligned Instance Heading", isOn: $rightAlignedInstanceHeading)
         }
         .padding(.all, 16.0)
     }

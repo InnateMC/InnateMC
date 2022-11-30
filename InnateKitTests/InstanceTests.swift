@@ -31,6 +31,7 @@ class InstanceTests: XCTestCase {
 
     func testCreateVanillaInstance() throws {
         let suffixes = ["Alpha", "Z", "Millenial", "X", "Boomer", "Silent", "Greatest", "Lost", "Missionary", "Progressive", "Gilded", "Transcendental"]
+        let lipsumUrl = URL(string: "https://baconipsum.com/api/?type=meat-and-filler&sentences=4&format=text")!
         for suffix in suffixes {
             let fm = FileManager.default
             let manver = manifest.randomElement()!
@@ -38,7 +39,7 @@ class InstanceTests: XCTestCase {
             if (fm.fileExists(atPath: url.path)) {
                 try fm.removeItem(at: url)
             }
-            let ctor = VanillaInstanceCreator(name: "Test\(suffix)", versionUrl: URL(string: manver.url)!, sha1: manver.sha1)
+            let ctor = VanillaInstanceCreator(name: "Test\(suffix)", versionUrl: URL(string: manver.url)!, sha1: manver.sha1, description: try! String(contentsOf: lipsumUrl))
             let expected = try ctor.install()
             let actual = try Instance.loadFromDirectory(url)
             XCTAssertEqual(expected.name, actual.name)

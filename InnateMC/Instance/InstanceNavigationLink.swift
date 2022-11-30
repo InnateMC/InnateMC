@@ -22,15 +22,22 @@ struct InstanceNavigationLink: View {
     @AppStorage("innatemc.compactList") private var compactList: Bool = false
 
     var instance: Instance
-    
+
     var body: some View {
         HStack {
-            if (compactList) {
-                AsynchronousImage(instance.getLogoPath())
-                    .frame(width: 32, height: 32)
-            } else {
-                AsynchronousImage(instance.getLogoPath())
-                    .frame(width: 48, height: 48)
+            ZStack(alignment: .topLeading) {
+                if (compactList) {
+                    AsynchronousImage(instance.getLogoPath())
+                        .frame(width: 32, height: 32)
+                } else {
+                    AsynchronousImage(instance.getLogoPath())
+                        .frame(width: 48, height: 48)
+                }
+                if (instance.isStarred) {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                        .frame(width: 8, height: 8)
+                }
             }
             VStack {
                 HStack {

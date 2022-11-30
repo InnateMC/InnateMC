@@ -21,11 +21,13 @@ public class VanillaInstanceCreator: InstanceCreator {
     public let name: String
     public let versionUrl: URL
     public let sha1: String
+    public let description: String?
     
-    public init(name: String, versionUrl: URL, sha1: String) {
+    public init(name: String, versionUrl: URL, sha1: String, description: String?) {
         self.name = name
         self.versionUrl = versionUrl
         self.sha1 = sha1
+        self.description = description
     }
     
     public func install() throws -> Instance {
@@ -37,7 +39,7 @@ public class VanillaInstanceCreator: InstanceCreator {
             )
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
-        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: "test.png", description: nil, debugString: version.id)
+        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: "test.png", description: self.description, debugString: version.id)
         try instance.createAsNewInstance()
         return instance
     }

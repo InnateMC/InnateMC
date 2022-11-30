@@ -21,6 +21,7 @@ import InnateKit
 struct ContentView: View {
     @State public var searchTerm: String = ""
     @State public var showNew = false
+    @State public var starredOnly = false
     @Environment(\.instances) public var instances: [Instance]
 
     var body: some View {
@@ -30,16 +31,19 @@ struct ContentView: View {
                     .padding(.bottom, 10.0)
                     .accessibilityLabel("Search for Instance")
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Toggle(isOn: .constant(false)) {
+                Toggle(isOn: $starredOnly) {
                     Text("Starred only")
                 }
                 ForEach(instances) { instance in
-                    NavigationLink(destination: {
-                        Text(instance.name)
-                    }, label: {
-                        InstanceNavigationLink(instance: instance)
-                    })
-                        .padding(.all, 4)
+                    if (!starredOnly || instance.isStarred) {
+                        NavigationLink(destination: {
+                            InstanceView(instance: instance)
+                                .padding(.top, 10)
+                        }, label: {
+                            InstanceNavigationLink(instance: instance)
+                        })
+                            .padding(.all, 4)
+                    }
                 }
             }
             .background(
@@ -60,6 +64,8 @@ struct ContentView: View {
                 }
             }
             Text("Select an instance")
+                .font(.largeTitle)
+                .foregroundColor(.gray)
         }
     }
 }
