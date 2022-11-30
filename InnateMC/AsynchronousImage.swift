@@ -15,28 +15,37 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
+import Foundation
 import SwiftUI
-import InnateKit
 
-struct InstanceNavigationLink: View {
-    var instance: Instance
+struct AsynchronousImage: View {
+    var url: URL
+    @State private var wrapped: ImageWrapper = ImageWrapper()
+
+    init(_ thing: URL) {
+        self.url = thing
+        download()
+    }
     
-    var body: some View {
-        HStack {
-            AsynchronousImage(instance.getLogoPath())
-                .frame(width: 32, height: 32)
-            VStack {
-                HStack {
-                    Text(instance.name)
-                    Spacer()
-                }
-                HStack {
-                    Text(instance.someDebugString)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
+    private func download() {
+        DispatchQueue.main.async {
+            do {
+                wrapped.image = NSImage(data: try Data(contentsOf: self.url))
+            } catch {
+                // no-op
             }
-            Spacer()
         }
     }
+    
+    var body: some View {
+        if let nsImage = wrapped.image {
+            Image(nsImage: nsImage).resizable()
+        } else {
+            Image(systemName: "tray.circle").resizable()
+        }
+    }
+}
+
+fileprivate class ImageWrapper {
+    var image: NSImage? = nil
 }

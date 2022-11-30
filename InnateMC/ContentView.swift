@@ -34,9 +34,12 @@ struct ContentView: View {
                     Text("Starred only")
                 }
                 ForEach(instances) { instance in
-                    NavigationLink(instance.name) {
+                    NavigationLink(destination: {
                         Text(instance.name)
-                    }
+                    }, label: {
+                        InstanceNavigationLink(instance: instance)
+                    })
+                        .padding(.all, 4)
                 }
             }
             .background(

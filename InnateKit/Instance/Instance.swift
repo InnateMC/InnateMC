@@ -51,6 +51,10 @@ public class Instance: Codable, Identifiable {
     public func getMcJarPath() -> URL {
         return getPath().appendingPathComponent("minecraft.jar")
     }
+
+    public func getLogoPath() -> URL {
+        return FileHandler.logosFolder.appendingPathComponent(logo)
+    }
 }
 
 public class MinecraftJar: Codable, Identifiable {
