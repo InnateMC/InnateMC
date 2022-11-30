@@ -16,34 +16,20 @@
 //
 
 import SwiftUI
-import InnateKit
 
-struct InstanceNavigationLink: View {
+struct UiPreferencesView: View {
     @AppStorage("innatemc.compactList") private var compactList: Bool = false
 
-    var instance: Instance
-    
     var body: some View {
-        HStack {
-            if (compactList) {
-                AsynchronousImage(instance.getLogoPath())
-                    .frame(width: 32, height: 32)
-            } else {
-                AsynchronousImage(instance.getLogoPath())
-                    .frame(width: 48, height: 48)
-            }
-            VStack {
-                HStack {
-                    Text(instance.name)
-                    Spacer()
-                }
-                HStack {
-                    Text(instance.someDebugString)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-            }
-            Spacer()
+        Form {
+            Toggle("Compact Instance List", isOn: $compactList)
         }
+        .padding(.all, 16.0)
+    }
+}
+
+struct UiPreferencesView_Previews: PreviewProvider {
+    static var previews: some View {
+        UiPreferencesView()
     }
 }

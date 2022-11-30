@@ -32,6 +32,10 @@ struct PreferencesView: View {
                 .tabItem({
                     Label("Game", systemImage: "gamecontroller")
                 })
+            UiPreferencesView()
+                .tabItem({
+                    Label("UI", systemImage: "tray.2")
+                })
             ConsolePreferencesView()
                 .tabItem({
                     Label("Console", systemImage: "terminal")
