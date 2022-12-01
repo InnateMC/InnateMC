@@ -19,7 +19,7 @@ import SwiftUI
 import InnateKit
 
 struct InstanceView: View {
-    var instance: Instance
+    @State var instance: Instance
     @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
     
     var body: some View {
@@ -31,6 +31,23 @@ struct InstanceView: View {
                     }
                     Text(instance.name)
                         .font(.largeTitle)
+                    if instance.isStarred {
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .foregroundColor(.yellow)
+                            .onTapGesture {
+                                instance.isStarred = false
+                            }
+                            .frame(width: 16, height: 16)
+                    } else {
+                        Image(systemName: "star")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .onTapGesture {
+                                instance.isStarred = true
+                            }
+                            .frame(width: 16, height: 16)
+                    }
                     Spacer()
                 }
                 HStack {

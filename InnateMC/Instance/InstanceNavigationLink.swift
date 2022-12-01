@@ -40,20 +40,6 @@ struct InstanceNavigationLink: View {
                             .foregroundColor(.yellow)
                             .frame(width: 8, height: 8)
                     }
-                    ZStack {
-                        if (starHovered) {
-                            if (!instance.isStarred) {
-                                Image(systemName: "star")
-                                    .foregroundColor(.yellow)
-                                    .frame(width: 8, height: 8)
-                            }
-                        }
-                    }
-                    .frame(width: 8, height: 8)
-                }.onHover { hovered in
-                    self.starHovered = hovered
-                }.onTapGesture {
-                    instance.isStarred = !instance.isStarred
                 }
                 .frame(width: 8, height: 8)
             }
@@ -69,6 +55,11 @@ struct InstanceNavigationLink: View {
                 }
             }
             Spacer()
+        }
+        .contextMenu {
+            Button(self.instance.isStarred ? "Unstar" : "Star") {
+                instance.isStarred = !instance.isStarred
+            }
         }
     }
 }
