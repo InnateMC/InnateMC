@@ -17,6 +17,7 @@
 
 import Cocoa
 import InnateKit
+import Foundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
@@ -28,6 +29,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {
+        DispatchQueue.main.async {
+            VersionManifestKey.defaultValue.forEach { element in
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

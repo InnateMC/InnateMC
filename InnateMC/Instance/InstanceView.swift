@@ -87,6 +87,10 @@ struct InstanceView: View {
                         }
                     TodoView()
                         .tabItem {
+                            Label("Worlds", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
                             Label("Screenshots", systemImage: "bolt")
                         }
                     TodoView()

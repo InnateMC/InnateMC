@@ -28,13 +28,13 @@ struct RuntimePreferencesView: View {
     var body: some View {
         Form {
             LazyVGrid(columns: columns) {
-                Text("Java executable")
+                Text("Default Java executable")
                 TextField("", text: $javaExecutable).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Minimum Memory (MiB)")
+                Text("Default Minimum Memory (MiB)")
                 TextField("", value: $minMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Maximum Memory (MiB)")
+                Text("Default Maximum Memory (MiB)")
                 TextField("", value: $maxMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Java Arguments")
+                Text("Default Java Arguments")
                 TextField("", text: $javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
