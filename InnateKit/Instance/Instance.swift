@@ -55,6 +55,10 @@ public class Instance: Codable, Identifiable {
     public func getLogoPath() -> URL {
         return FileHandler.logosFolder.appendingPathComponent(logo)
     }
+    
+    public func checkMatch(_ term: String) -> Bool {
+        return self.name.localizedCaseInsensitiveContains(term) || self.someDebugString.localizedCaseInsensitiveContains(term)
+    }
 }
 
 public class MinecraftJar: Codable, Identifiable {

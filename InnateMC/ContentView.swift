@@ -35,7 +35,7 @@ struct ContentView: View {
                     Text("Starred only")
                 }
                 ForEach(instances) { instance in
-                    if (!starredOnly || instance.isStarred) {
+                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                         NavigationLink(destination: {
                             InstanceView(instance: instance)
                                 .padding(.top, 10)
