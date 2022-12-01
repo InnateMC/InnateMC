@@ -51,6 +51,32 @@ struct InstanceView: View {
                     Spacer()
                 }
                 Spacer()
+                TabView {
+                    TodoView()
+                        .tabItem {
+                            Label("Launch", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
+                            Label("Runtime", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
+                            Label("Mods", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
+                            Label("Resource Packs", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
+                            Label("Screenshots", systemImage: "bolt")
+                        }
+                    TodoView()
+                        .tabItem {
+                            Label("Misc", systemImage: "bolt")
+                        }
+                }.padding(.all, 4)
             }
             .padding(.all, 6)
         }
