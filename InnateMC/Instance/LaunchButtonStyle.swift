@@ -15,16 +15,15 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import InnateKit
+import Foundation
 import SwiftUI
 
-struct VersionManifestKey: EnvironmentKey {
-    static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
-}
-
-extension EnvironmentValues {
-    var versionManifest: [ManifestVersion] {
-        get { self[VersionManifestKey.self] }
-        set { self[VersionManifestKey.self] = newValue }
+struct LaunchButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.all, 2)
+            .foregroundColor(.white)
+            .background(Color(red: 0, green: 0.5, blue: 1.0))
+            .clipShape(Capsule())
     }
 }

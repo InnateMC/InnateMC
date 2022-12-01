@@ -17,7 +17,7 @@
 
 import Foundation
 
-public class Instance: Codable, Identifiable {
+public class Instance: Codable, Identifiable, Hashable {
     public var name: String
     public var assetIndex: PartialAssetIndex
     public var libraries: [Library]
@@ -58,6 +58,14 @@ public class Instance: Codable, Identifiable {
     
     public func checkMatch(_ term: String) -> Bool {
         return self.name.localizedCaseInsensitiveContains(term) || self.someDebugString.localizedCaseInsensitiveContains(term)
+    }
+    
+    public static func == (lhs: Instance, rhs: Instance) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
     }
 }
 

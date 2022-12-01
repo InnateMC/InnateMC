@@ -15,16 +15,17 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
+import Foundation
 import InnateKit
 import SwiftUI
 
-struct VersionManifestKey: EnvironmentKey {
-    static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
+private struct SelectedInstanceKey: FocusedValueKey {
+    typealias Value = Binding<Instance>
 }
 
-extension EnvironmentValues {
-    var versionManifest: [ManifestVersion] {
-        get { self[VersionManifestKey.self] }
-        set { self[VersionManifestKey.self] = newValue }
+extension FocusedValues {
+    var selectedInstance: Binding<Instance>? {
+        get { self[SelectedInstanceKey.self] }
+        set { self[SelectedInstanceKey.self] = newValue }
     }
 }

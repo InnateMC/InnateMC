@@ -22,7 +22,11 @@ struct ContentView: View {
     @State public var searchTerm: String = ""
     @State public var showNew = false
     @State public var starredOnly = false
-    @Environment(\.instances) public var instances: [Instance]
+    @State public var selectedInstance: Instance?
+    @EnvironmentObject var viewModel: ViewModel
+    var index: Int? {
+        viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
+    }
 
     var body: some View {
         NavigationView {
@@ -34,7 +38,7 @@ struct ContentView: View {
                 Toggle(isOn: $starredOnly) {
                     Text("Starred only")
                 }
-                ForEach(instances) { instance in
+                ForEach(viewModel.instances) { instance in
                     if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                         NavigationLink(destination: {
                             InstanceView(instance: instance)
@@ -42,6 +46,7 @@ struct ContentView: View {
                         }, label: {
                             InstanceNavigationLink(instance: instance)
                         })
+                            .tag(instance)
                             .padding(.all, 4)
                     }
                 }
@@ -67,11 +72,6 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .focusedValue(\.selectedInstance, $viewModel.instances[index ?? 0])
     }
 }

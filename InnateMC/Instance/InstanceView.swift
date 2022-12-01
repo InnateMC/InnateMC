@@ -21,7 +21,8 @@ import InnateKit
 struct InstanceView: View {
     @State var instance: Instance
     @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
-    
+    @State var disabled: Bool = false
+
     var body: some View {
         ZStack {
             VStack {
@@ -69,10 +70,20 @@ struct InstanceView: View {
                 }
                 Spacer()
                 TabView {
-                    TodoView()
-                        .tabItem {
-                            Label("Launch", systemImage: "bolt")
+                    VStack {
+                        HStack {
+                            Button(action: {
+                                
+                            }, label: {
+                                Text("     Launch     ")
+                                    .font(.title2)
+                            })
+                                .buttonStyle(LaunchButtonStyle())
                         }
+                    }
+                    .tabItem {
+                        Label("Launch", systemImage: "bolt")
+                    }
                     TodoView()
                         .tabItem {
                             Label("Runtime", systemImage: "bolt")
@@ -108,6 +119,6 @@ struct InstanceView_Previews: PreviewProvider {
     static var previews: some View {
         let instance: Instance = Instance(name: "Test Instance", assetIndex: PartialAssetIndex(id: "bruh", sha1: "bruh", url: "bruh"), libraries: [], mainClass: "bruh", minecraftJar: MinecraftJar(type: .local, url: nil, sha1: nil), isStarred: false, logo: "", description: "A very concerning test instance that absolutely will not work. Why are you even looking at this? Bruh", debugString: "c0.21, Textile")
         InstanceView(instance: instance)
-            .frame(width: 600)
+            .frame(width: 600, height: 500)
     }
 }

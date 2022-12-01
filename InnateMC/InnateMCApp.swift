@@ -21,20 +21,21 @@ import InnateKit
 @main
 struct InnateMCApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @Environment(\.instances) var instances: [Instance]
+    @StateObject private var viewModel = ViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
         .commands {
             CommandMenu("Edit") {
                 Button("New Instance") {
                     print("Bruh")
-                    
                 }
                 .keyboardShortcut("n") // TODO: make this work
             }
+            InstanceListCommands()
         }
         Settings {
             PreferencesView()

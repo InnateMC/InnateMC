@@ -15,16 +15,9 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
+import Foundation
 import InnateKit
-import SwiftUI
 
-struct VersionManifestKey: EnvironmentKey {
-    static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
-}
-
-extension EnvironmentValues {
-    var versionManifest: [ManifestVersion] {
-        get { self[VersionManifestKey.self] }
-        set { self[VersionManifestKey.self] = newValue }
-    }
+public class ViewModel: ObservableObject {
+    @Published var instances: [Instance] = Instance.loadInstancesThrow()
 }

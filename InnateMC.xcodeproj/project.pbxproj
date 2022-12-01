@@ -60,6 +60,11 @@
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */; };
 		64DF80332934D04A00F624F2 /* InstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF80322934D04A00F624F2 /* InstanceCreator.swift */; };
+		64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */; };
+		64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */; };
+		64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */; };
+		64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F02938BCAF00F82A2B /* FocusedKeys.swift */; };
+		64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* ViewModel.swift */; };
 		64E900392935EC500035181B /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 64E900382935EC500035181B /* Preferences */; };
 		64EB537F2929CD7800D6CDDD /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB537E2929CD7800D6CDDD /* DownloadTests.swift */; };
 		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
@@ -188,6 +193,11 @@
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 		64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaInstanceCreator.swift; sourceTree = "<group>"; };
 		64DF80322934D04A00F624F2 /* InstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCreator.swift; sourceTree = "<group>"; };
+		64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchButtonStyle.swift; sourceTree = "<group>"; };
+		64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillButtonStyle.swift; sourceTree = "<group>"; };
+		64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceListCommands.swift; sourceTree = "<group>"; };
+		64E459F02938BCAF00F82A2B /* FocusedKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedKeys.swift; sourceTree = "<group>"; };
+		64E459F22938C7AC00F82A2B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		64EB537C2929CD7800D6CDDD /* InnateKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
 		64EB53862929E6A600D6CDDD /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
@@ -297,6 +307,9 @@
 			children = (
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
+				64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */,
+				64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */,
+				64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -356,11 +369,13 @@
 				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
 				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
+				64E459F02938BCAF00F82A2B /* FocusedKeys.swift */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
+				64E459F22938C7AC00F82A2B /* ViewModel.swift */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
@@ -673,16 +688,21 @@
 			files = (
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
+				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
+				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
+				64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
+				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
+				64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 				64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
