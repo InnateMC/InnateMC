@@ -21,7 +21,8 @@ import InnateKit
 struct InstanceNavigationLink: View {
     @AppStorage("innatemc.compactList") private var compactList: Bool = false
 
-    var instance: Instance
+    @State var instance: Instance
+    @State var starHovered: Bool = false
 
     var body: some View {
         HStack {
@@ -33,11 +34,28 @@ struct InstanceNavigationLink: View {
                     AsynchronousImage(instance.getLogoPath())
                         .frame(width: 48, height: 48)
                 }
-                if (instance.isStarred) {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                        .frame(width: 8, height: 8)
+                ZStack {
+                    if (instance.isStarred) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                            .frame(width: 8, height: 8)
+                    }
+                    ZStack {
+                        if (starHovered) {
+                            if (!instance.isStarred) {
+                                Image(systemName: "star")
+                                    .foregroundColor(.yellow)
+                                    .frame(width: 8, height: 8)
+                            }
+                        }
+                    }
+                    .frame(width: 8, height: 8)
+                }.onHover { hovered in
+                    self.starHovered = hovered
+                }.onTapGesture {
+                    instance.isStarred = !instance.isStarred
                 }
+                .frame(width: 8, height: 8)
             }
             VStack {
                 HStack {
