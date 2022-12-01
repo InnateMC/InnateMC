@@ -22,6 +22,7 @@ struct InstanceView: View {
     @State var instance: Instance
     @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
     @State var disabled: Bool = false
+    @State var showingInstallSheet: Bool = false
 
     var body: some View {
         ZStack {
@@ -73,12 +74,11 @@ struct InstanceView: View {
                     VStack {
                         HStack {
                             Button(action: {
-                                
+                                showingInstallSheet = true
                             }, label: {
-                                Text("     Launch     ")
+                                Text("Launch")
                                     .font(.title2)
                             })
-                                .buttonStyle(LaunchButtonStyle())
                         }
                     }
                     .tabItem {
@@ -109,6 +109,10 @@ struct InstanceView: View {
                             Label("Misc", systemImage: "bolt")
                         }
                 }.padding(.all, 4)
+            }
+            .sheet(isPresented: $showingInstallSheet) {
+                Text("Installing Libraries")
+                    .font(.title)
             }
             .padding(.all, 6)
         }
