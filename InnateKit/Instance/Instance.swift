@@ -31,6 +31,7 @@ public class Instance: Codable, Identifiable, Hashable {
         get { return debugString ?? assetIndex.id }
         set(newValue) { self.debugString = newValue }
     }
+    public var isRunning: Bool? = false
 
     public init(name: String, assetIndex: PartialAssetIndex, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String, description: String?, debugString: String?) {
         self.name = name
@@ -42,6 +43,7 @@ public class Instance: Codable, Identifiable, Hashable {
         self.logo = logo
         self.description = description
         self.debugString = debugString
+        self.isRunning = false
     }
 
     public func getPath() -> URL {

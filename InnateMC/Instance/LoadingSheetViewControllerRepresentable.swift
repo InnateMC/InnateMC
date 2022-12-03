@@ -15,17 +15,19 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
+import Cocoa
 import SwiftUI
 import InnateKit
 
-//struct LoadingSheetViewRepresentable: NSViewRepresentable {
-//    var instance: Instance
-//    typealias NSViewType = LoadingSheetView
-//
-//    func makeNSView(context: Context) -> NSViewType {
-//        return LoadingSheetView(instance: instance)
-//    }
-//
-//    func updateNSView(_ nsView: LoadingSheetView, context: Context) {
-//    }
-//}
+struct LoadingSheetViewControllerRepresentable: NSViewControllerRepresentable {
+    typealias NSViewControllerType = LoadingSheetViewController
+    public var instance: Instance
+    
+    func makeNSViewController(context: Self.Context) -> LoadingSheetViewController {
+        return LoadingSheetViewController(instance: instance, nibName: "LoadingSheetViewController", bundle: nil)
+    }
+    
+    func updateNSViewController(_ nsViewController: LoadingSheetViewController, context: Context) {
+    }
+}
+

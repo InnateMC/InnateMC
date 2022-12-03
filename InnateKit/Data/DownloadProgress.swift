@@ -18,20 +18,25 @@
 
 import Foundation
 import SwiftUI
+import Atomics
 
-public class DownloadProgress: ObservableObject {
-    @Published public var current: Float = 0
-    @Published public var total: Float = 1
-    
+open class DownloadProgress: ObservableObject {
+    public var current = ManagedAtomic<Int>(0)
+    public var total: Int = 1
+
     public init() {
     }
-    
+
     public func fraction() -> Double {
-        return Double(current) / Double(total)
+        return Double(current.load(ordering: .relaxed)) / Double(total)
     }
 
     public func percentString() -> String {
         return String(format: "%.2f", fraction() * 100) + "%"
+    }
+    
+    open func inc() {
+        self.current.wrappingIncrement(by: 1, ordering: .relaxed)
     }
 
     public func intPercent() -> Int {
@@ -39,20 +44,20 @@ public class DownloadProgress: ObservableObject {
     }
     
     public func isDone() -> Bool {
-        return current >= total
+        return current.load(ordering: .relaxed) >= Int(total)
     }
 
-    public init(current: Float, total: Float) {
-        self.current = current
+    public init(current: Int, total: Int) {
+        self.current = ManagedAtomic<Int>(current)
         self.total = total
     }
-    
+
     public static func completed() -> DownloadProgress {
         return DownloadProgress(current: 1, total: 1)
     }
     
     public func setFrom(_ other: DownloadProgress) {
-        self.current = other.current
+        self.current = ManagedAtomic<Int>(other.current.load(ordering: .relaxed))
         self.total = other.total
     }
 }

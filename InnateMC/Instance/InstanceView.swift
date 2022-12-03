@@ -22,7 +22,6 @@ struct InstanceView: View {
     @State var instance: Instance
     @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
     @State var disabled: Bool = false
-    @State var showingInstallSheet: Bool = false
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
@@ -72,27 +71,7 @@ struct InstanceView: View {
                 }
                 Spacer()
                 TabView {
-                    VStack {
-                        HStack {
-                            Button(action: {
-                                showingInstallSheet = true
-//                                let _ = try! instance.downloadMcJar()
-//                                viewModel.currentDownloadStatus = "Downloading Assets"
-//                                let _ = try! instance.downloadAssets(progress: viewModel.currentDownloadProgress) {
-//                                    viewModel.currentDownloadStatus = "Downloading Libraries"
-//                                    let _ = instance.downloadLibs(progress: viewModel.currentDownloadProgress, callback: {
-//                                        showingInstallSheet = false
-//                                        viewModel.currentDownloadProgress.current = 0
-//                                        viewModel.currentDownloadProgress.total = 1
-//                                        viewModel.currentDownloadStatus = "Downloading"
-//                                    })
-//                                }
-                            }, label: {
-                                Text("Launch")
-                                    .font(.title2)
-                            })
-                        }
-                    }
+                    InstanceLaunchView(instance: instance)
                     .tabItem {
                         Label("Launch", systemImage: "bolt")
                     }
@@ -121,10 +100,6 @@ struct InstanceView: View {
                             Label("Misc", systemImage: "bolt")
                         }
                 }.padding(.all, 4)
-            }
-            .sheet(isPresented: $showingInstallSheet) {
-                LoadingSheet()
-                    .environmentObject(self.viewModel)
             }
             .padding(.all, 6)
         }

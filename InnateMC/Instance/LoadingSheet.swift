@@ -17,9 +17,11 @@
 
 import SwiftUI
 import Cocoa
+import InnateKit
 
 struct LoadingSheet: View {
     @EnvironmentObject var viewModel: ViewModel
+    var instance: Instance
     
     var body: some View {
         VStack {
@@ -38,7 +40,7 @@ struct LoadingSheet: View {
 //            }
 //            ProgressView("", value: self.viewModel.currentDownloadProgress.current, total: self.viewModel.currentDownloadProgress.total)
             
-            LoadingSheetViewControllerRepresentable()
+            LoadingSheetViewControllerRepresentable(instance: instance)
         }.frame(width: 300, height: 79)
     }
 }

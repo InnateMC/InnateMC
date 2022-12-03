@@ -22,14 +22,14 @@ public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
 
     public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
-        progress.current = 0
-        progress.total = Float(tasks.count)
+        progress.current.store(0, ordering: .relaxed)
+        progress.total = tasks.count
         let fm = FileManager.default
 
         func dispatch(_ task: DownloadTask) {
             dispatchQueue.async {
                 if fm.fileExists(atPath: task.filePath.path) {
-                    progress.current += 1
+                    progress.inc()
                 } else {
                     let data = try! Data(contentsOf: task.url)
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
@@ -41,7 +41,7 @@ public class ParallelDownloader {
                             try! fm.createDirectory(at: parent, withIntermediateDirectories: true)
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
-                        progress.current += 1
+                        progress.inc()
                         if progress.isDone() {
                             if let callback = callback {
                                 callback()
@@ -49,7 +49,7 @@ public class ParallelDownloader {
                         }
                     }
                 }
-                print (progress.current)
+                print (progress.current.load(ordering: .relaxed))
             }
         }
 

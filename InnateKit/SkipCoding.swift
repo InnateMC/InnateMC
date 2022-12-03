@@ -15,17 +15,25 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import SwiftUI
-import InnateKit
+import Foundation
 
-//struct LoadingSheetViewRepresentable: NSViewRepresentable {
-//    var instance: Instance
-//    typealias NSViewType = LoadingSheetView
-//
-//    func makeNSView(context: Context) -> NSViewType {
-//        return LoadingSheetView(instance: instance)
-//    }
-//
-//    func updateNSView(_ nsView: LoadingSheetView, context: Context) {
-//    }
-//}
+@propertyWrapper
+public struct SkipCodingBool {
+    private var value: Bool
+    public init(wrappedValue: Bool) {
+        self.value = wrappedValue
+    }
+    
+    public var wrappedValue: Bool {
+        get { value }
+        set { self.value = newValue }
+    }
+}
+
+extension SkipCodingBool: Codable {
+    public func encode(to encoder: Encoder) throws {
+    }
+    public init(from decoder: Decoder) throws {
+        self.value = false
+    }
+}

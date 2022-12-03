@@ -15,17 +15,19 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import SwiftUI
+import Cocoa
 import InnateKit
 
-//struct LoadingSheetViewRepresentable: NSViewRepresentable {
+class LoadingSheetView: NSView {
+    @IBOutlet var label: NSTextField!
+    @IBOutlet var progress: NSProgressIndicator!
 //    var instance: Instance
-//    typealias NSViewType = LoadingSheetView
-//
-//    func makeNSView(context: Context) -> NSViewType {
-//        return LoadingSheetView(instance: instance)
-//    }
-//
-//    func updateNSView(_ nsView: LoadingSheetView, context: Context) {
-//    }
-//}
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+    }
+}
