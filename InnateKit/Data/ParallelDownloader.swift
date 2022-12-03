@@ -20,10 +20,10 @@ import CryptoKit
 
 public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
-    
-    public static func download(_ tasks: [DownloadTask], progress: DownloadProgress) -> DownloadProgress {
+
+    public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
         progress.current = 0
-        progress.total = tasks.count
+        progress.total = Float(tasks.count)
         let fm = FileManager.default
 
         func dispatch(_ task: DownloadTask) {
@@ -42,9 +42,14 @@ public class ParallelDownloader {
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
                         progress.current += 1
-                        progress.current += 1
+                        if progress.isDone() {
+                            if let callback = callback {
+                                callback()
+                            }
+                        }
                     }
                 }
+                print (progress.current)
             }
         }
 

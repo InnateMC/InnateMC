@@ -99,7 +99,7 @@ public class Library: Codable, Identifiable {
     }
     
     public func asDownloadTask() -> DownloadTask {
-        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1)
+        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: nil) // TODO: fix sha1 checking for libraries
     }
 }
 
@@ -172,10 +172,10 @@ extension Instance {
         if (self.minecraftJar.type == .local) {
             return DownloadProgress.completed()
         }
-        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress())
+        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: nil)], progress: DownloadProgress(), callback: {})
     }
 
-    public func downloadLibs() -> DownloadProgress {
+    public func downloadLibs(progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
         var tasks: [DownloadTask] = []
         for library in libraries {
             if library.type == .local {
@@ -183,12 +183,12 @@ extension Instance {
             }
             tasks.append(library.asDownloadTask())
         }
-        return ParallelDownloader.download(tasks, progress: DownloadProgress())
+        return ParallelDownloader.download(tasks, progress: progress, callback: callback)
     }
     
-    public func downloadAssets() throws -> DownloadProgress {
+    public func downloadAssets(progress: DownloadProgress, callback: (() -> Void)?) throws -> DownloadProgress {
         let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
-        return try index.downloadParallel()
+        return try index.downloadParallel(progress: progress, callback: callback)
     }
 
     func createAsNewInstance() throws {

@@ -29,6 +29,12 @@ struct InstanceListCommands: Commands {
                 selectedInstance?.isStarred.toggle()
             }
             .keyboardShortcut("f")
+            Button("Launch") {
+            }
+            .keyboardShortcut(KeyEquivalent.return)
+            Button("Open Instance Folder") {
+            }
+            .keyboardShortcut(KeyEquivalent.upArrow)
         }
     }
 }

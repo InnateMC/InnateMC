@@ -15,11 +15,16 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import Foundation
-import InnateKit
+import SwiftUI
 
-public class ViewModel: ObservableObject {
-    @Published var instances: [Instance] = Instance.loadInstancesThrow()
-    @Published var currentDownloadProgress: DownloadProgress = DownloadProgress(current: 1, total: 3)
-    @Published var currentDownloadStatus: String = "Downloading"
+struct LoadingSheet: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
+    var body: some View {
+        VStack {
+            Text(viewModel.currentDownloadStatus)
+                .font(.title2)
+            ProgressView("", value: self.viewModel.currentDownloadProgress.current, total: self.viewModel.currentDownloadProgress.total)
+        }.frame(width: 250)
+    }
 }

@@ -17,10 +17,11 @@
 
 
 import Foundation
+import SwiftUI
 
-public class DownloadProgress {
-    public var current: Int = 0
-    public var total: Int = 1
+public class DownloadProgress: ObservableObject {
+    @Published public var current: Float = 0
+    @Published public var total: Float = 1
     
     public init() {
     }
@@ -41,12 +42,17 @@ public class DownloadProgress {
         return current >= total
     }
 
-    public init(current: Int, total: Int) {
+    public init(current: Float, total: Float) {
         self.current = current
         self.total = total
     }
     
     public static func completed() -> DownloadProgress {
         return DownloadProgress(current: 1, total: 1)
+    }
+    
+    public func setFrom(_ other: DownloadProgress) {
+        self.current = other.current
+        self.total = other.total
     }
 }

@@ -23,7 +23,8 @@ struct InstanceView: View {
     @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
     @State var disabled: Bool = false
     @State var showingInstallSheet: Bool = false
-
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         ZStack {
             VStack {
@@ -75,6 +76,17 @@ struct InstanceView: View {
                         HStack {
                             Button(action: {
                                 showingInstallSheet = true
+                                let _ = try! instance.downloadMcJar()
+                                viewModel.currentDownloadStatus = "Downloading Assets"
+                                let _ = try! instance.downloadAssets(progress: viewModel.currentDownloadProgress) {
+                                    viewModel.currentDownloadStatus = "Downloading Libraries"
+                                    let _ = instance.downloadLibs(progress: viewModel.currentDownloadProgress, callback: {
+                                        showingInstallSheet = false
+                                        viewModel.currentDownloadProgress.current = 0
+                                        viewModel.currentDownloadProgress.total = 1
+                                        viewModel.currentDownloadStatus = "Downloading"
+                                    })
+                                }
                             }, label: {
                                 Text("Launch")
                                     .font(.title2)
@@ -111,8 +123,8 @@ struct InstanceView: View {
                 }.padding(.all, 4)
             }
             .sheet(isPresented: $showingInstallSheet) {
-                Text("Installing Libraries")
-                    .font(.title)
+                LoadingSheet()
+                    .environmentObject(self.viewModel)
             }
             .padding(.all, 6)
         }
@@ -121,7 +133,7 @@ struct InstanceView: View {
 
 struct InstanceView_Previews: PreviewProvider {
     static var previews: some View {
-        let instance: Instance = Instance(name: "Test Instance", assetIndex: PartialAssetIndex(id: "bruh", sha1: "bruh", url: "bruh"), libraries: [], mainClass: "bruh", minecraftJar: MinecraftJar(type: .local, url: nil, sha1: nil), isStarred: false, logo: "", description: "A very concerning test instance that absolutely will not work. Why are you even looking at this? Bruh", debugString: "c0.21, Textile")
+        let instance: Instance = Instance(name: "Test Instance", assetIndex: PartialAssetIndex(id: "bruh", sha1: "bruh", url: "bruh"), libraries: [], mainClass: "bruh", minecraftJar: MinecraftJar(type: .local, url: nil, sha1: nil), isStarred: false, logo: "", description: "e this won't run lol", debugString: "c0.21, Textile")
         InstanceView(instance: instance)
             .frame(width: 600, height: 500)
     }

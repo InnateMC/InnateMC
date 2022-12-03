@@ -226,7 +226,7 @@ extension Version {
             print("")
             tasks.append(task)
         }
-        return ParallelDownloader.download(tasks, progress: DownloadProgress())
+        return ParallelDownloader.download(tasks, progress: DownloadProgress()) {}
     }
 }
 

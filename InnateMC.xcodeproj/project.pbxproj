@@ -41,6 +41,9 @@
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
+		649212BE293AEE520092E2DD /* LoadingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649212BD293AEE520092E2DD /* LoadingSheet.swift */; };
+		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
+		649212C3293AF44A0092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C2293AF44A0092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
@@ -171,6 +174,7 @@
 		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
+		649212BD293AEE520092E2DD /* LoadingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSheet.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334D82922523600BB8570 /* InnateMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCApp.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64CF0CC92928117D00535DC8 /* InnateJson.framework in Frameworks */,
+				649212C3293AF44A0092E2DD /* Atomics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
 				643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */,
 				64E900392935EC500035181B /* Preferences in Frameworks */,
 			);
@@ -310,6 +316,7 @@
 				64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */,
 				64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */,
+				649212BD293AEE520092E2DD /* LoadingSheet.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -488,6 +495,9 @@
 				64CF0CCC2928117D00535DC8 /* PBXTargetDependency */,
 			);
 			name = InnateKit;
+			packageProductDependencies = (
+				649212C2293AF44A0092E2DD /* Atomics */,
+			);
 			productName = InnateKit;
 			productReference = 643C7FE22927566400DDC1B3 /* InnateKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -509,6 +519,7 @@
 			name = InnateMC;
 			packageProductDependencies = (
 				64E900382935EC500035181B /* Preferences */,
+				649212C0293AF4120092E2DD /* Atomics */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -609,6 +620,7 @@
 			mainGroup = 64C334CC2922523500BB8570;
 			packageReferences = (
 				64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */,
+				649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
@@ -692,6 +704,7 @@
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				649212BE293AEE520092E2DD /* LoadingSheet.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
@@ -1200,6 +1213,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-atomics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Preferences";
@@ -1211,6 +1232,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		649212C0293AF4120092E2DD /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
+		649212C2293AF44A0092E2DD /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
 		64E900382935EC500035181B /* Preferences */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */;
