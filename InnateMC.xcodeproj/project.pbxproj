@@ -41,6 +41,9 @@
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
+		646257C9293B139900C3CAC1 /* LoadingSheetViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646257C8293B139900C3CAC1 /* LoadingSheetViewRepresentable.swift */; };
+		646257D0293B185500C3CAC1 /* LoadingSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646257CE293B185500C3CAC1 /* LoadingSheetViewController.swift */; };
+		646257D1293B185500C3CAC1 /* LoadingSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646257CF293B185500C3CAC1 /* LoadingSheetViewController.xib */; };
 		649212BE293AEE520092E2DD /* LoadingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649212BD293AEE520092E2DD /* LoadingSheet.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649212C3293AF44A0092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C2293AF44A0092E2DD /* Atomics */; };
@@ -174,6 +177,9 @@
 		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
+		646257C8293B139900C3CAC1 /* LoadingSheetViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSheetViewRepresentable.swift; sourceTree = "<group>"; };
+		646257CE293B185500C3CAC1 /* LoadingSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSheetViewController.swift; sourceTree = "<group>"; };
+		646257CF293B185500C3CAC1 /* LoadingSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingSheetViewController.xib; sourceTree = "<group>"; };
 		649212BD293AEE520092E2DD /* LoadingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSheet.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +323,9 @@
 				64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */,
 				649212BD293AEE520092E2DD /* LoadingSheet.swift */,
+				646257C8293B139900C3CAC1 /* LoadingSheetViewRepresentable.swift */,
+				646257CE293B185500C3CAC1 /* LoadingSheetViewController.swift */,
+				646257CF293B185500C3CAC1 /* LoadingSheetViewController.xib */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -650,6 +659,7 @@
 				64C334E02922523F00BB8570 /* Preview Assets.xcassets in Resources */,
 				64C33509292272F600BB8570 /* .gitignore in Resources */,
 				64C3350C2922B0B500BB8570 /* LICENSE in Resources */,
+				646257D1293B185500C3CAC1 /* LoadingSheetViewController.xib in Resources */,
 				64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,11 +714,13 @@
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				646257D0293B185500C3CAC1 /* LoadingSheetViewController.swift in Sources */,
 				649212BE293AEE520092E2DD /* LoadingSheet.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */,
+				646257C9293B139900C3CAC1 /* LoadingSheetViewRepresentable.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,

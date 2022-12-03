@@ -16,15 +16,29 @@
 //
 
 import SwiftUI
+import Cocoa
 
 struct LoadingSheet: View {
     @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
-            Text(viewModel.currentDownloadStatus)
-                .font(.title2)
-            ProgressView("", value: self.viewModel.currentDownloadProgress.current, total: self.viewModel.currentDownloadProgress.total)
-        }.frame(width: 250)
+//            Text(viewModel.currentDownloadStatus)
+//                .font(.title2)
+//            GeometryReader { geometry in
+//                ZStack(alignment: .leading) {
+//                    Rectangle().frame(width: geometry.size.width , height: geometry.size.height)
+//                        .opacity(0.3)
+//                        .foregroundColor(Color(NSColor.darkGray))
+//
+//                    Rectangle().frame(width: min(CGFloat(self.viewModel.currentDownloadProgress.current / self.viewModel.currentDownloadProgress.total) * geometry.size.width, geometry.size.width), height: geometry.size.height)
+//                        .foregroundColor(Color(NSColor.systemBlue))
+//                        .animation(.linear)
+//                }.cornerRadius(45.0)
+//            }
+//            ProgressView("", value: self.viewModel.currentDownloadProgress.current, total: self.viewModel.currentDownloadProgress.total)
+            
+            LoadingSheetViewControllerRepresentable()
+        }.frame(width: 300, height: 79)
     }
 }

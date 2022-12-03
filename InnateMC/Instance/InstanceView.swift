@@ -76,17 +76,17 @@ struct InstanceView: View {
                         HStack {
                             Button(action: {
                                 showingInstallSheet = true
-                                let _ = try! instance.downloadMcJar()
-                                viewModel.currentDownloadStatus = "Downloading Assets"
-                                let _ = try! instance.downloadAssets(progress: viewModel.currentDownloadProgress) {
-                                    viewModel.currentDownloadStatus = "Downloading Libraries"
-                                    let _ = instance.downloadLibs(progress: viewModel.currentDownloadProgress, callback: {
-                                        showingInstallSheet = false
-                                        viewModel.currentDownloadProgress.current = 0
-                                        viewModel.currentDownloadProgress.total = 1
-                                        viewModel.currentDownloadStatus = "Downloading"
-                                    })
-                                }
+//                                let _ = try! instance.downloadMcJar()
+//                                viewModel.currentDownloadStatus = "Downloading Assets"
+//                                let _ = try! instance.downloadAssets(progress: viewModel.currentDownloadProgress) {
+//                                    viewModel.currentDownloadStatus = "Downloading Libraries"
+//                                    let _ = instance.downloadLibs(progress: viewModel.currentDownloadProgress, callback: {
+//                                        showingInstallSheet = false
+//                                        viewModel.currentDownloadProgress.current = 0
+//                                        viewModel.currentDownloadProgress.total = 1
+//                                        viewModel.currentDownloadStatus = "Downloading"
+//                                    })
+//                                }
                             }, label: {
                                 Text("Launch")
                                     .font(.title2)
