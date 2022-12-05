@@ -32,8 +32,18 @@ public class Instance: Codable, Identifiable, Hashable {
         set(newValue) { self.debugString = newValue }
     }
     public var isRunning: Bool? = false
+    public var lastPlayed: Date?
 
-    public init(name: String, assetIndex: PartialAssetIndex, libraries: [Library], mainClass: String, minecraftJar: MinecraftJar, isStarred: Bool, logo: String, description: String?, debugString: String?) {
+    public init(name: String,
+                assetIndex: PartialAssetIndex,
+                libraries: [Library],
+                mainClass: String,
+                minecraftJar: MinecraftJar,
+                isStarred: Bool,
+                logo: String,
+                description: String?,
+                debugString: String?,
+    ) {
         self.name = name
         self.assetIndex = assetIndex
         self.libraries = libraries
