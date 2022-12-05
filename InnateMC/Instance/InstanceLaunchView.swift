@@ -26,13 +26,6 @@ struct InstanceLaunchView: View {
         VStack {
             HStack {
                 Button(action: {
-                    showingInstallSheet = true
-                    let _ = try! instance.downloadMcJar()
-                    let _ = try! instance.downloadAssets(progress: DownloadProgress()) {
-                        let _ = instance.downloadLibs(progress: DownloadProgress(), callback: {
-                            showingInstallSheet = false
-                        })
-                    }
                 }, label: {
                     Text("Launch")
                         .font(.title2)
@@ -41,7 +34,6 @@ struct InstanceLaunchView: View {
         }
         .sheet(isPresented: $showingInstallSheet) {
             ZStack {
-                Text("Downloading Assets & Libraries...").font(.title2)
             }
             .padding(.all, 10)
         }
