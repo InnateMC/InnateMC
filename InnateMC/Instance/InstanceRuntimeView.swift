@@ -23,7 +23,7 @@ struct InstanceRuntimeView: View {
     let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
     var instance: Instance
     
-    var view: some View {
+    var body: some View {
         LazyVGrid(columns: columns) {
             Text("Java executable")
             TextField("", text: $javaExecutable).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
