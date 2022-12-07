@@ -105,11 +105,3 @@ struct InstanceView: View {
         }
     }
 }
-
-struct InstanceView_Previews: PreviewProvider {
-    static var previews: some View {
-        let instance: Instance = Instance(name: "Test Instance", assetIndex: PartialAssetIndex(id: "bruh", sha1: "bruh", url: "bruh"), libraries: [], mainClass: "bruh", minecraftJar: MinecraftJar(type: .local, url: nil, sha1: nil), isStarred: false, logo: "", description: "e this won't run lol", debugString: "c0.21, Textile")
-        InstanceView(instance: instance)
-            .frame(width: 600, height: 500)
-    }
-}
