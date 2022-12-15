@@ -42,7 +42,7 @@ public class Instance: Codable, Identifiable, Hashable {
                 isStarred: Bool,
                 logo: String,
                 description: String?,
-                debugString: String?,
+                debugString: String?
     ) {
         self.name = name
         self.assetIndex = assetIndex

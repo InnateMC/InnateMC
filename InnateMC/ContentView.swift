@@ -20,7 +20,7 @@ import InnateKit
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    @State public var showNew = false
+    
     @State public var starredOnly = false
     @State public var selectedInstance: Instance?
     @EnvironmentObject var viewModel: ViewModel
@@ -29,49 +29,55 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
-            List {
-                TextField("Search...", text: $searchTerm)
-                    .padding(.bottom, 10.0)
-                    .accessibilityLabel("Search for Instance")
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Toggle(isOn: $starredOnly) {
-                    Text("Starred only")
-                }
-                ForEach(viewModel.instances) { instance in
-                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                        NavigationLink(destination: {
-                            InstanceView(instance: instance)
-                                .padding(.top, 10)
-                        }, label: {
-                            InstanceNavigationLink(instance: instance)
-                        })
+       
+        if #available(macOS 12.0, *) {
+            NavigationView {
+                List {
+                    
+                    
+                    
+                    ForEach(viewModel.instances) { instance in
+                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                            NavigationLink(destination: {
+                                InstanceView(instance: instance)
+                                    .padding(.top, 10)
+                            }, label: {
+                                InstanceNavigationLink(instance: instance)
+                            })
                             .tag(instance)
                             .padding(.all, 4)
+                        }
                     }
                 }
-            }
-            .background(
-                NavigationLink(isActive: $showNew, destination: {
+                .sheet(isPresented:$viewModel.showNewInstanceScreen){
                     NewInstanceView()
-                }, label: { Text("") })
-            )
-            .navigationTitle("Instances")
-            .toolbar {
-                ToolbarItemGroup(placement: ToolbarItemPlacement.navigation) {
-                    Button("New Instance") {
-                        self.showNew = true
+                }
+                .navigationTitle("Instances").toolbar{
+                    
+                    
+                    Spacer()
+                    Toggle(isOn: $starredOnly) {
+                        if(starredOnly){
+                            Image(systemName: "star.fill")
+                        }else{
+                            Image(systemName: "star")
+                        }
+                        
+                    }
+                    Button(action:{viewModel.showNewInstanceScreen = true}) {
+                        Image(systemName: "plus")
                     }
                     .keyboardShortcut("n")
-                    Button("Preferences") {
-                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                    }
                 }
-            }
-            Text("Select an instance")
-                .font(.largeTitle)
-                .foregroundColor(.gray)
+                
+                Text("Select an instance")
+                    .font(.largeTitle)
+                    .foregroundColor(.gray)
+            }.searchable(text: $searchTerm,placement: .sidebar)
+        } else {
+            // Fallback on earlier versions
         }
-        .focusedValue(\.selectedInstance, $viewModel.instances[index ?? 0])
+        
+        
     }
 }

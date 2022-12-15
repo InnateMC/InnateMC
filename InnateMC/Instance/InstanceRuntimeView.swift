@@ -22,7 +22,10 @@ import SwiftUI
 struct InstanceRuntimeView: View {
     let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
     var instance: Instance
-    
+    @AppStorage("innatemc.javaExecutable") private var javaExecutable: String = "java"
+    @AppStorage("innatemc.minMemory") private var minMemory: Int = 1024
+    @AppStorage("innatemc.maxMemory") private var maxMemory: Int = 1024
+    @AppStorage("innatemc.javaArgs") private var javaArgs: String = ""
     var body: some View {
         LazyVGrid(columns: columns) {
             Text("Java executable")
