@@ -27,7 +27,7 @@ struct InstanceLaunchView: View {
             HStack {
                 Button(action: {
                     print(instance.getPath().absoluteString)
-                    do{
+                    do {
                         
                     }catch{
                         
