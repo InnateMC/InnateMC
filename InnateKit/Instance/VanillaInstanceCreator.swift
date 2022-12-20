@@ -45,7 +45,7 @@ public class VanillaInstanceCreator: InstanceCreator {
             try instance.downloadMcJar()
             try instance.downloadLibs(progress: DownloadProgress(), callback: {})
             try instance.downloadAssets(progress: DownloadProgress(), callback: {})
-        }catch{
+        } catch {
             
         }
         
