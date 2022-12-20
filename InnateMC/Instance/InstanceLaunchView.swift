@@ -29,7 +29,7 @@ struct InstanceLaunchView: View {
                     print(instance.getPath().absoluteString)
                     do {
                         
-                    }catch{
+                    } catch {
                         
                     }
                 }, label: {
