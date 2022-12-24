@@ -20,24 +20,18 @@ import InnateKit
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    @State public var showNew = false
+    
     @State public var starredOnly = false
     @State public var selectedInstance: Instance?
     @EnvironmentObject var viewModel: ViewModel
     var index: Int? {
         viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
     }
-
+    
     var body: some View {
+        
         NavigationView {
             List {
-                TextField("Search...", text: $searchTerm)
-                    .padding(.bottom, 10.0)
-                    .accessibilityLabel("Search for Instance")
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Toggle(isOn: $starredOnly) {
-                    Text("Starred only")
-                }
                 ForEach(viewModel.instances) { instance in
                     if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                         NavigationLink(destination: {
@@ -51,27 +45,31 @@ struct ContentView: View {
                     }
                 }
             }
-            .background(
-                NavigationLink(isActive: $showNew, destination: {
-                    NewInstanceView()
-                }, label: { Text("") })
-            )
-            .navigationTitle("Instances")
-            .toolbar {
-                ToolbarItemGroup(placement: ToolbarItemPlacement.navigation) {
-                    Button("New Instance") {
-                        self.showNew = true
-                    }
-                    .keyboardShortcut("n")
-                    Button("Preferences") {
-                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                    }
-                }
+            .sheet(isPresented:$viewModel.showNewInstanceScreen){
+                NewInstanceView()
             }
+            .navigationTitle("Instances").toolbar{
+                
+                
+                Spacer()
+                Toggle(isOn: $starredOnly) {
+                    if(starredOnly){
+                        Image(systemName: "star.fill")
+                    }else{
+                        Image(systemName: "star")
+                    }
+                    
+                }
+                Button(action:{viewModel.showNewInstanceScreen = true}) {
+                    Image(systemName: "plus")
+                }
+                .keyboardShortcut("n")
+            }
+            
             Text("Select an instance")
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-        .focusedValue(\.selectedInstance, $viewModel.instances[index ?? 0])
+//        .searchable(text: $searchTerm,placement: .sidebar)
     }
 }

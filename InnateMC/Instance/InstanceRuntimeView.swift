@@ -22,17 +22,17 @@ import SwiftUI
 struct InstanceRuntimeView: View {
     let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
     var instance: Instance
-    
+
     var body: some View {
         LazyVGrid(columns: columns) {
             Text("Java executable")
-            TextField("", text: $javaExecutable).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("", text: .constant("java")).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             Text("Minimum Memory (MiB)")
-            TextField("", value: $minMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("", value: .constant("1024"), formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             Text("Maximum Memory (MiB)")
-            TextField("", value: $maxMemory, formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("", value: .constant("1024"), formatter: NumberFormatter()).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
             Text("Java Arguments")
-            TextField("", text: $javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("", text: .constant("")).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
 }

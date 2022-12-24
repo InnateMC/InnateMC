@@ -16,8 +16,9 @@
 //
 
 import SwiftUI
-
+import InnateKit
 struct NewInstanceView: View {
+    
     var body: some View {
         TabView {
             NewVanillaInstanceView()

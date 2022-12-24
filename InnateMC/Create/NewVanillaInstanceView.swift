@@ -20,14 +20,15 @@ import InnateKit
 
 struct NewVanillaInstanceView: View {
     @Environment(\.versionManifest) var versionManifest: [ManifestVersion]
+    @EnvironmentObject var viewModel: ViewModel
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
     @State var selectedVersion: ManifestVersion = VersionManifestKey.defaultValue.first!
     @State var name = ""
-
+    
     var body: some View {
-        HStack {
+        VStack {
             Spacer()
             Form {
                 TextField("Name", text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
@@ -44,11 +45,31 @@ struct NewVanillaInstanceView: View {
                 Toggle("Show snapshots", isOn: $showSnapshots)
                 Toggle("Show old beta", isOn: $showBeta)
                 Toggle("Show old alpha", isOn: $showAlpha)
-                Button("Install") {
-                    
-                }
+                
+                
+            }.padding()
+            HStack{
+                Spacer()
+                HStack{
+                    Button("Cancel"){
+                        viewModel.showNewInstanceScreen = false
+                    }.keyboardShortcut(.cancelAction)
+                    Button("Done") {
+                        let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil)
+                        do{
+                            
+                            viewModel.instances.append(try instance.install())
+                            viewModel.showNewInstanceScreen = false
+                        }catch{
+                            print("something was thrown sad emojy")
+                        }
+                        
+                    }.keyboardShortcut(.defaultAction)
+                }.padding(.trailing).padding(.bottom)
+                
             }
-            Spacer()
+            
+            
         }
     }
 }

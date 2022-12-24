@@ -26,6 +26,7 @@ struct InstanceLaunchView: View {
         VStack {
             HStack {
                 Button(action: {
+                    print(instance.getPath().absoluteString)
                 }, label: {
                     Text("Launch")
                         .font(.title2)
