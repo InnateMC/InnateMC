@@ -27,57 +27,49 @@ struct ContentView: View {
     var index: Int? {
         viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
     }
-
+    
     var body: some View {
-       
-        if #available(macOS 12.0, *) {
-            NavigationView {
-                List {
-                    
-                    
-                    
-                    ForEach(viewModel.instances) { instance in
-                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                            NavigationLink(destination: {
-                                InstanceView(instance: instance)
-                                    .padding(.top, 10)
-                            }, label: {
-                                InstanceNavigationLink(instance: instance)
-                            })
+        
+        NavigationView {
+            List {
+                ForEach(viewModel.instances) { instance in
+                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                        NavigationLink(destination: {
+                            InstanceView(instance: instance)
+                                .padding(.top, 10)
+                        }, label: {
+                            InstanceNavigationLink(instance: instance)
+                        })
                             .tag(instance)
                             .padding(.all, 4)
-                        }
                     }
                 }
-                .sheet(isPresented:$viewModel.showNewInstanceScreen){
-                    NewInstanceView()
-                }
-                .navigationTitle("Instances").toolbar{
-                    
-                    
-                    Spacer()
-                    Toggle(isOn: $starredOnly) {
-                        if(starredOnly){
-                            Image(systemName: "star.fill")
-                        }else{
-                            Image(systemName: "star")
-                        }
-                        
-                    }
-                    Button(action:{viewModel.showNewInstanceScreen = true}) {
-                        Image(systemName: "plus")
-                    }
-                    .keyboardShortcut("n")
-                }
+            }
+            .sheet(isPresented:$viewModel.showNewInstanceScreen){
+                NewInstanceView()
+            }
+            .navigationTitle("Instances").toolbar{
                 
-                Text("Select an instance")
-                    .font(.largeTitle)
-                    .foregroundColor(.gray)
-            }.searchable(text: $searchTerm,placement: .sidebar)
-        } else {
-            // Fallback on earlier versions
+                
+                Spacer()
+                Toggle(isOn: $starredOnly) {
+                    if(starredOnly){
+                        Image(systemName: "star.fill")
+                    }else{
+                        Image(systemName: "star")
+                    }
+                    
+                }
+                Button(action:{viewModel.showNewInstanceScreen = true}) {
+                    Image(systemName: "plus")
+                }
+                .keyboardShortcut("n")
+            }
+            
+            Text("Select an instance")
+                .font(.largeTitle)
+                .foregroundColor(.gray)
         }
-        
-        
+//        .searchable(text: $searchTerm,placement: .sidebar)
     }
 }

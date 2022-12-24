@@ -27,11 +27,6 @@ struct InstanceLaunchView: View {
             HStack {
                 Button(action: {
                     print(instance.getPath().absoluteString)
-                    do {
-                        
-                    } catch {
-                        
-                    }
                 }, label: {
                     Text("Launch")
                         .font(.title2)

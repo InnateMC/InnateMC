@@ -375,20 +375,20 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
-				644DE1D22937C13F00C4A03E /* Instance */,
-				644DE1D12937C0D300C4A03E /* Util */,
-				6416784F2923B6450012C9CC /* Preferences */,
-				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				649762BC2935A2D600977467 /* Create */,
+				644DE1D22937C13F00C4A03E /* Instance */,
+				6416784F2923B6450012C9CC /* Preferences */,
+				644DE1D12937C0D300C4A03E /* Util */,
+				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
 				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
 				64E459F02938BCAF00F82A2B /* FocusedKeys.swift */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
-				64C334DE2922523F00BB8570 /* Preview Content */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
 				64E459F22938C7AC00F82A2B /* ViewModel.swift */,
+				64C334DE2922523F00BB8570 /* Preview Content */,
 			);
 			path = InnateMC;
 			sourceTree = "<group>";
