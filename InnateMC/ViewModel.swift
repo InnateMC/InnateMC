@@ -20,7 +20,14 @@ import InnateKit
 
 public class ViewModel: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
-    @Published var currentDownloadProgress: DownloadProgress = DownloadProgress(current: 1, total: 3)
-    @Published var currentDownloadStatus: String = "Downloading"
     @Published var showNewInstanceScreen: Bool = false
+    @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
+    var preferencesLoaded = false
+    
+    init() {
+        DispatchQueue.main.async {
+            self.globalPreferences = GlobalPreferences.load()
+            self.preferencesLoaded = true
+        }
+    }
 }

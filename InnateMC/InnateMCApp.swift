@@ -39,7 +39,16 @@ struct InnateMCApp: App {
         }
         Settings {
             PreferencesView()
+                .environmentObject(viewModel)
                 .frame(width: 800, height: 400)
+                .onAppear {
+                    while (!viewModel.preferencesLoaded) {
+                    }
+                }
+                .onDisappear {
+                    viewModel.globalPreferences.save()
+                    print("Saved preferences")
+                }
         }
     }
 }

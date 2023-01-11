@@ -20,7 +20,7 @@ import SwiftUI
 
 struct AsynchronousImage: View {
     var url: URL
-    @State private var wrapped: ImageWrapper = ImageWrapper()
+    private var wrapped: ImageWrapper = ImageWrapper()
 
     init(_ thing: URL) {
         self.url = thing

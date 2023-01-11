@@ -18,6 +18,8 @@
 import SwiftUI
 
 struct PreferencesView: View {
+    @EnvironmentObject var viewModel: ViewModel
+
     var body: some View {
         TabView {
             RuntimePreferencesView()

@@ -30,8 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         DispatchQueue.main.async {
-            VersionManifestKey.defaultValue.forEach { element in
-            }
         }
     }
 

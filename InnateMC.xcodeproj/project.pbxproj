@@ -27,6 +27,7 @@
 		64021B3829358F5900FEFA20 /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64021B3729358F5900FEFA20 /* InstanceTests.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
+		64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */; };
 		641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678502923B6D40012C9CC /* RuntimePreferencesView.swift */; };
 		641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678522923B6F90012C9CC /* AccountsPreferencesView.swift */; };
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
@@ -162,6 +163,7 @@
 		64021B3729358F5900FEFA20 /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640DC1F02934F14200943213 /* NewInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstanceView.swift; sourceTree = "<group>"; };
+		64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPreferences.swift; sourceTree = "<group>"; };
 		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
 		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				641678562923B7220012C9CC /* ConsolePreferencesView.swift */,
 				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
 				644FC6712937B243003797D9 /* UiPreferencesView.swift */,
+				64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
+				64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
 				64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */,
