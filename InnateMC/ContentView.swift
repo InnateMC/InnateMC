@@ -32,6 +32,14 @@ struct ContentView: View {
         
         NavigationView {
             List {
+                if #available(macOS 12.0, *) {
+                } else {
+                    TextField("Search...", text: $searchTerm)
+                        .padding(.bottom, 10.0)
+                        .accessibilityLabel("Search for Instance")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+
                 ForEach(viewModel.instances) { instance in
                     if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                         NavigationLink(destination: {
@@ -70,6 +78,17 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-//        .searchable(text: $searchTerm,placement: .sidebar)
+        .probablySearchable(text: $searchTerm)
+    }
+}
+
+extension NavigationView {
+    @ViewBuilder
+    func probablySearchable(text: Binding<String>) -> some View {
+        if #available(macOS 12.0, *) {
+            self.searchable(text: text, placement: .sidebar)
+        } else {
+            self
+        }
     }
 }
