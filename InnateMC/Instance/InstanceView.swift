@@ -20,15 +20,14 @@ import InnateKit
 
 struct InstanceView: View {
     @State var instance: Instance
-    @AppStorage("innatemc.rightAlignedInstanceHeading") private var rightAlignedInstanceHeading: Bool = false
     @State var disabled: Bool = false
     @EnvironmentObject var viewModel: ViewModel
-    
+
     var body: some View {
         ZStack {
             VStack {
                 HStack {
-                    if !rightAlignedInstanceHeading {
+                    if !viewModel.globalPreferences.ui.rightAlignedInstanceHeading {
                         Spacer()
                     }
                     Text(instance.name)
@@ -53,7 +52,7 @@ struct InstanceView: View {
                     Spacer()
                 }
                 HStack {
-                    if !rightAlignedInstanceHeading {
+                    if !viewModel.globalPreferences.ui.rightAlignedInstanceHeading {
                         Spacer()
                     }
                     Text(instance.someDebugString)
