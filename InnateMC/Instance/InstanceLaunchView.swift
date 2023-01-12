@@ -12,7 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import SwiftUI
@@ -22,7 +22,8 @@ struct InstanceLaunchView: View {
     var instance: Instance
     @EnvironmentObject var viewModel: ViewModel
     @State var showPreLaunchSheet: Bool = false
-    
+    @StateObject var launchProgress = ExtendedProgress()
+
     var body: some View {
         VStack {
             HStack {
@@ -38,13 +39,28 @@ struct InstanceLaunchView: View {
         .sheet(isPresented: $showPreLaunchSheet) {
             ZStack {
                 VStack {
+                    HStack {
+                        Spacer()
+                        Text(launchProgress.message)
+                        Spacer()
+                    }
+                    .padding()
+                    ProgressView(value: Float(launchProgress.downloadProgress.current) / Float(launchProgress.downloadProgress.total))
                     Button("Abort") {
                         showPreLaunchSheet = false
                     }
                     .padding()
                 }
             }
+            .onAppear(perform: {
+                instance.downloadLibs(progress: launchProgress.downloadProgress, callback: {})
+            })
             .padding(.all, 10)
         }
     }
+}
+
+class ExtendedProgress: ObservableObject {
+    @Published var downloadProgress: DownloadProgress = DownloadProgress(current: 0, total: 1)
+    @Published var message: String = "Downloading Libraries"
 }
