@@ -52,14 +52,14 @@ struct NewVanillaInstanceView: View {
                 Spacer()
                 HStack{
                     Button("Cancel"){
-                        viewModel.showNewInstanceScreen = false
+                        viewModel.showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button("Done") {
                         let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil)
                         do{
                             
                             viewModel.instances.append(try instance.install())
-                            viewModel.showNewInstanceScreen = false
+                            viewModel.showNewInstanceSheet = false
                         }catch{
                             print("something was thrown sad emojy")
                         }

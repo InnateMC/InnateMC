@@ -22,7 +22,7 @@ struct InstanceView: View {
     @State var instance: Instance
     @State var disabled: Bool = false
     @EnvironmentObject var viewModel: ViewModel
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -71,9 +71,9 @@ struct InstanceView: View {
                 Spacer()
                 TabView {
                     InstanceLaunchView(instance: instance)
-                    .tabItem {
-                        Label("Launch", systemImage: "bolt")
-                    }
+                        .tabItem {
+                            Label("Launch", systemImage: "bolt")
+                        }
                     TodoView()
                         .tabItem {
                             Label("Runtime", systemImage: "bolt")

@@ -22,7 +22,7 @@ public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
 
     public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
-        progress.current.store(0, ordering: .relaxed)
+        progress.current = 0
         progress.total = tasks.count
         let fm = FileManager.default
 
@@ -49,7 +49,7 @@ public class ParallelDownloader {
                         }
                     }
                 }
-                print (progress.current.load(ordering: .relaxed))
+                print (progress.current)
             }
         }
 

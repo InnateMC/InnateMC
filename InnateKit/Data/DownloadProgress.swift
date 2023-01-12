@@ -15,20 +15,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 import Foundation
 import SwiftUI
-import Atomics
 
 open class DownloadProgress: ObservableObject {
-    public var current = ManagedAtomic<Int>(0)
-    public var total: Int = 1
+    @Published public var current: Int = 0
+    @Published public var total: Int = 1
 
     public init() {
     }
 
     public func fraction() -> Double {
-        return Double(current.load(ordering: .relaxed)) / Double(total)
+        return Double(current) / Double(total)
     }
 
     public func percentString() -> String {
@@ -36,7 +34,7 @@ open class DownloadProgress: ObservableObject {
     }
     
     open func inc() {
-        self.current.wrappingIncrement(by: 1, ordering: .relaxed)
+        self.current += 1
     }
 
     public func intPercent() -> Int {
@@ -44,11 +42,11 @@ open class DownloadProgress: ObservableObject {
     }
     
     public func isDone() -> Bool {
-        return current.load(ordering: .relaxed) >= Int(total)
+        return Int(current) >= Int(total)
     }
 
     public init(current: Int, total: Int) {
-        self.current = ManagedAtomic<Int>(current)
+        self.current = current
         self.total = total
     }
 
@@ -57,7 +55,7 @@ open class DownloadProgress: ObservableObject {
     }
     
     public func setFrom(_ other: DownloadProgress) {
-        self.current = ManagedAtomic<Int>(other.current.load(ordering: .relaxed))
+        self.current = other.current
         self.total = other.total
     }
 }

@@ -53,7 +53,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .sheet(isPresented:$viewModel.showNewInstanceScreen){
+            .sheet(isPresented:$viewModel.showNewInstanceSheet){
                 NewInstanceView()
             }
             .navigationTitle("Instances").toolbar{
@@ -68,7 +68,7 @@ struct ContentView: View {
                     }
                     
                 }
-                Button(action:{viewModel.showNewInstanceScreen = true}) {
+                Button(action:{viewModel.showNewInstanceSheet = true}) {
                     Image(systemName: "plus")
                 }
                 .keyboardShortcut("n")

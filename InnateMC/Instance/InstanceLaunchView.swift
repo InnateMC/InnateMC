@@ -20,21 +20,29 @@ import InnateKit
 
 struct InstanceLaunchView: View {
     var instance: Instance
-    @State var showingInstallSheet: Bool = false
+    @EnvironmentObject var viewModel: ViewModel
+    @State var showPreLaunchSheet: Bool = false
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
                     print(instance.getPath().absoluteString)
+                    showPreLaunchSheet = true
                 }, label: {
                     Text("Launch")
                         .font(.title2)
                 })
             }
         }
-        .sheet(isPresented: $showingInstallSheet) {
+        .sheet(isPresented: $showPreLaunchSheet) {
             ZStack {
+                VStack {
+                    Button("Abort") {
+                        showPreLaunchSheet = false
+                    }
+                    .padding()
+                }
             }
             .padding(.all, 10)
         }

@@ -20,14 +20,23 @@ import InnateKit
 
 public class ViewModel: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
-    @Published var showNewInstanceScreen: Bool = false
+    @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
+    @Published var preLaunch: PreLaunch = PreLaunch()
     var preferencesLoaded = false
     
     init() {
         DispatchQueue.main.async {
             self.globalPreferences = GlobalPreferences.load()
             self.preferencesLoaded = true
+        }
+    }
+    
+    public class PreLaunch: ObservableObject {
+        @Published var downloadProgress: DownloadProgress = DownloadProgress()
+        
+        public enum PreLaunchStatus {
+            case mcJar, libraries, assets
         }
     }
 }
