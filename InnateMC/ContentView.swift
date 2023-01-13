@@ -57,16 +57,13 @@ struct ContentView: View {
                 NewInstanceView()
             }
             .navigationTitle("Instances").toolbar{
-                
-                
                 Spacer()
                 Toggle(isOn: $starredOnly) {
-                    if(starredOnly){
+                    if(starredOnly) {
                         Image(systemName: "star.fill")
-                    }else{
+                    } else{
                         Image(systemName: "star")
                     }
-                    
                 }
                 Button(action:{viewModel.showNewInstanceSheet = true}) {
                     Image(systemName: "plus")

@@ -22,12 +22,10 @@ public class ViewModel: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
     @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
-    var preferencesLoaded = false
     
     init() {
         DispatchQueue.main.async {
             self.globalPreferences = GlobalPreferences.load()
-            self.preferencesLoaded = true
         }
     }
 }

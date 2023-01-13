@@ -41,13 +41,12 @@ struct InnateMCApp: App {
             PreferencesView()
                 .environmentObject(viewModel)
                 .frame(width: 800, height: 400)
-                .onAppear {
-                    while (!viewModel.preferencesLoaded) {
-                    }
+                .onAppear() {
+                    print("this gets called")
                 }
                 .onDisappear {
+                    // this doesn't get called
                     viewModel.globalPreferences.save()
-                    print("Saved preferences")
                 }
         }
     }

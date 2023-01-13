@@ -128,8 +128,7 @@ extension GlobalPreferences {
         do {
             let data = try FileHandler.getData(filePath)
             if let data = data {
-                var format: PropertyListSerialization.PropertyListFormat = .openStep
-                return try PropertyListDecoder().decode(GlobalPreferences.self, from: data, format: &format)
+                return try PropertyListDecoder().decode(GlobalPreferences.self, from: data)
             } else {
                 return GlobalPreferences()
             }
@@ -140,7 +139,7 @@ extension GlobalPreferences {
     
     public func save() {
         let encoder: PropertyListEncoder = PropertyListEncoder()
-        encoder.outputFormat = .openStep
+        encoder.outputFormat = .xml
         do {
             let data = try encoder.encode(self)
             try FileHandler.saveData(GlobalPreferences.filePath, data)
