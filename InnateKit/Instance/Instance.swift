@@ -145,6 +145,7 @@ public class Arguments: Codable, Identifiable {
 extension Instance {
     public func serialize() throws -> Data {
         let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
         return try encoder.encode(self)
     }
     

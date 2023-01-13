@@ -48,7 +48,7 @@ class DownloadTests: XCTestCase {
         let manifestVer = manifest.randomElement()!
         let version = try Version.download(manifestVer.url, sha1: manifestVer.sha1)
         let assetIndex = try AssetIndex.get(version: manifestVer.version, urlStr: version.assetIndex.url)
-        let progress: DownloadProgress = try assetIndex.downloadParallel()
+        let progress: DownloadProgress = try assetIndex.downloadParallel(progress: DownloadProgress(current: 0, total: 1), callback: {})
         while (!progress.isDone()) {
             print(progress.current)
             print(progress.total)
