@@ -20,16 +20,16 @@ import CryptoKit
 
 public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
-
+    
     public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
         progress.current = 0
         progress.total = tasks.count
         let fm = FileManager.default
-
-        func dispatch(_ task: DownloadTask) {
-            dispatchQueue.async {
+        
+        @Sendable func dispatch(_ task: DownloadTask) {
+            Task.init(priority: .medium, operation: {
                 if fm.fileExists(atPath: task.filePath.path) {
-                    progress.inc()
+                    await progress.inc()
                 } else {
                     let data = try! Data(contentsOf: task.url)
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
@@ -41,7 +41,7 @@ public class ParallelDownloader {
                             try! fm.createDirectory(at: parent, withIntermediateDirectories: true)
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
-                        progress.inc()
+                        await progress.inc()
                         if progress.isDone() {
                             if let callback = callback {
                                 callback()
@@ -49,17 +49,16 @@ public class ParallelDownloader {
                         }
                     }
                 }
-                print (progress.current)
-            }
+            })
         }
-
+        
         for task in tasks {
             dispatch(task)
         }
         
         return progress
     }
-
+    
     internal static func isSha1Valid(data: Data, expected: String?) -> Bool {
         guard let expected = expected else {
             return true

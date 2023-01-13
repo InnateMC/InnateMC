@@ -22,7 +22,9 @@ struct InstanceLaunchView: View {
     var instance: Instance
     @EnvironmentObject var viewModel: ViewModel
     @State var showPreLaunchSheet: Bool = false
-    @StateObject var launchProgress = ExtendedProgress()
+    @State var progress: Float = 0
+    @State var downloadMessage: String = "Downloading Libraries..."
+    @State var downloadProgress: DownloadProgress = DownloadProgress(current: 0, total: 1)
 
     var body: some View {
         VStack {
@@ -41,11 +43,14 @@ struct InstanceLaunchView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        Text(launchProgress.message)
+                        Text(downloadMessage)
                         Spacer()
                     }
                     .padding()
-                    ProgressView(value: Float(launchProgress.downloadProgress.current) / Float(launchProgress.downloadProgress.total))
+                    ProgressView(value: progress)
+                        .onReceive(downloadProgress.$current, perform: {
+                            progress = Float($0) / Float(downloadProgress.total)
+                        })
                     Button("Abort") {
                         showPreLaunchSheet = false
                     }
@@ -53,14 +58,12 @@ struct InstanceLaunchView: View {
                 }
             }
             .onAppear(perform: {
-                instance.downloadLibs(progress: launchProgress.downloadProgress, callback: {})
+                instance.downloadLibs(progress: downloadProgress, callback: {
+                    downloadMessage = "Downloading Assets..."
+                    print("bruh")
+                })
             })
             .padding(.all, 10)
         }
     }
-}
-
-class ExtendedProgress: ObservableObject {
-    @Published var downloadProgress: DownloadProgress = DownloadProgress(current: 0, total: 1)
-    @Published var message: String = "Downloading Libraries"
 }

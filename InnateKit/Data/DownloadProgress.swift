@@ -32,9 +32,11 @@ open class DownloadProgress: ObservableObject {
     public func percentString() -> String {
         return String(format: "%.2f", fraction() * 100) + "%"
     }
-    
+
+    @MainActor
     open func inc() {
         self.current += 1
+        print(self.current)
     }
 
     public func intPercent() -> Int {
