@@ -2,6 +2,9 @@
 
 A native minecraft launcher for macOS. Built using Swift and SwiftUI.
 
+## Discuss
+Join the InnateMC discord server: https://discord.gg/EXJTUsxXbX
+
 ## Features
 - [ ] Launch Vanilla Minecraft in offline mode
 - [ ] Install fabric and legacy fabric 

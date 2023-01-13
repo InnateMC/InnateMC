@@ -51,17 +51,26 @@ struct InstanceLaunchView: View {
                         .onReceive(downloadProgress.$current, perform: {
                             progress = Float($0) / Float(downloadProgress.total)
                         })
+                        .animation(nil)
                     Button("Abort") {
                         showPreLaunchSheet = false
                     }
                     .padding()
                 }
             }
+            // TODO: error handling
             .onAppear(perform: {
-                instance.downloadLibs(progress: downloadProgress, callback: {
+                downloadProgress.callback = {
                     downloadMessage = "Downloading Assets..."
-                    print("bruh")
-                })
+                    downloadProgress.callback = {
+                        print("bruh2")
+                        showPreLaunchSheet = false
+                        downloadProgress.callback = {}
+                    }
+                    try! instance.downloadAssets(progress: downloadProgress, callback: {})
+                }
+                instance.downloadLibs(progress: downloadProgress, callback: {})
+                try! instance.downloadMcJar()
             })
             .padding(.all, 10)
         }

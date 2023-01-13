@@ -21,24 +21,28 @@ import SwiftUI
 open class DownloadProgress: ObservableObject {
     @Published public var current: Int = 0
     @Published public var total: Int = 1
-
+    public var callback: () -> Void = {print("no callback")}
+    
     public init() {
     }
-
+    
     public func fraction() -> Double {
         return Double(current) / Double(total)
     }
-
+    
     public func percentString() -> String {
         return String(format: "%.2f", fraction() * 100) + "%"
     }
-
+    
     @MainActor
     open func inc() {
         self.current += 1
-        print(self.current)
+//        print("\(self.current)/\(self.total)")
+        if (self.current == self.total) {
+            callback()
+        }
     }
-
+    
     public func intPercent() -> Int {
         return Int((fraction() * 100).rounded())
     }
@@ -46,12 +50,12 @@ open class DownloadProgress: ObservableObject {
     public func isDone() -> Bool {
         return Int(current) >= Int(total)
     }
-
+    
     public init(current: Int, total: Int) {
         self.current = current
         self.total = total
     }
-
+    
     public static func completed() -> DownloadProgress {
         return DownloadProgress(current: 1, total: 1)
     }
