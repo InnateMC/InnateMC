@@ -29,11 +29,17 @@ public class ParallelDownloader {
         @Sendable func dispatch(_ task: DownloadTask) {
             Task.init(priority: .medium, operation: {
                 if fm.fileExists(atPath: task.filePath.path) {
+                    let existing = try! Data(contentsOf: task.filePath)
+                    if (!isSha1Valid(data: existing, expected: task.sha1)) {
+                        print("Corrupted download found, redownloading")
+                        try! fm.removeItem(at: task.filePath)
+                        dispatch(task)
+                    }
                     await progress.inc()
                 } else {
                     let data = try! Data(contentsOf: task.url)
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
-                        print("INVALID SHA HASH, RETRYING")
+                        print("Invalid hash while downloading, retrying")
                         dispatch(task)
                     } else {
                         let parent = task.filePath.deletingLastPathComponent()
@@ -63,7 +69,8 @@ public class ParallelDownloader {
         guard let expected = expected else {
             return true
         }
-        return Insecure.SHA1.hash(data: data).description == expected
+        let real = Insecure.SHA1.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
+        return real == expected
     }
 }
 

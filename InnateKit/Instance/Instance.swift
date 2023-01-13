@@ -111,7 +111,7 @@ public class Library: Codable, Identifiable {
     }
     
     public func asDownloadTask() -> DownloadTask {
-        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: nil) // TODO: fix sha1 checking for libraries
+        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
     }
 }
 
@@ -185,7 +185,7 @@ extension Instance {
         if (self.minecraftJar.type == .local) {
             return DownloadProgress.completed()
         }
-        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: nil)], progress: DownloadProgress(), callback: {})
+        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress(), callback: {})
     }
 
     public func downloadLibs(progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
