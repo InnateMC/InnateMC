@@ -24,8 +24,6 @@ struct RuntimePreferencesView: View {
     var body: some View {
         Form {
             LazyVGrid(columns: columns) {
-                Text("Default Java executable")
-                TextField("", text: $viewModel.globalPreferences.runtime.javaExecutable).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
                 Text("Default Minimum Memory (MiB)")
                 TextField("", value: $viewModel.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)

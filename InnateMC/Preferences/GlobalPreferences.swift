@@ -49,20 +49,17 @@ public class GlobalPreferences: Codable, ObservableObject {
     }
     
     public class RuntimePreferences: Codable, ObservableObject {
-        @Published public var javaExecutable: String
         @Published public var minMemory: Int
         @Published public var maxMemory: Int
         @Published public var javaArgs: String
         
-        init(javaExecutable: String, minMemory: Int, maxMemory: Int, javaArgs: String) {
-            self.javaExecutable = javaExecutable
+        init(minMemory: Int, maxMemory: Int, javaArgs: String) {
             self.minMemory = minMemory
             self.maxMemory = maxMemory
             self.javaArgs = javaArgs
         }
         
         init() { // Fallback provider
-            self.javaExecutable = "java"
             self.minMemory = 1024
             self.maxMemory = 1024
             self.javaArgs = ""
@@ -70,7 +67,6 @@ public class GlobalPreferences: Codable, ObservableObject {
         
         public required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: RuntimePreferences.CodingKeys.self)
-            self.javaExecutable = try container.decode(String.self, forKey: .javaExecutable)
             self.minMemory = try container.decode(Int.self, forKey: .minMemory)
             self.maxMemory = try container.decode(Int.self, forKey: .maxMemory)
             self.javaArgs = try container.decode(String.self, forKey: .javaArgs)
@@ -78,14 +74,13 @@ public class GlobalPreferences: Codable, ObservableObject {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: RuntimePreferences.CodingKeys.self)
-            try container.encode(javaExecutable, forKey: .javaExecutable)
             try container.encode(minMemory, forKey: .minMemory)
             try container.encode(maxMemory, forKey: .maxMemory)
             try container.encode(javaArgs, forKey: .javaArgs)
         }
         
         private enum CodingKeys: CodingKey {
-            case javaExecutable, minMemory, maxMemory, javaArgs
+            case minMemory, maxMemory, javaArgs
         }
     }
     

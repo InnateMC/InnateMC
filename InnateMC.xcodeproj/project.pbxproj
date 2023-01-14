@@ -25,7 +25,6 @@
 		3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462326A090F1BD4C08B7CD /* VersionManifest.swift */; };
 		3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */; };
 		64021B3829358F5900FEFA20 /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64021B3729358F5900FEFA20 /* InstanceTests.swift */; };
-		64065A902971CAA5000BCE24 /* JavaFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64065A8F2971CAA5000BCE24 /* JavaFetch.swift */; };
 		64065A952971CD85000BCE24 /* JavaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64065A942971CD85000BCE24 /* JavaTests.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
@@ -35,6 +34,8 @@
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
 		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
+		64292B73297282A200816536 /* JavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64292B72297282A200816536 /* JavaInstallation.swift */; };
+		64292B75297287F600816536 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64292B74297287F600816536 /* JreDownloader.swift */; };
 		643C7FE52927566400DDC1B3 /* InnateKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 643C7FE42927566400DDC1B3 /* InnateKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -163,7 +164,6 @@
 		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
 		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		64021B3729358F5900FEFA20 /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
-		64065A8F2971CAA5000BCE24 /* JavaFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaFetch.swift; sourceTree = "<group>"; };
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640DC1F02934F14200943213 /* NewInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstanceView.swift; sourceTree = "<group>"; };
@@ -173,6 +173,8 @@
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
 		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
 		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
+		64292B72297282A200816536 /* JavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaInstallation.swift; sourceTree = "<group>"; };
+		64292B74297287F600816536 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
 		643C7FE22927566400DDC1B3 /* InnateKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		643C7FE42927566400DDC1B3 /* InnateKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateKit.h; sourceTree = "<group>"; };
 		643C7FF42927695E00DDC1B3 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
@@ -265,17 +267,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64065A8E2971CA91000BCE24 /* Util */ = {
+		64065A8E2971CA91000BCE24 /* Java */ = {
 			isa = PBXGroup;
 			children = (
-				64065A8F2971CAA5000BCE24 /* JavaFetch.swift */,
+				64292B72297282A200816536 /* JavaInstallation.swift */,
+				64292B74297287F600816536 /* JreDownloader.swift */,
 			);
-			path = Util;
+			path = Java;
 			sourceTree = "<group>";
 		};
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				64292B6F2972476B00816536 /* Java */,
 				64C33504292252B500BB8570 /* PreferencesView.swift */,
 				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
 				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
@@ -288,6 +292,13 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		64292B6F2972476B00816536 /* Java */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Java;
+			sourceTree = "<group>";
+		};
 		643B39FA29274F6100AEC71C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +309,7 @@
 		643C7FE32927566400DDC1B3 /* InnateKit */ = {
 			isa = PBXGroup;
 			children = (
-				64065A8E2971CA91000BCE24 /* Util */,
+				64065A8E2971CA91000BCE24 /* Java */,
 				649762B92935969100977467 /* Launcher */,
 				64DF802F2934CFEF00F624F2 /* Instance */,
 				643C7FF12927588000DDC1B3 /* Data */,
@@ -708,13 +719,14 @@
 			files = (
 				643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */,
 				643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */,
-				64065A902971CAA5000BCE24 /* JavaFetch.swift in Sources */,
 				3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */,
 				64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */,
 				64FE2D3E293BA3D4007414CB /* SkipCoding.swift in Sources */,
 				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
+				64292B75297287F600816536 /* JreDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
+				64292B73297282A200816536 /* JavaInstallation.swift in Sources */,
 				64DF80332934D04A00F624F2 /* InstanceCreator.swift in Sources */,
 				64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */,
 			);
