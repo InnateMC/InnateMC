@@ -45,6 +45,7 @@
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
+		64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649212C3293AF44A0092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C2293AF44A0092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
@@ -184,6 +185,7 @@
 		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
+		64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedJavaInstallation.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRuntimeView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 			children = (
 				64292B72297282A200816536 /* JavaInstallation.swift */,
 				64292B74297287F600816536 /* JreDownloader.swift */,
+				64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */,
 			);
 			path = Java;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */,
 				64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */,
 				64FE2D3E293BA3D4007414CB /* SkipCoding.swift in Sources */,
+				64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */,
 				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
 				64292B75297287F600816536 /* JreDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
