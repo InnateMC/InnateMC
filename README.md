@@ -6,11 +6,9 @@ A native minecraft launcher for macOS. Built using Swift and SwiftUI.
 Join the InnateMC discord server: https://discord.gg/EXJTUsxXbX  
 Or open/join a discussion
 
-## Features
-- [ ] Launch Vanilla Minecraft in offline mode
-- [ ] Install fabric and legacy fabric 
-- [ ] Install liteloader
-- [ ] Install quilt
+## Roadmap
+Target version - 0.1.0
+- Launching Minecraft in online and offline mode
 
 ## Installation
 InnateMC is heavily under development and does not provide a binary at the moment. You can build the project in Xcode if you wish.
