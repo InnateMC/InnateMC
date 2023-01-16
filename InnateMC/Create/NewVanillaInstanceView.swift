@@ -56,11 +56,10 @@ struct NewVanillaInstanceView: View {
                     }.keyboardShortcut(.cancelAction)
                     Button("Done") {
                         let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil)
-                        do{
-                            
+                        do {
                             viewModel.instances.append(try instance.install())
                             viewModel.showNewInstanceSheet = false
-                        }catch{
+                        } catch {
                             print("something was thrown sad emojy")
                         }
                         

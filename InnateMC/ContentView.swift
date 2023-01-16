@@ -20,10 +20,10 @@ import InnateKit
 
 struct ContentView: View {
     @State public var searchTerm: String = ""
-    
     @State public var starredOnly = false
     @State public var selectedInstance: Instance?
     @EnvironmentObject var viewModel: ViewModel
+    @State public var instances: [Instance]? = nil
     var index: Int? {
         viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
     }
@@ -40,7 +40,7 @@ struct ContentView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
-                ForEach(viewModel.instances) { instance in
+                ForEach(instances ?? viewModel.instances) { instance in
                     if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                         NavigationLink(destination: {
                             InstanceView(instance: instance)
@@ -51,6 +51,9 @@ struct ContentView: View {
                             .tag(instance)
                             .padding(.all, 4)
                     }
+                }
+                .onReceive(viewModel.$instances) { new in
+                    instances = new
                 }
             }
             .sheet(isPresented:$viewModel.showNewInstanceSheet){
