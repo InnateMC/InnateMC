@@ -19,14 +19,11 @@ import SwiftUI
 import InnateKit
 
 struct ContentView: View {
-    @State public var searchTerm: String = ""
-    @State public var starredOnly = false
-    @State public var selectedInstance: Instance?
+    @State var searchTerm: String = ""
+    @State var starredOnly = false
     @EnvironmentObject var viewModel: ViewModel
-    @State public var instances: [Instance]? = nil
-    var index: Int? {
-        viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
-    }
+    @State var instances: [Instance]? = nil
+    @State var selectedInstance: Instance? = nil
     
     var body: some View {
         

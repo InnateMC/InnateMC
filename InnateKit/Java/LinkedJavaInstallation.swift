@@ -27,3 +27,23 @@ public class LinkedJavaInstallation: Codable {
     public let JVMVendor: String
     public let JVMVersion: String
 }
+
+extension LinkedJavaInstallation {
+    private static let decoder: PropertyListDecoder = PropertyListDecoder()
+    
+    public static func getAll() -> [LinkedJavaInstallation] {
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: "/usr/libexec/java_home")
+        p.arguments = ["-X"]
+        let pipe = Pipe()
+        p.standardOutput = pipe // TODO: error handling
+        let data: Data
+        do {
+            data = try pipe.fileHandleForReading.readToEnd()!
+        } catch {
+            return []
+        }
+        let installations = try! decoder.decode([LinkedJavaInstallation].self, from: data)
+        return installations
+    }
+}

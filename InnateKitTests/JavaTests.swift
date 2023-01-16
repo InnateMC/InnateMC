@@ -29,6 +29,8 @@ class JavaTests: XCTestCase {
     }
 
     func getJavaVersions() throws {
-        // TODO: fix
+        self.measure {
+            LinkedJavaInstallation.getAll()
+        }
     }
 }
