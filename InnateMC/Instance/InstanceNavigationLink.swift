@@ -19,15 +19,16 @@ import SwiftUI
 import InnateKit
 
 struct InstanceNavigationLink: View {
-    @AppStorage("innatemc.compactList") private var compactList: Bool = false
-
+    @EnvironmentObject var viewModel: ViewModel
     @State var instance: Instance
     @State var starHovered: Bool = false
+    @State var instanceStarred: Bool? = nil
+    @State var compactList: Bool? = nil
 
     var body: some View {
         HStack {
             ZStack(alignment: .topTrailing) {
-                if (compactList) {
+                if (compactList ?? viewModel.globalPreferences.ui.compactList) {
                     AsynchronousImage(instance.getLogoPath())
                         .frame(width: 32, height: 32)
                 } else {
@@ -35,13 +36,19 @@ struct InstanceNavigationLink: View {
                         .frame(width: 48, height: 48)
                 }
                 ZStack {
-                    if (instance.isStarred) {
+                    if (instanceStarred ?? instance.isStarred) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
                             .frame(width: 8, height: 8)
                     }
                 }
+                .onReceive(instance.$isStarred, perform: { value in
+                    instanceStarred = value
+                })
                 .frame(width: 8, height: 8)
+            }
+            .onReceive(viewModel.globalPreferences.ui.$compactList) { value in
+                compactList = value
             }
             VStack {
                 HStack {

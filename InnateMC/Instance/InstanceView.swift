@@ -22,20 +22,28 @@ struct InstanceView: View {
     @State var instance: Instance
     @State var disabled: Bool = false
     @EnvironmentObject var viewModel: ViewModel
+    @State var instanceStarred: Bool? = nil
+    @State var rightAlignedInstanceHeading: Bool? = nil
+    private var rightAlignedInstanceHeadingNotNull: Bool {
+        get {
+            rightAlignedInstanceHeading ?? viewModel.globalPreferences.ui.rightAlignedInstanceHeading
+        }
+    }
+    @State var starHovered: Bool = false
     
     var body: some View {
         ZStack {
             VStack {
                 HStack {
-                    if !viewModel.globalPreferences.ui.rightAlignedInstanceHeading {
+                    if !rightAlignedInstanceHeadingNotNull {
                         Spacer()
                     }
                     Text(instance.name)
                         .font(.largeTitle)
-                    if instance.isStarred {
+                    if instanceStarred ?? instance.isStarred {
                         Image(systemName: "star.fill")
                             .resizable()
-                            .foregroundColor(.yellow)
+                            .foregroundColor(starHovered ? .gray : .yellow)
                             .onTapGesture {
                                 instance.isStarred = false
                             }
@@ -43,16 +51,22 @@ struct InstanceView: View {
                     } else {
                         Image(systemName: "star")
                             .resizable()
-                            .foregroundColor(.gray)
+                            .foregroundColor(starHovered ? .yellow : .gray)
                             .onTapGesture {
                                 instance.isStarred = true
                             }
                             .frame(width: 16, height: 16)
+                            .onHover { hoverValue in
+                                starHovered = hoverValue
+                            }
                     }
                     Spacer()
                 }
+                .onReceive(instance.$isStarred) { value in
+                    instanceStarred = value
+                }
                 HStack {
-                    if !viewModel.globalPreferences.ui.rightAlignedInstanceHeading {
+                    if !rightAlignedInstanceHeadingNotNull {
                         Spacer()
                     }
                     Text(instance.someDebugString)
@@ -101,6 +115,9 @@ struct InstanceView: View {
                 }.padding(.all, 4)
             }
             .padding(.all, 6)
+            .onReceive(viewModel.globalPreferences.ui.$rightAlignedInstanceHeading) { value in
+                rightAlignedInstanceHeading = value
+            }
         }
     }
 }

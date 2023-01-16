@@ -45,8 +45,6 @@ struct NewVanillaInstanceView: View {
                 Toggle("Show snapshots", isOn: $showSnapshots)
                 Toggle("Show old beta", isOn: $showBeta)
                 Toggle("Show old alpha", isOn: $showAlpha)
-                
-                
             }.padding()
             HStack{
                 Spacer()
@@ -67,8 +65,6 @@ struct NewVanillaInstanceView: View {
                 }.padding(.trailing).padding(.bottom)
                 
             }
-            
-            
         }
     }
 }
