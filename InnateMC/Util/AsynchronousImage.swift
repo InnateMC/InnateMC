@@ -20,32 +20,32 @@ import SwiftUI
 
 struct AsynchronousImage: View {
     var url: URL
-    private var wrapped: ImageWrapper = ImageWrapper()
+    @State var wrapped: NSImage? = nil
 
     init(_ thing: URL) {
         self.url = thing
-        download()
-    }
-    
-    private func download() {
-        DispatchQueue.main.async {
-            do {
-                wrapped.image = NSImage(data: try Data(contentsOf: self.url))
-            } catch {
-                // no-op
-            }
-        }
     }
     
     var body: some View {
-        if let nsImage = wrapped.image {
-            Image(nsImage: nsImage).resizable()
-        } else {
-            Image(systemName: "tray.circle").resizable()
+        ZStack {
+            if let nsImage = wrapped {
+                Image(nsImage: nsImage).resizable()
+            } else {
+                Image(systemName: "tray.circle").resizable()
+            }
+        }
+        .onAppear {
+            DispatchQueue.global().async {
+                do {
+                    let data = try Data(contentsOf: self.url)
+                    let image = NSImage(data: data)
+                    DispatchQueue.main.async {
+                        wrapped = image
+                    }
+                } catch {
+                    // no-op
+                }
+            }
         }
     }
-}
-
-fileprivate class ImageWrapper {
-    var image: NSImage? = nil
 }
