@@ -34,7 +34,7 @@ extension DownloadedJavaInstallation {
             return []
         }
         do {
-            let versions: [DownloadedJavaInstallation] = try decoder.decode([JavaInstallation].self, from: data)
+            let versions: [DownloadedJavaInstallation] = try decoder.decode([DownloadedJavaInstallation].self, from: data)
             return versions
         } catch {
             try! FileManager.default.removeItem(at: FileHandler.javaFolder)
