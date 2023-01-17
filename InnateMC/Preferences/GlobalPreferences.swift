@@ -42,7 +42,7 @@ public class GlobalPreferences: Codable, ObservableObject {
         }
         
         init() {
-            self.leftAlignedInstanceHeading = false
+            self.leftAlignedInstanceHeading = true
             self.compactList = false
         }
     }
