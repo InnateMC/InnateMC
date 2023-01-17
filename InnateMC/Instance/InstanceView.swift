@@ -88,7 +88,7 @@ struct InstanceView: View {
                         .tabItem {
                             Label("Launch", systemImage: "bolt")
                         }
-                    InstanceRuntimeView(instance: instance)
+                    InstanceRuntimeView()
                         .tabItem {
                             Label("Runtime", systemImage: "bolt")
                         }
