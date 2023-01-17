@@ -41,6 +41,7 @@
 		643C7FE92927566400DDC1B3 /* InnateKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF42927695E00DDC1B3 /* FileHandler.swift */; };
 		643C7FF7292769C900DDC1B3 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C7FF6292769C900DDC1B3 /* Instance.swift */; };
+		6445316E29769ED000222720 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6445316D29769ECE00222720 /* SavedJavaInstallation.swift */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
@@ -180,6 +181,7 @@
 		643C7FE42927566400DDC1B3 /* InnateKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateKit.h; sourceTree = "<group>"; };
 		643C7FF42927695E00DDC1B3 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		643C7FF6292769C900DDC1B3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		6445316D29769ECE00222720 /* SavedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJavaInstallation.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				64292B72297282A200816536 /* DownloadedJavaInstallation.swift */,
 				64292B74297287F600816536 /* JreDownloader.swift */,
 				64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */,
+				6445316D29769ECE00222720 /* SavedJavaInstallation.swift */,
 			);
 			path = Java;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				64FE2D3E293BA3D4007414CB /* SkipCoding.swift in Sources */,
 				64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */,
 				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
+				6445316E29769ED000222720 /* SavedJavaInstallation.swift in Sources */,
 				64292B75297287F600816536 /* JreDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,

@@ -37,12 +37,8 @@ extension LinkedJavaInstallation {
         p.arguments = ["-X"]
         let pipe = Pipe()
         p.standardOutput = pipe // TODO: error handling
-        let data: Data
-        do {
-            data = try pipe.fileHandleForReading.readToEnd()!
-        } catch {
-            return []
-        }
+        p.launch()
+        let data: Data = pipe.fileHandleForReading.readDataToEndOfFile()
         let installations = try! decoder.decode([LinkedJavaInstallation].self, from: data)
         return installations
     }
