@@ -23,10 +23,10 @@ struct InstanceView: View {
     @State var disabled: Bool = false
     @EnvironmentObject var viewModel: ViewModel
     @State var instanceStarred: Bool? = nil
-    @State var rightAlignedInstanceHeading: Bool? = nil
-    private var rightAlignedInstanceHeadingNotNull: Bool {
+    @State var leftAlignedInstanceHeading: Bool? = nil
+    private var leftAlignedInstanceHeadingNotNull: Bool {
         get {
-            rightAlignedInstanceHeading ?? viewModel.globalPreferences.ui.rightAlignedInstanceHeading
+            leftAlignedInstanceHeading ?? viewModel.globalPreferences.ui.leftAlignedInstanceHeading
         }
     }
     @State var starHovered: Bool = false
@@ -35,45 +35,52 @@ struct InstanceView: View {
         ZStack {
             VStack {
                 HStack {
-                    if !rightAlignedInstanceHeadingNotNull {
-                        Spacer()
+                    InstanceLogoView(instance: instance)
+                        .frame(width: 128, height: 128)
+                        .padding(.all, 20)
+                    VStack {
+                        HStack {
+                            if !leftAlignedInstanceHeadingNotNull {
+                                Spacer()
+                            }
+                            Text(instance.name)
+                                .font(.largeTitle)
+                            if instanceStarred ?? instance.isStarred {
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .foregroundColor(starHovered ? .gray : .yellow)
+                                    .onTapGesture {
+                                        instance.isStarred = false
+                                    }
+                                    .frame(width: 16, height: 16)
+                            } else {
+                                Image(systemName: "star")
+                                    .resizable()
+                                    .foregroundColor(starHovered ? .yellow : .gray)
+                                    .onTapGesture {
+                                        instance.isStarred = true
+                                    }
+                                    .frame(width: 16, height: 16)
+                                    .onHover { hoverValue in
+                                        starHovered = hoverValue
+                                    }
+                            }
+                            Spacer()
+                        }
+                        HStack {
+                            if !leftAlignedInstanceHeadingNotNull {
+                                Spacer()
+                            }
+                            Text(instance.someDebugString)
+                                .font(.caption)
+                                .padding(.all, 6)
+                                .foregroundColor(.gray)
+                            Spacer()
+                        }
                     }
-                    Text(instance.name)
-                        .font(.largeTitle)
-                    if instanceStarred ?? instance.isStarred {
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .foregroundColor(starHovered ? .gray : .yellow)
-                            .onTapGesture {
-                                instance.isStarred = false
-                            }
-                            .frame(width: 16, height: 16)
-                    } else {
-                        Image(systemName: "star")
-                            .resizable()
-                            .foregroundColor(starHovered ? .yellow : .gray)
-                            .onTapGesture {
-                                instance.isStarred = true
-                            }
-                            .frame(width: 16, height: 16)
-                            .onHover { hoverValue in
-                                starHovered = hoverValue
-                            }
-                    }
-                    Spacer()
                 }
                 .onReceive(instance.$isStarred) { value in
                     instanceStarred = value
-                }
-                HStack {
-                    if !rightAlignedInstanceHeadingNotNull {
-                        Spacer()
-                    }
-                    Text(instance.someDebugString)
-                        .font(.caption)
-                        .padding(.all, 6)
-                        .foregroundColor(.gray)
-                    Spacer()
                 }
                 HStack {
                     if instance.description != nil {
@@ -115,8 +122,8 @@ struct InstanceView: View {
                 }.padding(.all, 4)
             }
             .padding(.all, 6)
-            .onReceive(viewModel.globalPreferences.ui.$rightAlignedInstanceHeading) { value in
-                rightAlignedInstanceHeading = value
+            .onReceive(viewModel.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
+                leftAlignedInstanceHeading = value
             }
         }
     }

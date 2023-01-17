@@ -48,7 +48,6 @@
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
 		6459E11D2976E256006DB3A4 /* InstancePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11C2976E256006DB3A4 /* InstancePreferences.swift */; };
 		6459E11F2976E291006DB3A4 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */; };
-		6459E1232976FEDF006DB3A4 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 6459E1222976FEDF006DB3A4 /* SymbolPicker */; };
 		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
 		64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
@@ -247,7 +246,6 @@
 			files = (
 				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
 				643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */,
-				6459E1232976FEDF006DB3A4 /* SymbolPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +590,6 @@
 			name = InnateMC;
 			packageProductDependencies = (
 				649212C0293AF4120092E2DD /* Atomics */,
-				6459E1222976FEDF006DB3A4 /* SymbolPicker */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -1366,11 +1363,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6459E1222976FEDF006DB3A4 /* SymbolPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
-			productName = SymbolPicker;
-		};
 		649212C0293AF4120092E2DD /* Atomics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */;

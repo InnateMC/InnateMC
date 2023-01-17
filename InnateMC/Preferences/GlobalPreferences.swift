@@ -33,16 +33,16 @@ public class GlobalPreferences: Codable, ObservableObject {
     }
     
     public class UiPreferences: Codable, ObservableObject {
-        @Published public var rightAlignedInstanceHeading: Bool
+        @Published public var leftAlignedInstanceHeading: Bool
         @Published public var compactList: Bool
         
-        init(rightAlignedInstanceHeading: Bool, compactList: Bool) {
-            self.rightAlignedInstanceHeading = rightAlignedInstanceHeading
+        init(leftAlignedInstanceHeading: Bool, compactList: Bool) {
+            self.leftAlignedInstanceHeading = leftAlignedInstanceHeading
             self.compactList = compactList
         }
         
         init() {
-            self.rightAlignedInstanceHeading = false
+            self.leftAlignedInstanceHeading = false
             self.compactList = false
         }
     }

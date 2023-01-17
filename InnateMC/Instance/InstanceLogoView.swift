@@ -26,6 +26,7 @@ struct InstanceLogoView: View {
             AsynchronousImage(instance.getLogoPath())
         } else if instance.logo.logoType == .symbol {
             Image(systemName: instance.logo.string)
+                .resizable()
         }
     }
 }
