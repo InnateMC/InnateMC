@@ -29,10 +29,10 @@ struct InstanceNavigationLink: View {
         HStack {
             ZStack(alignment: .topTrailing) {
                 if (compactList ?? viewModel.globalPreferences.ui.compactList) {
-                    AsynchronousImage(instance.getLogoPath())
+                    InstanceLogoView(instance)
                         .frame(width: 32, height: 32)
                 } else {
-                    AsynchronousImage(instance.getLogoPath())
+                    InstanceLogoView(instance)
                         .frame(width: 48, height: 48)
                 }
                 ZStack {

@@ -52,7 +52,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public var mainClass: String
     public var minecraftJar: MinecraftJar
     @Published public var isStarred: Bool
-    public var logo: String
+    public var logo: InstanceLogo
     public var description: String?
     public var debugString: String?
     public var someDebugString: String {
@@ -69,7 +69,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 mainClass: String,
                 minecraftJar: MinecraftJar,
                 isStarred: Bool,
-                logo: String,
+                logo: InstanceLogo,
                 description: String?,
                 debugString: String?
     ) {
@@ -94,7 +94,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func getLogoPath() -> URL {
-        return FileHandler.logosFolder.appendingPathComponent(logo)
+        return getPath().appendingPathComponent(logo.string)
     }
     
     public func checkMatch(_ term: String) -> Bool {
@@ -168,6 +168,21 @@ public class Arguments: Codable, Identifiable, InstanceData {
     public init(game: [String], jvm: [String]) {
         self.game = game
         self.jvm = jvm
+    }
+}
+
+public class InstanceLogo: Codable, InstanceData {
+    public let logoType: LogoType
+    public let string: String
+    
+    public init(logoType: LogoType, string: String) {
+        self.logoType = logoType
+        self.string = string
+    }
+    
+    public enum LogoType: Codable {
+        case symbol
+        case file
     }
 }
 

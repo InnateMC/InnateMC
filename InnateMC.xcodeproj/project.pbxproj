@@ -48,6 +48,8 @@
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
 		6459E11D2976E256006DB3A4 /* InstancePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11C2976E256006DB3A4 /* InstancePreferences.swift */; };
 		6459E11F2976E291006DB3A4 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */; };
+		6459E1232976FEDF006DB3A4 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 6459E1222976FEDF006DB3A4 /* SymbolPicker */; };
+		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
 		64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649212C3293AF44A0092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C2293AF44A0092E2DD /* Atomics */; };
@@ -76,7 +78,6 @@
 		64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */; };
 		64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F02938BCAF00F82A2B /* FocusedKeys.swift */; };
 		64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* ViewModel.swift */; };
-		64E900392935EC500035181B /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 64E900382935EC500035181B /* Preferences */; };
 		64EB537F2929CD7800D6CDDD /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB537E2929CD7800D6CDDD /* DownloadTests.swift */; };
 		64EB53802929CD7800D6CDDD /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
 		64EB53872929E6A600D6CDDD /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB53862929E6A600D6CDDD /* Version.swift */; };
@@ -190,6 +191,7 @@
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		6459E11C2976E256006DB3A4 /* InstancePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancePreferences.swift; sourceTree = "<group>"; };
 		6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
+		6459E124297700D5006DB3A4 /* InstanceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
 		64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedJavaInstallation.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
@@ -245,7 +247,7 @@
 			files = (
 				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
 				643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */,
-				64E900392935EC500035181B /* Preferences in Frameworks */,
+				6459E1232976FEDF006DB3A4 /* SymbolPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +364,7 @@
 				64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */,
+				6459E124297700D5006DB3A4 /* InstanceLogoView.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -588,8 +591,8 @@
 			);
 			name = InnateMC;
 			packageProductDependencies = (
-				64E900382935EC500035181B /* Preferences */,
 				649212C0293AF4120092E2DD /* Atomics */,
+				6459E1222976FEDF006DB3A4 /* SymbolPicker */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -692,6 +695,7 @@
 			packageReferences = (
 				64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */,
 				649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */,
+				6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
 			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
@@ -781,6 +785,7 @@
 				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
+				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
@@ -1334,6 +1339,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-atomics.git";
@@ -1353,6 +1366,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6459E1222976FEDF006DB3A4 /* SymbolPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
+			productName = SymbolPicker;
+		};
 		649212C0293AF4120092E2DD /* Atomics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */;
@@ -1362,11 +1380,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */;
 			productName = Atomics;
-		};
-		64E900382935EC500035181B /* Preferences */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */;
-			productName = Preferences;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

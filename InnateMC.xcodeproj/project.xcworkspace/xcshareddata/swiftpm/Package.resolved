@@ -18,6 +18,15 @@
           "revision": "919eb1d83e02121cdb434c7bfc1f0c66ef17febe",
           "version": "1.0.2"
         }
+      },
+      {
+        "package": "SymbolPicker",
+        "repositoryURL": "https://github.com/xnth97/SymbolPicker.git",
+        "state": {
+          "branch": null,
+          "revision": "27091f81af700848b185e51921ffda609179d89e",
+          "version": "1.4.0"
+        }
       }
     ]
   },

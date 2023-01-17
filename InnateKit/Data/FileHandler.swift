@@ -21,7 +21,6 @@ public class FileHandler {
     public static let instancesFolder = try! getOrCreateFolder("Instances")
     public static let assetsFolder = try! getOrCreateFolder("Assets")
     public static let librariesFolder = try! getOrCreateFolder("Libraries")
-    public static let logosFolder = try! getOrCreateFolder("Logos")
     public static let javaFolder: URL = try! getOrCreateFolder("Libraries/JavaRuntimes")
 
     public static func getOrCreateFolder() throws -> URL {
