@@ -61,6 +61,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     public var isRunning: Bool? = false
     public var lastPlayed: Date?
+    public var preferences = InstancePreferences()
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,

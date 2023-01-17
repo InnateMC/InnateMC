@@ -32,27 +32,6 @@ public class GlobalPreferences: Codable, ObservableObject {
         self.ui = UiPreferences()
     }
     
-    public class RuntimePreferences: Codable, ObservableObject {
-        @Published public var defaultJava: SavedJavaInstallation
-        @Published public var minMemory: Int
-        @Published public var maxMemory: Int
-        @Published public var javaArgs: String
-        
-        init(minMemory: Int, maxMemory: Int, javaArgs: String, defaultJava: SavedJavaInstallation) {
-            self.minMemory = minMemory
-            self.maxMemory = maxMemory
-            self.javaArgs = javaArgs
-            self.defaultJava = defaultJava
-        }
-        
-        init() { // Fallback provider
-            self.minMemory = 1024
-            self.maxMemory = 1024
-            self.javaArgs = ""
-            self.defaultJava = SavedJavaInstallation.systemDefault
-        }
-    }
-    
     public class UiPreferences: Codable, ObservableObject {
         @Published public var rightAlignedInstanceHeading: Bool
         @Published public var compactList: Bool

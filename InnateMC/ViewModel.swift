@@ -22,10 +22,20 @@ public class ViewModel: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
     @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
+    @Published var javaInstallations: [SavedJavaInstallation] = []
     
     init() {
-        DispatchQueue.main.async {
-            self.globalPreferences = GlobalPreferences.load()
+        DispatchQueue.global().async {
+            let globalPreferences = GlobalPreferences.load()
+            DispatchQueue.main.async {
+                self.globalPreferences = globalPreferences
+            }
+        }
+        DispatchQueue.global().async {
+            let javaInstallations = try! SavedJavaInstallation.load()
+            DispatchQueue.main.async {
+                self.javaInstallations = javaInstallations
+            }
         }
     }
 }

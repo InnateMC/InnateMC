@@ -21,7 +21,6 @@ import InnateKit
 struct RuntimePreferencesView: View {
     @EnvironmentObject var viewModel: ViewModel
     let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
-    @State var javaInstallations: [SavedJavaInstallation]? = try! SavedJavaInstallation.load()
 
     var body: some View {
         Form {
@@ -30,10 +29,8 @@ struct RuntimePreferencesView: View {
                 HStack {
                     Picker("", selection: $viewModel.globalPreferences.runtime.defaultJava) {
                         PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
-                        if let javaInstallations = javaInstallations {
-                            ForEach(javaInstallations) {
-                                PickableJavaVersion(installation: $0)
-                            }
+                        ForEach(viewModel.javaInstallations) {
+                            PickableJavaVersion(installation: $0)
                         }
                     }
                 }
@@ -49,14 +46,6 @@ struct RuntimePreferencesView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Text("Default Java Arguments")
                 TextField("", text: $viewModel.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            .onAppear {
-                DispatchQueue.global().async {
-                    let installations = try! SavedJavaInstallation.load()
-                    DispatchQueue.main.async {
-                        self.javaInstallations = installations
-                    }
-                }
             }
         }
         .padding(.all, 16.0)
