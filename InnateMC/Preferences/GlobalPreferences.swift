@@ -32,22 +32,6 @@ public class GlobalPreferences: Codable, ObservableObject {
         self.ui = UiPreferences()
     }
     
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: GlobalPreferences.CodingKeys.self)
-        self.runtime = try container.decode(RuntimePreferences.self, forKey: .runtime)
-        self.ui = try container.decode(UiPreferences.self, forKey: .ui)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: GlobalPreferences.CodingKeys.self)
-        try container.encode(runtime, forKey: .runtime)
-        try container.encode(ui, forKey: .ui)
-    }
-    
-    private enum CodingKeys: CodingKey {
-        case runtime, ui
-    }
-    
     public class RuntimePreferences: Codable, ObservableObject {
         @Published public var minMemory: Int
         @Published public var maxMemory: Int
@@ -64,24 +48,6 @@ public class GlobalPreferences: Codable, ObservableObject {
             self.maxMemory = 1024
             self.javaArgs = ""
         }
-        
-        public required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: RuntimePreferences.CodingKeys.self)
-            self.minMemory = try container.decode(Int.self, forKey: .minMemory)
-            self.maxMemory = try container.decode(Int.self, forKey: .maxMemory)
-            self.javaArgs = try container.decode(String.self, forKey: .javaArgs)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: RuntimePreferences.CodingKeys.self)
-            try container.encode(minMemory, forKey: .minMemory)
-            try container.encode(maxMemory, forKey: .maxMemory)
-            try container.encode(javaArgs, forKey: .javaArgs)
-        }
-        
-        private enum CodingKeys: CodingKey {
-            case minMemory, maxMemory, javaArgs
-        }
     }
     
     public class UiPreferences: Codable, ObservableObject {
@@ -96,22 +62,6 @@ public class GlobalPreferences: Codable, ObservableObject {
         init() {
             self.rightAlignedInstanceHeading = false
             self.compactList = false
-        }
-        
-        public required init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: UiPreferences.CodingKeys.self)
-            self.rightAlignedInstanceHeading = try container.decode(Bool.self, forKey: .rightAlignedInstanceHeading)
-            self.compactList = try container.decode(Bool.self, forKey: .compactList)
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: UiPreferences.CodingKeys.self)
-            try container.encode(rightAlignedInstanceHeading, forKey: .rightAlignedInstanceHeading)
-            try container.encode(compactList, forKey: .compactList)
-        }
-        
-        private enum CodingKeys: CodingKey {
-            case rightAlignedInstanceHeading, compactList
         }
     }
 }
