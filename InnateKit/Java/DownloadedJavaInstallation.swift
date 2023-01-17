@@ -17,24 +17,24 @@
 
 import Foundation
 
-public class JavaInstallation: Codable, Identifiable {
+public class DownloadedJavaInstallation: Codable, Identifiable {
     public let version: String
     public let path: String
 }
 
-extension JavaInstallation {
+extension DownloadedJavaInstallation {
     public static let filePath: URL = FileHandler.javaFolder.appendingPathComponent("Index.plist")
     public static let encoder = PropertyListEncoder()
     public static let decoder = PropertyListDecoder()
     
-    public static func load() throws -> [JavaInstallation] {
+    public static func load() throws -> [DownloadedJavaInstallation] {
         let data = try FileHandler.getData(filePath)
         
         guard let data = data else {
             return []
         }
         do {
-            let versions: [JavaInstallation] = try decoder.decode([JavaInstallation].self, from: data)
+            let versions: [DownloadedJavaInstallation] = try decoder.decode([JavaInstallation].self, from: data)
             return versions
         } catch {
             try! FileManager.default.removeItem(at: FileHandler.javaFolder)
@@ -44,10 +44,10 @@ extension JavaInstallation {
     }
 }
 
-extension Array where Element == JavaInstallation {
+extension Array where Element == DownloadedJavaInstallation {
     func save() throws {
-        JavaInstallation.encoder.outputFormat = .xml
-        let data = try JavaInstallation.encoder.encode(self)
-        try FileHandler.saveData(JavaInstallation.filePath, data)
+        DownloadedJavaInstallation.encoder.outputFormat = .xml
+        let data = try DownloadedJavaInstallation.encoder.encode(self)
+        try FileHandler.saveData(DownloadedJavaInstallation.filePath, data)
     }
 }

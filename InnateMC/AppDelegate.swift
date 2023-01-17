@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         let p = Process()
-        p.executableURL = URL(fileURLWithPath: "/usr/libexec/java_home")
+        p.executableURL = URL(fileURLWithPath: "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/bin/java")
         print(try! FileHandler.getOrCreateFolder().appendingPathComponent("Bruh.java").path)
         p.arguments = ["--version", "16.0.1", "--exec", "java", try! FileHandler.getOrCreateFolder().appendingPathComponent("Bruh.java").path]
         p.launch()

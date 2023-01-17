@@ -34,7 +34,7 @@
 		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
 		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
-		64292B73297282A200816536 /* JavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64292B72297282A200816536 /* JavaInstallation.swift */; };
+		64292B73297282A200816536 /* DownloadedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64292B72297282A200816536 /* DownloadedJavaInstallation.swift */; };
 		64292B75297287F600816536 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64292B74297287F600816536 /* JreDownloader.swift */; };
 		643C7FE52927566400DDC1B3 /* InnateKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 643C7FE42927566400DDC1B3 /* InnateKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643C7FE82927566400DDC1B3 /* InnateKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643C7FE22927566400DDC1B3 /* InnateKit.framework */; };
@@ -174,7 +174,7 @@
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
 		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
 		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
-		64292B72297282A200816536 /* JavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaInstallation.swift; sourceTree = "<group>"; };
+		64292B72297282A200816536 /* DownloadedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedJavaInstallation.swift; sourceTree = "<group>"; };
 		64292B74297287F600816536 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
 		643C7FE22927566400DDC1B3 /* InnateKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		643C7FE42927566400DDC1B3 /* InnateKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateKit.h; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		64065A8E2971CA91000BCE24 /* Java */ = {
 			isa = PBXGroup;
 			children = (
-				64292B72297282A200816536 /* JavaInstallation.swift */,
+				64292B72297282A200816536 /* DownloadedJavaInstallation.swift */,
 				64292B74297287F600816536 /* JreDownloader.swift */,
 				64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */,
 			);
@@ -346,6 +346,7 @@
 		644DE1D22937C13F00C4A03E /* Instance */ = {
 			isa = PBXGroup;
 			children = (
+				644F083C2975B83F00EC2F7D /* Misc */,
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
 				64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */,
@@ -355,6 +356,13 @@
 				64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */,
 			);
 			path = Instance;
+			sourceTree = "<group>";
+		};
+		644F083C2975B83F00EC2F7D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		649762B92935969100977467 /* Launcher */ = {
@@ -730,7 +738,7 @@
 				64292B75297287F600816536 /* JreDownloader.swift in Sources */,
 				64EB53872929E6A600D6CDDD /* Version.swift in Sources */,
 				3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */,
-				64292B73297282A200816536 /* JavaInstallation.swift in Sources */,
+				64292B73297282A200816536 /* DownloadedJavaInstallation.swift in Sources */,
 				64DF80332934D04A00F624F2 /* InstanceCreator.swift in Sources */,
 				64F42648292B79FD00BF4DF6 /* AssetIndex.swift in Sources */,
 			);
