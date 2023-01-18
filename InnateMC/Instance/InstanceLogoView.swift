@@ -30,6 +30,7 @@ struct InstanceLogoView: View {
             } else if logo.logoType == .symbol {
                 Image(systemName: logo.string)
                     .resizable()
+                    .scaledToFit()
             }
         }
         .onReceive(instance.$logo) { value in
