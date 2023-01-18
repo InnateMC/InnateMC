@@ -1,11 +1,11 @@
 name: Feature Request
-description: Make a feature request
+description: Make a feature request or suggestion. For large proposed changes and RFCs, please create a discussion instead.
 labels: [enhancement]
 body:
 - type: markdown
   attributes:
     value: |
-      Note: For large proposed changes and RFCs, please create a discussion instead.
+      ## Feature Request
 - type: input
   attributes:
     label: Feature Request

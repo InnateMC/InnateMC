@@ -1,11 +1,11 @@
 name: Bug Report
-description: Submit a bug report
+description: Submit a bug report. If you're having an issue that tech support could fix, create a discussion or join our discord server instead.
 labels: [bug]
 body:
 - type: markdown
   attributes:
     value: |
-      Note: If you're having troubles on how to use InnateMC, or having an issue that tech support could fix, consider creating a discussion or joining our discord server instead.
+      ## Bug Report
 - type: dropdown
   attributes:
     label: MacOS version
