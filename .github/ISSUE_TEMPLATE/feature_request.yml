@@ -1,0 +1,18 @@
+name: Feature Request
+description: Make a feature request
+labels: [enhancement]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Note: For large proposed changes and RFCs, please create a discussion instead.
+- type: input
+  attributes:
+    label: Feature Request
+    description: What feature do you want?
+    placeholder: PearOS version
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional Context
