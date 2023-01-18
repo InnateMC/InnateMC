@@ -22,7 +22,14 @@ struct InstanceSymbolLogoPickerView: View {
     @Binding var logo: InstanceLogo
     
     var body: some View {
-        TodoView()
+        SymbolPicker(symbol: Binding(get: {
+            if logo.logoType == .file {
+                return ""
+            }
+            return logo.string
+        }, set: {
+            logo = InstanceLogo(logoType: .symbol, string: $0)
+        }))
         // TODO: implement it
     }
 }
