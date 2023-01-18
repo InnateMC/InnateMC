@@ -49,8 +49,11 @@
 		6459E11D2976E256006DB3A4 /* InstancePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11C2976E256006DB3A4 /* InstancePreferences.swift */; };
 		6459E11F2976E291006DB3A4 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */; };
 		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
-		646139DE2977E2D300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DD2977E2D300BA9477 /* SFSymbolsList.swift */; };
+		646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DD2977E2D300BA9477 /* SFSymbols11List.swift */; };
 		646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DF2977E3A700BA9477 /* SymbolPicker.swift */; };
+		646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E12977E88700BA9477 /* SFSymbols12List.swift */; };
+		646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E32977E95300BA9477 /* SFSymbols13List.swift */; };
+		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
 		64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649212C3293AF44A0092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C2293AF44A0092E2DD /* Atomics */; };
@@ -195,8 +198,11 @@
 		6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
 		6459E124297700D5006DB3A4 /* InstanceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
-		646139DD2977E2D300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
+		646139DD2977E2D300BA9477 /* SFSymbols11List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols11List.swift; sourceTree = "<group>"; };
 		646139DF2977E3A700BA9477 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
+		646139E12977E88700BA9477 /* SFSymbols12List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols12List.swift; sourceTree = "<group>"; };
+		646139E32977E95300BA9477 /* SFSymbols13List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols13List.swift; sourceTree = "<group>"; };
+		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
 		64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedJavaInstallation.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		64A62C8C2977B454007A9597 /* InstanceSymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSymbolLogoPickerView.swift; sourceTree = "<group>"; };
@@ -353,8 +359,11 @@
 			isa = PBXGroup;
 			children = (
 				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
-				646139DD2977E2D300BA9477 /* SFSymbolsList.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
+				646139E52977EA0300BA9477 /* SFSymbolsList.swift */,
+				646139DD2977E2D300BA9477 /* SFSymbols11List.swift */,
+				646139E12977E88700BA9477 /* SFSymbols12List.swift */,
+				646139E32977E95300BA9477 /* SFSymbols13List.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -786,21 +795,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				646139DE2977E2D300BA9477 /* SFSymbolsList.swift in Sources */,
+				646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */,
 				64A62C8D2977B454007A9597 /* InstanceSymbolLogoPickerView.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
+				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
+				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */,
+				646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,
