@@ -18,22 +18,11 @@
 import SwiftUI
 import InnateKit
 
-struct InstanceLogoView: View {
-    let instance: Instance
-    @State var logo: InstanceLogo? = nil
+struct InstanceSymbolLogoPickerView: View {
+    @Binding var logo: InstanceLogo
     
     var body: some View {
-        ZStack {
-            let logo = self.logo ?? instance.logo
-            if logo.logoType == .file {
-                AsynchronousImage(instance.getLogoPath())
-            } else if logo.logoType == .symbol {
-                Image(systemName: logo.string)
-                    .resizable()
-            }
-        }
-        .onReceive(instance.$logo) { value in
-            logo = value
-        }
+        TodoView()
+        // TODO: implement it
     }
 }

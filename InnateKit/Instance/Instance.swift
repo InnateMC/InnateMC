@@ -52,7 +52,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public var mainClass: String
     public var minecraftJar: MinecraftJar
     @Published public var isStarred: Bool
-    public var logo: InstanceLogo
+    @Published public var logo: InstanceLogo
     public var description: String?
     public var debugString: String?
     public var someDebugString: String {
@@ -172,8 +172,8 @@ public class Arguments: Codable, Identifiable, InstanceData {
 }
 
 public class InstanceLogo: Codable, InstanceData {
-    public let logoType: LogoType
-    public let string: String
+    public var logoType: LogoType
+    public var string: String
     
     public init(logoType: LogoType, string: String) {
         self.logoType = logoType

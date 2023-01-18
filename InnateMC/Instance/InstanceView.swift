@@ -30,6 +30,8 @@ struct InstanceView: View {
         }
     }
     @State var starHovered: Bool = false
+    @State var logoHovered: Bool = false
+    @State var showLogoSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -38,6 +40,15 @@ struct InstanceView: View {
                     InstanceLogoView(instance: instance)
                         .frame(width: 128, height: 128)
                         .padding(.all, 20)
+                        .opacity(logoHovered ? 0.5 : 1)
+                        .onHover(perform: { value in
+                            withAnimation {
+                                logoHovered = value
+                            }
+                        })
+                        .onTapGesture {
+                            showLogoSheet = true
+                        }
                     VStack {
                         HStack {
                             if !leftAlignedInstanceHeadingNotNull {
@@ -62,7 +73,9 @@ struct InstanceView: View {
                                     }
                                     .frame(width: 16, height: 16)
                                     .onHover { hoverValue in
-                                        starHovered = hoverValue
+                                        withAnimation {
+                                            starHovered = hoverValue
+                                        }
                                     }
                             }
                             Spacer()
@@ -80,7 +93,29 @@ struct InstanceView: View {
                     }
                 }
                 .onReceive(instance.$isStarred) { value in
-                    instanceStarred = value
+                    withAnimation {
+                        instanceStarred = value
+                    }
+                }
+                .sheet(isPresented: $showLogoSheet) {
+                    VStack {
+                        TabView {
+                            InstanceSymbolLogoPickerView(logo: $instance.logo)
+                                .tabItem {
+                                    Text("Symbol")
+                                }
+                            TodoView()
+                                .tabItem {
+                                    Text("Image")
+                                }
+                        }
+                        Button("Done") {
+                            showLogoSheet = false
+                        }
+                        .padding()
+                        .keyboardShortcut(.cancelAction)
+                    }
+                    .padding(.all, 15)
                 }
                 HStack {
                     if instance.description != nil {
