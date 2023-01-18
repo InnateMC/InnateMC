@@ -24,3 +24,6 @@ macOS 11 (Big Sur) and above are supported.
 
 ## License
 This software is licensed under the GNU General Public License Version 3
+
+
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
