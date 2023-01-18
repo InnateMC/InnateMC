@@ -7,8 +7,8 @@ Join the InnateMC discord server: https://discord.gg/EXJTUsxXbX
 Or open/join a discussion
 
 ## Roadmap
-Target version - 0.1.0
-- Launching Minecraft in online and offline mode
+Target version - 0.1.0  
+Check out the [current milestone](https://github.com/InnateMC/InnateMC/milestone/1)
 
 ## Installation
 InnateMC is heavily under development and does not provide a binary at the moment. You can build the project in Xcode if you wish.
