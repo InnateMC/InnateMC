@@ -100,13 +100,13 @@ struct InstanceView: View {
                 .sheet(isPresented: $showLogoSheet) {
                     VStack {
                         TabView {
+                            InstanceImageLogoPickerView(instance: instance)
+                                .tabItem {
+                                    Text("Image")
+                                }
                             InstanceSymbolLogoPickerView(logo: $instance.logo)
                                 .tabItem {
                                     Text("Symbol")
-                                }
-                            TodoView()
-                                .tabItem {
-                                    Text("Image")
                                 }
                         }
                         Button("Done") {

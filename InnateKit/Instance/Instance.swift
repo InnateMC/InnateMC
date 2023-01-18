@@ -94,7 +94,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func getLogoPath() -> URL {
-        return getPath().appendingPathComponent(logo.string)
+        return getPath().appendingPathComponent("logo.png")
     }
     
     public func checkMatch(_ term: String) -> Bool {
