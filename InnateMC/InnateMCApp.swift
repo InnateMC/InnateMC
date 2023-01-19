@@ -31,7 +31,7 @@ struct InnateMCApp: App {
         .commands {
             CommandMenu("Edit") {
                 Button("New Instance") {
-                    print("Bruh")
+                    // TODO: make this work
                 }
                 .keyboardShortcut("n") // TODO: make this work
             }
@@ -41,9 +41,6 @@ struct InnateMCApp: App {
             PreferencesView()
                 .environmentObject(viewModel)
                 .frame(width: 800, height: 400)
-                .onAppear() {
-                    print("this gets called")
-                }
                 .onDisappear {
                     // this doesn't get called
                     viewModel.globalPreferences.save()
