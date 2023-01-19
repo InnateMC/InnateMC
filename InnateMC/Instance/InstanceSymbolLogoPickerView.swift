@@ -19,6 +19,7 @@ import SwiftUI
 import InnateKit
 
 struct InstanceSymbolLogoPickerView: View {
+    var instance: Instance
     @Binding var logo: InstanceLogo
     
     var body: some View {
@@ -29,6 +30,9 @@ struct InstanceSymbolLogoPickerView: View {
             return logo.string
         }, set: {
             logo = InstanceLogo(logoType: .symbol, string: $0)
+            DispatchQueue.global().async {
+                try! instance.save()
+            }
         }))
         // TODO: implement it
     }

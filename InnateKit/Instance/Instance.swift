@@ -187,6 +187,10 @@ public class InstanceLogo: Codable, InstanceData {
 }
 
 extension Instance {
+    public func save() throws {
+        try FileHandler.saveData(self.getPath().appendingPathComponent("Instance.plist"), serialize())
+    }
+    
     public func serialize() throws -> Data {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml

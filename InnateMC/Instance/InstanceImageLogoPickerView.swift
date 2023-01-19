@@ -47,6 +47,9 @@ struct InstanceImageLogoPickerView: View {
                 try! fm.copyItem(at: url, to: logoPath)
                 DispatchQueue.main.async {
                     instance.logo = InstanceLogo(logoType: .file, string: "")
+                    DispatchQueue.global().async {
+                        try! instance.save()
+                    }
                     showImagePreview = true
                 }
             }

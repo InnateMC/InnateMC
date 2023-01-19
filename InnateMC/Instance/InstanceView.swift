@@ -104,7 +104,7 @@ struct InstanceView: View {
                                 .tabItem {
                                     Text("Image")
                                 }
-                            InstanceSymbolLogoPickerView(logo: $instance.logo)
+                            InstanceSymbolLogoPickerView(instance: instance, logo: $instance.logo)
                                 .tabItem {
                                     Text("Symbol")
                                 }
