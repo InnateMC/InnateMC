@@ -31,6 +31,7 @@ struct InstanceImageLogoPickerView: View {
             Button("Open") {
                 shouldShowFileImporter = true
             }
+            .padding(.all, 50)
             .fileImporter(isPresented: $shouldShowFileImporter, allowedContentTypes: [.png]) { result in
                 let url: URL
                 do {

@@ -69,6 +69,7 @@
 		64C33509292272F600BB8570 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64C33508292272F500BB8570 /* .gitignore */; };
 		64C3350C2922B0B500BB8570 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64C3350B2922B0B400BB8570 /* LICENSE */; };
 		64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */; };
+		64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */; };
 		64CE1092297864A700366372 /* InstanceImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* InstanceImageLogoPickerView.swift */; };
 		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
@@ -220,6 +221,7 @@
 		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKeys.swift; sourceTree = "<group>"; };
+		64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
 		64CDBCD329294CB700DF0592 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		64CE1091297864A700366372 /* InstanceImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceImageLogoPickerView.swift; sourceTree = "<group>"; };
 		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
+				64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
 				646139E52977EA0300BA9477 /* SFSymbolsList.swift */,
 				646139DD2977E2D300BA9477 /* SFSymbols11List.swift */,
@@ -804,6 +807,7 @@
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
+				64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */,
 				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,

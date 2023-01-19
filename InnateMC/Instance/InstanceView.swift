@@ -110,11 +110,14 @@ struct InstanceView: View {
                                 }
                         }
                         Button("Done") {
-                            showLogoSheet = false
+                            withAnimation {
+                                showLogoSheet = false
+                            }
                         }
                         .padding()
                         .keyboardShortcut(.cancelAction)
                     }
+                    .regularMaterialBackground()
                     .padding(.all, 15)
                 }
                 HStack {
