@@ -226,7 +226,9 @@ extension Version {
             print("")
             tasks.append(task)
         }
-        return ParallelDownloader.download(tasks, progress: DownloadProgress()) {}
+        let progress = DownloadProgress()
+        ParallelDownloader.download(tasks, progress: progress) {}
+        return progress
     }
 }
 

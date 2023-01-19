@@ -229,14 +229,14 @@ extension Instance {
         return try! loadInstances()
     }
     
-    public func downloadMcJar() throws -> DownloadProgress {
+    public func downloadMcJar() throws {
         if (self.minecraftJar.type == .local) {
-            return DownloadProgress.completed()
+            return
         }
-        return ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress(), callback: {})
+        ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress(), callback: {})
     }
     
-    public func downloadLibs(progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
+    public func downloadLibs(progress: DownloadProgress, callback: (() -> Void)?) {
         var tasks: [DownloadTask] = []
         for library in libraries {
             if library.type == .local {
@@ -244,12 +244,12 @@ extension Instance {
             }
             tasks.append(library.asDownloadTask())
         }
-        return ParallelDownloader.download(tasks, progress: progress, callback: callback)
+        ParallelDownloader.download(tasks, progress: progress, callback: callback)
     }
     
-    public func downloadAssets(progress: DownloadProgress, callback: (() -> Void)?) throws -> DownloadProgress {
+    public func downloadAssets(progress: DownloadProgress, callback: (() -> Void)?) throws {
         let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
-        return try index.downloadParallel(progress: progress, callback: callback)
+        try index.downloadParallel(progress: progress, callback: callback)
     }
     
     func createAsNewInstance() throws {

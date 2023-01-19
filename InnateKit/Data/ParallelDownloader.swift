@@ -21,7 +21,7 @@ import CryptoKit
 public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
     
-    public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) -> DownloadProgress {
+    public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) {
         progress.current = 0
         progress.total = tasks.count
         let fm = FileManager.default
@@ -61,8 +61,6 @@ public class ParallelDownloader {
         for task in tasks {
             dispatch(task)
         }
-        
-        return progress
     }
     
     internal static func isSha1Valid(data: Data, expected: String?) -> Bool {

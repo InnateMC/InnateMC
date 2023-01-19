@@ -18,5 +18,5 @@
 import Foundation
 
 public class InstancePreferences: ObservableObject, Codable {
-    @Published public var runtime: OptRuntimePreferences = OptRuntimePreferences()
+    @Published public var runtime: RuntimePreferences = RuntimePreferences.invalid()
 }

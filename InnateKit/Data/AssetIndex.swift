@@ -74,6 +74,7 @@ public class AssetIndex: Codable {
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
             tasks.append(DownloadTask(url: url, filePath: path, sha1: hash))
         }
-        return ParallelDownloader.download(tasks, progress: progress, callback: callback)
+        ParallelDownloader.download(tasks, progress: progress, callback: callback)
+        return progress
     }
 }
