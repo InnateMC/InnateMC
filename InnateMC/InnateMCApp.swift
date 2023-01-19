@@ -16,6 +16,7 @@
 //
 
 import SwiftUI
+import WebKit
 import InnateKit
 
 @main
