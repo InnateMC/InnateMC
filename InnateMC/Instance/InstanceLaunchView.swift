@@ -25,7 +25,7 @@ struct InstanceLaunchView: View {
     @State var progress: Float = 0
     @State var downloadMessage: String = "Downloading Libraries..."
     @State var downloadProgress: DownloadProgress = DownloadProgress(current: 0, total: 1)
-
+    
     var body: some View {
         VStack {
             HStack {
@@ -47,6 +47,12 @@ struct InstanceLaunchView: View {
                         Spacer()
                     }
                     .padding()
+//                    Link(<#T##titleKey: LocalizedStringKey##LocalizedStringKey#>, destination: <#T##URL#>)
+//                        .font(.system(size: 18).bold())
+//                        .padding(6)
+//                        .foregroundColor(.black)
+//                        .background(Color.orange)
+//                        .cornerRadius(6)
                     ProgressView(value: progress)
                         .onReceive(downloadProgress.$current, perform: {
                             progress = Float($0) / Float(downloadProgress.total)
@@ -54,6 +60,8 @@ struct InstanceLaunchView: View {
                         .animation(nil)
                     Button("Abort") {
                         showPreLaunchSheet = false
+                        self.downloadProgress.cancelled = true
+                        self.downloadProgress = DownloadProgress(current: 0, total: 1)
                     }
                     .padding()
                 }

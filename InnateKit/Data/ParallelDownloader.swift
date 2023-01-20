@@ -20,16 +20,22 @@ import CryptoKit
 
 public class ParallelDownloader {
     fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
+    public static var queuedTasks: [Task<(), Never>] = []
     
     public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) {
         progress.current = 0
         progress.total = tasks.count
         let fm = FileManager.default
-        
         @Sendable func dispatch(_ task: DownloadTask) {
-            Task.init(priority: .medium, operation: {
+            let thing: Task<(), Never> = Task.init(priority: .medium, operation: {
+                if progress.cancelled {
+                    return
+                }
                 if fm.fileExists(atPath: task.filePath.path) {
                     let existing = try! Data(contentsOf: task.filePath)
+                    if progress.cancelled {
+                        return
+                    }
                     if (!isSha1Valid(data: existing, expected: task.sha1)) {
                         print("Corrupted download found, redownloading")
                         try! fm.removeItem(at: task.filePath)
@@ -37,7 +43,13 @@ public class ParallelDownloader {
                     }
                     await progress.inc()
                 } else {
+                    if progress.cancelled {
+                        return
+                    }
                     let data = try! Data(contentsOf: task.url)
+                    if progress.cancelled {
+                        return
+                    }
                     if (!isSha1Valid(data: data, expected: task.sha1)) {
                         print("Invalid hash while downloading, retrying")
                         dispatch(task)
@@ -45,6 +57,9 @@ public class ParallelDownloader {
                         let parent = task.filePath.deletingLastPathComponent()
                         if !fm.fileExists(atPath: parent.path) {
                             try! fm.createDirectory(at: parent, withIntermediateDirectories: true)
+                        }
+                        if progress.cancelled {
+                            return
                         }
                         fm.createFile(atPath: task.filePath.path, contents: data)
                         await progress.inc()

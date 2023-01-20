@@ -22,6 +22,7 @@ open class DownloadProgress: ObservableObject {
     @Published public var current: Int = 0
     @Published public var total: Int = 1
     public var callback: () -> Void = {print("no callback")}
+    public var cancelled = false
     
     public init() {
     }
