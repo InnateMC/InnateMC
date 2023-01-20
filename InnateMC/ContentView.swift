@@ -22,13 +22,12 @@ struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var viewModel: ViewModel
-    @State var instances: [Instance]? = nil
-    @State var selectedInstance: Instance? = nil
+    @State var selectedInstance: Instance?
     
     var body: some View {
         
         NavigationView {
-            List {
+            VStack {
                 if #available(macOS 12.0, *) {
                 } else {
                     TextField("Search...", text: $searchTerm)
@@ -36,22 +35,22 @@ struct ContentView: View {
                         .accessibilityLabel("Search for Instance")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-
-                ForEach(instances ?? viewModel.instances) { instance in
-                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                        NavigationLink(destination: {
-                            InstanceView(instance: instance)
-                                .padding(.top, 10)
-                        }, label: {
-                            InstanceNavigationLink(instance: instance)
-                        })
-                            .tag(instance)
-                            .padding(.all, 4)
+                    List(viewModel.instances, selection: $selectedInstance) { instance in
+                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                            NavigationLink(destination: {
+                                InstanceView(instance: instance)
+                                    .padding(.top, 10)
+                            }, label: {
+                                InstanceNavigationLink(instance: instance)
+                            })
+                                .tag(instance)
+                                .padding(.all, 4)
+                        }
                     }
-                }
-                .onReceive(viewModel.$instances) { new in
-                    instances = new
-                }
+
+                    .onReceive(viewModel.$instances) { new in
+                        instances = new
+                    }
             }
             .sheet(isPresented:$viewModel.showNewInstanceSheet){
                 NewInstanceView()
