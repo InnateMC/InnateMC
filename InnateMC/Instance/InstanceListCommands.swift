@@ -20,17 +20,35 @@ import SwiftUI
 import InnateKit
 
 struct InstanceListCommands: Commands {
-    @FocusedBinding(\.selectedInstance) var selectedInstance
+    public var viewModel: ViewModel
+    @State private var instanceIsntSelected: Bool = false
     
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Instance") {
             Button(action: {
-                // TODO: implement
+                if let instance = viewModel.selectedInstance {
+                    instance.isStarred = !instance.isStarred
+                }
             }) {
-                Label { Text("Unstar") } icon: { Image(systemName: "star.slash") }
+                if viewModel.selectedInstance?.isStarred ?? false {
+                    Label {
+                        Text("Unstar")
+                    } icon: {
+                        Image(systemName: "star.slash")
+                    }
+                } else {
+                    Label {
+                        Text("Star")
+                    } icon: {
+                        Image(systemName: "star")
+                    }
+                }
             }
-            .disabled(true)
+            .onReceive(viewModel.$selectedInstance, perform: { value in
+                instanceIsntSelected = value == nil
+            })
+            .disabled(instanceIsntSelected)
             .keyboardShortcut("f")
             Button(action: {
                 // TODO: implement
@@ -38,14 +56,14 @@ struct InstanceListCommands: Commands {
                 Label { Text("Launch") } icon: { Image(systemName: "paperplane") }
             }
             .keyboardShortcut(KeyEquivalent.return)
-            .disabled(true)
+            .disabled(instanceIsntSelected)
             Button(action: {
                 // TODO: implement
             }) {
                 Label { Text("Open in Finder") } icon: { Image(systemName: "folder") }
             }
             .keyboardShortcut(KeyEquivalent.upArrow)
-            .disabled(true)
+            .disabled(instanceIsntSelected)
             
             Divider()
             

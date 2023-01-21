@@ -47,7 +47,12 @@ struct ContentView: View {
                                 .padding(.all, 4)
                         }
                     }
-
+                    .onAppear(perform: {
+                        viewModel.selectedInstance = self.selectedInstance
+                    })
+                    .onChange(of: self.selectedInstance, perform: { value in
+                        viewModel.selectedInstance = value
+                    })
                     .onReceive(viewModel.$instances) { new in
                         instances = new
                     }

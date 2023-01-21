@@ -47,12 +47,6 @@ struct InstanceLaunchView: View {
                         Spacer()
                     }
                     .padding()
-//                    Link(<#T##titleKey: LocalizedStringKey##LocalizedStringKey#>, destination: <#T##URL#>)
-//                        .font(.system(size: 18).bold())
-//                        .padding(6)
-//                        .foregroundColor(.black)
-//                        .background(Color.orange)
-//                        .cornerRadius(6)
                     ProgressView(value: progress)
                         .onReceive(downloadProgress.$current, perform: {
                             progress = Float($0) / Float(downloadProgress.total)

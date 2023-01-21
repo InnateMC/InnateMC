@@ -23,6 +23,7 @@ public class ViewModel: ObservableObject {
     @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []
+    @Published var selectedInstance: Instance?
     
     init() {
         DispatchQueue.global().async {
