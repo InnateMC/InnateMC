@@ -41,6 +41,7 @@ class DownloadTests: XCTestCase {
         measure {
             let manifestVer = manifest.randomElement()!
             let _ = try! Version.download(manifestVer.url, sha1: manifestVer.sha1)
+            print(manifestVer.url)
         }
     }
 

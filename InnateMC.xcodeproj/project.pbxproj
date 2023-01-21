@@ -25,6 +25,8 @@
 		3C462F205AE4AD5B75B5A8CA /* VersionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C462326A090F1BD4C08B7CD /* VersionManifest.swift */; };
 		3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */; };
 		64021B3829358F5900FEFA20 /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64021B3729358F5900FEFA20 /* InstanceTests.swift */; };
+		64037CA4297C6ABC00F7FE79 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64037CA3297C6ABB00F7FE79 /* ArgumentProvider.swift */; };
+		64037CA9297C724D00F7FE79 /* ArgumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64037CA8297C724D00F7FE79 /* ArgumentTests.swift */; };
 		64065A952971CD85000BCE24 /* JavaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64065A942971CD85000BCE24 /* JavaTests.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
@@ -176,6 +178,9 @@
 		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
 		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		64021B3729358F5900FEFA20 /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
+		64037CA3297C6ABB00F7FE79 /* ArgumentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentProvider.swift; sourceTree = "<group>"; };
+		64037CA5297C708C00F7FE79 /* InnateKitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateKitTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		64037CA8297C724D00F7FE79 /* ArgumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentTests.swift; sourceTree = "<group>"; };
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640DC1F02934F14200943213 /* NewInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstanceView.swift; sourceTree = "<group>"; };
@@ -355,6 +360,7 @@
 				64EB53862929E6A600D6CDDD /* Version.swift */,
 				64F42647292B79FD00BF4DF6 /* AssetIndex.swift */,
 				64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */,
+				64037CA3297C6ABB00F7FE79 /* ArgumentProvider.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -536,9 +542,11 @@
 		64EB537D2929CD7800D6CDDD /* InnateKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				64037CA8297C724D00F7FE79 /* ArgumentTests.swift */,
 				64EB537E2929CD7800D6CDDD /* DownloadTests.swift */,
 				64021B3729358F5900FEFA20 /* InstanceTests.swift */,
 				64065A942971CD85000BCE24 /* JavaTests.swift */,
+				64037CA5297C708C00F7FE79 /* InnateKitTests-Bridging-Header.h */,
 			);
 			path = InnateKitTests;
 			sourceTree = "<group>";
@@ -782,6 +790,7 @@
 				643C7FF52927695E00DDC1B3 /* FileHandler.swift in Sources */,
 				3C462839F5B8DF4E24925B3F /* DownloadProgress.swift in Sources */,
 				64DF80312934D03800F624F2 /* VanillaInstanceCreator.swift in Sources */,
+				64037CA4297C6ABC00F7FE79 /* ArgumentProvider.swift in Sources */,
 				64FE2D3E293BA3D4007414CB /* SkipCoding.swift in Sources */,
 				64769F6929730AAC0081E445 /* LinkedJavaInstallation.swift in Sources */,
 				64F4264C292BCCB900BF4DF6 /* ParallelDownloader.swift in Sources */,
@@ -865,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64037CA9297C724D00F7FE79 /* ArgumentTests.swift in Sources */,
 				64021B3829358F5900FEFA20 /* InstanceTests.swift in Sources */,
 				64EB537F2929CD7800D6CDDD /* DownloadTests.swift in Sources */,
 				64065A952971CD85000BCE24 /* JavaTests.swift in Sources */,
@@ -1279,7 +1289,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "InnateKitTests/InnateKitTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
@@ -1305,6 +1315,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "InnateKitTests/InnateKitTests-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 			};
