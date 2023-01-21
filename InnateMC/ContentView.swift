@@ -22,10 +22,10 @@ struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var viewModel: ViewModel
+    @State var instances: [Instance]?
     @State var selectedInstance: Instance?
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 if #available(macOS 12.0, *) {
@@ -35,7 +35,7 @@ struct ContentView: View {
                         .accessibilityLabel("Search for Instance")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                    List(viewModel.instances, selection: $selectedInstance) { instance in
+                    List(instances ?? viewModel.instances, selection: $selectedInstance) { instance in
                         if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                             NavigationLink(destination: {
                                 InstanceView(instance: instance)
@@ -52,7 +52,7 @@ struct ContentView: View {
                         instances = new
                     }
             }
-            .sheet(isPresented:$viewModel.showNewInstanceSheet){
+            .sheet(isPresented: $viewModel.showNewInstanceSheet){
                 NewInstanceView()
             }
             .navigationTitle("Instances").toolbar{
