@@ -25,16 +25,34 @@ struct InstanceListCommands: Commands {
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Instance") {
-            Button(selectedInstance?.isStarred == true ? "Unstar" : "Star") {
-                selectedInstance?.isStarred.toggle()
+            Button(action: {
+                // TODO: implement
+            }) {
+                Label { Text("Unstar") } icon: { Image(systemName: "star.slash") }
             }
+            .disabled(true)
             .keyboardShortcut("f")
-            Button("Launch") {
+            Button(action: {
+                // TODO: implement
+            }) {
+                Label { Text("Launch") } icon: { Image(systemName: "paperplane") }
             }
             .keyboardShortcut(KeyEquivalent.return)
-            Button("Open Instance Folder") {
+            .disabled(true)
+            Button(action: {
+                // TODO: implement
+            }) {
+                Label { Text("Open in Finder") } icon: { Image(systemName: "folder") }
             }
             .keyboardShortcut(KeyEquivalent.upArrow)
+            .disabled(true)
+            
+            Divider()
+            
+            Button("Open Instances Folder") {
+                NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileHandler.instancesFolder.path)
+            }
+            .keyboardShortcut(KeyEquivalent.upArrow, modifiers: [.shift, .command])
         }
     }
 }
