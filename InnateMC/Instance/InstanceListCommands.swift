@@ -58,7 +58,9 @@ struct InstanceListCommands: Commands {
             .keyboardShortcut(KeyEquivalent.return)
             .disabled(instanceIsntSelected)
             Button(action: {
-                // TODO: implement
+                if let instance = viewModel.selectedInstance {
+                    NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: instance.getPath().path)
+                }
             }) {
                 Label { Text("Open in Finder") } icon: { Image(systemName: "folder") }
             }
