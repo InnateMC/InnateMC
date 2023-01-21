@@ -64,7 +64,6 @@ struct InstanceView: View {
                                         instance.isStarred = false
                                     }
                                     .frame(width: 16, height: 16)
-                                    .background(Color.orange)
 
                             } else {
                                 Image(systemName: "star")
