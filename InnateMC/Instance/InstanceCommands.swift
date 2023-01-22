@@ -21,29 +21,21 @@ import SwiftUI
 struct InstanceCommands: Commands {
     public var launcherData: LauncherData
     @State private var instanceIsntSelected: Bool = false
-    @FocusedValue(\.selectedInstance) private var selectedInstance: Instance??
+    @FocusedValue(\.selectedInstance) private var selectedInstance: Instance?
     
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Instance") {
             Button(action: {
-                if let instance = selectedInstance! {
+                if let instance = selectedInstance {
                     instance.isStarred = !instance.isStarred
                 }
             }) {
-                if let opt = selectedInstance {
-                    if opt?.isStarred ?? false {
-                        Label {
-                            Text("Unstar")
-                        } icon: {
-                            Image(systemName: "star.slash")
-                        }
-                    } else {
-                        Label {
-                            Text("Star")
-                        } icon: {
-                            Image(systemName: "star")
-                        }
+                if selectedInstance?.isStarred ?? false {
+                    Label {
+                        Text("Unstar")
+                    } icon: {
+                        Image(systemName: "star.slash")
                     }
                 } else {
                     Label {
@@ -53,7 +45,7 @@ struct InstanceCommands: Commands {
                     }
                 }
             }
-            .disabled((selectedInstance ?? nil) == nil)
+            .disabled(selectedInstance == nil)
             .keyboardShortcut("f")
             Button(action: {
                 // TODO: implement
@@ -61,14 +53,14 @@ struct InstanceCommands: Commands {
                 Label { Text("Launch") } icon: { Image(systemName: "paperplane") }
             }
             .keyboardShortcut(KeyEquivalent.return)
-            .disabled((selectedInstance ?? nil) == nil)
+            .disabled(selectedInstance == nil)
             Button(action: {
-                NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!!.getPath().path)
+                NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!.getPath().path)
             }) {
                 Label { Text("Open in Finder") } icon: { Image(systemName: "folder") }
             }
             .keyboardShortcut(KeyEquivalent.upArrow)
-            .disabled((selectedInstance ?? nil) == nil)
+            .disabled(selectedInstance == nil)
             
             Divider()
             

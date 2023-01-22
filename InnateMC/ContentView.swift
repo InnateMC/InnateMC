@@ -23,6 +23,7 @@ struct ContentView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance]?
     @State var selectedInstance: Instance? = nil
+    @FocusedValue(\.selectedInstance) private var focusedSelectedInstance: Instance?
     
     var body: some View {
         NavigationView {

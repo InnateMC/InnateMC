@@ -29,7 +29,7 @@ extension EnvironmentValues {
 }
 
 struct SelectedInstanceKey: FocusedValueKey {
-    typealias Value = Instance?
+    typealias Value = Instance
 }
 
 extension FocusedValues {
