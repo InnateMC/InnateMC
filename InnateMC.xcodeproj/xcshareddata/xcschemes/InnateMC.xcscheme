@@ -38,6 +38,16 @@
                ReferencedContainer = "container:InnateMC.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "649C8DD1297D5ABE000352F2"
+               BuildableName = "InnateMCTests.xctest"
+               BlueprintName = "InnateMCTests"
+               ReferencedContainer = "container:InnateMC.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
