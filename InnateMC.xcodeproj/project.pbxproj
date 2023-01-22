@@ -63,7 +63,7 @@
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */; };
-		64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* ViewModel.swift */; };
+		64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* LauncherData.swift */; };
 		64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */; };
 		64F7C5F1297D641C0086ABC1 /* AssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */; };
 		64F7C5F3297D64370086ABC1 /* DownloadProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */; };
@@ -192,7 +192,7 @@
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
-		64E459F22938C7AC00F82A2B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		64E459F22938C7AC00F82A2B /* LauncherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherData.swift; sourceTree = "<group>"; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
 		64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentProvider.swift; sourceTree = "<group>"; };
 		64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIndex.swift; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
-				64E459F22938C7AC00F82A2B /* ViewModel.swift */,
+				64E459F22938C7AC00F82A2B /* LauncherData.swift */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
 			);
 			path = InnateMC;
@@ -717,7 +717,7 @@
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelDownloader.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
-				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
+				64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */,
 				64F7C607297D65080086ABC1 /* DownloadedJavaInstallation.swift in Sources */,
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,

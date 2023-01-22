@@ -19,7 +19,7 @@ import Foundation
 import SwiftUI
 
 struct InstanceRuntimeView: View {
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @Binding var instance: Instance
     @State var valid: Bool = true
     
@@ -31,7 +31,7 @@ struct InstanceRuntimeView: View {
                 if valid {
                     Picker("Java", selection: $instance.preferences.runtime.defaultJava) {
                         PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
-                        ForEach(viewModel.javaInstallations) {
+                        ForEach(launcherData.javaInstallations) {
                             PickableJavaVersion(installation: $0)
                         }
                     }

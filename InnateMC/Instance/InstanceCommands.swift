@@ -19,18 +19,18 @@ import Foundation
 import SwiftUI
 
 struct InstanceCommands: Commands {
-    public var viewModel: ViewModel
+    public var launcherData: LauncherData
     @State private var instanceIsntSelected: Bool = false
     
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Instance") {
             Button(action: {
-                if let instance = viewModel.selectedInstance {
+                if let instance = launcherData.selectedInstance {
                     instance.isStarred = !instance.isStarred
                 }
             }) {
-                if viewModel.selectedInstance?.isStarred ?? false {
+                if launcherData.selectedInstance?.isStarred ?? false {
                     Label {
                         Text("Unstar")
                     } icon: {
@@ -44,7 +44,7 @@ struct InstanceCommands: Commands {
                     }
                 }
             }
-            .onReceive(viewModel.$selectedInstance, perform: { value in
+            .onReceive(launcherData.$selectedInstance, perform: { value in
                 instanceIsntSelected = value == nil
             })
             .disabled(instanceIsntSelected)
@@ -57,7 +57,7 @@ struct InstanceCommands: Commands {
             .keyboardShortcut(KeyEquivalent.return)
             .disabled(instanceIsntSelected)
             Button(action: {
-                if let instance = viewModel.selectedInstance {
+                if let instance = launcherData.selectedInstance {
                     NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: instance.getPath().path)
                 }
             }) {
@@ -73,7 +73,7 @@ struct InstanceCommands: Commands {
             }
             .keyboardShortcut(KeyEquivalent.upArrow, modifiers: [.shift, .command])
             Button("New Instance") {
-                viewModel.showNewInstanceSheet = true
+                launcherData.showNewInstanceSheet = true
             }
             .keyboardShortcut("n")
         }

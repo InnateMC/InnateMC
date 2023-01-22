@@ -18,7 +18,7 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
 
     var body: some View {
         TabView {

@@ -21,12 +21,12 @@ import WebKit
 @main
 struct InnateMCApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var viewModel = ViewModel()
+    @StateObject private var launcherData = LauncherData()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(viewModel)
+                .environmentObject(launcherData)
         }
         .commands {
             CommandMenu("Edit") {
@@ -35,15 +35,15 @@ struct InnateMCApp: App {
                 }
                 .keyboardShortcut("n") // TODO: make this work
             }
-            InstanceCommands(viewModel: viewModel)
+            InstanceCommands(launcherData: launcherData)
         }
         Settings {
             PreferencesView()
-                .environmentObject(viewModel)
+                .environmentObject(launcherData)
                 .frame(width: 800, height: 400)
                 .onDisappear {
                     // this doesn't get called
-                    viewModel.globalPreferences.save()
+                    launcherData.globalPreferences.save()
                 }
         }
     }

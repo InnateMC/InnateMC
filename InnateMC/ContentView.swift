@@ -20,7 +20,7 @@ import SwiftUI
 struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance]?
     @State var selectedInstance: Instance?
     
@@ -34,7 +34,7 @@ struct ContentView: View {
                         .accessibilityLabel("Search for Instance")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                    List(instances ?? viewModel.instances, selection: $selectedInstance) { instance in
+                    List(instances ?? launcherData.instances, selection: $selectedInstance) { instance in
                         if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
                             NavigationLink(destination: {
                                 InstanceView(instance: instance)
@@ -47,16 +47,16 @@ struct ContentView: View {
                         }
                     }
                     .onAppear(perform: {
-                        viewModel.selectedInstance = self.selectedInstance
+                        launcherData.selectedInstance = self.selectedInstance
                     })
                     .onChange(of: self.selectedInstance, perform: { value in
-                        viewModel.selectedInstance = value
+                        launcherData.selectedInstance = value
                     })
-                    .onReceive(viewModel.$instances) { new in
+                    .onReceive(launcherData.$instances) { new in
                         instances = new
                     }
             }
-            .sheet(isPresented: $viewModel.showNewInstanceSheet){
+            .sheet(isPresented: $launcherData.showNewInstanceSheet){
                 NewInstanceView()
             }
             .navigationTitle("Instances").toolbar{
@@ -68,7 +68,7 @@ struct ContentView: View {
                         Image(systemName: "star")
                     }
                 }
-                Button(action:{viewModel.showNewInstanceSheet = true}) {
+                Button(action:{launcherData.showNewInstanceSheet = true}) {
                     Image(systemName: "plus")
                 }
             }

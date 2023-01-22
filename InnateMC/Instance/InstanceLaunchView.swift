@@ -19,7 +19,7 @@ import SwiftUI
 
 struct InstanceLaunchView: View {
     var instance: Instance
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @State var showPreLaunchSheet: Bool = false
     @State var progress: Float = 0
     @State var downloadMessage: String = "Downloading Libraries..."

@@ -19,7 +19,7 @@ import SwiftUI
 
 struct NewVanillaInstanceView: View {
     @Environment(\.versionManifest) var versionManifest: [ManifestVersion]
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
@@ -49,13 +49,13 @@ struct NewVanillaInstanceView: View {
                 Spacer()
                 HStack{
                     Button("Cancel"){
-                        viewModel.showNewInstanceSheet = false
+                        launcherData.showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button("Done") {
                         let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil)
                         do {
-                            viewModel.instances.append(try instance.install())
-                            viewModel.showNewInstanceSheet = false
+                            launcherData.instances.append(try instance.install())
+                            launcherData.showNewInstanceSheet = false
                         } catch {
                             print("something was thrown sad emojy")
                         }

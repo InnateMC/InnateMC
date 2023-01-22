@@ -18,7 +18,7 @@
 import SwiftUI
 
 struct InstanceNavigationLink: View {
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @State var instance: Instance
     @State var starHovered: Bool = false
     @State var instanceStarred: Bool? = nil
@@ -27,7 +27,7 @@ struct InstanceNavigationLink: View {
     var body: some View {
         HStack {
             ZStack(alignment: .topTrailing) {
-                if (compactList ?? viewModel.globalPreferences.ui.compactList) {
+                if (compactList ?? launcherData.globalPreferences.ui.compactList) {
                     InstanceLogoView(instance: instance)
                         .frame(width: 32, height: 32)
                 } else {
@@ -46,7 +46,7 @@ struct InstanceNavigationLink: View {
                 })
                 .frame(width: 8, height: 8)
             }
-            .onReceive(viewModel.globalPreferences.ui.$compactList) { value in
+            .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
                 compactList = value
             }
             VStack {

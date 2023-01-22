@@ -20,12 +20,12 @@ import SwiftUI
 struct InstanceView: View {
     @State var instance: Instance
     @State var disabled: Bool = false
-    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var launcherData: LauncherData
     @State var instanceStarred: Bool? = nil
     @State var leftAlignedInstanceHeading: Bool? = nil
     private var leftAlignedInstanceHeadingNotNull: Bool {
         get {
-            leftAlignedInstanceHeading ?? viewModel.globalPreferences.ui.leftAlignedInstanceHeading
+            leftAlignedInstanceHeading ?? launcherData.globalPreferences.ui.leftAlignedInstanceHeading
         }
     }
     @State var starHovered: Bool = false
@@ -160,7 +160,7 @@ struct InstanceView: View {
                 }.padding(.all, 4)
             }
             .padding(.all, 6)
-            .onReceive(viewModel.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
+            .onReceive(launcherData.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
                 leftAlignedInstanceHeading = value
             }
         }
