@@ -17,7 +17,7 @@
 
 import SwiftUI
 
-struct InstanceImageLogoPickerView: View {
+struct ImageLogoPickerView: View {
     @State var shouldShowFileImporter: Bool = false
     @State var showImagePreview: Bool = false
     var instance: Instance

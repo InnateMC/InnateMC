@@ -35,7 +35,7 @@ struct InnateMCApp: App {
                 }
                 .keyboardShortcut("n") // TODO: make this work
             }
-            InstanceListCommands(viewModel: viewModel)
+            InstanceCommands(viewModel: viewModel)
         }
         Settings {
             PreferencesView()

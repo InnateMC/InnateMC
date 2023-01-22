@@ -100,11 +100,11 @@ struct InstanceView: View {
                 .sheet(isPresented: $showLogoSheet) {
                     VStack {
                         TabView {
-                            InstanceImageLogoPickerView(instance: instance)
+                            ImageLogoPickerView(instance: instance)
                                 .tabItem {
                                     Text("Image")
                                 }
-                            InstanceSymbolLogoPickerView(instance: instance, logo: $instance.logo)
+                            SymbolLogoPickerView(instance: instance, logo: $instance.logo)
                                 .tabItem {
                                     Text("Symbol")
                                 }
@@ -164,5 +164,25 @@ struct InstanceView: View {
                 leftAlignedInstanceHeading = value
             }
         }
+    }
+}
+
+struct LaunchButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.all, 2)
+            .foregroundColor(.white)
+            .background(Color(red: 0, green: 0.5, blue: 1.0))
+            .clipShape(Capsule())
+    }
+}
+
+struct KillButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.all, 2)
+            .foregroundColor(.white)
+            .background(Color(red: 1.0, green: 0.2, blue: 0.2))
+            .clipShape(Capsule())
     }
 }
