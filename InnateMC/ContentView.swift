@@ -22,7 +22,7 @@ struct ContentView: View {
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance]?
-    @State var selectedInstance: Instance?
+    @State var selectedInstance: Instance? = nil
     
     var body: some View {
         NavigationView {
@@ -46,6 +46,7 @@ struct ContentView: View {
                                 .padding(.all, 4)
                         }
                     }
+//                    .focusedValue(\.selectedInstance, selectedInstance)
                     .onAppear(perform: {
                         launcherData.selectedInstance = self.selectedInstance
                     })

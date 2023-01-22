@@ -29,11 +29,11 @@ extension EnvironmentValues {
 }
 
 struct SelectedInstanceKey: FocusedValueKey {
-    typealias Value = Binding<Instance>
+    typealias Value = Instance?
 }
 
 extension FocusedValues {
-    var selectedInstance: Binding<Instance>? {
+    var selectedInstance: SelectedInstanceKey.Value? {
         get { self[SelectedInstanceKey.self] }
         set { self[SelectedInstanceKey.self] = newValue }
     }
