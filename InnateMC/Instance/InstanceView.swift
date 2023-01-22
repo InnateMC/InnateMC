@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct InstanceView: View {
     @State var instance: Instance

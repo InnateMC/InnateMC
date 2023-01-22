@@ -17,7 +17,6 @@
 
 import SwiftUI
 import WebKit
-import InnateKit
 
 @main
 struct InnateMCApp: App {

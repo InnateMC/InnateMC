@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct RuntimePreferencesView: View {
     @EnvironmentObject var viewModel: ViewModel

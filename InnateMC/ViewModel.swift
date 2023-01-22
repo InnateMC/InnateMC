@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import InnateKit
 
 public class ViewModel: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
