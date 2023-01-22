@@ -15,15 +15,24 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import Foundation
 import SwiftUI
 
-struct KillButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.all, 2)
-            .foregroundColor(.white)
-            .background(Color(red: 1.0, green: 0.2, blue: 0.2))
-            .clipShape(Capsule())
+struct SymbolLogoPickerView: View {
+    var instance: Instance
+    @Binding var logo: InstanceLogo
+    
+    var body: some View {
+        SymbolPicker(symbol: Binding(get: {
+            if logo.logoType == .file {
+                return ""
+            }
+            return logo.string
+        }, set: {
+            logo = InstanceLogo(logoType: .symbol, string: $0)
+            DispatchQueue.global().async {
+                try! instance.save()
+            }
+        }))
+        // TODO: implement it
     }
 }

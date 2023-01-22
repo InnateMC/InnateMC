@@ -27,3 +27,14 @@ extension EnvironmentValues {
         set { self[VersionManifestKey.self] = newValue }
     }
 }
+
+struct SelectedInstanceKey: FocusedValueKey {
+    typealias Value = Binding<Instance>
+}
+
+extension FocusedValues {
+    var selectedInstance: Binding<Instance>? {
+        get { self[SelectedInstanceKey.self] }
+        set { self[SelectedInstanceKey.self] = newValue }
+    }
+}

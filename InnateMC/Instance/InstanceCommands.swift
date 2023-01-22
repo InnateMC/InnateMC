@@ -18,7 +18,7 @@
 import Foundation
 import SwiftUI
 
-struct InstanceListCommands: Commands {
+struct InstanceCommands: Commands {
     public var viewModel: ViewModel
     @State private var instanceIsntSelected: Bool = false
     

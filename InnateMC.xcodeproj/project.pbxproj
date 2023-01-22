@@ -44,7 +44,7 @@
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		649C8DCA297D5A95000352F2 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		649C8DCB297D5A95000352F2 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		64A62C8D2977B454007A9597 /* InstanceSymbolLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A62C8C2977B454007A9597 /* InstanceSymbolLogoPickerView.swift */; };
+		64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */; };
 		64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
@@ -54,18 +54,15 @@
 		64C33507292256C500BB8570 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C33506292256C500BB8570 /* TodoView.swift */; };
 		64C33509292272F600BB8570 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64C33508292272F500BB8570 /* .gitignore */; };
 		64C3350C2922B0B500BB8570 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64C3350B2922B0B400BB8570 /* LICENSE */; };
-		64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */; };
+		64C41C1429366CAF00014E0F /* ValueKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C41C1329366CAF00014E0F /* ValueKeys.swift */; };
 		64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */; };
-		64CE1092297864A700366372 /* InstanceImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* InstanceImageLogoPickerView.swift */; };
+		64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* ImageLogoPickerView.swift */; };
 		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
 		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
-		64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */; };
-		64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */; };
-		64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */; };
-		64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F02938BCAF00F82A2B /* FocusedKeys.swift */; };
+		64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */; };
 		64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* ViewModel.swift */; };
 		64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */; };
 		64F7C5F1297D641C0086ABC1 /* AssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */; };
@@ -171,7 +168,7 @@
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64A62C8C2977B454007A9597 /* InstanceSymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSymbolLogoPickerView.swift; sourceTree = "<group>"; };
+		64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolLogoPickerView.swift; sourceTree = "<group>"; };
 		64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRuntimeView.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334D82922523600BB8570 /* InnateMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCApp.swift; sourceTree = "<group>"; };
@@ -184,20 +181,17 @@
 		64C33508292272F500BB8570 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		64C3350A2922734400BB8570 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKeys.swift; sourceTree = "<group>"; };
+		64C41C1329366CAF00014E0F /* ValueKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueKeys.swift; sourceTree = "<group>"; };
 		64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
 		64CDBCD329294CB700DF0592 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		64CE1091297864A700366372 /* InstanceImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceImageLogoPickerView.swift; sourceTree = "<group>"; };
+		64CE1091297864A700366372 /* ImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLogoPickerView.swift; sourceTree = "<group>"; };
 		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
 		64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateJsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
-		64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchButtonStyle.swift; sourceTree = "<group>"; };
-		64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillButtonStyle.swift; sourceTree = "<group>"; };
-		64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceListCommands.swift; sourceTree = "<group>"; };
-		64E459F02938BCAF00F82A2B /* FocusedKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedKeys.swift; sourceTree = "<group>"; };
+		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
 		64E459F22938C7AC00F82A2B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
 		64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentProvider.swift; sourceTree = "<group>"; };
@@ -257,7 +251,6 @@
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				64292B6F2972476B00816536 /* Java */,
 				64C33504292252B500BB8570 /* PreferencesView.swift */,
 				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
 				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
@@ -265,16 +258,8 @@
 				641678562923B7220012C9CC /* ConsolePreferencesView.swift */,
 				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
 				644FC6712937B243003797D9 /* UiPreferencesView.swift */,
-				64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */,
 			);
 			path = Preferences;
-			sourceTree = "<group>";
-		};
-		64292B6F2972476B00816536 /* Java */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Java;
 			sourceTree = "<group>";
 		};
 		643B39FA29274F6100AEC71C /* Frameworks */ = {
@@ -287,13 +272,11 @@
 		644DE1D12937C0D300C4A03E /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				64F7C615297D7EE40086ABC1 /* Symbols */,
 				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
 				64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
-				646139E52977EA0300BA9477 /* SFSymbolsList.swift */,
-				646139DD2977E2D300BA9477 /* SFSymbols11List.swift */,
-				646139E12977E88700BA9477 /* SFSymbols12List.swift */,
-				646139E32977E95300BA9477 /* SFSymbols13List.swift */,
+				64C33506292256C500BB8570 /* TodoView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -301,26 +284,15 @@
 		644DE1D22937C13F00C4A03E /* Instance */ = {
 			isa = PBXGroup;
 			children = (
+				649762BC2935A2D600977467 /* Create */,
+				64F7C614297D7E320086ABC1 /* Logo */,
 				6459E11A2976E215006DB3A4 /* Preferences */,
-				644F083C2975B83F00EC2F7D /* Misc */,
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
-				64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */,
-				64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */,
-				64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */,
+				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */,
-				6459E124297700D5006DB3A4 /* InstanceLogoView.swift */,
-				64A62C8C2977B454007A9597 /* InstanceSymbolLogoPickerView.swift */,
-				64CE1091297864A700366372 /* InstanceImageLogoPickerView.swift */,
 			);
 			path = Instance;
-			sourceTree = "<group>";
-		};
-		644F083C2975B83F00EC2F7D /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Misc;
 			sourceTree = "<group>";
 		};
 		6459E11A2976E215006DB3A4 /* Preferences */ = {
@@ -381,19 +353,16 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
-				64F7C5EA297D63800086ABC1 /* InnateKit */,
-				649762BC2935A2D600977467 /* Create */,
+				64F7C5EA297D63800086ABC1 /* Data */,
 				644DE1D22937C13F00C4A03E /* Instance */,
 				6416784F2923B6450012C9CC /* Preferences */,
 				644DE1D12937C0D300C4A03E /* Util */,
 				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
-				64C41C1329366CAF00014E0F /* EnvironmentKeys.swift */,
-				64E459F02938BCAF00F82A2B /* FocusedKeys.swift */,
+				64C41C1329366CAF00014E0F /* ValueKeys.swift */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
-				64C33506292256C500BB8570 /* TodoView.swift */,
 				64E459F22938C7AC00F82A2B /* ViewModel.swift */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
 			);
@@ -442,29 +411,28 @@
 			path = InnateJsonTests;
 			sourceTree = "<group>";
 		};
-		64F7C5EA297D63800086ABC1 /* InnateKit */ = {
+		64F7C5EA297D63800086ABC1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				64F7C5F4297D64490086ABC1 /* FileHandler.swift */,
+				64F7C613297D7D470086ABC1 /* Download */,
 				64F7C610297D657E0086ABC1 /* Preferences */,
 				64F7C605297D64FC0086ABC1 /* Java */,
 				64F7C5FC297D64920086ABC1 /* Instance */,
-				64F7C5EB297D63A70086ABC1 /* Data */,
+				64F7C5EB297D63A70086ABC1 /* Launch */,
 			);
-			path = InnateKit;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		64F7C5EB297D63A70086ABC1 /* Data */ = {
+		64F7C5EB297D63A70086ABC1 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
 				64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */,
 				64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */,
-				64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */,
-				64F7C5F4297D64490086ABC1 /* FileHandler.swift */,
-				64F7C5F6297D645A0086ABC1 /* ParallelDownloader.swift */,
 				64F7C5F8297D646C0086ABC1 /* Version.swift */,
 				64F7C5FA297D64810086ABC1 /* VersionManifest.swift */,
 			);
-			path = Data;
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		64F7C5FC297D64920086ABC1 /* Instance */ = {
@@ -492,9 +460,40 @@
 		64F7C610297D657E0086ABC1 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */,
 				64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		64F7C613297D7D470086ABC1 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */,
+				64F7C5F6297D645A0086ABC1 /* ParallelDownloader.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		64F7C614297D7E320086ABC1 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				6459E124297700D5006DB3A4 /* InstanceLogoView.swift */,
+				64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */,
+				64CE1091297864A700366372 /* ImageLogoPickerView.swift */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
+		64F7C615297D7EE40086ABC1 /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				646139E52977EA0300BA9477 /* SFSymbolsList.swift */,
+				646139DD2977E2D300BA9477 /* SFSymbols11List.swift */,
+				646139E12977E88700BA9477 /* SFSymbols12List.swift */,
+				646139E32977E95300BA9477 /* SFSymbols13List.swift */,
+			);
+			path = Symbols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,19 +695,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64CE1092297864A700366372 /* InstanceImageLogoPickerView.swift in Sources */,
+				64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */,
 				646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */,
 				64F7C60B297D65390086ABC1 /* LinkedJavaInstallation.swift in Sources */,
 				64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */,
 				64F7C602297D64CA0086ABC1 /* InstancePreferences.swift in Sources */,
-				64A62C8D2977B454007A9597 /* InstanceSymbolLogoPickerView.swift in Sources */,
+				64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */,
 				64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */,
-				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
@@ -724,13 +722,12 @@
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */,
-				64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */,
+				64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */,
 				64F7C5FB297D64810086ABC1 /* VersionManifest.swift in Sources */,
 				646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */,
 				64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
-				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */,
 				64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */,
@@ -739,9 +736,8 @@
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
 				64F7C5F3297D64370086ABC1 /* DownloadProgress.swift in Sources */,
 				64F7C600297D64B50086ABC1 /* InstanceCreator.swift in Sources */,
-				64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
-				64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */,
+				64C41C1429366CAF00014E0F /* ValueKeys.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */,
