@@ -71,7 +71,6 @@ struct ContentView: View {
                 Button(action:{viewModel.showNewInstanceSheet = true}) {
                     Image(systemName: "plus")
                 }
-                .keyboardShortcut("n")
             }
             
             Text("Select an instance")

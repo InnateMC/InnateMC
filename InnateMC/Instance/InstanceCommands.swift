@@ -72,6 +72,10 @@ struct InstanceCommands: Commands {
                 NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileHandler.instancesFolder.path)
             }
             .keyboardShortcut(KeyEquivalent.upArrow, modifiers: [.shift, .command])
+            Button("New Instance") {
+                viewModel.showNewInstanceSheet = true
+            }
+            .keyboardShortcut("n")
         }
     }
 }
