@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4624EDDF250627542A3114 /* InnateArray.h */; };
+		3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4624EDDF250627542A3114 /* InnateArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C4620F0F4ADD56EB3E30147 /* InnateBoolean.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4629FCAF43080FBC058A8D /* InnateBoolean.m */; };
 		3C46212CC2404877784168E0 /* InnateNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46242186F56F806736F741 /* InnateNull.m */; };
 		3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46260D0A5695B57DBD817E /* InnateObject.m */; };
-		3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462BB28A43B0902FDFFCA0 /* InnateString.h */; };
+		3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462BB28A43B0902FDFFCA0 /* InnateString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462C44B2674893DA840D83 /* InnateParser.m */; };
-		3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CF5EE54A244D7B317BF /* InnateNumber.h */; };
-		3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C46223ADA27D50D300A7538 /* InnateValue.h */; };
-		3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */; };
-		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; };
-		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; };
+		3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CF5EE54A244D7B317BF /* InnateNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C46223ADA27D50D300A7538 /* InnateValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462F354523F3EA752A760A /* InnateArray.m */; };
 		3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462891CBBA226529C263E5 /* InnateString.m */; };
-		3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4625B085558E3B559E118E /* InnateBoolean.h */; };
+		3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4625B085558E3B559E118E /* InnateBoolean.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
@@ -60,13 +60,29 @@
 		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
 		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
 		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; };
+		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */; };
 		64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */; };
 		64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */; };
 		64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F02938BCAF00F82A2B /* FocusedKeys.swift */; };
 		64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* ViewModel.swift */; };
+		64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */; };
+		64F7C5F1297D641C0086ABC1 /* AssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */; };
+		64F7C5F3297D64370086ABC1 /* DownloadProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */; };
+		64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F4297D64490086ABC1 /* FileHandler.swift */; };
+		64F7C5F7297D645A0086ABC1 /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F6297D645A0086ABC1 /* ParallelDownloader.swift */; };
+		64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5F8297D646C0086ABC1 /* Version.swift */; };
+		64F7C5FB297D64810086ABC1 /* VersionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5FA297D64810086ABC1 /* VersionManifest.swift */; };
+		64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5FD297D64A40086ABC1 /* Instance.swift */; };
+		64F7C600297D64B50086ABC1 /* InstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5FF297D64B50086ABC1 /* InstanceCreator.swift */; };
+		64F7C602297D64CA0086ABC1 /* InstancePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C601297D64CA0086ABC1 /* InstancePreferences.swift */; };
+		64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C603297D64DD0086ABC1 /* VanillaInstanceCreator.swift */; };
+		64F7C607297D65080086ABC1 /* DownloadedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C606297D65080086ABC1 /* DownloadedJavaInstallation.swift */; };
+		64F7C60B297D65390086ABC1 /* LinkedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60A297D65390086ABC1 /* LinkedJavaInstallation.swift */; };
+		64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60C297D654A0086ABC1 /* JreDownloader.swift */; };
+		64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */; };
+		64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */; };
 		64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,8 +135,6 @@
 		3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNumber.m; sourceTree = "<group>"; };
 		3C46223ADA27D50D300A7538 /* InnateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateValue.h; sourceTree = "<group>"; };
 		3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNull.h; sourceTree = "<group>"; };
-		3C462326A090F1BD4C08B7CD /* VersionManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionManifest.swift; sourceTree = "<group>"; };
-		3C4623D7EA74E868AD3AECE9 /* DownloadProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadProgress.swift; sourceTree = "<group>"; };
 		3C46242186F56F806736F741 /* InnateNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNull.m; sourceTree = "<group>"; };
 		3C4624EDDF250627542A3114 /* InnateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateArray.h; sourceTree = "<group>"; };
 		3C4625B085558E3B559E118E /* InnateBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateBoolean.h; sourceTree = "<group>"; };
@@ -134,7 +148,6 @@
 		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
 		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		64021B3729358F5900FEFA20 /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
-		64037CA3297C6ABB00F7FE79 /* ArgumentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentProvider.swift; sourceTree = "<group>"; };
 		64037CA8297C724D00F7FE79 /* ArgumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentTests.swift; sourceTree = "<group>"; };
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,17 +158,10 @@
 		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
 		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
 		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
-		64292B72297282A200816536 /* DownloadedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedJavaInstallation.swift; sourceTree = "<group>"; };
-		64292B74297287F600816536 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
-		643C7FF42927695E00DDC1B3 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
-		643C7FF6292769C900DDC1B3 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
-		6445316D29769ECE00222720 /* SavedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJavaInstallation.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
-		6459E11C2976E256006DB3A4 /* InstancePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancePreferences.swift; sourceTree = "<group>"; };
-		6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
 		6459E124297700D5006DB3A4 /* InstanceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
 		646139DD2977E2D300BA9477 /* SFSymbols11List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols11List.swift; sourceTree = "<group>"; };
@@ -163,7 +169,6 @@
 		646139E12977E88700BA9477 /* SFSymbols12List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols12List.swift; sourceTree = "<group>"; };
 		646139E32977E95300BA9477 /* SFSymbols13List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols13List.swift; sourceTree = "<group>"; };
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
-		64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedJavaInstallation.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A62C8C2977B454007A9597 /* InstanceSymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSymbolLogoPickerView.swift; sourceTree = "<group>"; };
@@ -189,18 +194,28 @@
 		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
-		64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaInstanceCreator.swift; sourceTree = "<group>"; };
-		64DF80322934D04A00F624F2 /* InstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCreator.swift; sourceTree = "<group>"; };
 		64E459EA2938AE5A00F82A2B /* LaunchButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchButtonStyle.swift; sourceTree = "<group>"; };
 		64E459EC2938B75F00F82A2B /* KillButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillButtonStyle.swift; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceListCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceListCommands.swift; sourceTree = "<group>"; };
 		64E459F02938BCAF00F82A2B /* FocusedKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedKeys.swift; sourceTree = "<group>"; };
 		64E459F22938C7AC00F82A2B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
-		64EB53862929E6A600D6CDDD /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
-		64F42647292B79FD00BF4DF6 /* AssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIndex.swift; sourceTree = "<group>"; };
-		64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
-		64FE2D3D293BA3D4007414CB /* SkipCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipCoding.swift; sourceTree = "<group>"; };
+		64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentProvider.swift; sourceTree = "<group>"; };
+		64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetIndex.swift; sourceTree = "<group>"; };
+		64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProgress.swift; sourceTree = "<group>"; };
+		64F7C5F4297D64490086ABC1 /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
+		64F7C5F6297D645A0086ABC1 /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
+		64F7C5F8297D646C0086ABC1 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		64F7C5FA297D64810086ABC1 /* VersionManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionManifest.swift; sourceTree = "<group>"; };
+		64F7C5FD297D64A40086ABC1 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		64F7C5FF297D64B50086ABC1 /* InstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCreator.swift; sourceTree = "<group>"; };
+		64F7C601297D64CA0086ABC1 /* InstancePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancePreferences.swift; sourceTree = "<group>"; };
+		64F7C603297D64DD0086ABC1 /* VanillaInstanceCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaInstanceCreator.swift; sourceTree = "<group>"; };
+		64F7C606297D65080086ABC1 /* DownloadedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedJavaInstallation.swift; sourceTree = "<group>"; };
+		64F7C60A297D65390086ABC1 /* LinkedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedJavaInstallation.swift; sourceTree = "<group>"; };
+		64F7C60C297D654A0086ABC1 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
+		64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJavaInstallation.swift; sourceTree = "<group>"; };
+		64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
 		64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,17 +254,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64065A8E2971CA91000BCE24 /* Java */ = {
-			isa = PBXGroup;
-			children = (
-				64292B72297282A200816536 /* DownloadedJavaInstallation.swift */,
-				64292B74297287F600816536 /* JreDownloader.swift */,
-				64769F6829730AAC0081E445 /* LinkedJavaInstallation.swift */,
-				6445316D29769ECE00222720 /* SavedJavaInstallation.swift */,
-			);
-			path = Java;
-			sourceTree = "<group>";
-		};
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,20 +282,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		643C7FF12927588000DDC1B3 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				643C7FF42927695E00DDC1B3 /* FileHandler.swift */,
-				3C4623D7EA74E868AD3AECE9 /* DownloadProgress.swift */,
-				3C462326A090F1BD4C08B7CD /* VersionManifest.swift */,
-				64EB53862929E6A600D6CDDD /* Version.swift */,
-				64F42647292B79FD00BF4DF6 /* AssetIndex.swift */,
-				64F4264B292BCCB900BF4DF6 /* ParallelDownloader.swift */,
-				64037CA3297C6ABB00F7FE79 /* ArgumentProvider.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		644DE1D12937C0D300C4A03E /* Util */ = {
@@ -341,21 +331,6 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
-		6459E1202976E344006DB3A4 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				6459E11E2976E291006DB3A4 /* RuntimePreferences.swift */,
-			);
-			path = Preferences;
-			sourceTree = "<group>";
-		};
-		649762B92935969100977467 /* Launcher */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Launcher;
-			sourceTree = "<group>";
-		};
 		649762BC2935A2D600977467 /* Create */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,19 +349,6 @@
 				64065A942971CD85000BCE24 /* JavaTests.swift */,
 			);
 			path = InnateMCTests;
-			sourceTree = "<group>";
-		};
-		649C8DDB297D5B4A000352F2 /* Kit */ = {
-			isa = PBXGroup;
-			children = (
-				6459E1202976E344006DB3A4 /* Preferences */,
-				64065A8E2971CA91000BCE24 /* Java */,
-				649762B92935969100977467 /* Launcher */,
-				64DF802F2934CFEF00F624F2 /* Instance */,
-				643C7FF12927588000DDC1B3 /* Data */,
-				64FE2D3D293BA3D4007414CB /* SkipCoding.swift */,
-			);
-			path = Kit;
 			sourceTree = "<group>";
 		};
 		64C334CC2922523500BB8570 = {
@@ -419,7 +381,7 @@
 		64C334D72922523600BB8570 /* InnateMC */ = {
 			isa = PBXGroup;
 			children = (
-				649C8DDB297D5B4A000352F2 /* Kit */,
+				64F7C5EA297D63800086ABC1 /* InnateKit */,
 				649762BC2935A2D600977467 /* Create */,
 				644DE1D22937C13F00C4A03E /* Instance */,
 				6416784F2923B6450012C9CC /* Preferences */,
@@ -480,15 +442,59 @@
 			path = InnateJsonTests;
 			sourceTree = "<group>";
 		};
-		64DF802F2934CFEF00F624F2 /* Instance */ = {
+		64F7C5EA297D63800086ABC1 /* InnateKit */ = {
 			isa = PBXGroup;
 			children = (
-				643C7FF6292769C900DDC1B3 /* Instance.swift */,
-				64DF80302934D03800F624F2 /* VanillaInstanceCreator.swift */,
-				64DF80322934D04A00F624F2 /* InstanceCreator.swift */,
-				6459E11C2976E256006DB3A4 /* InstancePreferences.swift */,
+				64F7C610297D657E0086ABC1 /* Preferences */,
+				64F7C605297D64FC0086ABC1 /* Java */,
+				64F7C5FC297D64920086ABC1 /* Instance */,
+				64F7C5EB297D63A70086ABC1 /* Data */,
+			);
+			path = InnateKit;
+			sourceTree = "<group>";
+		};
+		64F7C5EB297D63A70086ABC1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */,
+				64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */,
+				64F7C5F2297D64370086ABC1 /* DownloadProgress.swift */,
+				64F7C5F4297D64490086ABC1 /* FileHandler.swift */,
+				64F7C5F6297D645A0086ABC1 /* ParallelDownloader.swift */,
+				64F7C5F8297D646C0086ABC1 /* Version.swift */,
+				64F7C5FA297D64810086ABC1 /* VersionManifest.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		64F7C5FC297D64920086ABC1 /* Instance */ = {
+			isa = PBXGroup;
+			children = (
+				64F7C5FD297D64A40086ABC1 /* Instance.swift */,
+				64F7C5FF297D64B50086ABC1 /* InstanceCreator.swift */,
+				64F7C601297D64CA0086ABC1 /* InstancePreferences.swift */,
+				64F7C603297D64DD0086ABC1 /* VanillaInstanceCreator.swift */,
 			);
 			path = Instance;
+			sourceTree = "<group>";
+		};
+		64F7C605297D64FC0086ABC1 /* Java */ = {
+			isa = PBXGroup;
+			children = (
+				64F7C606297D65080086ABC1 /* DownloadedJavaInstallation.swift */,
+				64F7C60C297D654A0086ABC1 /* JreDownloader.swift */,
+				64F7C60A297D65390086ABC1 /* LinkedJavaInstallation.swift */,
+				64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */,
+			);
+			path = Java;
+			sourceTree = "<group>";
+		};
+		64F7C610297D657E0086ABC1 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -636,9 +642,9 @@
 			projectRoot = "";
 			targets = (
 				64C334D42922523600BB8570 /* InnateMC */,
+				649C8DD1297D5ABE000352F2 /* InnateMCTests */,
 				64CF0CAD292810EC00535DC8 /* InnateJson */,
 				64CF0CB4292810ED00535DC8 /* InnateJsonTests */,
-				649C8DD1297D5ABE000352F2 /* InnateMCTests */,
 			);
 		};
 /* End PBXProject section */
@@ -692,31 +698,47 @@
 			files = (
 				64CE1092297864A700366372 /* InstanceImageLogoPickerView.swift in Sources */,
 				646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */,
+				64F7C60B297D65390086ABC1 /* LinkedJavaInstallation.swift in Sources */,
+				64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */,
+				64F7C602297D64CA0086ABC1 /* InstancePreferences.swift in Sources */,
 				64A62C8D2977B454007A9597 /* InstanceSymbolLogoPickerView.swift in Sources */,
+				64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
+				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */,
 				64E459EB2938AE5A00F82A2B /* LaunchButtonStyle.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
+				64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
 				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
+				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
+				64F7C5F7297D645A0086ABC1 /* ParallelDownloader.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* ViewModel.swift in Sources */,
+				64F7C607297D65080086ABC1 /* DownloadedJavaInstallation.swift in Sources */,
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
+				64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceListCommands.swift in Sources */,
+				64F7C5FB297D64810086ABC1 /* VersionManifest.swift in Sources */,
 				646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */,
+				64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
 				64E459F12938BCAF00F82A2B /* FocusedKeys.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */,
+				64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
+				64F7C5F1297D641C0086ABC1 /* AssetIndex.swift in Sources */,
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
+				64F7C5F3297D64370086ABC1 /* DownloadProgress.swift in Sources */,
+				64F7C600297D64B50086ABC1 /* InstanceCreator.swift in Sources */,
 				64E459ED2938B75F00F82A2B /* KillButtonStyle.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 				64C41C1429366CAF00014E0F /* EnvironmentKeys.swift in Sources */,
@@ -1001,7 +1023,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1033,7 +1055,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

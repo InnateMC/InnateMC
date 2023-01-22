@@ -49,3 +49,4 @@ public final class JreDownloader {
         return "x86_64"
     }
 }
+
