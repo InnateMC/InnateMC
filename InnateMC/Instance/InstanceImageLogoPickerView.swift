@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct InstanceImageLogoPickerView: View {
     @State var shouldShowFileImporter: Bool = false

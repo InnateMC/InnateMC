@@ -16,7 +16,6 @@
 //
 
 import Cocoa
-import InnateKit
 import Foundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {

@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct NewVanillaInstanceView: View {
     @Environment(\.versionManifest) var versionManifest: [ManifestVersion]

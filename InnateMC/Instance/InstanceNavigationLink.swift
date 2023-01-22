@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct InstanceNavigationLink: View {
     @EnvironmentObject var viewModel: ViewModel

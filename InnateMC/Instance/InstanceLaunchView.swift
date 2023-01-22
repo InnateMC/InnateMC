@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct InstanceLaunchView: View {
     var instance: Instance

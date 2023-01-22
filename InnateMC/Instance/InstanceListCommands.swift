@@ -17,7 +17,6 @@
 
 import Foundation
 import SwiftUI
-import InnateKit
 
 struct InstanceListCommands: Commands {
     public var viewModel: ViewModel

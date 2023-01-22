@@ -15,7 +15,6 @@
 // along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 //
 
-import InnateKit
 import SwiftUI
 
 struct VersionManifestKey: EnvironmentKey {

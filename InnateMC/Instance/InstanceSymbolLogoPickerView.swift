@@ -16,7 +16,6 @@
 //
 
 import SwiftUI
-import InnateKit
 
 struct InstanceSymbolLogoPickerView: View {
     var instance: Instance

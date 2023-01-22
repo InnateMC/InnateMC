@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import InnateKit
 
 public class GlobalPreferences: Codable, ObservableObject {
     @Published public var runtime: RuntimePreferences
