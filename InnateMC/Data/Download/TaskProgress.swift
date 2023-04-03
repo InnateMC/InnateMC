@@ -18,7 +18,7 @@
 import Foundation
 import SwiftUI
 
-open class DownloadProgress: ObservableObject {
+open class TaskProgress: ObservableObject {
     @Published public var current: Int = 0
     @Published public var total: Int = 1
     public var callback: () -> Void = {print("no callback")}
@@ -38,7 +38,6 @@ open class DownloadProgress: ObservableObject {
     @MainActor
     open func inc() {
         self.current += 1
-//        print("\(self.current)/\(self.total)")
         if (self.current == self.total) {
             callback()
         }
@@ -57,11 +56,11 @@ open class DownloadProgress: ObservableObject {
         self.total = total
     }
     
-    public static func completed() -> DownloadProgress {
-        return DownloadProgress(current: 1, total: 1)
+    public static func completed() -> TaskProgress {
+        return TaskProgress(current: 1, total: 1)
     }
     
-    public func setFrom(_ other: DownloadProgress) {
+    public func setFrom(_ other: TaskProgress) {
         self.current = other.current
         self.total = other.total
     }

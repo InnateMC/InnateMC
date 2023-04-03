@@ -62,6 +62,8 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public var isRunning: Bool? = false
     public var lastPlayed: Date?
     public var preferences = InstancePreferences()
+    public var startOnFirstThread: Bool = false
+    public var gameArguments: [String]
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,
@@ -71,7 +73,8 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 isStarred: Bool,
                 logo: InstanceLogo,
                 description: String?,
-                debugString: String?
+                debugString: String?,
+                gameArguments: [String]
     ) {
         self.name = name
         self.assetIndex = assetIndex
@@ -83,10 +86,27 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         self.description = description
         self.debugString = debugString
         self.isRunning = false
+        self.gameArguments = gameArguments
+    }
+    
+    public func setPreferences(_ prefs: InstancePreferences) {
+        self.preferences = prefs
+    }
+    
+    public func setStartOnFirstThread() {
+        self.startOnFirstThread = true
     }
     
     public func getPath() -> URL {
         return FileHandler.instancesFolder.appendingPathComponent(self.name + ".innate", isDirectory: true)
+    }
+    
+    public func getGamePath() -> URL {
+        return getPath().appendingPathComponent("minecraft", isDirectory: true)
+    }
+    
+    public func getNativesPath() -> URL {
+        return getPath().appendingPathComponent("natives", isDirectory: true)
     }
     
     public func getMcJarPath() -> URL {
@@ -107,6 +127,14 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
+    }
+    
+    public func appendClasspath(args: inout [String]) {
+        let libString = self.libraries.map { lib in
+            return lib.getAbsolutePath().path
+        }.joined(separator: ":")
+        args.append("\(getMcJarPath().path):\(libString)");
+//        args.append("\(getMcJarPath().path)") // DEBUG
     }
 }
 
@@ -136,7 +164,7 @@ public class Library: Codable, Identifiable, InstanceData {
     }
     
     public func getAbsolutePath() -> URL {
-        return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: true)
+        return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: false)
     }
     
     public func asDownloadTask() -> DownloadTask {
@@ -229,14 +257,15 @@ extension Instance {
         return try! loadInstances()
     }
     
+    // DEPRECATED
     public func downloadMcJar() throws {
         if (self.minecraftJar.type == .local) {
             return
         }
-        ParallelDownloader.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: DownloadProgress(), callback: {})
+        ParallelExecutor.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: TaskProgress(), callback: {})
     }
     
-    public func downloadLibs(progress: DownloadProgress, callback: (() -> Void)?) {
+    public func downloadLibs(progress: TaskProgress, callback: (() -> Void)?) {
         var tasks: [DownloadTask] = []
         for library in libraries {
             if library.type == .local {
@@ -244,10 +273,13 @@ extension Instance {
             }
             tasks.append(library.asDownloadTask())
         }
-        ParallelDownloader.download(tasks, progress: progress, callback: callback)
+        if (self.minecraftJar.type == .remote) {
+            tasks.append(DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
+        }
+        ParallelExecutor.download(tasks, progress: progress, callback: callback)
     }
     
-    public func downloadAssets(progress: DownloadProgress, callback: (() -> Void)?) throws {
+    public func downloadAssets(progress: TaskProgress, callback: (() -> Void)?) throws {
         let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
         try index.downloadParallel(progress: progress, callback: callback)
     }

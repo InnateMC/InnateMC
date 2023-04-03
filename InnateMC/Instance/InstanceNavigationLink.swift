@@ -23,6 +23,7 @@ struct InstanceNavigationLink: View {
     @State var starHovered: Bool = false
     @State var instanceStarred: Bool? = nil
     @State var compactList: Bool? = nil
+    @State var launchedInstances: [Instance:InstanceProcess]? = nil
 
     var body: some View {
         HStack {
@@ -34,8 +35,13 @@ struct InstanceNavigationLink: View {
                     InstanceLogoView(instance: instance)
                         .frame(width: 48, height: 48)
                 }
+                
                 ZStack {
-                    if (instanceStarred ?? instance.isStarred) {
+                    if (launchedInstances ?? launcherData.launchedInstances).keys.contains(self.instance) {
+                        Image(systemName: "arrowtriangle.right.circle.fill")
+                            .foregroundColor(.green)
+                            .frame(width: 8, height: 8)
+                    } else if (instanceStarred ?? instance.isStarred) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
                             .frame(width: 8, height: 8)
@@ -48,6 +54,9 @@ struct InstanceNavigationLink: View {
             }
             .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
                 compactList = value
+            }
+            .onReceive(launcherData.$launchedInstances) { value in
+                launchedInstances = value
             }
             VStack {
                 HStack {

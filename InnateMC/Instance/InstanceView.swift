@@ -31,6 +31,7 @@ struct InstanceView: View {
     @State var starHovered: Bool = false
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
+    @State var launchedInstances: [Instance:InstanceProcess]? = nil
     
     var body: some View {
         ZStack {
@@ -162,6 +163,9 @@ struct InstanceView: View {
             .padding(.all, 6)
             .onReceive(launcherData.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
                 leftAlignedInstanceHeading = value
+            }
+            .onReceive(launcherData.$launchedInstances) { value in
+                launchedInstances = value
             }
         }
     }

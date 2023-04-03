@@ -52,7 +52,7 @@ struct NewVanillaInstanceView: View {
                         launcherData.showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button("Done") {
-                        let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil)
+                        let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
                         do {
                             launcherData.instances.append(try instance.install())
                             launcherData.showNewInstanceSheet = false

@@ -18,26 +18,24 @@
 import Foundation
 
 public class ArgumentProvider {
-    private var values: [String:String] = [:]
+    public var values: [String:String] = [:]
     
     public init() {
     }
     
-    public func accept(_ str: String) -> String {
-        let components = str.split(separator: " ")
+    public func accept(_ str: [String]) -> [String] {
         var visited: [String] = []
-        for component in components {
-            let componentStr = String(component)
+        for component in str {
             if component[component.startIndex] != "$" {
-                visited.append(componentStr)
+                visited.append(component)
                 continue
             }
-            let variable = String(componentStr.dropFirst(2).dropLast())
+            let variable = String(component.dropFirst(2).dropLast())
             if let value = values[variable] {
                 visited.append(value)
             }
         }
-        return visited.joined(separator: " ")
+        return visited
     }
     
     public func clientId(_ clientId: String) {

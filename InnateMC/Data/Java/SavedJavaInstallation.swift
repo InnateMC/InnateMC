@@ -38,6 +38,10 @@ public class SavedJavaInstallation: Codable, Identifiable {
         self.installationType = .detected
     }
     
+    public func getJavaExecutable() -> String {
+        return "\(javaHomePath)/bin/java"
+    }
+    
     public func getString() -> String {
         if (javaVersion == "") {
             return "\(javaVendor) at \(javaHomePath)/bin/java"

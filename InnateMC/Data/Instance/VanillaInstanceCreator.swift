@@ -22,12 +22,14 @@ public class VanillaInstanceCreator: InstanceCreator {
     public let versionUrl: URL
     public let sha1: String
     public let description: String?
+    public let data: LauncherData
     
-    public init(name: String, versionUrl: URL, sha1: String, description: String?) {
+    public init(name: String, versionUrl: URL, sha1: String, description: String?, data: LauncherData) {
         self.name = name
         self.versionUrl = versionUrl
         self.sha1 = sha1
         self.description = description
+        self.data = data
     }
     
     public func install() throws -> Instance {
@@ -40,7 +42,13 @@ public class VanillaInstanceCreator: InstanceCreator {
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
         let logo = InstanceLogo(logoType: .symbol, string: "tray.circle")
-        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, debugString: version.id)
+        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, debugString: version.id, gameArguments: version.arguments.game)
+        let prefs = InstancePreferences()
+        prefs.runtime = data.globalPreferences.runtime
+        if (version.arguments.jvm.contains("-XstartOnFirstThread")) {
+            instance.setStartOnFirstThread()
+        }
+        instance.setPreferences(prefs)
         try instance.createAsNewInstance()
         
         return instance

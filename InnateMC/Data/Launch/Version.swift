@@ -212,7 +212,7 @@ public class Version {
 }
 
 extension Version {
-    public func downloadLibraries() -> DownloadProgress {
+    public func downloadLibraries() -> TaskProgress {
         var tasks: [DownloadTask] = []
         for library in libraries {
             let pathComponents = library.downloads.artifact.path.split(separator: "/")
@@ -226,8 +226,8 @@ extension Version {
             print("")
             tasks.append(task)
         }
-        let progress = DownloadProgress()
-        ParallelDownloader.download(tasks, progress: progress) {}
+        let progress = TaskProgress()
+        ParallelExecutor.download(tasks, progress: progress) {}
         return progress
     }
 }

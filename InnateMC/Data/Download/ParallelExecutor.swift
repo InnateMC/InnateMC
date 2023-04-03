@@ -18,16 +18,28 @@
 import Foundation
 import CryptoKit
 
-public class ParallelDownloader {
-    fileprivate static let dispatchQueue = DispatchQueue(label: "Parallel Downloader")
-    public static var queuedTasks: [Task<(), Never>] = []
+public class ParallelExecutor {
+    public static func run(_ tasks: [() -> Void], progress: TaskProgress) {
+        progress.current = 0
+        progress.total = tasks.count
+        @Sendable func dispatch(_ task: @escaping () -> Void)  {
+            let _: Task<(), Never> = Task.init(priority: .medium, operation: {
+                task()
+                await progress.inc()
+            })
+        }
+        
+        for task in tasks {
+            dispatch(task)
+        }
+    }
     
-    public static func download(_ tasks: [DownloadTask], progress: DownloadProgress, callback: (() -> Void)?) {
+    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, callback: (() -> Void)?) {
         progress.current = 0
         progress.total = tasks.count
         let fm = FileManager.default
         @Sendable func dispatch(_ task: DownloadTask) {
-            let thing: Task<(), Never> = Task.init(priority: .medium, operation: {
+            let _: Task<(), Never> = Task.init(priority: .medium, operation: {
                 if progress.cancelled {
                     return
                 }

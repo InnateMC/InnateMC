@@ -16,7 +16,7 @@
 //
 
 import XCTest
-import InnateKit
+import InnateMC
 
 class InstanceTests: XCTestCase {
     private var manifest: [ManifestVersion] = []
@@ -39,7 +39,7 @@ class InstanceTests: XCTestCase {
             if (fm.fileExists(atPath: url.path)) {
                 try fm.removeItem(at: url)
             }
-            let ctor = VanillaInstanceCreator(name: "Test\(suffix)", versionUrl: URL(string: manver.url)!, sha1: manver.sha1, description: try! String(contentsOf: lipsumUrl))
+            let ctor = VanillaInstanceCreator(name: "Test\(suffix)", versionUrl: URL(string: manver.url)!, sha1: manver.sha1, description: try! String(contentsOf: lipsumUrl), data: LauncherData(dummy: true))
             let expected = try ctor.install()
             let actual = try Instance.loadFromDirectory(url)
             XCTAssertEqual(expected.name, actual.name)

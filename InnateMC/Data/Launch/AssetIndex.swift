@@ -50,7 +50,7 @@ public class AssetIndex: Codable {
         return AssetIndex(version: version, json: jsonStr, objects: strs)
     }
 
-    public func downloadParallel(progress: DownloadProgress, callback: (() -> Void)?) throws -> DownloadProgress {
+    public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws -> TaskProgress {
         let fm = FileManager.default
         let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
         let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
@@ -74,7 +74,7 @@ public class AssetIndex: Codable {
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
             tasks.append(DownloadTask(url: url, filePath: path, sha1: hash))
         }
-        ParallelDownloader.download(tasks, progress: progress, callback: callback)
+        ParallelExecutor.download(tasks, progress: progress, callback: callback)
         return progress
     }
 }
