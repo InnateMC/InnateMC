@@ -265,7 +265,19 @@ extension Instance {
         ParallelExecutor.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: TaskProgress(), callback: {})
     }
     
-    public func downloadLibs(progress: TaskProgress, callback: (() -> Void)?) {
+    public func extractNatives(progress: TaskProgress) {
+        let nativeLibraries = self.libraries.filter { $0.path.contains("natives") }
+        var extractTasks: [() -> Void] = []
+        for nativeLibrary in nativeLibraries {
+            extractTasks.append {
+                let nativeLibraryPath = nativeLibrary.getAbsolutePath()
+                
+            }
+        }
+        ParallelExecutor.run(extractTasks, progress: progress)
+    }
+    
+    public func downloadLibs(progress: TaskProgress) {
         var tasks: [DownloadTask] = []
         for library in libraries {
             if library.type == .local {
@@ -276,12 +288,12 @@ extension Instance {
         if (self.minecraftJar.type == .remote) {
             tasks.append(DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
         }
-        ParallelExecutor.download(tasks, progress: progress, callback: callback)
+        ParallelExecutor.download(tasks, progress: progress, callback: {})
     }
     
-    public func downloadAssets(progress: TaskProgress, callback: (() -> Void)?) throws {
-        let index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
-        try index.downloadParallel(progress: progress, callback: callback)
+    public func downloadAssets(progress: TaskProgress) {
+        let index = try! AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
+        try! index.downloadParallel(progress: progress, callback: {})
     }
     
     func createAsNewInstance() throws {

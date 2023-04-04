@@ -90,11 +90,11 @@ struct InstanceLaunchView: View {
                             }
                             downloadProgress.callback = {}
                         }
-                        // DO SOMETHING
+                        instance.extractNatives(progress: downloadProgress)
                     }
-                    try! instance.downloadAssets(progress: downloadProgress, callback: {})
+                    instance.downloadAssets(progress: downloadProgress)
                 }
-                instance.downloadLibs(progress: downloadProgress, callback: {})
+                instance.downloadLibs(progress: downloadProgress)
             })
             .padding(.all, 10)
         }
