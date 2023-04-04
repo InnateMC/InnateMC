@@ -21,6 +21,11 @@
 
 @implementation InnateZipExtractor
 
++ (instancetype)create:(NSURL *)inputFile output:(NSURL *)outputDir {
+    InnateZipExtractor* ize = [[InnateZipExtractor alloc] init:inputFile output:outputDir];
+    return ize;
+}
+
 - (instancetype)init:(NSURL *)inputFile output:(NSURL *)outputDir {
     self = [super init];
     input = inputFile;

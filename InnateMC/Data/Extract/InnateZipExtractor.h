@@ -25,6 +25,8 @@
     NSURL *output;
 }
 
++ (instancetype)create:(NSURL *)inputFile output:(NSURL *)outputDir;
+
 - (instancetype)init:(NSURL *)inputFile output:(NSURL *)outputDir;
 
 - (void)extract;

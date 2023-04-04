@@ -42,9 +42,8 @@
 		646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E32977E95300BA9477 /* SFSymbols13List.swift */; };
 		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
 		648C831329DB375400007603 /* InnateZipExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 648C831229DB375400007603 /* InnateZipExtractor.m */; };
-		648C831629DBDD6A00007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C831529DBDD6A00007603 /* libzip.5.5.dylib */; };
-		648C831729DBDD6A00007603 /* libzip.5.5.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 648C831529DBDD6A00007603 /* libzip.5.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		648C831C29DBDEA000007603 /* InnateNativeExtractor.c in Sources */ = {isa = PBXBuildFile; fileRef = 648C831B29DBDEA000007603 /* InnateNativeExtractor.c */; };
+		648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		649C8DCA297D5A95000352F2 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
@@ -127,7 +126,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				648C831729DBDD6A00007603 /* libzip.5.5.dylib in Embed Frameworks */,
 				649C8DCB297D5A95000352F2 /* InnateJson.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -181,6 +179,8 @@
 		648C831A29DBDEA000007603 /* InnateNativeExtractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateNativeExtractor.h; sourceTree = "<group>"; };
 		648C831B29DBDEA000007603 /* InnateNativeExtractor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = InnateNativeExtractor.c; sourceTree = "<group>"; };
 		648C831D29DBE9F100007603 /* zipconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zipconf.h; sourceTree = "<group>"; };
+		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
+		648C832329DBF01600007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzip.5.5.dylib; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolLogoPickerView.swift; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */,
 				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
-				648C831629DBDD6A00007603 /* libzip.5.5.dylib in Frameworks */,
 				649C8DCA297D5A95000352F2 /* InnateJson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +282,7 @@
 		643B39FA29274F6100AEC71C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				648C831E29DBEE9900007603 /* libzip.5.5.dylib */,
 				648C831529DBDD6A00007603 /* libzip.5.5.dylib */,
 			);
 			name = Frameworks;
@@ -334,6 +335,14 @@
 			path = Extract;
 			sourceTree = "<group>";
 		};
+		648C832229DBEFDE00007603 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				648C832329DBF01600007603 /* libzip.5.5.dylib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		649762BC2935A2D600977467 /* Create */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +366,7 @@
 		64C334CC2922523500BB8570 = {
 			isa = PBXGroup;
 			children = (
+				648C832229DBEFDE00007603 /* lib */,
 				645AFA94292C9E1500CD3F7E /* HEADER */,
 				64C3350B2922B0B400BB8570 /* LICENSE */,
 				64C3350A2922734400BB8570 /* README.md */,
@@ -1020,6 +1030,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
@@ -1056,6 +1070,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.1.0;

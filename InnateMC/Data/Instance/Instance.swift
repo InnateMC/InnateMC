@@ -266,12 +266,16 @@ extension Instance {
     }
     
     public func extractNatives(progress: TaskProgress) {
+        if !FileManager.default.fileExists(atPath: getNativesPath().path) {
+            try! FileManager.default.createDirectory(at: getNativesPath(), withIntermediateDirectories: true)
+        }
         let nativeLibraries = self.libraries.filter { $0.path.contains("natives") }
         var extractTasks: [() -> Void] = []
         for nativeLibrary in nativeLibraries {
             extractTasks.append {
                 let nativeLibraryPath = nativeLibrary.getAbsolutePath()
-                
+                let extractor = InnateZipExtractor.create(nativeLibraryPath, output: self.getNativesPath())!
+                extractor.extract()
             }
         }
         ParallelExecutor.run(extractTasks, progress: progress)
