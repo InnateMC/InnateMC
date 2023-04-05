@@ -61,8 +61,6 @@
 		64C5621429C083AA003402F0 /* InstanceProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5621329C083AA003402F0 /* InstanceProcess.swift */; };
 		64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */; };
 		64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* ImageLogoPickerView.swift */; };
-		64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
-		64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */; };
 		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
@@ -96,20 +94,6 @@
 			remoteInfo = InnateJson;
 		};
 		649C8DD6297D5ABE000352F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64C334D42922523600BB8570;
-			remoteInfo = InnateMC;
-		};
-		64CF0CB7292810ED00535DC8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64CF0CAD292810EC00535DC8;
-			remoteInfo = InnateJson;
-		};
-		64CF0CB9292810ED00535DC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
 			proxyType = 1;
@@ -200,8 +184,6 @@
 		64CE1091297864A700366372 /* ImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLogoPickerView.swift; sourceTree = "<group>"; };
 		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
-		64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateJsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateJsonTests.m; sourceTree = "<group>"; };
 		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
 		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
@@ -248,14 +230,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64CF0CB2292810ED00535DC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64CF0CB6292810ED00535DC8 /* InnateJson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +341,6 @@
 				64C33508292272F500BB8570 /* .gitignore */,
 				64C334D72922523600BB8570 /* InnateMC */,
 				64CF0CAF292810EC00535DC8 /* InnateJson */,
-				64CF0CBB292810ED00535DC8 /* InnateJsonTests */,
 				649C8DD3297D5ABE000352F2 /* InnateMCTests */,
 				64C334D62922523600BB8570 /* Products */,
 				643B39FA29274F6100AEC71C /* Frameworks */,
@@ -379,7 +352,6 @@
 			children = (
 				64C334D52922523600BB8570 /* InnateMC.app */,
 				64CF0CAE292810EC00535DC8 /* InnateJson.framework */,
-				64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */,
 				649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */,
 			);
 			name = Products;
@@ -437,14 +409,6 @@
 				64CDBCD329294CB700DF0592 /* module.modulemap */,
 			);
 			path = InnateJson;
-			sourceTree = "<group>";
-		};
-		64CF0CBB292810ED00535DC8 /* InnateJsonTests */ = {
-			isa = PBXGroup;
-			children = (
-				64CF0CBC292810ED00535DC8 /* InnateJsonTests.m */,
-			);
-			path = InnateJsonTests;
 			sourceTree = "<group>";
 		};
 		64E43DE829DD5C590008B0FA /* include */ = {
@@ -624,25 +588,6 @@
 			productReference = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		64CF0CB4292810ED00535DC8 /* InnateJsonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64CF0CC8292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJsonTests" */;
-			buildPhases = (
-				64CF0CB1292810ED00535DC8 /* Sources */,
-				64CF0CB2292810ED00535DC8 /* Frameworks */,
-				64CF0CB3292810ED00535DC8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64CF0CB8292810ED00535DC8 /* PBXTargetDependency */,
-				64CF0CBA292810ED00535DC8 /* PBXTargetDependency */,
-			);
-			name = InnateJsonTests;
-			productName = InnateJsonTests;
-			productReference = 64CF0CB5292810ED00535DC8 /* InnateJsonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -664,10 +609,6 @@
 					};
 					64CF0CAD292810EC00535DC8 = {
 						CreatedOnToolsVersion = 13.2.1;
-					};
-					64CF0CB4292810ED00535DC8 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 64C334D42922523600BB8570;
 					};
 				};
 			};
@@ -692,7 +633,6 @@
 				64C334D42922523600BB8570 /* InnateMC */,
 				649C8DD1297D5ABE000352F2 /* InnateMCTests */,
 				64CF0CAD292810EC00535DC8 /* InnateJson */,
-				64CF0CB4292810ED00535DC8 /* InnateJsonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -717,13 +657,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		64CF0CAC292810EC00535DC8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64CF0CB3292810ED00535DC8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -812,14 +745,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64CF0CB1292810ED00535DC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64CF0CBD292810ED00535DC8 /* InnateJsonTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -832,16 +757,6 @@
 			isa = PBXTargetDependency;
 			target = 64C334D42922523600BB8570 /* InnateMC */;
 			targetProxy = 649C8DD6297D5ABE000352F2 /* PBXContainerItemProxy */;
-		};
-		64CF0CB8292810ED00535DC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64CF0CAD292810EC00535DC8 /* InnateJson */;
-			targetProxy = 64CF0CB7292810ED00535DC8 /* PBXContainerItemProxy */;
-		};
-		64CF0CBA292810ED00535DC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64C334D42922523600BB8570 /* InnateMC */;
-			targetProxy = 64CF0CB9292810ED00535DC8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1155,42 +1070,6 @@
 			};
 			name = Release;
 		};
-		64CF0CC5292810ED00535DC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJsonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InnateMC.app/Contents/MacOS/InnateMC";
-			};
-			name = Debug;
-		};
-		64CF0CC6292810ED00535DC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJsonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InnateMC.app/Contents/MacOS/InnateMC";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1226,15 +1105,6 @@
 			buildConfigurations = (
 				64CF0CC3292810ED00535DC8 /* Debug */,
 				64CF0CC4292810ED00535DC8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64CF0CC8292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJsonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64CF0CC5292810ED00535DC8 /* Debug */,
-				64CF0CC6292810ED00535DC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
