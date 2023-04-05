@@ -261,7 +261,21 @@ extension Arguments {
             if jvmJson is String {
                 jvmArgs.append(jvmJson as! String)
             }
+            else if let jvmJson = jvmJson as? [String:Any] {
+                let rules = jvmJson["rules"] as! [Any]
+                for rule in rules {
+                    if let rule = rule as? [String:Any] {
+                        if rule["action"] as! String == "allow" && (rule["os"] as? [String:Any])?["name"] as? String == "osx" {
+                            // actual bruh moment
+                            jvmArgs.append(contentsOf: jvmJson["value"] as! [String])
+                            break
+                            
+                        }
+                    }
+                }
+            }
         }
+        print(jvmArgs)
         return Arguments(game: gameArgs, jvm: jvmArgs)
     }
 }
