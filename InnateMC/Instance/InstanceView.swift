@@ -21,13 +21,7 @@ struct InstanceView: View {
     @State var instance: Instance
     @State var disabled: Bool = false
     @EnvironmentObject var launcherData: LauncherData
-    @State var instanceStarred: Bool? = nil
-    @State var leftAlignedInstanceHeading: Bool? = nil
-    private var leftAlignedInstanceHeadingNotNull: Bool {
-        get {
-            leftAlignedInstanceHeading ?? launcherData.globalPreferences.ui.leftAlignedInstanceHeading
-        }
-    }
+    @State var instanceStarred: Bool = false
     @State var starHovered: Bool = false
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
@@ -40,7 +34,7 @@ struct InstanceView: View {
                     InstanceLogoView(instance: instance)
                         .frame(width: 128, height: 128)
                         .padding(.all, 20)
-                        .opacity(logoHovered ? 0.5 : 1)
+                        .opacity(logoHovered ? 0.75 : 1)
                         .onHover(perform: { value in
                             withAnimation {
                                 logoHovered = value
@@ -51,18 +45,12 @@ struct InstanceView: View {
                         }
                     VStack {
                         HStack {
-                            if !leftAlignedInstanceHeadingNotNull {
-                                Spacer()
-                            }
                             Text(instance.name)
                                 .font(.largeTitle)
                             createInstanceStar()
                             Spacer()
                         }
                         HStack {
-                            if !leftAlignedInstanceHeadingNotNull {
-                                Spacer()
-                            }
                             Text(instance.someDebugString)
                                 .font(.caption)
                                 .padding(.all, 6)
@@ -90,18 +78,18 @@ struct InstanceView: View {
                 createTabView()
             }
             .padding(.all, 6)
-            .onReceive(launcherData.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
-                leftAlignedInstanceHeading = value
-            }
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
+            }
+            .onAppear {
+                instanceStarred = instance.isStarred
             }
         }
     }
     
     @ViewBuilder
     func createInstanceStar() -> some View {
-        if instanceStarred ?? instance.isStarred {
+        if instanceStarred {
             Image(systemName: "star.fill")
                 .resizable()
                 .foregroundColor(starHovered ? .gray : .yellow)

@@ -23,7 +23,6 @@ struct UiPreferencesView: View {
     var body: some View {
         Form {
             Toggle("Compact Instance List", isOn: $launcherData.globalPreferences.ui.compactList)
-            Toggle("Left-Aligned Instance Heading", isOn: $launcherData.globalPreferences.ui.leftAlignedInstanceHeading)
         }
         .padding(.all, 16.0)
     }
