@@ -17,6 +17,7 @@
 
 import Foundation
 import InnateJson
+import CryptoKit
 
 public class Version {
     public let arguments: Arguments
@@ -48,21 +49,24 @@ public class Version {
     }
 
     public static func download(_ url: URL, sha1: String?) throws -> Version {
-        let contents = try String(contentsOf: url)
-        let json = InnateParser.readJson(contents)!
-        // TODO verify sha1
+        let contents = try Data(contentsOf: url)
+        let realSha = Insecure.SHA1.hash(data: contents).compactMap { String(format: "%02x", $0) }.joined()
+        if realSha != sha1 {
+            print("Invalid SHA hash for version json \(url.path), ignoring")
+        }
+        let json = try JSONSerialization.jsonObject(with: contents) as! [String:Any]
         return deserialize(json)
     }
 
-    public static func deserialize(_ dict: [String: InnateValue]) -> Version {
+    public static func deserialize(_ dict: [String: Any]) -> Version {
         let args = Arguments.deserialize(dict)
-        let assetIndex = PartialAssetIndex.deserialize(dict["assetIndex"]!.asObject()!)
-        let downloads = Downloads.deserialize(dict["downloads"]!.asObject()!)
-        let id = dict["id"]!.asString()!
-        let libraries = Library.deserializeArray(dict["libraries"]!.asArray()!)
-        let mainClass = dict["mainClass"]!.asString()!
-        let type = dict["type"]!.asString()!
-        let releaseTime = dict["releaseTime"]!.asString()!
+        let assetIndex = PartialAssetIndex.deserialize(dict["assetIndex"] as! [String:Any])
+        let downloads = Downloads.deserialize(dict["downloads"] as! [String:Any])
+        let id = dict["id"] as! String
+        let libraries = Library.deserializeArray(dict["libraries"] as! [Any])
+        let mainClass = dict["mainClass"] as! String
+        let type = dict["type"] as! String
+        let releaseTime = dict["releaseTime"] as! String
         return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, id: id, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
     
@@ -82,13 +86,13 @@ public class Version {
                 self.url = url
             }
             
-            public static func deserialize(_ downloadObj: [String: InnateValue]) -> Download {
-                Download(sha1: downloadObj["sha1"]!.asString()!, url: downloadObj["url"]!.asString()!)
+            public static func deserialize(_ downloadObj: [String: Any]) -> Download {
+                Download(sha1: downloadObj["sha1"] as! String, url: downloadObj["url"] as! String)
             }
         }
 
-        public static func deserialize(_ downloadsObj: [String: InnateValue]) -> Downloads {
-            Downloads(client: Download.deserialize(downloadsObj["client"]!.asObject()!))
+        public static func deserialize(_ downloadsObj: [String: Any]) -> Downloads {
+            Downloads(client: Download.deserialize(downloadsObj["client"] as! [String:Any]))
         }
     }
 
@@ -119,25 +123,25 @@ public class Version {
                     self.url = url
                 }
 
-                public static func deserialize(_ artifactObj: [String: InnateValue]) -> Artifact {
-                    Artifact(path: artifactObj["path"]!.asString()!, sha1: artifactObj["sha1"]!.asString()!, url: artifactObj["url"]!.asString()!)
+                public static func deserialize(_ artifactObj: [String: Any]) -> Artifact {
+                    Artifact(path: artifactObj["path"] as! String, sha1: artifactObj["sha1"] as! String, url: artifactObj["url"] as! String)
                 }
             }
 
-            public static func deserialize(_ downloadsObj: [String: InnateValue]) -> Downloads {
+            public static func deserialize(_ downloadsObj: [String: Any]) -> Downloads {
                 let artifactObj = downloadsObj["artifact"]
                 if let artifactObj = artifactObj {
-                    return Downloads(artifact: Artifact.deserialize(artifactObj.asObject()!))
+                    return Downloads(artifact: Artifact.deserialize(artifactObj as! [String:Any]))
                 }
-                return Downloads(artifact: Artifact.deserialize(downloadsObj["classifiers"]!.asObject()!["natives-osx"]!.asObject()!))
+                return Downloads(artifact: Artifact.deserialize((downloadsObj["classifiers"] as! [String:Any])["natives-osx"] as! [String:Any]))
             }
         }
         
-        public static func deserializeArray(_ librariesArray: [InnateValue]) -> [Library] {
+        public static func deserializeArray(_ librariesArray: [Any]) -> [Library] {
             var libraries: [Library] = []
             for libraryJson in librariesArray {
-                if libraryJson.isObject() {
-                    let lib = deserialize(libraryJson.asObject()!)
+                if libraryJson is [String:Any] {
+                    let lib = deserialize(libraryJson as! [String:Any])
                     if let lib = lib {
                         libraries.append(lib)
                     }
@@ -146,8 +150,8 @@ public class Version {
             return libraries
         }
         
-        public static func deserialize(_ libraryObj: [String: InnateValue]) -> Library? {
-            let rulesArr = libraryObj["rules"]?.asArray()
+        public static func deserialize(_ libraryObj: [String: Any]) -> Library? {
+            let rulesArr = libraryObj["rules"] as? [Any]
             if let rulesArr = rulesArr {
                 let rules = Rule.deserializeArray(rulesArr)
                 for rule in rules {
@@ -156,7 +160,7 @@ public class Version {
                     }
                 }
             }
-            return Library(downloads: Downloads.deserialize(libraryObj["downloads"]!.asObject()!), name: libraryObj["name"]!.asString()!)
+            return Library(downloads: Downloads.deserialize(libraryObj["downloads"] as! [String:Any]), name: libraryObj["name"] as! String)
         }
     }
 
@@ -178,11 +182,11 @@ public class Version {
                 self.arch = arch
             }
 
-            public static func deserialize(_ osObj: [String: InnateValue]?) -> OS {
+            public static func deserialize(_ osObj: [String: Any]?) -> OS {
                 guard let osObj = osObj else {
                     return OS(name: "osx", arch: nil)
                 }
-                return OS(name: osObj["name"]?.asString(), arch: osObj["arch"]?.asString())
+                return OS(name: osObj["name"] as? String, arch: osObj["arch"] as? String)
             }
         }
 
@@ -195,15 +199,15 @@ public class Version {
             fatalError("Bad type")
         }
         
-        public static func deserialize(_ ruleObj: [String: InnateValue]) -> Rule {
-            Rule(action: ruleObj["action"]!.asString()!, os: OS.deserialize(ruleObj["os"]?.asObject()!))
+        public static func deserialize(_ ruleObj: [String: Any]) -> Rule {
+            Rule(action: ruleObj["action"] as! String, os: OS.deserialize(ruleObj["os"] as? [String:Any]))
         }
 
-        public static func deserializeArray(_ rulesArray: [InnateValue]) -> [Rule] {
+        public static func deserializeArray(_ rulesArray: [Any]) -> [Rule] {
             var rules: [Rule] = []
             for ruleJson in rulesArray {
-                if ruleJson.isObject() {
-                    rules.append(deserialize(ruleJson.asObject()!))
+                if ruleJson is [String:Any] {
+                    rules.append(deserialize(ruleJson as! [String:Any]))
                 }
             }
             return rules
@@ -233,29 +237,29 @@ extension Version {
 }
 
 extension PartialAssetIndex {
-    public static func deserialize(_ assetIndexObj: [String: InnateValue]) -> PartialAssetIndex {
-        PartialAssetIndex(id: assetIndexObj["id"]!.asString()!, sha1: assetIndexObj["sha1"]!.asString()!, url: assetIndexObj["url"]!.asString()!)
+    public static func deserialize(_ assetIndexObj: [String: Any]) -> PartialAssetIndex {
+        PartialAssetIndex(id: assetIndexObj["id"] as! String, sha1: assetIndexObj["sha1"] as! String, url: assetIndexObj["url"] as! String)
     }
 }
 
 extension Arguments {
-    public static func deserialize(_ argumentsObj: [String: InnateValue]) -> Arguments {
-        let root = argumentsObj["arguments"]?.asObject()
+    public static func deserialize(_ argumentsObj: [String: Any]) -> Arguments {
+        let root = argumentsObj["arguments"] as? [String:Any]
         guard let root = root else {
-            return Arguments(game: [argumentsObj["minecraftArguments"]!.asString()!], jvm: [])
+            return Arguments(game: [argumentsObj["minecraftArguments"] as! String], jvm: [])
         }
-        let gameArr = root["game"]!.asArray()!
+        let gameArr = root["game"] as! [Any]
         var gameArgs: [String] = []
         for gameJson in gameArr {
-            if gameJson.isString() {
-                gameArgs.append(gameJson.asString()!)
+            if gameJson is String {
+                gameArgs.append(gameJson as! String)
             }
         }
-        let jvmArr = root["jvm"]!.asArray()!
+        let jvmArr = root["jvm"] as! [Any]
         var jvmArgs: [String] = []
         for jvmJson in jvmArr {
-            if jvmJson.isString() {
-                jvmArgs.append(jvmJson.asString()!)
+            if jvmJson is String {
+                jvmArgs.append(jvmJson as! String)
             }
         }
         return Arguments(game: gameArgs, jvm: jvmArgs)
