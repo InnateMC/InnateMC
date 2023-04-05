@@ -22,8 +22,6 @@ struct ContentView: View {
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance] = []
-    @State var selectedInstance: Instance? = nil
-    @FocusedValue(\.selectedInstance) private var focusedSelectedInstance: Instance?
     
     var body: some View {
         NavigationView {
@@ -51,7 +49,7 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-        .probablySearchable(text: $searchTerm)
+        .macOS12Searchable(text: $searchTerm)
     }
     
     @ViewBuilder
@@ -87,9 +85,11 @@ struct ContentView: View {
     func createMacOS11TextField() -> some View {
         if #available(macOS 12.0, *) {
         } else {
-            TextField("Search...", text: $searchTerm)
-                .padding([.top, .bottom, .trailing], 8.0)
+            TextField("Search", text: $searchTerm)
+                .padding(.trailing, 8.0)
                 .padding(.leading, 10.0)
+                .padding([.top, .bottom], 9.0)
+                .frame(height: 80)
                 .accessibilityLabel("Search for Instance")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
@@ -98,7 +98,7 @@ struct ContentView: View {
 
 extension NavigationView {
     @ViewBuilder
-    func probablySearchable(text: Binding<String>) -> some View {
+    func macOS12Searchable(text: Binding<String>) -> some View {
         if #available(macOS 12.0, *) {
             self.searchable(text: text, placement: .sidebar)
         } else {
