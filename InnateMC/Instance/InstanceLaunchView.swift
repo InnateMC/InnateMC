@@ -32,9 +32,11 @@ struct InstanceLaunchView: View {
                 if (launchedInstances ?? launcherData.launchedInstances).keys.contains(instance) {
                     Button(action: {
                         // TODO: show a warning message
+                        let launchData = launcherData.launchedInstances[instance]
+                        launchData?.process.interrupt()
                         launcherData.launchedInstances.removeValue(forKey: instance)
                     }, label: {
-                        Text("Kill")
+                        Text("Close")
                             .font(.title2)
                     })
                 } else {

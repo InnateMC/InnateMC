@@ -22,13 +22,13 @@ public class AssetIndex: Codable {
     public let version: String
     public let jsonData: Data
     public let objects: [String: [String: String]]
-
+    
     init(version: String, jsonData: Data, objects: [String: [String: String]]) {
         self.version = version
         self.jsonData = jsonData
         self.objects = objects
     }
-
+    
     public static func get(version: String, urlStr: String) throws -> AssetIndex {
         let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
         let indexesFile: URL = indexes.appendingPathComponent(version + ".json", isDirectory: false)
@@ -42,18 +42,24 @@ public class AssetIndex: Codable {
             fatalError("Not possible")
         }
     }
-
+    
     public static func fromJson(_ jsonData: Data, version: String) throws -> AssetIndex {
         let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [String:Any]
         let objects = jsonObject["objects"] as! [String:Any]
         let strs = objects.mapValues {
-            ($0 as! [String:Any]).mapValues { v in
-                return v as! String
+            ($0 as! [String:Any]).mapValues { v -> String in
+                if let stringValue = v as? String {
+                    return stringValue
+                } else if let numberValue = v as? NSNumber {
+                    return numberValue.stringValue
+                }
+                print(v)
+                fatalError()
             }
         }
         return AssetIndex(version: version, jsonData: jsonData, objects: strs)
     }
-
+    
     public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws -> TaskProgress {
         let fm = FileManager.default
         let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
