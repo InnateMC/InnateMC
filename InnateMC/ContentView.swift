@@ -38,19 +38,9 @@ struct ContentView: View {
                 }
                 List {
                     ForEach(instances) { instance in
-                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                            NavigationLink(destination: {
-                                InstanceView(instance: instance)
-                                    .padding(.top, 10)
-                            }){
-                                InstanceNavigationLink(instance: instance)
-                            }
-                            .tag(instance)
-                            .padding(.all, 4)
-                        }
+                        createInstanceNavigationLink(instance: instance)
                     }
                     .onMove { indices, newOffset in
-                        instances.move(fromOffsets: indices, toOffset: newOffset)
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
@@ -61,25 +51,43 @@ struct ContentView: View {
             .sheet(isPresented: $launcherData.showNewInstanceSheet) {
                 NewInstanceView()
             }
-            .navigationTitle("Instances").toolbar{
-                Spacer()
-                Toggle(isOn: $starredOnly) {
-                    if(starredOnly) {
-                        Image(systemName: "star.fill")
-                    } else{
-                        Image(systemName: "star")
-                    }
-                }
-                Button(action:{launcherData.showNewInstanceSheet = true}) {
-                    Image(systemName: "plus")
-                }
-            }
+            .navigationTitle("Instances")
+            .toolbar { createToolbar() }
             
             Text("Select an instance")
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
         .probablySearchable(text: $searchTerm)
+    }
+    
+    @ViewBuilder
+    func createInstanceNavigationLink(instance: Instance) -> some View {
+        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+            NavigationLink(destination: {
+                InstanceView(instance: instance)
+                    .padding(.top, 10)
+            }){
+                InstanceNavigationLink(instance: instance)
+            }
+            .tag(instance)
+            .padding(.all, 4)
+        }
+    }
+    
+    @ViewBuilder
+    func createToolbar() -> some View {
+        Spacer()
+        Toggle(isOn: $starredOnly) {
+            if(starredOnly) {
+                Image(systemName: "star.fill")
+            } else{
+                Image(systemName: "star")
+            }
+        }
+        Button(action:{launcherData.showNewInstanceSheet = true}) {
+            Image(systemName: "plus")
+        }
     }
 }
 

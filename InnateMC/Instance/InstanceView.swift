@@ -56,29 +56,7 @@ struct InstanceView: View {
                             }
                             Text(instance.name)
                                 .font(.largeTitle)
-                            if instanceStarred ?? instance.isStarred {
-                                Image(systemName: "star.fill")
-                                    .resizable()
-                                    .foregroundColor(starHovered ? .gray : .yellow)
-                                    .onTapGesture {
-                                        instance.isStarred = false
-                                    }
-                                    .frame(width: 16, height: 16)
-
-                            } else {
-                                Image(systemName: "star")
-                                    .resizable()
-                                    .foregroundColor(starHovered ? .yellow : .gray)
-                                    .onTapGesture {
-                                        instance.isStarred = true
-                                    }
-                                    .frame(width: 16, height: 16)
-                                    .onHover { hoverValue in
-                                        withAnimation {
-                                            starHovered = hoverValue
-                                        }
-                                    }
-                            }
+                            createInstanceStar()
                             Spacer()
                         }
                         HStack {
@@ -99,27 +77,7 @@ struct InstanceView: View {
                     }
                 }
                 .sheet(isPresented: $showLogoSheet) {
-                    VStack {
-                        TabView {
-                            ImageLogoPickerView(instance: instance)
-                                .tabItem {
-                                    Text("Image")
-                                }
-                            SymbolLogoPickerView(instance: instance, logo: $instance.logo)
-                                .tabItem {
-                                    Text("Symbol")
-                                }
-                        }
-                        Button("Done") {
-                            withAnimation {
-                                showLogoSheet = false
-                            }
-                        }
-                        .padding()
-                        .keyboardShortcut(.cancelAction)
-                    }
-                    .regularMaterialBackground()
-                    .padding(.all, 15)
+                    createLogoSheet()
                 }
                 HStack {
                     if instance.description != nil {
@@ -129,36 +87,7 @@ struct InstanceView: View {
                     Spacer()
                 }
                 Spacer()
-                TabView {
-                    InstanceLaunchView(instance: instance)
-                        .tabItem {
-                            Label("Launch", systemImage: "bolt")
-                        }
-                    InstanceRuntimeView(instance: $instance)
-                        .tabItem {
-                            Label("Runtime", systemImage: "bolt")
-                        }
-                    TodoView()
-                        .tabItem {
-                            Label("Mods", systemImage: "bolt")
-                        }
-                    TodoView()
-                        .tabItem {
-                            Label("Resource Packs", systemImage: "bolt")
-                        }
-                    TodoView()
-                        .tabItem {
-                            Label("Worlds", systemImage: "bolt")
-                        }
-                    TodoView()
-                        .tabItem {
-                            Label("Screenshots", systemImage: "bolt")
-                        }
-                    TodoView()
-                        .tabItem {
-                            Label("Misc", systemImage: "bolt")
-                        }
-                }.padding(.all, 4)
+                createTabView()
             }
             .padding(.all, 6)
             .onReceive(launcherData.globalPreferences.ui.$leftAlignedInstanceHeading) { value in
@@ -168,6 +97,92 @@ struct InstanceView: View {
                 launchedInstances = value
             }
         }
+    }
+    
+    @ViewBuilder
+    func createInstanceStar() -> some View {
+        if instanceStarred ?? instance.isStarred {
+            Image(systemName: "star.fill")
+                .resizable()
+                .foregroundColor(starHovered ? .gray : .yellow)
+                .onTapGesture {
+                    instance.isStarred = false
+                }
+                .frame(width: 16, height: 16)
+            
+        } else {
+            Image(systemName: "star")
+                .resizable()
+                .foregroundColor(starHovered ? .yellow : .gray)
+                .onTapGesture {
+                    instance.isStarred = true
+                }
+                .frame(width: 16, height: 16)
+                .onHover { hoverValue in
+                    withAnimation {
+                        starHovered = hoverValue
+                    }
+                }
+        }
+    }
+    
+    @ViewBuilder
+    func createTabView() -> some View {
+        TabView {
+            InstanceLaunchView(instance: instance)
+                .tabItem {
+                    Label("Launch", systemImage: "bolt")
+                }
+            InstanceRuntimeView(instance: $instance)
+                .tabItem {
+                    Label("Runtime", systemImage: "bolt")
+                }
+            TodoView()
+                .tabItem {
+                    Label("Mods", systemImage: "bolt")
+                }
+            TodoView()
+                .tabItem {
+                    Label("Resource Packs", systemImage: "bolt")
+                }
+            TodoView()
+                .tabItem {
+                    Label("Worlds", systemImage: "bolt")
+                }
+            TodoView()
+                .tabItem {
+                    Label("Screenshots", systemImage: "bolt")
+                }
+            TodoView()
+                .tabItem {
+                    Label("Misc", systemImage: "bolt")
+                }
+        }.padding(.all, 4)
+    }
+    
+    @ViewBuilder
+    func createLogoSheet() -> some View {
+        VStack {
+            TabView {
+                ImageLogoPickerView(instance: instance)
+                    .tabItem {
+                        Text("Image")
+                    }
+                SymbolLogoPickerView(instance: instance, logo: $instance.logo)
+                    .tabItem {
+                        Text("Symbol")
+                    }
+            }
+            Button("Done") {
+                withAnimation {
+                    showLogoSheet = false
+                }
+            }
+            .padding()
+            .keyboardShortcut(.cancelAction)
+        }
+        .regularMaterialBackground()
+        .padding(.all, 15)
     }
 }
 
