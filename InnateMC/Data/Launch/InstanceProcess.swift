@@ -19,6 +19,7 @@ import Foundation
 
 public class InstanceProcess: ObservableObject  {
     @Published public var process: Process = Process()
+    @Published public var terminated = false
     
     public init(instance: Instance) {
         let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.javaExecutable)
@@ -52,6 +53,13 @@ public class InstanceProcess: ObservableObject  {
         allArgs.append(contentsOf: mcArgsProcessed)
         process.arguments = allArgs
         print(allArgs.joined(separator: " "))
-        process.launch()
+        
+        DispatchQueue.global(qos: .utility).async {
+            self.process.launch()
+            self.process.waitUntilExit()
+            DispatchQueue.main.async {
+                self.terminated = true
+            }
+        }
     }
 }

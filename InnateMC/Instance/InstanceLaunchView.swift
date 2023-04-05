@@ -25,11 +25,12 @@ struct InstanceLaunchView: View {
     @State var downloadMessage: String = "Downloading Libraries"
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
+    @State var launchedInstanceProcess: InstanceProcess? = nil
     
     var body: some View {
         VStack {
             HStack {
-                if (launchedInstances ?? launcherData.launchedInstances).keys.contains(instance) {
+                if launchedInstanceProcess != nil {
                     Button(action: {
                         // TODO: show a warning message
                         let launchData = launcherData.launchedInstances[instance]
@@ -39,6 +40,12 @@ struct InstanceLaunchView: View {
                         Text("Close")
                             .font(.title2)
                     })
+                        .onReceive(launchedInstanceProcess!.$terminated, perform: { value in
+                            if value {
+                                launchedInstanceProcess = nil
+                                launcherData.launchedInstances.removeValue(forKey: instance)
+                            }
+                        })
                 } else {
                     Button(action: {
                         print(instance.getPath().absoluteString)
@@ -52,6 +59,10 @@ struct InstanceLaunchView: View {
             }
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
+                launchedInstanceProcess = launcherData.launchedInstances[instance]
+            }
+            .onAppear {
+                launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
         }
         .sheet(isPresented: $showPreLaunchSheet) {
@@ -87,7 +98,9 @@ struct InstanceLaunchView: View {
                             showPreLaunchSheet = false
                             if !(downloadProgress.cancelled) {
                                 withAnimation {
-                                    launcherData.launchedInstances[instance] = InstanceProcess(instance: instance)
+                                    let process = InstanceProcess(instance: instance)
+                                    launcherData.launchedInstances[instance] = process
+                                    launchedInstanceProcess = process
                                 }
                             }
                             downloadProgress.callback = {}
