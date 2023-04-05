@@ -28,14 +28,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if #available(macOS 12.0, *) {
-                } else {
-                    TextField("Search...", text: $searchTerm)
-                        .padding([.top, .bottom, .trailing], 8.0)
-                        .padding(.leading, 10.0)
-                        .accessibilityLabel("Search for Instance")
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+                createMacOS11TextField()
                 List {
                     ForEach(instances) { instance in
                         createInstanceNavigationLink(instance: instance)
@@ -87,6 +80,18 @@ struct ContentView: View {
         }
         Button(action:{launcherData.showNewInstanceSheet = true}) {
             Image(systemName: "plus")
+        }
+    }
+    
+    @ViewBuilder
+    func createMacOS11TextField() -> some View {
+        if #available(macOS 12.0, *) {
+        } else {
+            TextField("Search...", text: $searchTerm)
+                .padding([.top, .bottom, .trailing], 8.0)
+                .padding(.leading, 10.0)
+                .accessibilityLabel("Search for Instance")
+                .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
 }
