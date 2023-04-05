@@ -23,28 +23,22 @@ struct RuntimePreferencesView: View {
 
     var body: some View {
         Form {
-            LazyVGrid(columns: columns) {
-                Text("Java")
-                HStack {
-                    Picker("", selection: $launcherData.globalPreferences.runtime.defaultJava) {
-                        PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
-                        ForEach(launcherData.javaInstallations) {
-                            PickableJavaVersion(installation: $0)
-                        }
-                    }
+            Picker("Java", selection: $launcherData.globalPreferences.runtime.defaultJava) {
+                PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
+                ForEach(launcherData.javaInstallations) {
+                    PickableJavaVersion(installation: $0)
                 }
-                .padding(.bottom, 2)
-                .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)
-                Text("Default Minimum Memory (MiB)")
-                TextField("", value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
-                    .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Default Maximum Memory (MiB)")
-                TextField("", value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
-                    .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Default Java Arguments")
-                TextField("", text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil).textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            TextField("Default Minimum Memory (MiB)", value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
+                .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Default Maximum Memory (MiB)", value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
+                .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Default Java Arguments", text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button("Add Java Version") {
+                
             }
         }
         .padding(.all, 16.0)

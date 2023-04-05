@@ -18,35 +18,46 @@
 import Foundation
 
 public class SavedJavaInstallation: Codable, Identifiable {
-    public static let systemDefault = SavedJavaInstallation(javaHomePath: "/usr", javaVendor: "System Default", javaVersion: "", installationType: .detected)
-    public let javaHomePath: String
-    public let javaVendor: String
-    public let javaVersion: String
+    public static let systemDefault = SavedJavaInstallation(javaHomePath: "/usr", javaVendor: "System Default", javaVersion: "")
+    public let javaExecutable: String
+    public let javaVendor: String?
+    public let javaVersion: String?
     public let installationType: InstallationType
     
-    public init(javaHomePath: String, javaVendor: String, javaVersion: String, installationType: InstallationType) {
-        self.javaHomePath = javaHomePath
+    public init(javaHomePath: String, javaVendor: String?, javaVersion: String?) {
+        self.javaExecutable = "\(javaHomePath)/bin/java"
         self.javaVendor = javaVendor
         self.javaVersion = javaVersion
-        self.installationType = installationType
+        self.installationType = .detected
+    }
+    
+    public init(javaExecutable: String) {
+        self.javaExecutable = javaExecutable
+        self.javaVendor = nil
+        self.javaVersion = nil
+        self.installationType = .selected
     }
     
     public init(linkedJavaInstallation: LinkedJavaInstallation) {
-        self.javaHomePath = linkedJavaInstallation.JVMHomePath
+        self.javaExecutable = "\(linkedJavaInstallation.JVMHomePath)/bin/java"
         self.javaVendor = linkedJavaInstallation.JVMVendor
         self.javaVersion = linkedJavaInstallation.JVMVersion
         self.installationType = .detected
     }
     
-    public func getJavaExecutable() -> String {
-        return "\(javaHomePath)/bin/java"
-    }
-    
     public func getString() -> String {
-        if (javaVersion == "") {
-            return "\(javaVendor) at \(javaHomePath)/bin/java"
+        guard let javaVersion = javaVersion else {
+            guard let javaVendor = javaVendor else {
+                return javaExecutable
+            }
+            return "\(javaVendor) at \(javaExecutable)"
         }
-        return "\(javaVersion) | \(javaVendor) at \(javaHomePath)"
+
+        guard let javaVendor = javaVendor else {
+            return "\(javaVersion) | \(javaExecutable)"
+        }
+
+        return "\(javaVersion) | \(javaVendor) at \(javaExecutable)"
     }
     
     public enum InstallationType: Codable, Hashable, Equatable {
@@ -81,11 +92,11 @@ extension SavedJavaInstallation {
 
 extension SavedJavaInstallation: Hashable {
     public static func == (lhs: SavedJavaInstallation, rhs: SavedJavaInstallation) -> Bool {
-        return lhs.javaHomePath == rhs.javaHomePath
+        return lhs.javaExecutable == rhs.javaExecutable
     }
     
     public func hash(into hasher: inout Hasher) {
-        return hasher.combine(javaHomePath)
+        return hasher.combine(javaExecutable)
     }
 }
 

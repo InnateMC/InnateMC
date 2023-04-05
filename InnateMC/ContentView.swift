@@ -31,32 +31,32 @@ struct ContentView: View {
                 if #available(macOS 12.0, *) {
                 } else {
                     TextField("Search...", text: $searchTerm)
-                        .padding(.bottom, 10.0)
+                        .padding([.top, .bottom, .trailing], 8.0)
+                        .padding(.leading, 10.0)
                         .accessibilityLabel("Search for Instance")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                    List(instances ?? launcherData.instances, selection: $selectedInstance) { instance in
-                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                            NavigationLink(destination: {
-                                InstanceView(instance: instance)
-                                    .padding(.top, 10)
-                            }, label: {
-                                InstanceNavigationLink(instance: instance)
-                            })
-                                .tag(instance)
-                                .padding(.all, 4)
+                List(instances ?? launcherData.instances, selection: $selectedInstance) { instance in
+                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                        NavigationLink(destination: {
+                            InstanceView(instance: instance)
+                                .padding(.top, 10)
+                        }){
+                            InstanceNavigationLink(instance: instance)
                         }
+                        .tag(instance)
+                        .padding(.all, 4)
                     }
-//                    .focusedValue(\.selectedInstance, selectedInstance)
-                    .onAppear(perform: {
-                        launcherData.selectedInstance = self.selectedInstance
-                    })
-                    .onChange(of: self.selectedInstance, perform: { value in
-                        launcherData.selectedInstance = value
-                    })
-                    .onReceive(launcherData.$instances) { new in
-                        instances = new
-                    }
+                }
+                .onAppear(perform: {
+                    launcherData.selectedInstance = self.selectedInstance
+                })
+                .onChange(of: self.selectedInstance, perform: { value in
+                    launcherData.selectedInstance = value
+                })
+                .onReceive(launcherData.$instances) { new in
+                    instances = new
+                }
             }
             .sheet(isPresented: $launcherData.showNewInstanceSheet){
                 NewInstanceView()

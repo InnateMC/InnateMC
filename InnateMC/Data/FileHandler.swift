@@ -21,7 +21,7 @@ public class FileHandler {
     public static let instancesFolder = try! getOrCreateFolder("Instances")
     public static let assetsFolder = try! getOrCreateFolder("Assets")
     public static let librariesFolder = try! getOrCreateFolder("Libraries")
-    public static let javaFolder: URL = try! getOrCreateFolder("Libraries/JavaRuntimes")
+    public static let javaFolder: URL = try! getOrCreateFolder("Java")
 
     public static func getOrCreateFolder() throws -> URL {
         let fileManager = FileManager.default
@@ -29,9 +29,6 @@ public class FileHandler {
         let folderUrl = documentsUrl.appendingPathComponent("InnateMC")
         if !fileManager.fileExists(atPath: folderUrl.path) {
             try fileManager.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
-            try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Instances"), withIntermediateDirectories: true, attributes: nil)
-            try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Libraries"), withIntermediateDirectories: true, attributes: nil)
-            try fileManager.createDirectory(at: folderUrl.appendingPathComponent("Assets"), withIntermediateDirectories: true, attributes: nil)
         }
         return folderUrl
     }

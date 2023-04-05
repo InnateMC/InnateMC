@@ -22,7 +22,7 @@ struct InstanceLaunchView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var showPreLaunchSheet: Bool = false
     @State var progress: Float = 0
-    @State var downloadMessage: String = "Downloading Libraries..."
+    @State var downloadMessage: String = "Downloading Libraries"
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     
@@ -76,11 +76,11 @@ struct InstanceLaunchView: View {
             }
             // TODO: error handling
             .onAppear(perform: {
-                downloadMessage = "Downloading Libraries..."
+                downloadMessage = "Downloading Libraries"
                 downloadProgress.callback = {
-                    downloadMessage = "Downloading Assets..."
+                    downloadMessage = "Downloading Assets"
                     downloadProgress.callback = {
-                        downloadMessage = "Extracting Natives..."
+                        downloadMessage = "Extracting Natives"
                         downloadProgress.callback = {
                             showPreLaunchSheet = false
                             if !(downloadProgress.cancelled) {

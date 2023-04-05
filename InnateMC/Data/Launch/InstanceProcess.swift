@@ -21,7 +21,7 @@ public class InstanceProcess: ObservableObject  {
     @Published public var process: Process = Process()
     
     public init(instance: Instance) {
-        let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.getJavaExecutable())
+        let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.javaExecutable)
         process.executableURL = javaExec
         var allArgs = [
             "-Xmx\(instance.preferences.runtime.maxMemory)M",
@@ -34,7 +34,7 @@ public class InstanceProcess: ObservableObject  {
         let mcArgs = ArgumentProvider()
         mcArgs.clientId("todo")
         mcArgs.xuid("todo")
-        mcArgs.username("")
+        mcArgs.username("Player")
         mcArgs.version("todo")
         mcArgs.gameDir(instance.getGamePath())
         mcArgs.assetsDir(FileHandler.assetsFolder)
@@ -47,8 +47,6 @@ public class InstanceProcess: ObservableObject  {
         allArgs.append("-cp")
         instance.appendClasspath(args: &allArgs)
         allArgs.append(instance.mainClass)
-//        print(mcArgs.values)
-//        print(instance.gameArguments)
         let mcArgsProcessed = mcArgs.accept(instance.gameArguments.flatMap({ $0.split(separator: " ").map { String($0) } }));
         allArgs.append(contentsOf: mcArgsProcessed)
         process.arguments = allArgs

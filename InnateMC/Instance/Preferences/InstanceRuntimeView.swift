@@ -41,6 +41,9 @@ struct InstanceRuntimeView: View {
                 TextField("Default Java Arguments", text: $instance.preferences.runtime.javaArgs)
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button("Add Java Version") {
+                    
+                }
             }
             .padding(.all, 16.0)
             Spacer()
