@@ -20,12 +20,12 @@ import InnateJson
 
 public class AssetIndex: Codable {
     public let version: String
-    public let json: String
+    public let jsonData: Data
     public let objects: [String: [String: String]]
 
-    init(version: String, json: String, objects: [String: [String: String]]) {
+    init(version: String, jsonData: Data, objects: [String: [String: String]]) {
         self.version = version
-        self.json = json
+        self.jsonData = jsonData
         self.objects = objects
     }
 
@@ -33,21 +33,25 @@ public class AssetIndex: Codable {
         let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
         let indexesFile: URL = indexes.appendingPathComponent(version + ".json", isDirectory: false)
         if FileManager.default.fileExists(atPath: indexesFile.path) {
-            return fromJson(try String(contentsOf: indexesFile), version: version)
+            return try fromJson(try Data(contentsOf: indexesFile), version: version)
         }
         if let url = URL(string: urlStr) {
-            let contents = try String(contentsOf: url)
-            return fromJson(contents, version: version)
+            let contents = try Data(contentsOf: url)
+            return try fromJson(contents, version: version)
         } else {
             fatalError("Not possible")
         }
     }
 
-    public static func fromJson(_ jsonStr: String, version: String) -> AssetIndex {
-        let json = InnateParser.readJson(jsonStr)!
-        let objects = json["objects"]!.asObject()!
-        let strs = objects.mapValues { $0.asObject()!.mapValues({v in return v.asString()!} ) }
-        return AssetIndex(version: version, json: jsonStr, objects: strs)
+    public static func fromJson(_ jsonData: Data, version: String) throws -> AssetIndex {
+        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [String:Any]
+        let objects = jsonObject["objects"] as! [String:Any]
+        let strs = objects.mapValues {
+            ($0 as! [String:Any]).mapValues { v in
+                return v as! String
+            }
+        }
+        return AssetIndex(version: version, jsonData: jsonData, objects: strs)
     }
 
     public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws -> TaskProgress {
@@ -62,7 +66,7 @@ public class AssetIndex: Codable {
         }
         let indexesFile: URL = indexes.appendingPathComponent(self.version + ".json", isDirectory: false)
         if !fm.fileExists(atPath: indexesFile.path) {
-            fm.createFile(atPath: indexesFile.path, contents: self.json.data(using: .utf8))
+            fm.createFile(atPath: indexesFile.path, contents: self.jsonData)
         }
         var tasks: [DownloadTask] = []
         for (_, v) in self.objects {
