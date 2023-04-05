@@ -17,7 +17,12 @@
 
 #import <Foundation/Foundation.h>
 #import "InnateZipExtractor.h"
-#import "InnateNativeExtractor.h"
+#include <zip.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <limits.h>
+#include <sys/stat.h>
 
 @implementation InnateZipExtractor
 
@@ -42,3 +47,51 @@
 }
 
 @end
+
+void extractNatives(const char* input, const char* output) {
+    struct zip *zip_file;
+    struct zip_file *file;
+    struct zip_stat stat;
+    
+    zip_file = zip_open(input, 0, NULL);
+    if (!zip_file) {
+        printf("Failed to open zip file %s\n", input);
+    }
+    
+    int num_files = zip_get_num_files(zip_file);
+    for (int i = 0; i < num_files; i++) {
+        zip_stat_init(&stat);
+        zip_stat_index(zip_file, i, 0, &stat);
+        
+        const char *filename = stat.name;
+        const char *extension = strrchr(filename, '.');
+        if (extension && (strcmp(extension, ".dylib") == 0 || strcmp(extension, ".jnilib") == 0)) {
+            char output_filename[PATH_MAX];
+            sprintf(output_filename, "%s/%s", output, filename);
+            
+            file = zip_fopen_index(zip_file, i, 0);
+            if (!file) {
+                printf("Failed to open file %s in zip\n", filename);
+                continue;
+            }
+            
+            FILE *output_file = fopen(output_filename, "wb");
+            if (!output_file) {
+                printf("Failed to create output file %s\n", output_filename);
+                zip_fclose(file);
+                continue;
+            }
+            
+            char buffer[1024];
+            int num_bytes;
+            while ((num_bytes = zip_fread(file, buffer, sizeof(buffer))) > 0) {
+                fwrite(buffer, 1, num_bytes, output_file);
+            }
+            
+            fclose(output_file);
+            zip_fclose(file);
+        }
+    }
+    
+    zip_close(zip_file);
+}

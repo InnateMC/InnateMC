@@ -33,4 +33,6 @@
 
 @end
 
+void extractNatives(const char* input, const char* output);
+
 #endif /* InnateZipExtractor_h */
