@@ -7,21 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4624EDDF250627542A3114 /* InnateArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C4620F0F4ADD56EB3E30147 /* InnateBoolean.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4629FCAF43080FBC058A8D /* InnateBoolean.m */; };
-		3C46212CC2404877784168E0 /* InnateNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46242186F56F806736F741 /* InnateNull.m */; };
-		3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C46260D0A5695B57DBD817E /* InnateObject.m */; };
-		3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462BB28A43B0902FDFFCA0 /* InnateString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462C44B2674893DA840D83 /* InnateParser.m */; };
-		3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CF5EE54A244D7B317BF /* InnateNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C46223ADA27D50D300A7538 /* InnateValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C46287672378C785C25DDE5 /* InnateObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462CB7177919B5451B04C2 /* InnateObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C462939D31A2B994F0433E4 /* InnateParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462F354523F3EA752A760A /* InnateArray.m */; };
-		3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C462891CBBA226529C263E5 /* InnateString.m */; };
-		3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4625B085558E3B559E118E /* InnateBoolean.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
 		64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */; };
@@ -45,8 +30,6 @@
 		648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
-		649C8DCA297D5A95000352F2 /* InnateJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; };
-		649C8DCB297D5A95000352F2 /* InnateJson.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */; };
 		64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
@@ -61,9 +44,6 @@
 		64C5621429C083AA003402F0 /* InstanceProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5621329C083AA003402F0 /* InstanceProcess.swift */; };
 		64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */; };
 		64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* ImageLogoPickerView.swift */; };
-		64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CB0292810EC00535DC8 /* InnateJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64CF0CCE2928167800535DC8 /* InnateLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0CD029281E8A00535DC8 /* InnateLexer.m */; };
 		64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */; };
 		64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* LauncherData.swift */; };
 		64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */; };
@@ -86,13 +66,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		649C8DCC297D5A95000352F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64CF0CAD292810EC00535DC8;
-			remoteInfo = InnateJson;
-		};
 		649C8DD6297D5ABE000352F2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64C334CD2922523500BB8570 /* Project object */;
@@ -109,7 +82,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				649C8DCB297D5A95000352F2 /* InnateJson.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,21 +89,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNumber.m; sourceTree = "<group>"; };
-		3C46223ADA27D50D300A7538 /* InnateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateValue.h; sourceTree = "<group>"; };
-		3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNull.h; sourceTree = "<group>"; };
-		3C46242186F56F806736F741 /* InnateNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateNull.m; sourceTree = "<group>"; };
-		3C4624EDDF250627542A3114 /* InnateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateArray.h; sourceTree = "<group>"; };
-		3C4625B085558E3B559E118E /* InnateBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateBoolean.h; sourceTree = "<group>"; };
-		3C46260D0A5695B57DBD817E /* InnateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateObject.m; sourceTree = "<group>"; };
-		3C462891CBBA226529C263E5 /* InnateString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateString.m; sourceTree = "<group>"; };
-		3C462939D31A2B994F0433E4 /* InnateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateParser.h; sourceTree = "<group>"; };
-		3C4629FCAF43080FBC058A8D /* InnateBoolean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateBoolean.m; sourceTree = "<group>"; };
-		3C462BB28A43B0902FDFFCA0 /* InnateString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateString.h; sourceTree = "<group>"; };
-		3C462C44B2674893DA840D83 /* InnateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateParser.m; sourceTree = "<group>"; };
-		3C462CB7177919B5451B04C2 /* InnateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateObject.h; sourceTree = "<group>"; };
-		3C462CF5EE54A244D7B317BF /* InnateNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnateNumber.h; sourceTree = "<group>"; };
-		3C462F354523F3EA752A760A /* InnateArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnateArray.m; sourceTree = "<group>"; };
 		64037CA8297C724D00F7FE79 /* ArgumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentTests.swift; sourceTree = "<group>"; };
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,12 +137,7 @@
 		64C41C1329366CAF00014E0F /* ValueKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueKeys.swift; sourceTree = "<group>"; };
 		64C5621329C083AA003402F0 /* InstanceProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceProcess.swift; sourceTree = "<group>"; };
 		64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
-		64CDBCD329294CB700DF0592 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		64CE1091297864A700366372 /* ImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLogoPickerView.swift; sourceTree = "<group>"; };
-		64CF0CAE292810EC00535DC8 /* InnateJson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InnateJson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64CF0CB0292810EC00535DC8 /* InnateJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateJson.h; sourceTree = "<group>"; };
-		64CF0CCE2928167800535DC8 /* InnateLexer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InnateLexer.h; sourceTree = "<group>"; };
-		64CF0CD029281E8A00535DC8 /* InnateLexer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InnateLexer.m; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
 		64E459F22938C7AC00F82A2B /* LauncherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherData.swift; sourceTree = "<group>"; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
@@ -222,14 +174,6 @@
 			files = (
 				648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */,
 				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
-				649C8DCA297D5A95000352F2 /* InnateJson.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64CF0CAB292810EC00535DC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +284,6 @@
 				64C3350A2922734400BB8570 /* README.md */,
 				64C33508292272F500BB8570 /* .gitignore */,
 				64C334D72922523600BB8570 /* InnateMC */,
-				64CF0CAF292810EC00535DC8 /* InnateJson */,
 				649C8DD3297D5ABE000352F2 /* InnateMCTests */,
 				64C334D62922523600BB8570 /* Products */,
 				643B39FA29274F6100AEC71C /* Frameworks */,
@@ -351,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				64C334D52922523600BB8570 /* InnateMC.app */,
-				64CF0CAE292810EC00535DC8 /* InnateJson.framework */,
 				649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */,
 			);
 			name = Products;
@@ -383,32 +325,6 @@
 				64C334DF2922523F00BB8570 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		64CF0CAF292810EC00535DC8 /* InnateJson */ = {
-			isa = PBXGroup;
-			children = (
-				64CF0CB0292810EC00535DC8 /* InnateJson.h */,
-				64CF0CCE2928167800535DC8 /* InnateLexer.h */,
-				64CF0CD029281E8A00535DC8 /* InnateLexer.m */,
-				3C462C44B2674893DA840D83 /* InnateParser.m */,
-				3C462939D31A2B994F0433E4 /* InnateParser.h */,
-				3C46260D0A5695B57DBD817E /* InnateObject.m */,
-				3C462CB7177919B5451B04C2 /* InnateObject.h */,
-				3C46223ADA27D50D300A7538 /* InnateValue.h */,
-				3C462F354523F3EA752A760A /* InnateArray.m */,
-				3C4624EDDF250627542A3114 /* InnateArray.h */,
-				3C462891CBBA226529C263E5 /* InnateString.m */,
-				3C462BB28A43B0902FDFFCA0 /* InnateString.h */,
-				3C4620D0F6FAED09D1315CA9 /* InnateNumber.m */,
-				3C462CF5EE54A244D7B317BF /* InnateNumber.h */,
-				3C46242186F56F806736F741 /* InnateNull.m */,
-				3C4622FA0DFA2C17E0AE8413 /* InnateNull.h */,
-				3C4629FCAF43080FBC058A8D /* InnateBoolean.m */,
-				3C4625B085558E3B559E118E /* InnateBoolean.h */,
-				64CDBCD329294CB700DF0592 /* module.modulemap */,
-			);
-			path = InnateJson;
 			sourceTree = "<group>";
 		};
 		64E43DE829DD5C590008B0FA /* include */ = {
@@ -509,26 +425,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		64CF0CA9292810EC00535DC8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64CF0CCF2928167900535DC8 /* InnateLexer.h in Headers */,
-				64CF0CBE292810ED00535DC8 /* InnateJson.h in Headers */,
-				3C46294018AFD0E97EFFF994 /* InnateParser.h in Headers */,
-				3C46287672378C785C25DDE5 /* InnateObject.h in Headers */,
-				3C462571FE341B2C7FF18BC6 /* InnateValue.h in Headers */,
-				3C4620CC9A7D6FC87591C1B5 /* InnateArray.h in Headers */,
-				3C4622A7AA3F00CB50B09116 /* InnateString.h in Headers */,
-				3C4624753AA02B6CD35FC510 /* InnateNumber.h in Headers */,
-				3C46265ECE74001BD1E95358 /* InnateNull.h in Headers */,
-				3C462D94DCC939DF7DFEF36D /* InnateBoolean.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		649C8DD1297D5ABE000352F2 /* InnateMCTests */ = {
 			isa = PBXNativeTarget;
@@ -560,7 +456,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				649C8DCD297D5A95000352F2 /* PBXTargetDependency */,
 			);
 			name = InnateMC;
 			packageProductDependencies = (
@@ -569,24 +464,6 @@
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
 			productType = "com.apple.product-type.application";
-		};
-		64CF0CAD292810EC00535DC8 /* InnateJson */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64CF0CC7292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJson" */;
-			buildPhases = (
-				64CF0CA9292810EC00535DC8 /* Headers */,
-				64CF0CAA292810EC00535DC8 /* Sources */,
-				64CF0CAB292810EC00535DC8 /* Frameworks */,
-				64CF0CAC292810EC00535DC8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = InnateJson;
-			productName = InnateJson;
-			productReference = 64CF0CAE292810EC00535DC8 /* InnateJson.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -606,9 +483,6 @@
 					64C334D42922523600BB8570 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
-					};
-					64CF0CAD292810EC00535DC8 = {
-						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -632,7 +506,6 @@
 			targets = (
 				64C334D42922523600BB8570 /* InnateMC */,
 				649C8DD1297D5ABE000352F2 /* InnateMCTests */,
-				64CF0CAD292810EC00535DC8 /* InnateJson */,
 			);
 		};
 /* End PBXProject section */
@@ -653,13 +526,6 @@
 				64C33509292272F600BB8570 /* .gitignore in Resources */,
 				64C3350C2922B0B500BB8570 /* LICENSE in Resources */,
 				64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64CF0CAC292810EC00535DC8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,29 +596,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64CF0CAA292810EC00535DC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64CF0CD129281E8B00535DC8 /* InnateLexer.m in Sources */,
-				3C462395EEC815160D1F2F39 /* InnateParser.m in Sources */,
-				3C46217E1CC4B986BDF49D8C /* InnateObject.m in Sources */,
-				3C462B71A5B2B2D14617D191 /* InnateArray.m in Sources */,
-				3C462C4ECF3FF9D09A980D40 /* InnateString.m in Sources */,
-				3C462F74669C319A52FEC63E /* InnateNumber.m in Sources */,
-				3C46212CC2404877784168E0 /* InnateNull.m in Sources */,
-				3C4620F0F4ADD56EB3E30147 /* InnateBoolean.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		649C8DCD297D5A95000352F2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64CF0CAD292810EC00535DC8 /* InnateJson */;
-			targetProxy = 649C8DCC297D5A95000352F2 /* PBXContainerItemProxy */;
-		};
 		649C8DD7297D5ABE000352F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 64C334D42922523600BB8570 /* InnateMC */;
@@ -1006,70 +852,6 @@
 			};
 			name = Release;
 		};
-		64CF0CC3292810ED00535DC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJson;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		64CF0CC4292810ED00535DC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateJson;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1096,15 +878,6 @@
 			buildConfigurations = (
 				64C334FB2922524000BB8570 /* Debug */,
 				64C334FC2922524000BB8570 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64CF0CC7292810ED00535DC8 /* Build configuration list for PBXNativeTarget "InnateJson" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64CF0CC3292810ED00535DC8 /* Debug */,
-				64CF0CC4292810ED00535DC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
