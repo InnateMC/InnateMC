@@ -22,7 +22,6 @@ public class LauncherData: ObservableObject {
     @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []
-    @Published var selectedInstance: Instance?
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
     
     public init(dummy: Bool) {

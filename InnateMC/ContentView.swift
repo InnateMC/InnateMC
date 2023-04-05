@@ -21,7 +21,7 @@ struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
-    @State var instances: [Instance]?
+    @State var instances: [Instance] = []
     @State var selectedInstance: Instance? = nil
     @FocusedValue(\.selectedInstance) private var focusedSelectedInstance: Instance?
     
@@ -36,29 +36,29 @@ struct ContentView: View {
                         .accessibilityLabel("Search for Instance")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                List(instances ?? launcherData.instances, selection: $selectedInstance) { instance in
-                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-                        NavigationLink(destination: {
-                            InstanceView(instance: instance)
-                                .padding(.top, 10)
-                        }){
-                            InstanceNavigationLink(instance: instance)
+                List {
+                    ForEach(instances) { instance in
+                        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                            NavigationLink(destination: {
+                                InstanceView(instance: instance)
+                                    .padding(.top, 10)
+                            }){
+                                InstanceNavigationLink(instance: instance)
+                            }
+                            .tag(instance)
+                            .padding(.all, 4)
                         }
-                        .tag(instance)
-                        .padding(.all, 4)
+                    }
+                    .onMove { indices, newOffset in
+                        instances.move(fromOffsets: indices, toOffset: newOffset)
+                        launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
-                .onAppear(perform: {
-                    launcherData.selectedInstance = self.selectedInstance
-                })
-                .onChange(of: self.selectedInstance, perform: { value in
-                    launcherData.selectedInstance = value
-                })
                 .onReceive(launcherData.$instances) { new in
                     instances = new
                 }
             }
-            .sheet(isPresented: $launcherData.showNewInstanceSheet){
+            .sheet(isPresented: $launcherData.showNewInstanceSheet) {
                 NewInstanceView()
             }
             .navigationTitle("Instances").toolbar{
