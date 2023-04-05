@@ -19,7 +19,7 @@ import XCTest
 import InnateMC
 
 class InstanceTests: XCTestCase {
-    private var manifest: [ManifestVersion] = []
+    private var manifest: [PartialVersion] = []
 
     override func setUpWithError() throws {
         manifest = try VersionManifest.download()

@@ -18,12 +18,12 @@
 import SwiftUI
 
 struct NewVanillaInstanceView: View {
-    @Environment(\.versionManifest) var versionManifest: [ManifestVersion]
+    @Environment(\.versionManifest) var versionManifest: [PartialVersion]
     @EnvironmentObject var launcherData: LauncherData
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
-    @State var selectedVersion: ManifestVersion = VersionManifestKey.defaultValue.first!
+    @State var selectedVersion: PartialVersion = VersionManifestKey.defaultValue.first!
     @State var name = ""
     
     var body: some View {

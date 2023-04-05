@@ -18,11 +18,11 @@
 import SwiftUI
 
 struct VersionManifestKey: EnvironmentKey {
-    static let defaultValue: [ManifestVersion] = VersionManifest.downloadThrow()
+    static let defaultValue: [PartialVersion] = VersionManifest.downloadThrow()
 }
 
 extension EnvironmentValues {
-    var versionManifest: [ManifestVersion] {
+    var versionManifest: [PartialVersion] {
         get { self[VersionManifestKey.self] }
         set { self[VersionManifestKey.self] = newValue }
     }

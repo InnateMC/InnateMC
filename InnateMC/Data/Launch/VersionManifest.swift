@@ -19,38 +19,81 @@ import Foundation
 import InnateJson
 
 public class VersionManifest {
-    public static func downloadThrow() -> [ManifestVersion] {
+    private static let decoder = JSONDecoder()
+    
+    public static func downloadThrow() -> [PartialVersion] {
         return try! download()
     }
 
-    public static func download() throws -> [ManifestVersion] {
+    public static func download() throws -> [PartialVersion] {
         if let url = URL(string: "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json") {
-            let contents = try String(contentsOf: url)
-            let json = InnateParser.readJson(contents)!
-            return readFromDict(json)
+            let contents = try Data(contentsOf: url)
+            return try readFromData(contents)
         } else {
             fatalError("Not possible")
         }
     }
 
-    public static func readFromDict(_ dict: [String: InnateValue]) -> [ManifestVersion] {
-        var versions: [ManifestVersion] = []
-        let versionsJsonArray = dict["versions"]!.asArray()!
-        for versionJson in versionsJsonArray {
-            let versionObj = versionJson.asObject()!
-            versions.append(ManifestVersion(version: versionObj["id"]!.asString()!, type: versionObj["type"]!.asString()!, url: versionObj["url"]!.asString()!, time: versionObj["time"]!.asString()!, releaseTime: versionObj["releaseTime"]!.asString()!, sha1: versionObj["sha1"]!.asString()!))
-        }
-        return versions;
+    public static func readFromData(_ data: Data) throws -> [PartialVersion] {
+        let root = try decoder.decode(RootJSON.self, from: data)
+        return root.versions
     }
 }
 
-public struct ManifestVersion: Hashable, Codable, Identifiable {
+internal struct RootJSON: Codable {
+    let versions: [PartialVersion]
+}
+
+public struct PartialVersion: Codable, Hashable, Identifiable {
+    public var id: Self { self }
+    
     public var version: String
     public var type: String
     public var url: String
     public var time: String
     public var releaseTime: String
     public var sha1: String
+    public var complianceLevel: Int
     
-    public var id: Self { self }
+    enum CodingKeys: String, CodingKey {
+        case version = "id"
+        case type
+        case url
+        case time
+        case releaseTime
+        case sha1
+        case complianceLevel
+    }
+    
+    public init(id: String, version: String, type: String, url: String, time: String, releaseTime: String, sha1: String, complianceLevel: Int) {
+        self.version = version
+        self.type = type
+        self.url = url
+        self.time = time
+        self.releaseTime = releaseTime
+        self.sha1 = sha1
+        self.complianceLevel = complianceLevel
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        version = try container.decode(String.self, forKey: .version)
+        type = try container.decode(String.self, forKey: .type)
+        url = try container.decode(String.self, forKey: .url)
+        time = try container.decode(String.self, forKey: .time)
+        releaseTime = try container.decode(String.self, forKey: .releaseTime)
+        sha1 = try container.decode(String.self, forKey: .sha1)
+        complianceLevel = try container.decode(Int.self, forKey: .complianceLevel)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(version, forKey: .version)
+        try container.encode(type, forKey: .type)
+        try container.encode(url, forKey: .url)
+        try container.encode(time, forKey: .time)
+        try container.encode(releaseTime, forKey: .releaseTime)
+        try container.encode(sha1, forKey: .sha1)
+        try container.encode(complianceLevel, forKey: .complianceLevel)
+    }
 }
