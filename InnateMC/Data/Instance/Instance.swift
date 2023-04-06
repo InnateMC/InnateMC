@@ -136,6 +136,15 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         args.append("\(getMcJarPath().path):\(libString)");
 //        args.append("\(getMcJarPath().path)") // DEBUG
     }
+    
+    public func delete() {
+        do {
+            try FileManager.default.removeItem(at: getPath())
+        } catch {
+            // no-op
+            // TODO: handle error
+        }
+    }
 }
 
 public class MinecraftJar: Codable, Identifiable, InstanceData {

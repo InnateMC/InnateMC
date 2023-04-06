@@ -24,6 +24,7 @@ struct InstanceNavigationLink: View {
     @State var instanceStarred: Bool? = nil
     @State var compactList: Bool? = nil
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
+    @State var showDeleteSheet: Bool = false
 
     var body: some View {
         NavigationLink {
@@ -86,6 +87,29 @@ struct InstanceNavigationLink: View {
                     instance.isStarred = true
                 }
             }
+            Button("Delete") {
+                showDeleteSheet = true
+            }
+        }
+        .sheet(isPresented: $showDeleteSheet) {
+            VStack(alignment: .center) {
+                Text("Are you sure you want to delete this instance? This action cannot be undone!")
+                HStack {
+                    Button("Delete") {
+                        if let index = launcherData.instances.firstIndex(of: instance) {
+                            launcherData.instances.remove(at: index)
+                            instance.delete()
+                        }
+                        showDeleteSheet = false
+                    }
+                    .padding()
+                    Button("Cancel") {
+                        showDeleteSheet = false
+                    }
+                    .padding()
+                }
+            }
+            .padding(.all, 5)
         }
     }
 }
