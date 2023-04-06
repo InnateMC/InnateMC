@@ -60,7 +60,7 @@ public class AssetIndex: Codable {
         return AssetIndex(version: version, jsonData: jsonData, objects: strs)
     }
     
-    public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws -> TaskProgress {
+    public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws {
         let fm = FileManager.default
         let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
         let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
@@ -85,6 +85,5 @@ public class AssetIndex: Codable {
             tasks.append(DownloadTask(url: url, filePath: path, sha1: hash))
         }
         ParallelExecutor.download(tasks, progress: progress, callback: callback)
-        return progress
     }
 }

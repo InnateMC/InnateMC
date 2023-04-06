@@ -55,17 +55,12 @@ struct ContentView: View {
     @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
         if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
-            NavigationLink(destination: {
-                InstanceView(instance: instance)
-                    .padding(.top, 10)
-            }){
-                InstanceNavigationLink(instance: instance)
-            }
+            InstanceNavigationLink(instance: instance)
             .tag(instance)
             .padding(.all, 4)
         }
     }
-    
+        
     @ViewBuilder
     func createToolbar() -> some View {
         Spacer()

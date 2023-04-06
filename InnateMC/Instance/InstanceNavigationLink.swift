@@ -26,54 +26,65 @@ struct InstanceNavigationLink: View {
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
 
     var body: some View {
-        HStack {
-            ZStack(alignment: .topTrailing) {
-                if (compactList ?? launcherData.globalPreferences.ui.compactList) {
-                    InstanceLogoView(instance: instance)
-                        .frame(width: 32, height: 32)
-                } else {
-                    InstanceLogoView(instance: instance)
-                        .frame(width: 48, height: 48)
+        NavigationLink {
+            InstanceView(instance: instance)
+                .padding(.top, 10)
+        } label: {
+            HStack {
+                ZStack(alignment: .topTrailing) {
+                    if (compactList ?? launcherData.globalPreferences.ui.compactList) {
+                        InstanceLogoView(instance: instance)
+                            .frame(width: 32, height: 32)
+                    } else {
+                        InstanceLogoView(instance: instance)
+                            .frame(width: 48, height: 48)
+                    }
+                    
+                    ZStack {
+                        if (launchedInstances ?? launcherData.launchedInstances).keys.contains(self.instance) {
+                            Image(systemName: "arrowtriangle.right.circle.fill")
+                                .foregroundColor(.green)
+                                .frame(width: 8, height: 8)
+                        } else if (instanceStarred ?? instance.isStarred) {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.yellow)
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                    .onReceive(instance.$isStarred, perform: { value in
+                        instanceStarred = value
+                    })
+                    .frame(width: 8, height: 8)
                 }
-                
-                ZStack {
-                    if (launchedInstances ?? launcherData.launchedInstances).keys.contains(self.instance) {
-                        Image(systemName: "arrowtriangle.right.circle.fill")
-                            .foregroundColor(.green)
-                            .frame(width: 8, height: 8)
-                    } else if (instanceStarred ?? instance.isStarred) {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .frame(width: 8, height: 8)
+                .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
+                    compactList = value
+                }
+                .onReceive(launcherData.$launchedInstances) { value in
+                    launchedInstances = value
+                }
+                VStack {
+                    HStack {
+                        Text(instance.name)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(instance.someDebugString)
+                            .foregroundColor(.gray)
+                        Spacer()
                     }
                 }
-                .onReceive(instance.$isStarred, perform: { value in
-                    instanceStarred = value
-                })
-                .frame(width: 8, height: 8)
+                Spacer()
             }
-            .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
-                compactList = value
-            }
-            .onReceive(launcherData.$launchedInstances) { value in
-                launchedInstances = value
-            }
-            VStack {
-                HStack {
-                    Text(instance.name)
-                    Spacer()
-                }
-                HStack {
-                    Text(instance.someDebugString)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-            }
-            Spacer()
         }
         .contextMenu {
-            Button(self.instance.isStarred ? "Unstar" : "Star") {
-                instance.isStarred = !instance.isStarred
+            if (instanceStarred ?? instance.isStarred) {
+                Button("Unstar") {
+                    instance.isStarred = false
+                }
+            } else {
+                Button("Star") {
+                    instance.isStarred = true
+                }
             }
         }
     }
