@@ -33,6 +33,7 @@ struct ContentView: View {
                     }
                     .onMove { indices, newOffset in
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
+                        
                     }
                 }
                 .onReceive(launcherData.$instances) { new in

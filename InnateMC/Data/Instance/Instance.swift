@@ -21,7 +21,7 @@ import Combine
 
 private class PublishedWrapper<T> {
     @Published private(set) var value: T
-
+    
     init(_ value: Published<T>) {
         _value = value
     }
@@ -134,7 +134,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
             return lib.getAbsolutePath().path
         }.joined(separator: ":")
         args.append("\(getMcJarPath().path):\(libString)");
-//        args.append("\(getMcJarPath().path)") // DEBUG
+        //        args.append("\(getMcJarPath().path)") // DEBUG
     }
     
     public func delete() {
@@ -283,11 +283,59 @@ extension Instance {
         for nativeLibrary in nativeLibraries {
             extractTasks.append {
                 let nativeLibraryPath = nativeLibrary.getAbsolutePath()
-                let extractor = InnateZipExtractor.create(nativeLibraryPath, output: self.getNativesPath())!
-                extractor.extract()
+                Instance.extractNativesFrom(library: nativeLibraryPath, output: self.getNativesPath())
             }
         }
         ParallelExecutor.run(extractTasks, progress: progress)
+    }
+    
+    private static func extractNativesFrom(library input: URL, output: URL) {
+        let inputStr = input.path
+        var zip_file: OpaquePointer?
+        var file: OpaquePointer?
+        var stat = zip_stat()
+        
+        zip_file = zip_open(inputStr, 0, nil)
+        if zip_file == nil {
+            print("Failed to open zip file \(inputStr)")
+            return
+        }
+        
+        let num_files = Int(zip_get_num_files(zip_file!))
+        for i in 0..<num_files {
+            zip_stat_init(&stat)
+            zip_stat_index(zip_file!, zip_uint64_t(Int32(i)), 0, &stat)
+            
+            let filename = String(cString: stat.name!)
+            if let ext = filename.split(separator: ".").last,
+               (ext == "dylib" || ext == "jnilib") {
+                
+                let output_filename = output.appendingPathComponent(filename).path
+                
+                file = zip_fopen_index(zip_file!, zip_uint64_t(Int32(i)), 0)
+                if file == nil {
+                    print("Failed to open file \(filename) in zip")
+                    continue
+                }
+                
+                guard let output_file = fopen(output_filename, "wb") else {
+                    print("Failed to create output file \(output_filename)")
+                    zip_fclose(file!)
+                    continue
+                }
+                
+                let buffer_size = 1024
+                var buffer = [UInt8](repeating: 0, count: buffer_size)
+                var num_bytes = 0
+                repeat {
+                    num_bytes = Int(zip_fread(file!, &buffer, zip_uint64_t(buffer_size)))
+                    fwrite(buffer, 1, num_bytes, output_file)
+                } while num_bytes > 0
+                
+                fclose(output_file)
+                zip_fclose(file!)
+            }
+        }
     }
     
     public func downloadLibs(progress: TaskProgress) {
