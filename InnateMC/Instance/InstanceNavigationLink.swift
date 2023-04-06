@@ -100,16 +100,20 @@ struct InstanceNavigationLink: View {
                             launcherData.instances.remove(at: index)
                             instance.delete()
                         }
-                        showDeleteSheet = false
+                        withAnimation {
+                            showDeleteSheet = false
+                        }
                     }
                     .padding()
                     Button("Cancel") {
-                        showDeleteSheet = false
+                        withAnimation {
+                            showDeleteSheet = false
+                        }
                     }
                     .padding()
                 }
             }
-            .padding(.all, 5)
+            .padding(.all, 20)
         }
     }
 }

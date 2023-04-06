@@ -84,7 +84,6 @@ struct ContentView: View {
                 .padding(.trailing, 8.0)
                 .padding(.leading, 10.0)
                 .padding([.top, .bottom], 9.0)
-                .frame(height: 80)
                 .accessibilityLabel("Search for Instance")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
