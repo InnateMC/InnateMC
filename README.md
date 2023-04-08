@@ -1,6 +1,6 @@
 #  InnateMC
 
-A native minecraft launcher for macOS. Built with love using Swift and SwiftUI.
+A native minecraft launcher for macOS. Built using Swift and SwiftUI.
 
 ## Discuss
 Join the InnateMC discord server: https://discord.gg/EXJTUsxXbX  
