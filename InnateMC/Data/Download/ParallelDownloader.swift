@@ -18,10 +18,13 @@
 import Foundation
 
 public struct ParallelDownloader {
-    public static func downloadParallel(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
+    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
+        progress.current = 0
+        progress.total = tasks.count
+        
         let sessionConfig = URLSessionConfiguration.ephemeral
-        sessionConfig.timeoutIntervalForRequest = 10
-        sessionConfig.timeoutIntervalForResource = 10
+        sessionConfig.timeoutIntervalForRequest = 20
+        sessionConfig.timeoutIntervalForResource = 20
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         
         let downloadGroup = DispatchGroup()
@@ -40,13 +43,14 @@ public struct ParallelDownloader {
                     return
                 } else if let tempUrl = tempUrl {
                     do {
+                        // TODO: verify sha hash
                         let fileManager = FileManager.default
                         let destinationUrl = task.filePath
                         let fileExists = try destinationUrl.checkResourceIsReachable()
-                        if fileExists {
-                            try fileManager.removeItem(at: destinationUrl)
+                        if !fileExists {
+                            try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
+                            try fileManager.moveItem(at: tempUrl, to: destinationUrl)
                         }
-                        try fileManager.moveItem(at: tempUrl, to: destinationUrl)
                         DispatchQueue.main.async {
                             progress.inc()
                         }

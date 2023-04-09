@@ -21,7 +21,7 @@ import SwiftUI
 open class TaskProgress: ObservableObject {
     @Published public var current: Int = 0
     @Published public var total: Int = 1
-    public var callback: () -> Void = {print("no callback")}
+    public var callback: (() -> Void)? = nil
     public var cancelled = false
     
     public init() {
@@ -39,7 +39,7 @@ open class TaskProgress: ObservableObject {
     open func inc() {
         self.current += 1
         if (self.current == self.total) {
-            callback()
+            callback?()
         }
     }
     

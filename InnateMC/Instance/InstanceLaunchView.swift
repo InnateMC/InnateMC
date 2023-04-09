@@ -28,6 +28,7 @@ struct InstanceLaunchView: View {
     @State var launchedInstanceProcess: InstanceProcess? = nil
     @State var showErrorSheet: Bool = false
     @State var errorMessage: String = "Never gonna give you up"
+    @State var downloadSession: URLSession? = nil
     
     var body: some View {
         VStack {
@@ -68,52 +69,91 @@ struct InstanceLaunchView: View {
             }
         }
         .sheet(isPresented: $showPreLaunchSheet) {
-            ZStack {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text(downloadMessage)
-                        Spacer()
-                    }
-                    .padding()
-                    ProgressView(value: progress)
-                        .onReceive(downloadProgress.$current, perform: {
-                            progress = Float($0) / Float(downloadProgress.total)
-                        })
-                        .animation(nil)
-                    Button("Abort") {
-                        showPreLaunchSheet = false
-                        self.downloadProgress.cancelled = true
-                        self.downloadProgress = TaskProgress(current: 0, total: 1)
-                    }
-                    .padding()
+            createPrelaunchSheet()
+        }
+        .sheet(isPresented: $showErrorSheet) {
+            createErrorSheet()
+        }
+    }
+    
+    @ViewBuilder
+    func createPrelaunchSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text(downloadMessage)
+                    Spacer()
                 }
+                .padding()
+                ProgressView(value: progress)
+                    .onReceive(downloadProgress.$current, perform: {
+                        progress = Float($0) / Float(downloadProgress.total)
+                    })
+                    .animation(nil)
+                Button("Abort") {
+                    self.downloadSession?.invalidateAndCancel()
+                    showPreLaunchSheet = false
+                    self.downloadProgress.cancelled = true
+                    self.downloadProgress = TaskProgress(current: 0, total: 1)
+                }
+                .padding()
             }
-            // TODO: error handling
-            .onAppear(perform: {
-                downloadMessage = "Downloading Libraries"
+        }
+        // TODO: error handling
+        .onAppear(perform: {
+            onPrelaunchSheetAppear()
+        })
+        .padding(.all, 10)
+    }
+    
+    func onPrelaunchSheetAppear() {
+        self.downloadProgress.cancelled = false
+        downloadMessage = "Downloading Libraries"
+        downloadSession = instance.downloadLibs(progress: downloadProgress) {
+            downloadMessage = "Downloading Assets"
+            downloadSession = instance.downloadAssets(progress: downloadProgress) {
+                downloadMessage = "Extracting Natives"
                 downloadProgress.callback = {
-                    downloadMessage = "Downloading Assets"
-                    downloadProgress.callback = {
-                        downloadMessage = "Extracting Natives"
-                        downloadProgress.callback = {
-                            showPreLaunchSheet = false
-                            if !(downloadProgress.cancelled) {
-                                withAnimation {
-                                    let process = InstanceProcess(instance: instance)
-                                    launcherData.launchedInstances[instance] = process
-                                    launchedInstanceProcess = process
-                                }
-                            }
-                            downloadProgress.callback = {}
+                    showPreLaunchSheet = false
+                    if !(downloadProgress.cancelled) {
+                        withAnimation {
+                            let process = InstanceProcess(instance: instance)
+                            launcherData.launchedInstances[instance] = process
+                            launchedInstanceProcess = process
                         }
-                        instance.extractNatives(progress: downloadProgress)
                     }
-                    instance.downloadAssets(progress: downloadProgress)
+                    downloadProgress.callback = {}
                 }
-                instance.downloadLibs(progress: downloadProgress)
-            })
-            .padding(.all, 10)
+                instance.extractNatives(progress: downloadProgress)
+            } onError: {
+                onPrelaunchError()
+            }
+        } onError: {
+            onPrelaunchError()
+        }
+    }
+    
+    func onPrelaunchError() {
+        showPreLaunchSheet = false
+        showErrorSheet = true
+    }
+    
+    @ViewBuilder
+    func createErrorSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("Error launching")
+                    Spacer()
+                }
+                .padding()
+                Button("Close") {
+                    self.showErrorSheet = false
+                }
+                .padding()
+            }
         }
     }
 }

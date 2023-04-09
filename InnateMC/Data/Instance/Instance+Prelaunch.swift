@@ -116,8 +116,24 @@ extension Instance {
         ParallelExecutor.download(tasks, progress: progress, callback: {})
     }
     
+    public func downloadLibs(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
+        let tasks = getLibrariesAsTasks()
+        return ParallelDownloader.download(tasks, progress: progress, onFinish: onFinish, onError: onError)
+    }
+    
     public func downloadAssets(progress: TaskProgress) {
         let index = try! AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
         try! index.downloadParallel(progress: progress, callback: {})
+    }
+    
+    public func downloadAssets(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession? {
+        var index: AssetIndex
+        do {
+            index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
+        } catch {
+            onError()
+            return nil
+        }
+        return index.downloadParallel(progress: progress, onFinish: onFinish, onError: onError)
     }
 }
