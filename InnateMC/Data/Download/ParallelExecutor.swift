@@ -58,7 +58,7 @@ public class ParallelExecutor {
                     if progress.cancelled {
                         return
                     }
-                    let data = try! Data(contentsOf: task.url)
+                    let data = try! Data(contentsOf: task.sourceUrl)
                     if progress.cancelled {
                         return
                     }
@@ -96,17 +96,5 @@ public class ParallelExecutor {
         }
         let real = Insecure.SHA1.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
         return real == expected
-    }
-}
-
-public class DownloadTask {
-    public let url: URL
-    public let filePath: URL
-    public let sha1: String?
-    
-    public init(url: URL, filePath: URL, sha1: String?) {
-        self.url = url
-        self.filePath = filePath
-        self.sha1 = sha1
     }
 }

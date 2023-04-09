@@ -26,6 +26,8 @@
 		646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E12977E88700BA9477 /* SFSymbols12List.swift */; };
 		646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E32977E95300BA9477 /* SFSymbols13List.swift */; };
 		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
+		6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */; };
+		6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E47129E2C35200B4C65B /* DownloadTask.swift */; };
 		648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
@@ -110,6 +112,8 @@
 		646139E12977E88700BA9477 /* SFSymbols12List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols12List.swift; sourceTree = "<group>"; };
 		646139E32977E95300BA9477 /* SFSymbols13List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols13List.swift; sourceTree = "<group>"; };
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
+		6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
+		6472E47129E2C35200B4C65B /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		648C831129DB375400007603 /* InnateMC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateMC-Bridging-Header.h"; sourceTree = "<group>"; };
 		648C831529DBDD6A00007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../../../usr/local/lib/libzip.5.5.dylib; sourceTree = "<group>"; };
 		648C831829DBDDCD00007603 /* zip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 			children = (
 				64F7C5F2297D64370086ABC1 /* TaskProgress.swift */,
 				64F7C5F6297D645A0086ABC1 /* ParallelExecutor.swift */,
+				6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */,
+				6472E47129E2C35200B4C65B /* DownloadTask.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
+				6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
@@ -564,6 +571,7 @@
 				64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */,
+				6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */,
 				64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */,

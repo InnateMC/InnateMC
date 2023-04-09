@@ -177,7 +177,7 @@ public class Library: Codable, Identifiable, InstanceData {
     }
     
     public func asDownloadTask() -> DownloadTask {
-        return DownloadTask(url: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
+        return DownloadTask(sourceUrl: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
     }
 }
 
@@ -271,7 +271,7 @@ extension Instance {
         if (self.minecraftJar.type == .local) {
             return
         }
-        ParallelExecutor.download([DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: TaskProgress(), callback: {})
+        ParallelExecutor.download([DownloadTask(sourceUrl: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: TaskProgress(), callback: {})
     }
     
     public func extractNatives(progress: TaskProgress) {
@@ -347,7 +347,7 @@ extension Instance {
             tasks.append(library.asDownloadTask())
         }
         if (self.minecraftJar.type == .remote) {
-            tasks.append(DownloadTask(url: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
+            tasks.append(DownloadTask(sourceUrl: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
         }
         ParallelExecutor.download(tasks, progress: progress, callback: {})
     }

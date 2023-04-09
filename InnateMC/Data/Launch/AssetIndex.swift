@@ -81,7 +81,7 @@ public class AssetIndex: Codable {
             let hashFolder = objects.appendingPathComponent(hashPre, isDirectory: true)
             let path = hashFolder.appendingPathComponent(hash, isDirectory: false)
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
-            tasks.append(DownloadTask(url: url, filePath: path, sha1: hash))
+            tasks.append(DownloadTask(sourceUrl: url, filePath: path, sha1: hash))
         }
         ParallelExecutor.download(tasks, progress: progress, callback: callback)
     }

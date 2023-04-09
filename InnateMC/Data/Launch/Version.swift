@@ -223,8 +223,8 @@ extension Version {
             for component in pathComponents {
                 fileUrl = fileUrl.appendingPathComponent(String(component))
             }
-            let task = DownloadTask(url: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: nil)
-            print(task.url)
+            let task = DownloadTask(sourceUrl: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: nil)
+            print(task.sourceUrl)
             print(task.filePath)
             print("")
             tasks.append(task)
