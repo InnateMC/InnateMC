@@ -41,10 +41,6 @@ struct InnateMCApp: App {
             PreferencesView()
                 .environmentObject(launcherData)
                 .frame(width: 800, height: 400)
-                .onDisappear {
-                    // this doesn't get called
-                    launcherData.globalPreferences.save()
-                }
         }
     }
 }

@@ -26,9 +26,6 @@ public class LauncherData: ObservableObject {
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
     private var initializedPreferenceListener: Bool = false
     
-    public init(dummy: Bool) {
-    }
-    
     public func initializePreferenceListenerIfNot() {
         if (initializedPreferenceListener) {
             return
