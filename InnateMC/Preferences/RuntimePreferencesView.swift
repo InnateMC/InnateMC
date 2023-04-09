@@ -38,7 +38,13 @@ struct RuntimePreferencesView: View {
             TextField("Default Java Arguments", text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Add Java Version") {
-                
+                let windw = NSApp.keyWindow
+                print(windw!.title)
+                print(type(of: windw!.contentViewController!))
+                NSApp.windows.forEach { window in
+                    print(type(of: window.contentViewController!))
+                    print(window.title)
+                }
             }
         }
         .padding(.all, 16.0)

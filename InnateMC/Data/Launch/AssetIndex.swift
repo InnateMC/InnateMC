@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import InnateJson
 
 public class AssetIndex: Codable {
     public let version: String

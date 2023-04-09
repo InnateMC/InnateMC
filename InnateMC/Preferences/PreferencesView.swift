@@ -47,5 +47,10 @@ struct PreferencesView: View {
                     Label("Misc", systemImage: "drop")
                 })
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.launcherData.initializePreferenceListenerIfNot()
+            }
+        }
     }
 }

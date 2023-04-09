@@ -42,7 +42,13 @@ struct InstanceRuntimeView: View {
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Button("Add Java Version") {
-                    
+                    print("hello end")
+                    print(NSApp.keyWindow!.title)
+                    print(type(of: NSApp.keyWindow!.contentViewController!))
+                    NSApp.windows.forEach { window in
+                        print(type(of: window.contentViewController!))
+                        print(window.title)
+                    }
                 }
             }
             .padding(.all, 16.0)

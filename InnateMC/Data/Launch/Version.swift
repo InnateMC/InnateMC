@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import InnateJson
 import CryptoKit
 
 public class Version {

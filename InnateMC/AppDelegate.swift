@@ -20,16 +20,27 @@ import Foundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let m = NSApp.mainMenu?.item(withTitle: "Edit") {
             NSApp.mainMenu?.removeItem(m)
+        }
+        NSApp.windows.forEach { window in
+            print(type(of: window.contentViewController))
+            print(window.title)
+        }
+        if let preferencesWindow = NSApp.windows.first(where: { $0.title == "Preferences" }) {
+            NotificationCenter.default.addObserver(forName: NSApplication.didHideNotification, object: preferencesWindow, queue: nil) { notification in
+                NSLog("gitchee gitchee goo")
+            }
+        } else {
+            NSLog("Error: %@", "Could not find Preferences window. Preferences will not be saved.")
         }
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 }

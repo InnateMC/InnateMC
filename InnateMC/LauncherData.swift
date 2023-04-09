@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import AppKit
 
 public class LauncherData: ObservableObject {
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
@@ -23,8 +24,23 @@ public class LauncherData: ObservableObject {
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
+    private var initializedPreferenceListener: Bool = false
     
     public init(dummy: Bool) {
+    }
+    
+    public func initializePreferenceListenerIfNot() {
+        if (initializedPreferenceListener) {
+            return
+        }
+        print("Initializing preferences listener sucks for u")
+        initializedPreferenceListener = true
+        let preferencesWindow = NSApp.keyWindow
+        NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: preferencesWindow, queue: .main) { notification in
+            DispatchQueue.global().async {
+                self.globalPreferences.save()
+            }
+        }
     }
     
     init() {

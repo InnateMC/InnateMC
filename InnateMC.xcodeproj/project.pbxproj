@@ -299,9 +299,9 @@
 				64C334DA2922523600BB8570 /* ContentView.swift */,
 				64C41C1329366CAF00014E0F /* ValueKeys.swift */,
 				64C334D82922523600BB8570 /* InnateMCApp.swift */,
+				64E459F22938C7AC00F82A2B /* LauncherData.swift */,
 				64C334DC2922523F00BB8570 /* Assets.xcassets */,
 				64C334E12922523F00BB8570 /* InnateMC.entitlements */,
-				64E459F22938C7AC00F82A2B /* LauncherData.swift */,
 				64C334DE2922523F00BB8570 /* Preview Content */,
 			);
 			path = InnateMC;

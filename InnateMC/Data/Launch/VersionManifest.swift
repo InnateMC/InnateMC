@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import InnateJson
 
 public class VersionManifest {
     private static let decoder = JSONDecoder()
