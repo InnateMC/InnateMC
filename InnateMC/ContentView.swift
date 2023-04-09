@@ -55,7 +55,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
-        if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+        if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
             InstanceNavigationLink(instance: instance)
             .tag(instance)
             .padding(.all, 4)

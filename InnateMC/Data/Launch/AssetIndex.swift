@@ -18,6 +18,8 @@
 import Foundation
 
 public class AssetIndex: Codable {
+    private static let indexesDir: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
+    private static let objectsDir: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
     public let version: String
     public let jsonData: Data
     public let objects: [String: [String: String]]
@@ -29,8 +31,7 @@ public class AssetIndex: Codable {
     }
     
     public static func get(version: String, urlStr: String) throws -> AssetIndex {
-        let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
-        let indexesFile: URL = indexes.appendingPathComponent(version + ".json", isDirectory: false)
+        let indexesFile: URL = AssetIndex.indexesDir.appendingPathComponent(version + ".json", isDirectory: false)
         if FileManager.default.fileExists(atPath: indexesFile.path) {
             return try fromJson(try Data(contentsOf: indexesFile), version: version)
         }
@@ -59,30 +60,39 @@ public class AssetIndex: Codable {
         return AssetIndex(version: version, jsonData: jsonData, objects: strs)
     }
     
-    public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws {
+    public func createDirectories() throws {
         let fm = FileManager.default
         let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
-        let indexes: URL = FileHandler.assetsFolder.appendingPathComponent("indexes", isDirectory: true)
-        if !fm.fileExists(atPath: objects.path) {
+        if !fm.fileExists(atPath: AssetIndex.objectsDir.path) {
+            // TODO: handle the error
             try fm.createDirectory(at: objects, withIntermediateDirectories: true)
         }
-        if !fm.fileExists(atPath: indexes.path) {
-            try fm.createDirectory(at: indexes, withIntermediateDirectories: true)
+        if !fm.fileExists(atPath: AssetIndex.indexesDir.path) {
+            try fm.createDirectory(at: AssetIndex.indexesDir, withIntermediateDirectories: true)
         }
-        let indexesFile: URL = indexes.appendingPathComponent(self.version + ".json", isDirectory: false)
-        if !fm.fileExists(atPath: indexesFile.path) {
-            fm.createFile(atPath: indexesFile.path, contents: self.jsonData)
+        let indexFile: URL = AssetIndex.indexesDir.appendingPathComponent(self.version + ".json", isDirectory: false)
+        if !fm.fileExists(atPath: indexFile.path) {
+            fm.createFile(atPath: indexFile.path, contents: self.jsonData)
         }
+    }
+    
+    public func getAssetsAsTasks() -> [DownloadTask] {
         var tasks: [DownloadTask] = []
         for (_, v) in self.objects {
             let hash = v["hash"]!
             let fromIndex = hash.index(hash.startIndex, offsetBy: 2)
             let hashPre = String(hash[..<fromIndex])
-            let hashFolder = objects.appendingPathComponent(hashPre, isDirectory: true)
+            let hashFolder = AssetIndex.objectsDir.appendingPathComponent(hashPre, isDirectory: true)
             let path = hashFolder.appendingPathComponent(hash, isDirectory: false)
             let url = URL(string: "https://resources.download.minecraft.net/" + hashPre + "/" + hash)!
             tasks.append(DownloadTask(sourceUrl: url, filePath: path, sha1: hash))
         }
+        return tasks;
+    }
+    
+    public func downloadParallel(progress: TaskProgress, callback: (() -> Void)?) throws {
+        try createDirectories()
+        let tasks = getAssetsAsTasks()
         ParallelExecutor.download(tasks, progress: progress, callback: callback)
     }
 }

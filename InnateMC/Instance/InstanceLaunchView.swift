@@ -26,6 +26,8 @@ struct InstanceLaunchView: View {
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var launchedInstanceProcess: InstanceProcess? = nil
+    @State var showErrorSheet: Bool = false
+    @State var errorMessage: String = "Never gonna give you up"
     
     var body: some View {
         VStack {
