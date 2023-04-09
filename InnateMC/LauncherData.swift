@@ -33,7 +33,6 @@ public class LauncherData: ObservableObject {
         if (initializedPreferenceListener) {
             return
         }
-        print("Initializing preferences listener sucks for u")
         initializedPreferenceListener = true
         let preferencesWindow = NSApp.keyWindow
         NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: preferencesWindow, queue: .main) { notification in
