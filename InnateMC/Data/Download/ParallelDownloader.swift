@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 public struct ParallelDownloader {
     public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
@@ -28,7 +29,6 @@ public struct ParallelDownloader {
         let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
         
         let downloadGroup = DispatchGroup()
-        var downloadErrors = [Error]()
         
         for (_, task) in tasks.enumerated() {
             downloadGroup.enter()
@@ -46,7 +46,16 @@ public struct ParallelDownloader {
                         // TODO: verify sha hash
                         let fileManager = FileManager.default
                         let destinationUrl = task.filePath
-                        let fileExists = try destinationUrl.checkResourceIsReachable()
+                        var fileExists = fileManager.fileExists(atPath: destinationUrl.path)
+                        if fileExists {
+                            if !checkHash(path: destinationUrl, expected: task.sha1) {
+                                try fileManager.removeItem(at: destinationUrl)
+                            }
+                        }
+                        if !checkHash(path: tempUrl, expected: task.sha1) {
+                            throw SHAError.invalidShaHash
+                        }
+                        fileExists = fileManager.fileExists(atPath: destinationUrl.path)
                         if !fileExists {
                             try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
                             try fileManager.moveItem(at: tempUrl, to: destinationUrl)
@@ -55,7 +64,11 @@ public struct ParallelDownloader {
                             progress.inc()
                         }
                     } catch {
-                        downloadErrors.append(error)
+                        print(error.localizedDescription)
+                        session.invalidateAndCancel()
+                        DispatchQueue.main.async {
+                            onError()
+                        }
                     }
                 }
                 downloadGroup.leave()
@@ -72,4 +85,31 @@ public struct ParallelDownloader {
         
         return session
     }
+    
+    private static func calculateSHA1Hash(for filePath: URL) -> String? {
+        do {
+            let fileData = try Data(contentsOf: filePath)
+            let digest = Insecure.SHA1.hash(data: fileData)
+            return digest.map { String(format: "%02hhx", $0) }.joined()
+        } catch {
+            print("Failed to read file: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    private static func checkHash(path: URL, expected expectedHashString: String?) -> Bool {
+        if let expectedHashString = expectedHashString {
+            if let actualHashString = calculateSHA1Hash(for: path) {
+                return actualHashString == expectedHashString
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    }
+}
+
+enum SHAError: String, Error {
+    case invalidShaHash = "Invalid SHA Hash"
 }

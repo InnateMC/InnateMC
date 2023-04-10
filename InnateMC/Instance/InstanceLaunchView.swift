@@ -135,6 +135,9 @@ struct InstanceLaunchView: View {
     }
     
     func onPrelaunchError() {
+        if (showErrorSheet) {
+            return
+        }
         showPreLaunchSheet = false
         showErrorSheet = true
     }
