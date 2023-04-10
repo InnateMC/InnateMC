@@ -25,6 +25,7 @@ struct ContentView: View {
     @State var instances: [Instance] = []
     @State var isSidebarHidden = false
     @State var showNewInstanceSheet: Bool = false
+    @State var tempSel: String = "e"
     
     var body: some View {
         NavigationView {
@@ -53,6 +54,21 @@ struct ContentView: View {
                 .foregroundColor(.gray)
         }
         .macOS12Searchable(text: $searchTerm)
+        .toolbar {
+            Spacer()
+            Picker("Account", selection: $tempSel) {
+                ForEach(instances) { thing in // TODO: implement
+                    HStack(alignment: .center) {
+                        Image("steve")
+                        Text("Dev\(thing.name)")
+                            .font(.title2)
+                    }
+                    .padding(.all)
+                    .tag(thing.name)
+                }
+            }
+            .frame(height: 40)
+        }
     }
     
     @ViewBuilder
@@ -66,7 +82,6 @@ struct ContentView: View {
 
     @ViewBuilder
     func createToolbar() -> some View {
-        Spacer()
         Toggle(isOn: $starredOnly) {
             if(starredOnly) {
                 Image(systemName: "star.fill")

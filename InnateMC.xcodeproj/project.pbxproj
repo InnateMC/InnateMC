@@ -28,6 +28,9 @@
 		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
 		6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */; };
 		6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E47129E2C35200B4C65B /* DownloadTask.swift */; };
+		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
+		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
+		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
 		648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
@@ -124,6 +127,9 @@
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
 		6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 		6472E47129E2C35200B4C65B /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
+		64821E0B29E44C13006012F7 /* OfflineAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAccount.swift; sourceTree = "<group>"; };
+		64821E0D29E459FA006012F7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		648C831129DB375400007603 /* InnateMC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateMC-Bridging-Header.h"; sourceTree = "<group>"; };
 		648C831529DBDD6A00007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../../../usr/local/lib/libzip.5.5.dylib; sourceTree = "<group>"; };
 		648C831829DBDDCD00007603 /* zip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
@@ -258,6 +264,16 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		64821E0829E44B4E006012F7 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				64821E0929E44B78006012F7 /* MinecraftAccount.swift */,
+				64821E0B29E44C13006012F7 /* OfflineAccount.swift */,
+				64821E0D29E459FA006012F7 /* AccountManager.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
 		648C832229DBEFDE00007603 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				64F7C5F4297D64490086ABC1 /* FileHandler.swift */,
+				64821E0829E44B4E006012F7 /* Accounts */,
 				64F7C613297D7D470086ABC1 /* Download */,
 				64F7C610297D657E0086ABC1 /* Preferences */,
 				64F7C605297D64FC0086ABC1 /* Java */,
@@ -585,6 +602,7 @@
 				64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */,
 				64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */,
 				64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */,
+				64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				64A5151C29E2DFAD00AFE3AE /* Instance+Storage.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
@@ -621,8 +639,10 @@
 				6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */,
 				64C33507292256C500BB8570 /* TodoView.swift in Sources */,
 				64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */,
+				64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */,
 				64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */,
 				64C5621429C083AA003402F0 /* InstanceProcess.swift in Sources */,
+				64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */,
 				640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */,
 				64F7C5F1297D641C0086ABC1 /* AssetIndex.swift in Sources */,
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
