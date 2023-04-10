@@ -17,7 +17,7 @@
 
 import Foundation
 
-class AccountManager {
-    public var currentSelected: MinecraftAccount? = nil
-    public var accounts: [MinecraftAccount] = []
+class AccountManager: ObservableObject {
+    public var currentSelected: UUID = UUID()
+    public var accounts: [UUID:MinecraftAccount] = [:]
 }

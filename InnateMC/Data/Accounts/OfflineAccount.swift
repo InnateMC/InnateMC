@@ -20,12 +20,21 @@ import SwiftUI
 
 struct OfflineAccount: MinecraftAccount {
     var username: String
-    
+    var uuid: UUID
+
+    public static func createFromUsername(_ username: String) -> OfflineAccount {
+        return OfflineAccount(username: username, uuid: UUID())
+    }
+
     func getType() -> MinecraftAccountType {
         return .offline
     }
-    
+
     func getUsername() -> String {
         return username
+    }
+
+    func getUUID() -> UUID {
+        return uuid
     }
 }

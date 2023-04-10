@@ -23,6 +23,8 @@ protocol MinecraftAccount: Codable {
     
     func getUsername() -> String
     
+    func getUUID() -> UUID
+    
     // TODO: add more launch related methods
 }
 
