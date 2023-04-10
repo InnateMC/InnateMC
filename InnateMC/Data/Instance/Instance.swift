@@ -27,7 +27,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public var minecraftJar: MinecraftJar
     @Published public var isStarred: Bool
     @Published public var logo: InstanceLogo
-    public var description: String? // TODO: make published
+    @Published public var description: String?
     public var debugString: String? // TODO: what even is this?
     public var someDebugString: String { // TODO: rename this
         get { return debugString ?? assetIndex.id }

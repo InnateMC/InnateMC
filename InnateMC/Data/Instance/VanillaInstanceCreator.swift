@@ -45,7 +45,6 @@ public class VanillaInstanceCreator: InstanceCreator {
         let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, debugString: version.id, gameArguments: version.arguments.game)
         let prefs = InstancePreferences()
         prefs.runtime = data.globalPreferences.runtime
-        print(version.arguments.jvm)
         if (version.arguments.jvm.contains("-XstartOnFirstThread")) {
             instance.setStartOnFirstThread()
         }
