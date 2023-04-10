@@ -16,12 +16,14 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance] = []
+    @State var isSidebarHidden = false
     
     var body: some View {
         NavigationView {
@@ -33,7 +35,6 @@ struct ContentView: View {
                     }
                     .onMove { indices, newOffset in
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
-                        
                     }
                 }
                 .onReceive(launcherData.$instances) { new in
@@ -61,7 +62,7 @@ struct ContentView: View {
             .padding(.all, 4)
         }
     }
-        
+
     @ViewBuilder
     func createToolbar() -> some View {
         Spacer()
@@ -74,6 +75,12 @@ struct ContentView: View {
         }
         Button(action:{launcherData.showNewInstanceSheet = true}) {
             Image(systemName: "plus")
+        }
+        
+        Button(action: {
+            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        }) {
+            Image(systemName: "sidebar.leading")
         }
     }
     

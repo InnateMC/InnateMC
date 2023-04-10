@@ -36,6 +36,7 @@ struct InnateMCApp: App {
                 .keyboardShortcut("n") // TODO: make this work
             }
             InstanceCommands(launcherData: launcherData)
+            SidebarCommands()
         }
         Settings {
             PreferencesView()

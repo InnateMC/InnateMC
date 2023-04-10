@@ -24,7 +24,6 @@ struct InstanceCommands: Commands {
     @FocusedValue(\.selectedInstance) private var selectedInstance: Instance?
     
     var body: some Commands {
-        SidebarCommands()
         CommandMenu("Instance") {
             Button(action: {
                 if let instance = selectedInstance {
