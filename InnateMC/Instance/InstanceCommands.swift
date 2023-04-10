@@ -68,7 +68,9 @@ struct InstanceCommands: Commands {
             }
             .keyboardShortcut(KeyEquivalent.upArrow, modifiers: [.shift, .command])
             Button("New Instance") {
-                launcherData.showNewInstanceSheet = true
+                DispatchQueue.main.async {
+                    launcherData.newInstanceRequested = true
+                }
             }
             .keyboardShortcut("n")
         }

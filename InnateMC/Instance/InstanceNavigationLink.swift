@@ -27,7 +27,8 @@ struct InstanceNavigationLink: View {
     @State var showDeleteSheet: Bool = false
 
     var body: some View {
-        NavigationLink(tag: instance, selection: $launcherData.selectedInstance) {
+//        NavigationLink(tag: instance, selection: $launcherData.selectedInstance) {
+        NavigationLink {
             InstanceView(instance: instance)
                 .padding(.top, 10)
         } label: {

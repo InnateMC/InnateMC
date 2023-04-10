@@ -25,6 +25,7 @@ struct NewVanillaInstanceView: View {
     @State var showAlpha = false
     @State var selectedVersion: PartialVersion = VersionManifestKey.defaultValue.first!
     @State var name = ""
+    @Binding var showNewInstanceSheet: Bool
     
     var body: some View {
         VStack {
@@ -49,13 +50,13 @@ struct NewVanillaInstanceView: View {
                 Spacer()
                 HStack{
                     Button("Cancel"){
-                        launcherData.showNewInstanceSheet = false
+                        showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button("Done") {
                         let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
                         do {
                             launcherData.instances.append(try instance.install())
-                            launcherData.showNewInstanceSheet = false
+                            showNewInstanceSheet = false
                         } catch {
                             print("something was thrown sad emojy")
                         }
@@ -70,6 +71,6 @@ struct NewVanillaInstanceView: View {
 
 struct NewVanillaInstanceView_Previews: PreviewProvider {
     static var previews: some View {
-        NewVanillaInstanceView()
+        NewVanillaInstanceView(showNewInstanceSheet: Binding.constant(true))
     }
 }

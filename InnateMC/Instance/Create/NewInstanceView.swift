@@ -17,10 +17,11 @@
 
 import SwiftUI
 struct NewInstanceView: View {
+    @Binding var showNewInstanceSheet: Bool
     
     var body: some View {
         TabView {
-            NewVanillaInstanceView()
+            NewVanillaInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
                 .tabItem {
                     Text("Vanilla")
                 }
@@ -40,6 +41,6 @@ struct NewInstanceView: View {
 
 struct NewInstanceView_Previews: PreviewProvider {
     static var previews: some View {
-        NewInstanceView()
+        NewInstanceView(showNewInstanceSheet: Binding.constant(true))
     }
 }

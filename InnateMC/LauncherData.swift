@@ -23,11 +23,11 @@ public class LauncherData: ObservableObject {
     private var currentInstance: LauncherData? = nil
     internal var currentInstanceUnsafe: LauncherData { currentInstance! }
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
-    @Published var showNewInstanceSheet: Bool = false
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
-    @Published var selectedInstance: Instance? = nil
+//    @Published var selectedInstance: Instance? = nil
+    @Published var newInstanceRequested: Bool = false
     private var initializedPreferenceListener: Bool = false
     
     public func initializePreferenceListenerIfNot() {
@@ -43,7 +43,7 @@ public class LauncherData: ObservableObject {
         }
     }
     
-    private var cancellables = Set<AnyCancellable>()
+//    private var cancellables = Set<AnyCancellable>()
     
     init() {
         DispatchQueue.global().async {
@@ -59,12 +59,12 @@ public class LauncherData: ObservableObject {
             }
         }
         currentInstance = self
-        $selectedInstance.sink { [weak self] value in
-            guard self != nil else { return }
-            if let value = value {
-                print("Selected: \(value.name)")
-            }
-        }
-        .store(in: &cancellables)
+//        $selectedInstance.sink { [weak self] value in
+//            guard self != nil else { return }
+//            if let value = value {
+//                print("Selected: \(value.name)")
+//            }
+//        }
+//        .store(in: &cancellables)
     }
 }

@@ -24,6 +24,7 @@ struct ContentView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var instances: [Instance] = []
     @State var isSidebarHidden = false
+    @State var showNewInstanceSheet: Bool = false
     
     var body: some View {
         NavigationView {
@@ -41,8 +42,8 @@ struct ContentView: View {
                     instances = new
                 }
             }
-            .sheet(isPresented: $launcherData.showNewInstanceSheet) {
-                NewInstanceView()
+            .sheet(isPresented: $showNewInstanceSheet) {
+                NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
             }
             .navigationTitle("Instances")
             .toolbar { createToolbar() }
@@ -73,8 +74,15 @@ struct ContentView: View {
                 Image(systemName: "star")
             }
         }
-        Button(action:{launcherData.showNewInstanceSheet = true}) {
+        Button(action: {
+            showNewInstanceSheet = true
+        }) {
             Image(systemName: "plus")
+        }.onReceive(launcherData.$newInstanceRequested) { req in
+            if req {
+                showNewInstanceSheet = true
+                launcherData.newInstanceRequested = false
+            }
         }
         
         Button(action: {
