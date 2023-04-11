@@ -66,7 +66,7 @@ struct ContentView: View {
     @ViewBuilder
     func createTrailingToolbar() -> some View {
         Spacer()
-        Button("Add Account") {
+        Button("Manage Accounts") {
             launcherData.selectedPreferenceTab = .accounts
             NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
