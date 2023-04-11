@@ -29,12 +29,6 @@ struct InnateMCApp: App {
                 .environmentObject(launcherData)
         }
         .commands {
-            CommandMenu("Edit") {
-                Button("New Instance") {
-                    // TODO: make this work
-                }
-                .keyboardShortcut("n") // TODO: make this work
-            }
             InstanceCommands(launcherData: launcherData)
             SidebarCommands()
         }

@@ -28,6 +28,7 @@ public class LauncherData: ObservableObject {
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
     @Published var newInstanceRequested: Bool = false
     @Published var accountManager: AccountManager = AccountManager()
+    @Published var selectedPreferenceTab: SelectedPreferenceTab = .ui
     private var initializedPreferenceListener: Bool = false
     
     public func initializePreferenceListenerIfNot() {
@@ -58,4 +59,14 @@ public class LauncherData: ObservableObject {
         }
         currentInstance = self
     }
+}
+
+// TODO: move
+public enum SelectedPreferenceTab: Int, Hashable, Codable {
+    case runtime = 0
+    case accounts = 1
+    case game = 2
+    case ui = 3
+    case console = 4
+    case misc = 5
 }

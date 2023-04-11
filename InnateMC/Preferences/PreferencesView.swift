@@ -21,31 +21,37 @@ struct PreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
 
     var body: some View {
-        TabView {
+        TabView(selection: $launcherData.selectedPreferenceTab) {
             RuntimePreferencesView()
                 .tabItem({
                     Label("Runtime", systemImage: "bolt")
                 })
+                .tag(SelectedPreferenceTab.runtime)
             AccountsPreferencesView()
                 .tabItem({
                     Label("Accounts", systemImage: "person.circle")
                 })
+                .tag(SelectedPreferenceTab.accounts)
             GamePreferencesView()
                 .tabItem({
                     Label("Game", systemImage: "gamecontroller")
                 })
+                .tag(SelectedPreferenceTab.game)
             UiPreferencesView()
                 .tabItem({
                     Label("UI", systemImage: "tray.2")
                 })
+                .tag(SelectedPreferenceTab.ui)
             ConsolePreferencesView()
                 .tabItem({
                     Label("Console", systemImage: "terminal")
                 })
+                .tag(SelectedPreferenceTab.console)
             MiscPreferencesView()
                 .tabItem({
                     Label("Misc", systemImage: "drop")
                 })
+                .tag(SelectedPreferenceTab.misc)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

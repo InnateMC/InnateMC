@@ -47,7 +47,6 @@ struct ContentView: View {
                 NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
             }
             .navigationTitle("Instances")
-            .toolbar { createToolbar() }
             
             Text("Select an instance")
                 .font(.largeTitle)
@@ -55,20 +54,34 @@ struct ContentView: View {
         }
         .macOS12Searchable(text: $searchTerm)
         .toolbar {
-            Spacer()
-            Picker("Account", selection: $tempSel) {
-                ForEach(instances) { thing in // TODO: implement
-                    HStack(alignment: .center) {
-                        Image("steve")
-                        Text("Dev\(thing.name)")
-                            .font(.title2)
-                    }
-                    .padding(.all)
-                    .tag(thing.name)
-                }
+            ToolbarItemGroup(placement: .navigation) {
+                createLeadingToolbar() // TODO: move this to on top of the sidebar somehow
             }
-            .frame(height: 40)
+            ToolbarItemGroup(placement: .primaryAction) {
+                createTrailingToolbar()
+            }
         }
+    }
+
+    @ViewBuilder
+    func createTrailingToolbar() -> some View {
+        Spacer()
+        Button("Add Account") {
+            launcherData.selectedPreferenceTab = .accounts
+            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+        }
+        Picker("Account", selection: $tempSel) {
+            ForEach(instances) { thing in // TODO: implement
+                HStack(alignment: .center) {
+                    Image("steve")
+                    Text("Dev\(thing.name)")
+                        .font(.title2)
+                }
+                .padding(.all)
+                .tag(thing.name)
+            }
+        }
+        .frame(height: 40)
     }
     
     @ViewBuilder
@@ -81,7 +94,8 @@ struct ContentView: View {
     }
 
     @ViewBuilder
-    func createToolbar() -> some View {
+    func createLeadingToolbar() -> some View {
+        Spacer()
         Toggle(isOn: $starredOnly) {
             if(starredOnly) {
                 Image(systemName: "star.fill")
