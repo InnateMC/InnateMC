@@ -44,7 +44,9 @@ struct VisualEffectBackground: NSViewRepresentable {
         let view = NSVisualEffectView()
         
         // Not certain how necessary this is
-        view.autoresizingMask = [.width, .height]
+        view.material = material
+        view.blendingMode = blendingMode
+        view.isEmphasized = isEmphasized
         
         return view
     }
@@ -60,7 +62,7 @@ extension View {
     @ViewBuilder
     func visualEffect(
         material: NSVisualEffectView.Material,
-        blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
+        blendingMode: NSVisualEffectView.BlendingMode = .withinWindow,
         emphasized: Bool = false
     ) -> some View {
         background(
@@ -77,7 +79,8 @@ extension View {
         if #available(macOS 12, *) {
             background(.regularMaterial)
         } else {
-            visualEffect(material: .sidebar)
+//            visualEffect(material: .sidebar)
+            self
         }
     }
 }
