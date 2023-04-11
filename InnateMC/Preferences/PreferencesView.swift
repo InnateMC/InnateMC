@@ -24,7 +24,11 @@ struct PreferencesView: View {
         TabView(selection: $launcherData.selectedPreferenceTab) {
             RuntimePreferencesView()
                 .tabItem({
-                    Label("Runtime", systemImage: "bolt")
+                    if #available(macOS 12.0, *) {
+                        Label("Runtime", systemImage: "cup.and.saucer")
+                    } else {
+                        Label("Runtime", systemImage: "square.stack.3d.up")
+                    }
                 })
                 .tag(SelectedPreferenceTab.runtime)
             AccountsPreferencesView()
@@ -39,7 +43,7 @@ struct PreferencesView: View {
                 .tag(SelectedPreferenceTab.game)
             UiPreferencesView()
                 .tabItem({
-                    Label("UI", systemImage: "tray.2")
+                    Label("UI", systemImage: "paintbrush.pointed")
                 })
                 .tag(SelectedPreferenceTab.ui)
             ConsolePreferencesView()
@@ -49,7 +53,7 @@ struct PreferencesView: View {
                 .tag(SelectedPreferenceTab.console)
             MiscPreferencesView()
                 .tabItem({
-                    Label("Misc", systemImage: "drop")
+                    Label("Misc", systemImage: "slider.horizontal.3")
                 })
                 .tag(SelectedPreferenceTab.misc)
         }
