@@ -19,7 +19,7 @@ import Foundation
 import CryptoKit
 
 public struct ParallelDownloader {
-    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
+    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession {
         progress.current = 0
         progress.total = tasks.count
         
@@ -35,7 +35,7 @@ public struct ParallelDownloader {
                 if error != nil {
                     session.invalidateAndCancel()
                     DispatchQueue.main.async {
-                        onError()
+                        onError(ParallelDownloadError.downloadFailed(errorKey: "error_downloading"))
                     }
                     return
                 } else if let tempUrl = tempUrl {
@@ -49,12 +49,12 @@ public struct ParallelDownloader {
                                 do {
                                     try fileManager.removeItem(at: destinationUrl)
                                 } catch {
-                                    throw ParallelDownloadError.downloadFailed("error_deleting_corrupt_item")
+                                    throw ParallelDownloadError.downloadFailed(errorKey: "error_deleting_corrupt_item")
                                 }
                             }
                         }
                         if !checkHash(path: tempUrl, expected: task.sha1) {
-                            throw ParallelDownloadError.downloadFailed("invalid_sha_hash_error")
+                            throw ParallelDownloadError.downloadFailed(errorKey: "invalid_sha_hash_error")
                         }
                         fileExists = fileManager.fileExists(atPath: destinationUrl.path)
                         if !fileExists {
@@ -62,17 +62,22 @@ public struct ParallelDownloader {
                                 try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
                                 try fileManager.moveItem(at: tempUrl, to: destinationUrl)
                             } catch {
-                                throw ParallelDownloadError.downloadFailed("error_creating_file")
+                                throw ParallelDownloadError.downloadFailed(errorKey: "error_creating_file")
                             }
                         }
                         DispatchQueue.main.async {
                             progress.inc()
                         }
                     } catch {
-                        print(error.localizedDescription)
                         session.invalidateAndCancel()
-                        DispatchQueue.main.async {
-                            onError()
+                        if let error = error as? ParallelDownloadError {
+                            DispatchQueue.main.async {
+                                onError(error)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown"))
+                            }
                         }
                     }
                 }
@@ -115,6 +120,6 @@ public struct ParallelDownloader {
     }
 }
 
-enum ParallelDownloadError: Error {
-    case downloadFailed(_ errorKey: String)
+public enum ParallelDownloadError: Error {
+    case downloadFailed(errorKey: String)
 }

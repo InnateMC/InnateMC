@@ -27,7 +27,7 @@ struct InstanceLaunchView: View {
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var launchedInstanceProcess: InstanceProcess? = nil
     @State var showErrorSheet: Bool = false
-    @State var errorMessage: String = "Never gonna give you up"
+    @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
     @State var downloadSession: URLSession? = nil
     
     var body: some View {
@@ -127,19 +127,24 @@ struct InstanceLaunchView: View {
                 }
                 instance.extractNatives(progress: downloadProgress)
             } onError: {
-                onPrelaunchError()
+                onPrelaunchError($0)
             }
         } onError: {
-            onPrelaunchError()
+            onPrelaunchError($0)
         }
     }
-    
-    func onPrelaunchError() {
+     
+    func onPrelaunchError(_ error: ParallelDownloadError) {
         if (showErrorSheet) {
             return
         }
         showPreLaunchSheet = false
         showErrorSheet = true
+        switch(error) {
+        case .downloadFailed(let errorKey):
+            errorMessageKey = LocalizedStringKey(errorKeyç)
+            break
+        }
     }
     
     @ViewBuilder

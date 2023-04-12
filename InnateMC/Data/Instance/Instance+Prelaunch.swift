@@ -116,7 +116,7 @@ extension Instance {
         ParallelExecutor.download(tasks, progress: progress, callback: {})
     }
     
-    public func downloadLibs(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession {
+    public func downloadLibs(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession {
         let tasks = getLibrariesAsTasks()
         return ParallelDownloader.download(tasks, progress: progress, onFinish: onFinish, onError: onError)
     }
@@ -126,12 +126,12 @@ extension Instance {
         try! index.downloadParallel(progress: progress, callback: {})
     }
     
-    public func downloadAssets(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession? {
+    public func downloadAssets(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession? {
         var index: AssetIndex
         do {
             index = try AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
         } catch {
-            onError()
+            onError(ParallelDownloadError.downloadFailed(errorKey: "error_downloading"))
             return nil
         }
         return index.downloadParallel(progress: progress, onFinish: onFinish, onError: onError)

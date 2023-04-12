@@ -96,11 +96,11 @@ public class AssetIndex: Codable {
         ParallelExecutor.download(tasks, progress: progress, callback: callback)
     }
     
-    public func downloadParallel(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping () -> Void) -> URLSession? {
+    public func downloadParallel(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession? {
         do {
             try createDirectories()
         } catch {
-            onError()
+            onError(ParallelDownloadError.downloadFailed(errorKey: "error_creating_file"))
             return nil
         }
         let tasks = getAssetsAsTasks()
