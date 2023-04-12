@@ -56,7 +56,6 @@
 		64C3350C2922B0B500BB8570 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64C3350B2922B0B400BB8570 /* LICENSE */; };
 		64C41C1429366CAF00014E0F /* ValueKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C41C1329366CAF00014E0F /* ValueKeys.swift */; };
 		64C5621429C083AA003402F0 /* InstanceProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5621329C083AA003402F0 /* InstanceProcess.swift */; };
-		64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */; };
 		64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* ImageLogoPickerView.swift */; };
 		64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */; };
 		64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* LauncherData.swift */; };
@@ -163,7 +162,6 @@
 		64C3350B2922B0B400BB8570 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		64C41C1329366CAF00014E0F /* ValueKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueKeys.swift; sourceTree = "<group>"; };
 		64C5621329C083AA003402F0 /* InstanceProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceProcess.swift; sourceTree = "<group>"; };
-		64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
 		64CE1091297864A700366372 /* ImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLogoPickerView.swift; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
 		64E459F22938C7AC00F82A2B /* LauncherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherData.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 			children = (
 				64F7C615297D7EE40086ABC1 /* Symbols */,
 				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
-				64CD7C1C297964D400D45100 /* VisualEffectBackground.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
 			);
@@ -610,7 +607,6 @@
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
 				6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
-				64CD7C1D297964D400D45100 /* VisualEffectBackground.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,

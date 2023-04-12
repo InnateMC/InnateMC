@@ -145,3 +145,14 @@ extension NavigationView {
         }
     }
 }
+
+extension View {
+    @ViewBuilder
+    func regularMaterialBackground() -> some View {
+        if #available(macOS 12, *) {
+            background(.regularMaterial)
+        } else {
+            self
+        }
+    }
+}
