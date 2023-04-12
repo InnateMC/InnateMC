@@ -27,7 +27,7 @@ struct ImageLogoPickerView: View {
             if showImagePreview {
                 AsynchronousImage(instance.getLogoPath())
             }
-            Button("Open") {
+            Button(i18n("open")) {
                 shouldShowFileImporter = true
             }
             .padding(.all, 50)

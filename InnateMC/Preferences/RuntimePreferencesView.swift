@@ -23,21 +23,21 @@ struct RuntimePreferencesView: View {
 
     var body: some View {
         Form {
-            Picker("Java", selection: $launcherData.globalPreferences.runtime.defaultJava) {
+            Picker(i18n("java"), selection: $launcherData.globalPreferences.runtime.defaultJava) {
                 PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
                 ForEach(launcherData.javaInstallations) {
                     PickableJavaVersion(installation: $0)
                 }
             }
-            TextField("Default Minimum Memory (MiB)", value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
+            TextField(i18n("default_min_mem"), value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
                 .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Default Maximum Memory (MiB)", value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
+            TextField(i18n("default_max_mem"), value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
                 .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Default Java Arguments", text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
+            TextField(i18n("default_java_args"), text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button("Add Java Version") {
+            Button(i18n("add_java_version")) {
                 let windw = NSApp.keyWindow
                 print(windw!.title)
                 print(type(of: windw!.contentViewController!))

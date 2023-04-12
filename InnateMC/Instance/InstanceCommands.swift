@@ -24,7 +24,7 @@ struct InstanceCommands: Commands {
     @FocusedValue(\.selectedInstance) private var selectedInstance: Instance?
     
     var body: some Commands {
-        CommandMenu("Instance") {
+        CommandMenu(i18n("instance")) {
             Button(action: {
                 if let instance = selectedInstance {
                     instance.isStarred = !instance.isStarred
@@ -32,13 +32,13 @@ struct InstanceCommands: Commands {
             }) {
                 if selectedInstance?.isStarred ?? false {
                     Label {
-                        Text("Unstar")
+                        Text(i18n("unstar"))
                     } icon: {
                         Image(systemName: "star.slash")
                     }
                 } else {
                     Label {
-                        Text("Star")
+                        Text(i18n("star"))
                     } icon: {
                         Image(systemName: "star")
                     }
@@ -49,25 +49,25 @@ struct InstanceCommands: Commands {
             Button(action: {
                 // TODO: implement
             }) {
-                Label { Text("Launch") } icon: { Image(systemName: "paperplane") }
+                Label { Text(i18n("launch")) } icon: { Image(systemName: "paperplane") }
             }
             .keyboardShortcut(KeyEquivalent.return)
             .disabled(selectedInstance == nil)
             Button(action: {
                 NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!.getPath().path)
             }) {
-                Label { Text("Open in Finder") } icon: { Image(systemName: "folder") }
+                Label { Text(i18n("open_in_finder")) } icon: { Image(systemName: "folder") }
             }
             .keyboardShortcut(KeyEquivalent.upArrow)
             .disabled(selectedInstance == nil)
             
             Divider()
             
-            Button("Open Instances Folder") {
+            Button(i18n("open_instances_folder")) {
                 NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileHandler.instancesFolder.path)
             }
             .keyboardShortcut(KeyEquivalent.upArrow, modifiers: [.shift, .command])
-            Button("New Instance") {
+            Button(i18n("new_instance")) {
                 DispatchQueue.main.async {
                     launcherData.newInstanceRequested = true
                 }

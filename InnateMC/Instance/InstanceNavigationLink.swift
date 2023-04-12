@@ -80,23 +80,23 @@ struct InstanceNavigationLink: View {
         }
         .contextMenu {
             if (instanceStarred ?? instance.isStarred) {
-                Button("Unstar") {
+                Button(i18n("unstar")) {
                     instance.isStarred = false
                 }
             } else {
-                Button("Star") {
+                Button(i18n("star")) {
                     instance.isStarred = true
                 }
             }
-            Button("Delete") {
+            Button(i18n("delete")) {
                 showDeleteSheet = true
             }
         }
         .sheet(isPresented: $showDeleteSheet) {
             VStack(alignment: .center) {
-                Text("Are you sure you want to delete this instance? This action cannot be undone!")
+                Text(LocalizedStringKey("are_you_sure_delete_instance"))
                 HStack {
-                    Button("Delete") {
+                    Button(LocalizedStringKey("delete")) {
                         if let index = launcherData.instances.firstIndex(of: instance) {
                             launcherData.instances.remove(at: index)
                             instance.delete()
@@ -106,7 +106,7 @@ struct InstanceNavigationLink: View {
                         }
                     }
                     .padding()
-                    Button("Cancel") {
+                    Button(LocalizedStringKey("cancel")) {
                         withAnimation {
                             showDeleteSheet = false
                         }

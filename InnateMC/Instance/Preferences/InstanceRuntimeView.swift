@@ -25,30 +25,23 @@ struct InstanceRuntimeView: View {
     var body: some View {
         VStack {
             Form {
-                Picker("Java", selection: $instance.preferences.runtime.defaultJava) {
+                Picker(i18n("java"), selection: $instance.preferences.runtime.defaultJava) {
                     PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
                     ForEach(launcherData.javaInstallations) {
                         PickableJavaVersion(installation: $0)
                     }
                 }
                 .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)
-                TextField("Default Minimum Memory (MiB)", value: $instance.preferences.runtime.minMemory, formatter: NumberFormatter())
+                TextField(i18n("default_min_mem"), value: $instance.preferences.runtime.minMemory, formatter: NumberFormatter())
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Default Maximum Memory (MiB)", value: $instance.preferences.runtime.maxMemory, formatter: NumberFormatter())
+                TextField(i18n("default_max_mem"), value: $instance.preferences.runtime.maxMemory, formatter: NumberFormatter())
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Default Java Arguments", text: $instance.preferences.runtime.javaArgs)
+                TextField(i18n("default_java_args"), text: $instance.preferences.runtime.javaArgs)
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button("Add Java Version") {
-                    print("hello end")
-                    print(NSApp.keyWindow!.title)
-                    print(type(of: NSApp.keyWindow!.contentViewController!))
-                    NSApp.windows.forEach { window in
-                        print(type(of: window.contentViewController!))
-                        print(window.title)
-                    }
+                Button(i18n("add_java_version")) {
                 }
             }
             .padding(.all, 16.0)

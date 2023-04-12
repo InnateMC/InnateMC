@@ -22,7 +22,7 @@ struct InstanceLaunchView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var showPreLaunchSheet: Bool = false
     @State var progress: Float = 0
-    @State var downloadMessage: String = "Downloading Libraries"
+    @State var downloadMessage: LocalizedStringKey = i18n("downloading_libs")
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var launchedInstanceProcess: InstanceProcess? = nil
@@ -40,7 +40,7 @@ struct InstanceLaunchView: View {
                         launchData?.process.interrupt()
                         launcherData.launchedInstances.removeValue(forKey: instance)
                     }, label: {
-                        Text("Close")
+                        Text(i18n("close"))
                             .font(.title2)
                     })
                         .onReceive(launchedInstanceProcess!.$terminated, perform: { value in
@@ -55,7 +55,7 @@ struct InstanceLaunchView: View {
                         showPreLaunchSheet = true
                         downloadProgress.cancelled = false
                     }, label: {
-                        Text("Launch")
+                        Text(i18n("launch"))
                             .font(.title2)
                     })
                 }
@@ -91,7 +91,7 @@ struct InstanceLaunchView: View {
                         progress = Float($0) / Float(downloadProgress.total)
                     })
                     .animation(nil)
-                Button("Abort") {
+                Button(i18n("abort")) {
                     self.downloadSession?.invalidateAndCancel()
                     showPreLaunchSheet = false
                     self.downloadProgress.cancelled = true
@@ -109,11 +109,11 @@ struct InstanceLaunchView: View {
     
     func onPrelaunchSheetAppear() {
         self.downloadProgress.cancelled = false
-        downloadMessage = "Downloading Libraries"
+        downloadMessage = i18n("downloading_libs")
         downloadSession = instance.downloadLibs(progress: downloadProgress) {
-            downloadMessage = "Downloading Assets"
+            downloadMessage = i18n("downloading_assets")
             downloadSession = instance.downloadAssets(progress: downloadProgress) {
-                downloadMessage = "Extracting Natives"
+                downloadMessage = i18n("extracting_natives")
                 downloadProgress.callback = {
                     showPreLaunchSheet = false
                     if !(downloadProgress.cancelled) {
@@ -148,11 +148,11 @@ struct InstanceLaunchView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Text("Error launching")
+                    Text(i18n("error_launching"))
                     Spacer()
                 }
                 .padding()
-                Button("Close") {
+                Button(i18n("close")) {
                     self.showErrorSheet = false
                 }
                 .padding()

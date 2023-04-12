@@ -31,8 +31,8 @@ struct NewVanillaInstanceView: View {
         VStack {
             Spacer()
             Form {
-                TextField("Name", text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
-                Picker("Version", selection: $selectedVersion) {
+                TextField(i18n("name"), text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
+                Picker(i18n("version"), selection: $selectedVersion) {
                     ForEach(versionManifest) { ver in
                         if (ver.type == "old_alpha" && showAlpha
                             || ver.type == "old_beta" && showBeta
@@ -42,17 +42,17 @@ struct NewVanillaInstanceView: View {
                         }
                     }
                 }
-                Toggle("Show snapshots", isOn: $showSnapshots)
-                Toggle("Show old beta", isOn: $showBeta)
-                Toggle("Show old alpha", isOn: $showAlpha)
+                Toggle(i18n("show_snapshots"), isOn: $showSnapshots)
+                Toggle(i18n("show_old_beta"), isOn: $showBeta)
+                Toggle(i18n("show_old_alpha"), isOn: $showAlpha)
             }.padding()
             HStack{
                 Spacer()
                 HStack{
-                    Button("Cancel"){
+                    Button(i18n("cancel")){
                         showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
-                    Button("Done") {
+                    Button(i18n("done")) {
                         let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
                         do {
                             launcherData.instances.append(try instance.install())

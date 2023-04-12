@@ -25,35 +25,35 @@ struct PreferencesView: View {
             RuntimePreferencesView()
                 .tabItem({
                     if #available(macOS 12.0, *) {
-                        Label("Runtime", systemImage: "cup.and.saucer")
+                        Label(i18n("runtime"), systemImage: "cup.and.saucer")
                     } else {
-                        Label("Runtime", systemImage: "square.stack.3d.up")
+                        Label(i18n("runtime"), systemImage: "square.stack.3d.up")
                     }
                 })
                 .tag(SelectedPreferenceTab.runtime)
             AccountsPreferencesView()
                 .tabItem({
-                    Label("Accounts", systemImage: "person.circle")
+                    Label(i18n("accounts"), systemImage: "person.circle")
                 })
                 .tag(SelectedPreferenceTab.accounts)
             GamePreferencesView()
                 .tabItem({
-                    Label("Game", systemImage: "gamecontroller")
+                    Label(i18n("game"), systemImage: "gamecontroller")
                 })
                 .tag(SelectedPreferenceTab.game)
             UiPreferencesView()
                 .tabItem({
-                    Label("UI", systemImage: "paintbrush.pointed")
+                    Label(i18n("user_interface"), systemImage: "paintbrush.pointed")
                 })
                 .tag(SelectedPreferenceTab.ui)
             ConsolePreferencesView()
                 .tabItem({
-                    Label("Console", systemImage: "terminal")
+                    Label(i18n("console"), systemImage: "terminal")
                 })
                 .tag(SelectedPreferenceTab.console)
             MiscPreferencesView()
                 .tabItem({
-                    Label("Misc", systemImage: "slider.horizontal.3")
+                    Label(i18n("misc"), systemImage: "slider.horizontal.3")
                 })
                 .tag(SelectedPreferenceTab.misc)
         }

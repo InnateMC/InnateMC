@@ -22,7 +22,7 @@ struct UiPreferencesView: View {
 
     var body: some View {
         Form {
-            Toggle("Compact Instance List", isOn: $launcherData.globalPreferences.ui.compactList)
+            Toggle(i18n("compact_instance_list"), isOn: $launcherData.globalPreferences.ui.compactList)
         }
         .padding(.all, 16.0)
     }

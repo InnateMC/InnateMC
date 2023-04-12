@@ -117,7 +117,7 @@ public struct SymbolPicker: View {
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         } else {
             VStack {
-                TextField("Search...", text: $searchText)
+                TextField(i18n("search"), text: $searchText)
                     .padding(8)
                     .padding(.horizontal, 8)
                     .background(Color(UIColor.systemGray5))
@@ -131,7 +131,7 @@ public struct SymbolPicker: View {
         }
         #elseif os(tvOS)
         VStack {
-            TextField("Search...", text: $searchText)
+            TextField(i18n("search"), text: $searchText)
                 .padding(.horizontal, 8)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
@@ -145,7 +145,7 @@ public struct SymbolPicker: View {
         #elseif os(macOS)
         VStack(spacing: 0) {
             HStack {
-                TextField("Search...", text: $searchText)
+                TextField(i18n("search"), text: $searchText)
                     .textFieldStyle(.plain)
                     .font(.system(size: 18.0))
                     .disableAutocorrection(true)
@@ -224,7 +224,7 @@ public struct SymbolPicker: View {
             /// tvOS can use back button on remote
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button(i18n("cancel")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }

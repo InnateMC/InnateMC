@@ -119,31 +119,31 @@ struct InstanceView: View {
         TabView {
             InstanceLaunchView(instance: instance)
                 .tabItem {
-                    Label("Launch", systemImage: "bolt")
+                    Label(i18n("launch"), systemImage: "bolt")
                 }
             InstanceRuntimeView(instance: $instance)
                 .tabItem {
-                    Label("Runtime", systemImage: "bolt")
+                    Label(i18n("runtime"), systemImage: "bolt")
                 }
             TodoView()
                 .tabItem {
-                    Label("Mods", systemImage: "bolt")
+                    Label(i18n("mods"), systemImage: "bolt")
                 }
             TodoView()
                 .tabItem {
-                    Label("Resource Packs", systemImage: "bolt")
+                    Label(i18n("resource_packs"), systemImage: "bolt")
                 }
             TodoView()
                 .tabItem {
-                    Label("Worlds", systemImage: "bolt")
+                    Label(i18n("worlds"), systemImage: "bolt")
                 }
             TodoView()
                 .tabItem {
-                    Label("Screenshots", systemImage: "bolt")
+                    Label(i18n("screenshots"), systemImage: "bolt")
                 }
             TodoView()
                 .tabItem {
-                    Label("Misc", systemImage: "bolt")
+                    Label(i18n("misc"), systemImage: "bolt")
                 }
         }.padding(.all, 4)
     }
@@ -154,14 +154,14 @@ struct InstanceView: View {
             TabView {
                 ImageLogoPickerView(instance: instance)
                     .tabItem {
-                        Text("Image")
+                        Text(i18n("image"))
                     }
                 SymbolLogoPickerView(instance: instance, logo: $instance.logo)
                     .tabItem {
-                        Text("Symbol")
+                        Text(i18n("symbol"))
                     }
             }
-            Button("Done") {
+            Button(i18n("done")) {
                 withAnimation {
                     showLogoSheet = false
                 }

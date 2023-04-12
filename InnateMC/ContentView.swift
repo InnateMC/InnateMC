@@ -46,9 +46,9 @@ struct ContentView: View {
             .sheet(isPresented: $showNewInstanceSheet) {
                 NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
             }
-            .navigationTitle("Instances")
+            .navigationTitle(i18n("instances_title"))
             
-            Text("Select an instance")
+            Text(i18n("select_an_instance"))
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
@@ -66,11 +66,11 @@ struct ContentView: View {
     @ViewBuilder
     func createTrailingToolbar() -> some View {
         Spacer()
-        Button("Manage Accounts") {
+        Button(i18n("manage_accounts")) {
             launcherData.selectedPreferenceTab = .accounts
             NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
-        Picker("Account", selection: $tempSel) {
+        Picker(i18n("account"), selection: $tempSel) {
             ForEach(instances) { thing in // TODO: implement
                 HStack(alignment: .center) {
                     Image("steve")
@@ -125,14 +125,17 @@ struct ContentView: View {
     func createMacOS11TextField() -> some View {
         if #available(macOS 12.0, *) {
         } else {
-            TextField("Search", text: $searchTerm)
+            TextField(i18n("search"), text: $searchTerm)
                 .padding(.trailing, 8.0)
                 .padding(.leading, 10.0)
                 .padding([.top, .bottom], 9.0)
-                .accessibilityLabel("Search for Instance")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
+}
+
+func i18n(_ str: String) -> LocalizedStringKey {
+    return LocalizedStringKey(str)
 }
 
 extension NavigationView {
