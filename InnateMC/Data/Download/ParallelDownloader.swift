@@ -23,10 +23,7 @@ public struct ParallelDownloader {
         progress.current = 0
         progress.total = tasks.count
         
-        let sessionConfig = URLSessionConfiguration.ephemeral
-        sessionConfig.timeoutIntervalForRequest = 20
-        sessionConfig.timeoutIntervalForResource = 20
-        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        let session = URLSession(configuration: URLSessionConfiguration.ephemeral, delegate: nil, delegateQueue: nil)
         
         let downloadGroup = DispatchGroup()
         
