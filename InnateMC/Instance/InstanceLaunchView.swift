@@ -142,7 +142,7 @@ struct InstanceLaunchView: View {
         showErrorSheet = true
         switch(error) {
         case .downloadFailed(let errorKey):
-            errorMessageKey = LocalizedStringKey(errorKeyç)
+            errorMessageKey = LocalizedStringKey(errorKey)
             break
         }
     }
