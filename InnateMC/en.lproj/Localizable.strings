@@ -47,3 +47,9 @@
 "user_interface" = "UI";
 "console" = "Console";
 "compact_instance_list" = "Compact Instance List";
+"rickroll_1" = "Never gonna give you up";
+"error_creating_file" = "Failed to create file/directory";
+"error_downloading" = "Failed to download specified file";
+"error_deleting_corrupt_item" = "Failed to delete corrupt download";
+"invalid_sha_hash_error" = "Invalid SHA hash found";
+"error_unknown_download" = "An unknown error occurred while downloading. This is a bug!";

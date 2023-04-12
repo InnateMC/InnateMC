@@ -76,7 +76,7 @@ public struct ParallelDownloader {
                             }
                         } else {
                             DispatchQueue.main.async {
-                                onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown"))
+                                onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
                             }
                         }
                     }
