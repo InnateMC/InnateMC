@@ -46,16 +46,24 @@ public struct ParallelDownloader {
                         var fileExists = fileManager.fileExists(atPath: destinationUrl.path)
                         if fileExists {
                             if !checkHash(path: destinationUrl, expected: task.sha1) {
-                                try fileManager.removeItem(at: destinationUrl)
+                                do {
+                                    try fileManager.removeItem(at: destinationUrl)
+                                } catch {
+                                    throw ParallelDownloadError.downloadFailed("error_deleting_corrupt_item")
+                                }
                             }
                         }
                         if !checkHash(path: tempUrl, expected: task.sha1) {
-                            throw SHAError.invalidShaHash
+                            throw ParallelDownloadError.downloadFailed("invalid_sha_hash_error")
                         }
                         fileExists = fileManager.fileExists(atPath: destinationUrl.path)
                         if !fileExists {
-                            try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
-                            try fileManager.moveItem(at: tempUrl, to: destinationUrl)
+                            do {
+                                try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
+                                try fileManager.moveItem(at: tempUrl, to: destinationUrl)
+                            } catch {
+                                throw ParallelDownloadError.downloadFailed("error_creating_file")
+                            }
                         }
                         DispatchQueue.main.async {
                             progress.inc()
@@ -107,6 +115,6 @@ public struct ParallelDownloader {
     }
 }
 
-enum SHAError: String, Error {
-    case invalidShaHash = "Invalid SHA Hash"
+enum ParallelDownloadError: Error {
+    case downloadFailed(_ errorKey: String)
 }
