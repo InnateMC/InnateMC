@@ -28,6 +28,7 @@ struct NewVanillaInstanceView: View {
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
     @State var showNoNamePopover = false
+    @State var showDuplicateNamePopover = false
     
     var body: some View {
         VStack {
@@ -36,6 +37,10 @@ struct NewVanillaInstanceView: View {
                 TextField(i18n("name"), text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
                     .popover(isPresented: $showNoNamePopover, arrowEdge: .bottom) {
                         Text("Enter a name")
+                            .padding()
+                    }
+                    .popover(isPresented: $showDuplicateNamePopover, arrowEdge: .bottom) {
+                        Text("Enter a unique name")
                             .padding()
                     }
                 Picker(i18n("version"), selection: $selectedVersion) {
