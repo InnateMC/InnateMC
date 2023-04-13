@@ -78,6 +78,7 @@
 		64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60C297D654A0086ABC1 /* JreDownloader.swift */; };
 		64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */; };
 		64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */; };
+		64F9A1A229E840CF00BFEC02 /* libzip.5.5.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				64F9A1A229E840CF00BFEC02 /* libzip.5.5.dylib in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,7 +787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -841,7 +843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.7;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -861,7 +863,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"InnateMC/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -879,7 +881,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -903,7 +905,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"InnateMC/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -921,7 +923,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";

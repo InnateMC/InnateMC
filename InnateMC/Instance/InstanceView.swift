@@ -173,23 +173,3 @@ struct InstanceView: View {
         .padding(.all, 15)
     }
 }
-
-struct LaunchButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.all, 2)
-            .foregroundColor(.white)
-            .background(Color(red: 0, green: 0.5, blue: 1.0))
-            .clipShape(Capsule())
-    }
-}
-
-struct KillButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.all, 2)
-            .foregroundColor(.white)
-            .background(Color(red: 1.0, green: 0.2, blue: 0.2))
-            .clipShape(Capsule())
-    }
-}
