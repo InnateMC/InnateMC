@@ -27,12 +27,17 @@ struct NewVanillaInstanceView: View {
     @State var name = ""
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
+    @State var showNoNamePopover = false
     
     var body: some View {
         VStack {
             Spacer()
             Form {
                 TextField(i18n("name"), text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
+                    .popover(isPresented: $showNoNamePopover, arrowEdge: .bottom) {
+                        Text("Enter a name")
+                            .padding()
+                    }
                 Picker(i18n("version"), selection: $selectedVersion) {
                     ForEach(self.versions) { ver in
                         Text(ver.version)
@@ -50,13 +55,19 @@ struct NewVanillaInstanceView: View {
                         showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button(i18n("done")) {
-                        let instance = VanillaInstanceCreator(name: name, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
-                        do {
-                            launcherData.instances.append(try instance.install())
-                            showNewInstanceSheet = false
-                        } catch {
-                            // TODO: handle this error
-                            print("something was thrown sad emojy")
+                        let trimmedName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if trimmedName.isEmpty { // TODO: also check for spaces
+                            showNoNamePopover = true
+                        } else {
+                            showNoNamePopover = false
+                            let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
+                            do {
+                                launcherData.instances.append(try instance.install())
+                                showNewInstanceSheet = false
+                            } catch {
+                                // TODO: handle this error
+                                print("something was thrown sad emojy")
+                            }
                         }
                     }.keyboardShortcut(.defaultAction)
                 }.padding(.trailing).padding(.bottom)
