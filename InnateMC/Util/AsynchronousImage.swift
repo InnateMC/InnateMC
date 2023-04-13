@@ -30,6 +30,7 @@ struct AsynchronousImage: View {
         ZStack {
             if let nsImage = wrapped {
                 Image(nsImage: nsImage).resizable()
+                    .scaledToFit()
             } else {
                 Image(systemName: "tray.circle").resizable()
             }
