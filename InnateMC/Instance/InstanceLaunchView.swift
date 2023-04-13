@@ -79,15 +79,14 @@ struct InstanceLaunchView: View {
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 8)
-                        .background(Color(NSColor.textBackgroundColor))
-                        .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.secondary, lineWidth: 1)
-                        )
                         .id(launchedInstanceProcess.logMessages)
                     }
-                    .background(Color.clear)
+                    .background(Color(NSColor.textBackgroundColor))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.secondary, lineWidth: 1)
+                    )
                     .padding(.all, 7.0)
                     .onAppear {
                         // Scroll to bottom when view appears
