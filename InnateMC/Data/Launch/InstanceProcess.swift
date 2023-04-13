@@ -42,7 +42,7 @@ public class InstanceProcess: ObservableObject  {
         mcArgs.assetsDir(FileHandler.assetsFolder)
         mcArgs.assetIndex(instance.assetIndex.id)
         mcArgs.uuid(UUID())
-        mcArgs.accessToken("")
+        mcArgs.accessToken("todo")
         mcArgs.userType("todo")
         mcArgs.versionType("todo")
         mcArgs.width(720)
@@ -53,7 +53,19 @@ public class InstanceProcess: ObservableObject  {
         let mcArgsProcessed = mcArgs.accept(instance.gameArguments.flatMap({ $0.split(separator: " ").map { String($0) } }));
         allArgs.append(contentsOf: mcArgsProcessed)
         process.arguments = allArgs
-        print(allArgs.joined(separator: " "))
+        
+        let outputPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = outputPipe
+        let outputHandler = outputPipe.fileHandleForReading
+        outputHandler.readabilityHandler = { [weak self] pipe in
+            guard let line = String(data: pipe.availableData, encoding: .utf8)?.trimmingCharacters(in: .newlines) else {
+                return
+            }
+            DispatchQueue.main.async {
+                self?.logMessages.append(line)
+            }
+        }
         
         DispatchQueue.global(qos: .utility).async {
             self.process.launch()
@@ -63,8 +75,20 @@ public class InstanceProcess: ObservableObject  {
             }
         }
         
-        for i in 1...100 {
-            logMessages.append("Log Message Number \(i)")
+        logMessages.append("InnateMC: Launching Instance \(instance.name)")
+    }
+}
+
+fileprivate extension Process {
+    func getRunCommand() -> String {
+        var command = self.launchPath ?? ""
+        
+        if let arguments = self.arguments {
+            for arg in arguments {
+                command += " \(arg)"
+            }
         }
+        
+        return command
     }
 }

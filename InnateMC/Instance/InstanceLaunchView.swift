@@ -29,6 +29,7 @@ struct InstanceLaunchView: View {
     @State var showErrorSheet: Bool = false
     @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
     @State var downloadSession: URLSession? = nil
+    @State var logMessages: [String] = []
     
     var body: some View {
         VStack {
@@ -68,18 +69,19 @@ struct InstanceLaunchView: View {
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
             .padding()
-            if let launchedInstanceProcess = launchedInstanceProcess {
+            if launchedInstanceProcess != nil {
                 ScrollViewReader { proxy in
                     ScrollView {
                         LazyVStack(alignment: .leading, spacing: 8) {
-                            ForEach(launchedInstanceProcess.logMessages, id: \.self) { message in
+                            ForEach(self.logMessages, id: \.self) { message in
                                 Text(message)
                                     .font(.system(.body, design: .monospaced))
+                                    .id(message)
                             }
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 8)
-                        .id(launchedInstanceProcess.logMessages)
+                        .id(self.logMessages)
                     }
                     .background(Color(NSColor.textBackgroundColor))
                     .cornerRadius(8)
@@ -89,17 +91,19 @@ struct InstanceLaunchView: View {
                     )
                     .padding(.all, 7.0)
                     .onAppear {
-                        // Scroll to bottom when view appears
                         withAnimation {
-                            proxy.scrollTo(launchedInstanceProcess.logMessages.last, anchor: .bottom)
+                            proxy.scrollTo(self.logMessages.last, anchor: .bottom)
                         }
+                        self.logMessages = self.launchedInstanceProcess!.logMessages
                     }
-                    .onChange(of: launchedInstanceProcess.logMessages, perform: { value in
-                        // Scroll to bottom when logMessages is updated
+                    .onChange(of: self.logMessages, perform: { value in
                         withAnimation {
-                            proxy.scrollTo(launchedInstanceProcess.logMessages.last, anchor: .bottom)
+                            proxy.scrollTo(self.logMessages.last, anchor: .bottom)
                         }
                     })
+                    .onReceive(self.launchedInstanceProcess!.$logMessages) {
+                        self.logMessages = $0
+                    }
                 }
             }
             Spacer()
