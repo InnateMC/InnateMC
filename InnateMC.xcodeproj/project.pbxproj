@@ -28,6 +28,7 @@
 		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
 		6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */; };
 		6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E47129E2C35200B4C65B /* DownloadTask.swift */; };
+		647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */ = {isa = PBXBuildFile; fileRef = 647A796729E7E77D00497CE1 /* libzip.5.5-license.md */; };
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
@@ -127,6 +128,7 @@
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
 		6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 		6472E47129E2C35200B4C65B /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		647A796729E7E77D00497CE1 /* libzip.5.5-license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libzip.5.5-license.md"; sourceTree = "<group>"; };
 		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
 		64821E0B29E44C13006012F7 /* OfflineAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAccount.swift; sourceTree = "<group>"; };
 		64821E0D29E459FA006012F7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		648C832229DBEFDE00007603 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				647A796729E7E77D00497CE1 /* libzip.5.5-license.md */,
 				648C832329DBF01600007603 /* libzip.5.5.dylib */,
 			);
 			path = lib;
@@ -574,6 +577,7 @@
 				64C334E02922523F00BB8570 /* Preview Assets.xcassets in Resources */,
 				64C33509292272F600BB8570 /* .gitignore in Resources */,
 				64C3350C2922B0B500BB8570 /* LICENSE in Resources */,
+				647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */,
 				64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
