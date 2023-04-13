@@ -36,26 +36,26 @@ struct PreferencesView: View {
                     Label(i18n("accounts"), systemImage: "person.circle")
                 })
                 .tag(SelectedPreferenceTab.accounts)
-            GamePreferencesView()
-                .tabItem({
-                    Label(i18n("game"), systemImage: "gamecontroller")
-                })
-                .tag(SelectedPreferenceTab.game)
+//            GamePreferencesView()
+//                .tabItem({
+//                    Label(i18n("game"), systemImage: "gamecontroller")
+//                })
+//                .tag(SelectedPreferenceTab.game)
             UiPreferencesView()
                 .tabItem({
                     Label(i18n("user_interface"), systemImage: "paintbrush.pointed")
                 })
                 .tag(SelectedPreferenceTab.ui)
-            ConsolePreferencesView()
-                .tabItem({
-                    Label(i18n("console"), systemImage: "terminal")
-                })
-                .tag(SelectedPreferenceTab.console)
-            MiscPreferencesView()
-                .tabItem({
-                    Label(i18n("misc"), systemImage: "slider.horizontal.3")
-                })
-                .tag(SelectedPreferenceTab.misc)
+//            ConsolePreferencesView()
+//                .tabItem({
+//                    Label(i18n("console"), systemImage: "terminal")
+//                })
+//                .tag(SelectedPreferenceTab.console)
+//            MiscPreferencesView()
+//                .tabItem({
+//                    Label(i18n("misc"), systemImage: "slider.horizontal.3")
+//                })
+//                .tag(SelectedPreferenceTab.misc)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

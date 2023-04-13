@@ -125,26 +125,26 @@ struct InstanceView: View {
                 .tabItem {
                     Label(i18n("runtime"), systemImage: "bolt")
                 }
-            TodoView()
-                .tabItem {
-                    Label(i18n("mods"), systemImage: "bolt")
-                }
-            TodoView()
-                .tabItem {
-                    Label(i18n("resource_packs"), systemImage: "bolt")
-                }
-            TodoView()
-                .tabItem {
-                    Label(i18n("worlds"), systemImage: "bolt")
-                }
-            TodoView()
-                .tabItem {
-                    Label(i18n("screenshots"), systemImage: "bolt")
-                }
-            TodoView()
-                .tabItem {
-                    Label(i18n("misc"), systemImage: "bolt")
-                }
+//            TodoView()
+//                .tabItem {
+//                    Label(i18n("mods"), systemImage: "bolt")
+//                }
+//            TodoView()
+//                .tabItem {
+//                    Label(i18n("resource_packs"), systemImage: "bolt")
+//                }
+//            TodoView()
+//                .tabItem {
+//                    Label(i18n("worlds"), systemImage: "bolt")
+//                }
+//            TodoView()
+//                .tabItem {
+//                    Label(i18n("screenshots"), systemImage: "bolt")
+//                }
+//            TodoView()
+//                .tabItem {
+//                    Label(i18n("misc"), systemImage: "bolt")
+//                }
         }.padding(.all, 4)
     }
     

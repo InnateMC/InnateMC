@@ -19,9 +19,8 @@ import SwiftUI
 
 struct TodoView: View {
     var body: some View {
-        Text("TODO")
-            .fontWeight(.bold)
-            .foregroundColor(Color.red)
+        Text("Coming soon!")
+            .foregroundColor(Color.gray)
     }
 }
 
