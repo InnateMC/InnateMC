@@ -67,6 +67,43 @@ struct InstanceLaunchView: View {
             .onAppear {
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
+            .padding()
+            if let launchedInstanceProcess = launchedInstanceProcess {
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 8) {
+                            ForEach(launchedInstanceProcess.logMessages, id: \.self) { message in
+                                Text(message)
+                                    .font(.system(.body, design: .monospaced))
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(Color(NSColor.textBackgroundColor))
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.secondary, lineWidth: 1)
+                        )
+                        .id(launchedInstanceProcess.logMessages)
+                    }
+                    .background(Color.clear)
+                    .padding(.all, 7.0)
+                    .onAppear {
+                        // Scroll to bottom when view appears
+                        withAnimation {
+                            proxy.scrollTo(launchedInstanceProcess.logMessages.last, anchor: .bottom)
+                        }
+                    }
+                    .onChange(of: launchedInstanceProcess.logMessages, perform: { value in
+                        // Scroll to bottom when logMessages is updated
+                        withAnimation {
+                            proxy.scrollTo(launchedInstanceProcess.logMessages.last, anchor: .bottom)
+                        }
+                    })
+                }
+            }
+            Spacer()
         }
         .sheet(isPresented: $showPreLaunchSheet) {
             createPrelaunchSheet()
@@ -133,7 +170,7 @@ struct InstanceLaunchView: View {
             onPrelaunchError($0)
         }
     }
-     
+    
     func onPrelaunchError(_ error: ParallelDownloadError) {
         if (showErrorSheet) {
             return

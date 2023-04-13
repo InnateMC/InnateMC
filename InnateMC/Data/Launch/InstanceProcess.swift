@@ -20,6 +20,7 @@ import Foundation
 public class InstanceProcess: ObservableObject  {
     @Published public var process: Process = Process()
     @Published public var terminated = false
+    @Published public var logMessages: [String] = []
     
     public init(instance: Instance) {
         let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.javaExecutable)
@@ -60,6 +61,10 @@ public class InstanceProcess: ObservableObject  {
             DispatchQueue.main.async {
                 self.terminated = true
             }
+        }
+        
+        for i in 1...100 {
+            logMessages.append("Log Message Number \(i)")
         }
     }
 }
