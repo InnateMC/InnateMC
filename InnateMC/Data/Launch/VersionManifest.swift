@@ -18,10 +18,14 @@
 import Foundation
 
 public class VersionManifest {
+    private static var cached: [PartialVersion]? = nil
     private static let decoder = JSONDecoder()
     
     public static func downloadThrow() -> [PartialVersion] {
-        return try! download()
+        if cached == nil {
+            cached = try! download()
+        }
+        return cached!
     }
 
     public static func download() throws -> [PartialVersion] {

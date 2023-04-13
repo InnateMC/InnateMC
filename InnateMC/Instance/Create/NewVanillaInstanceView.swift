@@ -23,8 +23,9 @@ struct NewVanillaInstanceView: View {
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
-    @State var selectedVersion: PartialVersion = VersionManifestKey.defaultValue.first!
+    @State var selectedVersion: PartialVersion = VersionManifest.downloadThrow().first!
     @State var name = ""
+    @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
     
     var body: some View {
@@ -33,13 +34,9 @@ struct NewVanillaInstanceView: View {
             Form {
                 TextField(i18n("name"), text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
                 Picker(i18n("version"), selection: $selectedVersion) {
-                    ForEach(versionManifest) { ver in
-                        if (ver.type == "old_alpha" && showAlpha
-                            || ver.type == "old_beta" && showBeta
-                            || ver.type == "snapshot" && showSnapshots
-                            || ver.type == "release") {
-                            Text(ver.version)
-                        }
+                    ForEach(self.versions) { ver in
+                        Text(ver.version)
+                            .tag(ver)
                     }
                 }
                 Toggle(i18n("show_snapshots"), isOn: $showSnapshots)
@@ -49,7 +46,7 @@ struct NewVanillaInstanceView: View {
             HStack{
                 Spacer()
                 HStack{
-                    Button(i18n("cancel")){
+                    Button(i18n("cancel")) {
                         showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button(i18n("done")) {
@@ -58,12 +55,42 @@ struct NewVanillaInstanceView: View {
                             launcherData.instances.append(try instance.install())
                             showNewInstanceSheet = false
                         } catch {
+                            // TODO: handle this error
                             print("something was thrown sad emojy")
                         }
-                        
                     }.keyboardShortcut(.defaultAction)
                 }.padding(.trailing).padding(.bottom)
                 
+            }
+        }
+        .onAppear {
+            recomputeVersions()
+        }
+        .onChange(of: showAlpha) { _ in
+            recomputeVersions()
+        }
+        .onChange(of: showBeta) { _ in
+            recomputeVersions()
+        }
+        .onChange(of: showSnapshots) { _ in
+            recomputeVersions()
+        }
+    }
+    
+    func recomputeVersions() {
+        DispatchQueue.global().async {
+            let newVersions = self.versionManifest.filter { version in
+                return version.type == "old_alpha" && showAlpha ||
+                version.type == "old_beta" && showBeta ||
+                version.type == "snapshot" && showSnapshots ||
+                version.type == "release"
+            }
+            let notContained = !newVersions.contains(self.selectedVersion)
+            DispatchQueue.main.async {
+                self.versions = newVersions
+                if notContained {
+                    self.selectedVersion = newVersions.first!
+                }
             }
         }
     }
