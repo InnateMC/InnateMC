@@ -35,21 +35,33 @@ struct InstanceLaunchView: View {
         VStack {
             HStack {
                 if launchedInstanceProcess != nil {
-                    Button(action: {
-                        // TODO: show a warning message
-                        let launchData = launcherData.launchedInstances[instance]
-                        launchData?.process.interrupt()
-                        launcherData.launchedInstances.removeValue(forKey: instance)
-                    }, label: {
-                        Text(i18n("close"))
-                            .font(.title2)
-                    })
-                        .onReceive(launchedInstanceProcess!.$terminated, perform: { value in
-                            if value {
-                                launchedInstanceProcess = nil
-                                launcherData.launchedInstances.removeValue(forKey: instance)
-                            }
+                    HStack {
+                        Button(action: {
+                            let launchData = launcherData.launchedInstances[instance]
+                            launchData?.process.interrupt()
+                            launcherData.launchedInstances.removeValue(forKey: instance)
+                        }, label: {
+                            Text(i18n("close"))
+                                .font(.title2)
                         })
+                            .padding(.horizontal, 4.0)
+                        
+                        Button(action: {
+                            // TODO: show a warning message
+                            kill(launchedInstanceProcess!.process.processIdentifier, SIGKILL)
+                            launcherData.launchedInstances.removeValue(forKey: instance)
+                        }, label: {
+                            Text(i18n("force_quit"))
+                                .font(.title2)
+                        })
+                            .padding(.horizontal, 2.0)
+                    }
+                    .onReceive(launchedInstanceProcess!.$terminated, perform: { value in
+                        if value {
+                            launchedInstanceProcess = nil
+                            launcherData.launchedInstances.removeValue(forKey: instance)
+                        }
+                    })
                 } else {
                     Button(action: {
                         print(instance.getPath().absoluteString)

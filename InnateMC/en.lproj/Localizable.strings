@@ -53,3 +53,4 @@
 "error_deleting_corrupt_item" = "Failed to delete corrupt download";
 "invalid_sha_hash_error" = "Invalid SHA hash found";
 "error_unknown_download" = "An unknown error occurred while downloading. This is a bug!";
+"force_quit" = "Kill";

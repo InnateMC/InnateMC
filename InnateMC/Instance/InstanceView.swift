@@ -31,18 +31,7 @@ struct InstanceView: View {
         ZStack {
             VStack {
                 HStack {
-                    InstanceLogoView(instance: instance)
-                        .frame(width: 128, height: 128)
-                        .padding(.all, 20)
-                        .opacity(logoHovered ? 0.75 : 1)
-                        .onHover(perform: { value in
-                            withAnimation {
-                                logoHovered = value
-                            }
-                        })
-                        .onTapGesture {
-                            showLogoSheet = true
-                        }
+                    createLogo()
                     VStack {
                         HStack {
                             Text(instance.name)
@@ -148,6 +137,22 @@ struct InstanceView: View {
         }.padding(.all, 4)
     }
     
+    @ViewBuilder
+    func createLogo() -> some View {
+        InstanceLogoView(instance: instance)
+            .frame(width: 128, height: 128)
+            .padding(.all, 20)
+            .opacity(logoHovered ? 0.75 : 1)
+            .onHover(perform: { value in
+                withAnimation {
+                    logoHovered = value
+                }
+            })
+            .onTapGesture {
+                showLogoSheet = true
+            }
+    }
+
     @ViewBuilder
     func createLogoSheet() -> some View {
         VStack {
