@@ -42,7 +42,7 @@ extern "C" {
 #endif
 #endif
 
-#include "zipconf.h"
+#include "zipconf"
 
 #ifndef ZIP_EXTERN
 #ifndef ZIP_STATIC

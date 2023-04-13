@@ -132,8 +132,8 @@
 		64821E0D29E459FA006012F7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		648C831129DB375400007603 /* InnateMC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateMC-Bridging-Header.h"; sourceTree = "<group>"; };
 		648C831529DBDD6A00007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../../../usr/local/lib/libzip.5.5.dylib; sourceTree = "<group>"; };
-		648C831829DBDDCD00007603 /* zip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		648C831D29DBE9F100007603 /* zipconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zipconf.h; sourceTree = "<group>"; };
+		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
+		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
 		648C832329DBF01600007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzip.5.5.dylib; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
@@ -372,8 +372,8 @@
 		64E43DE829DD5C590008B0FA /* include */ = {
 			isa = PBXGroup;
 			children = (
-				648C831829DBDDCD00007603 /* zip.h */,
-				648C831D29DBE9F100007603 /* zipconf.h */,
+				648C831829DBDDCD00007603 /* zip */,
+				648C831D29DBE9F100007603 /* zipconf */,
 			);
 			path = include;
 			sourceTree = "<group>";
