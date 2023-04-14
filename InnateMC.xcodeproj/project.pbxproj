@@ -29,7 +29,7 @@
 		6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */; };
 		6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E47129E2C35200B4C65B /* DownloadTask.swift */; };
 		647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */ = {isa = PBXBuildFile; fileRef = 647A796729E7E77D00497CE1 /* libzip.5.5-license.md */; };
-		647A796A29E8166700497CE1 /* ConsoleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A796929E8166600497CE1 /* ConsoleText.swift */; };
+		647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A796929E8166600497CE1 /* ConsoleTextView.swift */; };
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
@@ -132,7 +132,7 @@
 		6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 		6472E47129E2C35200B4C65B /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		647A796729E7E77D00497CE1 /* libzip.5.5-license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libzip.5.5-license.md"; sourceTree = "<group>"; };
-		647A796929E8166600497CE1 /* ConsoleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleText.swift; sourceTree = "<group>"; };
+		647A796929E8166600497CE1 /* ConsoleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleTextView.swift; sourceTree = "<group>"; };
 		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
 		64821E0B29E44C13006012F7 /* OfflineAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAccount.swift; sourceTree = "<group>"; };
 		64821E0D29E459FA006012F7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
-				647A796929E8166600497CE1 /* ConsoleText.swift */,
+				647A796929E8166600497CE1 /* ConsoleTextView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -635,7 +635,7 @@
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */,
-				647A796A29E8166700497CE1 /* ConsoleText.swift in Sources */,
+				647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */,
 				64A5151E29E2DFE000AFE3AE /* Instance+Prelaunch.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */,
 				64A5150E29E2DED100AFE3AE /* MinecraftJar.swift in Sources */,
