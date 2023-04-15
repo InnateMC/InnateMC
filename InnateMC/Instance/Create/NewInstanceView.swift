@@ -16,22 +16,22 @@
 //
 
 import SwiftUI
+import InnateKit
 struct NewInstanceView: View {
-    @Binding var showNewInstanceSheet: Bool
     
     var body: some View {
         TabView {
-            NewVanillaInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
+            NewVanillaInstanceView()
                 .tabItem {
-                    Text(i18n("vanilla"))
+                    Text("Vanilla")
                 }
             TodoView()
                 .tabItem {
-                    Text(i18n("modrinth"))
+                    Text("Modrinth")
                 }
             TodoView()
                 .tabItem {
-                    Text(i18n("import"))
+                    Text("Import")
                 }
         }
         .border(.red, width: 0)
@@ -41,6 +41,6 @@ struct NewInstanceView: View {
 
 struct NewInstanceView_Previews: PreviewProvider {
     static var previews: some View {
-        NewInstanceView(showNewInstanceSheet: Binding.constant(true))
+        NewInstanceView()
     }
 }

@@ -16,18 +16,11 @@
 //
 
 import Foundation
-import SwiftUI
+import InnateKit
 
-protocol MinecraftAccount: Codable {
-    func getType() -> MinecraftAccountType
-    
-    func getUsername() -> String
-    
-    func getUUID() -> UUID
-    
-    // TODO: add more launch related methods
-}
-
-enum MinecraftAccountType {
-    case microsoft, offline
+public class ViewModel: ObservableObject {
+    @Published var instances: [Instance] = Instance.loadInstancesThrow()
+    @Published var currentDownloadProgress: DownloadProgress = DownloadProgress(current: 1, total: 3)
+    @Published var currentDownloadStatus: String = "Downloading"
+    @Published var showNewInstanceScreen: Bool = false
 }

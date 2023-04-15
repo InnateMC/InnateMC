@@ -16,146 +16,60 @@
 //
 
 import SwiftUI
-import AppKit
+import InnateKit
 
 struct ContentView: View {
-    @State var searchTerm: String = ""
-    @State var starredOnly = false
-    @EnvironmentObject var launcherData: LauncherData
-    @State var instances: [Instance] = []
-    @State var isSidebarHidden = false
-    @State var showNewInstanceSheet: Bool = false
-    @State var tempSel: String = "e"
+    @State public var searchTerm: String = ""
+    
+    @State public var starredOnly = false
+    @State public var selectedInstance: Instance?
+    @EnvironmentObject var viewModel: ViewModel
+    var index: Int? {
+        viewModel.instances.firstIndex(where: { $0.id == selectedInstance?.id })
+    }
     
     var body: some View {
+        
         NavigationView {
-            VStack {
-                createMacOS11TextField()
-                List {
-                    ForEach(instances) { instance in
-                        createInstanceNavigationLink(instance: instance)
-                    }
-                    .onMove { indices, newOffset in
-                        launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
+            List {
+                ForEach(viewModel.instances) { instance in
+                    if ((!starredOnly || instance.isStarred) && (searchTerm.isEmpty || instance.checkMatch(searchTerm))) {
+                        NavigationLink(destination: {
+                            InstanceView(instance: instance)
+                                .padding(.top, 10)
+                        }, label: {
+                            InstanceNavigationLink(instance: instance)
+                        })
+                            .tag(instance)
+                            .padding(.all, 4)
                     }
                 }
-                .onReceive(launcherData.$instances) { new in
-                    instances = new
+            }
+            .sheet(isPresented:$viewModel.showNewInstanceScreen){
+                NewInstanceView()
+            }
+            .navigationTitle("Instances").toolbar{
+                
+                
+                Spacer()
+                Toggle(isOn: $starredOnly) {
+                    if(starredOnly){
+                        Image(systemName: "star.fill")
+                    }else{
+                        Image(systemName: "star")
+                    }
+                    
                 }
+                Button(action:{viewModel.showNewInstanceScreen = true}) {
+                    Image(systemName: "plus")
+                }
+                .keyboardShortcut("n")
             }
-            .sheet(isPresented: $showNewInstanceSheet) {
-                NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
-            }
-            .navigationTitle(i18n("instances_title"))
             
-            Text(i18n("select_an_instance"))
+            Text("Select an instance")
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-        .macOS12Searchable(text: $searchTerm)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigation) {
-                createLeadingToolbar() // TODO: move this to on top of the sidebar somehow
-            }
-            ToolbarItemGroup(placement: .primaryAction) {
-                createTrailingToolbar()
-            }
-        }
-    }
-
-    @ViewBuilder
-    func createTrailingToolbar() -> some View {
-        Spacer()
-        Button(i18n("manage_accounts")) {
-            launcherData.selectedPreferenceTab = .accounts
-            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-        }
-        Picker(i18n("account"), selection: $tempSel) {
-            ForEach(instances) { thing in // TODO: implement
-                HStack(alignment: .center) {
-                    Image("steve")
-                    Text("Dev\(thing.name)")
-                        .font(.title2)
-                }
-                .padding(.all)
-                .tag(thing.name)
-            }
-        }
-        .frame(height: 40)
-    }
-    
-    @ViewBuilder
-    func createInstanceNavigationLink(instance: Instance) -> some View {
-        if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
-            InstanceNavigationLink(instance: instance)
-            .tag(instance)
-            .padding(.all, 4)
-        }
-    }
-
-    @ViewBuilder
-    func createLeadingToolbar() -> some View {
-        Spacer()
-        Toggle(isOn: $starredOnly) {
-            if(starredOnly) {
-                Image(systemName: "star.fill")
-            } else{
-                Image(systemName: "star")
-            }
-        }
-        Button(action: {
-            showNewInstanceSheet = true
-        }) {
-            Image(systemName: "plus")
-        }.onReceive(launcherData.$newInstanceRequested) { req in
-            if req {
-                showNewInstanceSheet = true
-                launcherData.newInstanceRequested = false
-            }
-        }
-        
-        Button(action: {
-            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-        }) {
-            Image(systemName: "sidebar.leading")
-        }
-    }
-    
-    @ViewBuilder
-    func createMacOS11TextField() -> some View {
-        if #available(macOS 12.0, *) {
-        } else {
-            TextField(i18n("search"), text: $searchTerm)
-                .padding(.trailing, 8.0)
-                .padding(.leading, 10.0)
-                .padding([.top, .bottom], 9.0)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
-    }
-}
-
-func i18n(_ str: String) -> LocalizedStringKey {
-    return LocalizedStringKey(str)
-}
-
-extension NavigationView {
-    @ViewBuilder
-    func macOS12Searchable(text: Binding<String>) -> some View {
-        if #available(macOS 12.0, *) {
-            self.searchable(text: text, placement: .sidebar)
-        } else {
-            self
-        }
-    }
-}
-
-extension View {
-    @ViewBuilder
-    func regularMaterialBackground() -> some View {
-        if #available(macOS 12, *) {
-            background(.regularMaterial)
-        } else {
-            self
-        }
+//        .searchable(text: $searchTerm,placement: .sidebar)
     }
 }
