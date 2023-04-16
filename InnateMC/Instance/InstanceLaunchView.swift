@@ -108,11 +108,6 @@ struct InstanceLaunchView: View {
                         }
                         self.logMessages = self.launchedInstanceProcess!.logMessages
                     }
-                    .onChange(of: self.logMessages, perform: { value in
-                        withAnimation {
-                            proxy.scrollTo(self.logMessages.last, anchor: .bottom)
-                        }
-                    })
                     .onReceive(self.launchedInstanceProcess!.$logMessages) {
                         self.logMessages = $0
                     }
