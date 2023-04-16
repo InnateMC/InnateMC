@@ -37,6 +37,7 @@
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
 		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EA76629EC27F300BD77EA /* UIPreferences.swift */; };
 		64A5150E29E2DED100AFE3AE /* MinecraftJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */; };
 		64A5151029E2DEE900AFE3AE /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150F29E2DEE900AFE3AE /* Library.swift */; };
 		64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */; };
@@ -144,6 +145,7 @@
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
+		649EA76629EC27F300BD77EA /* UIPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreferences.swift; sourceTree = "<group>"; };
 		64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftJar.swift; sourceTree = "<group>"; };
 		64A5150F29E2DEE900AFE3AE /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialAssetIndex.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 			children = (
 				64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */,
 				64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */,
+				649EA76629EC27F300BD77EA /* UIPreferences.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */,
+				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
 				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

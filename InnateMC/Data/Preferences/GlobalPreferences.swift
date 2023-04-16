@@ -20,11 +20,6 @@ import Foundation
 public class GlobalPreferences: Codable, ObservableObject {
     @Published public var runtime: RuntimePreferences = RuntimePreferences()
     @Published public var ui: UiPreferences = UiPreferences()
-    
-    public class UiPreferences: Codable, ObservableObject {
-        @Published public var compactList: Bool = false
-        @Published public var compactInstanceDescrption: Bool = false
-    }
 }
 
 extension GlobalPreferences {

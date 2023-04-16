@@ -26,6 +26,7 @@ struct InstanceView: View {
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
+    @State var compactInstanceLogo: Bool = false
     
     var body: some View {
         ZStack {
@@ -70,8 +71,12 @@ struct InstanceView: View {
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
             }
+            .onReceive(launcherData.globalPreferences.ui.$compactInstanceLogo) { value in
+                compactInstanceLogo = value
+            }
             .onAppear {
                 instanceStarred = instance.isStarred
+                compactInstanceLogo = launcherData.globalPreferences.ui.compactInstanceLogo
             }
         }
     }
@@ -139,8 +144,9 @@ struct InstanceView: View {
     
     @ViewBuilder
     func createLogo() -> some View {
+        let size = self.compactInstanceLogo ? 64.0 : 128.0
         InstanceLogoView(instance: instance)
-            .frame(width: 128, height: 128)
+            .frame(width: size, height: size)
             .padding(.all, 20)
             .opacity(logoHovered ? 0.75 : 1)
             .onHover(perform: { value in

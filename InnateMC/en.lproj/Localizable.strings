@@ -54,3 +54,4 @@
 "invalid_sha_hash_error" = "Invalid SHA hash found";
 "error_unknown_download" = "An unknown error occurred while downloading. This is a bug!";
 "force_quit" = "Kill";
+"compact_instance_logo" = "Compact Instance Logo";
