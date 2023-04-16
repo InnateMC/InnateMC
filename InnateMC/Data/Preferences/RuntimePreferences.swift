@@ -18,38 +18,15 @@
 import Foundation
 
 public class RuntimePreferences: Codable, ObservableObject {
-    @Published public var defaultJava: SavedJavaInstallation
-    @Published public var minMemory: Int
-    @Published public var maxMemory: Int
-    @Published public var javaArgs: String
+    @Published public var defaultJava: SavedJavaInstallation = SavedJavaInstallation.systemDefault
+    @Published public var minMemory: Int = 1024
+    @Published public var maxMemory: Int = 1024
+    @Published public var javaArgs: String = ""
     @Published public var valid: Bool = true
-    
-    public init(minMemory: Int, maxMemory: Int, javaArgs: String, defaultJava: SavedJavaInstallation) {
-        self.minMemory = minMemory
-        self.maxMemory = maxMemory
-        self.javaArgs = javaArgs
-        self.defaultJava = defaultJava
-    }
-    
-    public init() { // Fallback provider
-        self.minMemory = 1024
-        self.maxMemory = 1024
-        self.javaArgs = ""
-        self.defaultJava = SavedJavaInstallation.systemDefault
-    }
     
     public static func invalid() -> RuntimePreferences {
         let prefs = RuntimePreferences()
         prefs.valid = false
         return prefs
-    }
-    
-    public func copy() -> RuntimePreferences {
-        return RuntimePreferences(
-            minMemory: self.minMemory,
-            maxMemory: self.maxMemory,
-            javaArgs: self.javaArgs,
-            defaultJava: self.defaultJava
-        )
     }
 }

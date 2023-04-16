@@ -18,29 +18,12 @@
 import Foundation
 
 public class GlobalPreferences: Codable, ObservableObject {
-    @Published public var runtime: RuntimePreferences
-    @Published public var ui: UiPreferences
-    
-    init(runtime: RuntimePreferences, ui: UiPreferences) {
-        self.runtime = runtime
-        self.ui = ui
-    }
-    
-    init() {
-        self.runtime = RuntimePreferences()
-        self.ui = UiPreferences()
-    }
+    @Published public var runtime: RuntimePreferences = RuntimePreferences()
+    @Published public var ui: UiPreferences = UiPreferences()
     
     public class UiPreferences: Codable, ObservableObject {
-        @Published public var compactList: Bool
-        
-        init(compactList: Bool) {
-            self.compactList = compactList
-        }
-        
-        init() {
-            self.compactList = false
-        }
+        @Published public var compactList: Bool = false
+        @Published public var compactInstanceDescrption: Bool = false
     }
 }
 
