@@ -33,9 +33,10 @@
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
-		648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
+		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
+		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		64A5150E29E2DED100AFE3AE /* MinecraftJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */; };
 		64A5151029E2DEE900AFE3AE /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150F29E2DEE900AFE3AE /* Library.swift */; };
 		64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */; };
@@ -78,7 +79,6 @@
 		64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60C297D654A0086ABC1 /* JreDownloader.swift */; };
 		64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */; };
 		64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */; };
-		64F9A1A229E840CF00BFEC02 /* libzip.5.5.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 648C832329DBF01600007603 /* libzip.5.5.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,15 +93,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		643B3A1129274FCB00AEC71C /* Embed Frameworks */ = {
+		649EA76529EC262100BD77EA /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				64F9A1A229E840CF00BFEC02 /* libzip.5.5.dylib in Embed Frameworks */,
+				649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */,
 			);
-			name = "Embed Frameworks";
+			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -141,9 +141,9 @@
 		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
 		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
-		648C832329DBF01600007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzip.5.5.dylib; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
 		64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftJar.swift; sourceTree = "<group>"; };
 		64A5150F29E2DEE900AFE3AE /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialAssetIndex.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				648C832529DBF0A100007603 /* libzip.5.5.dylib in Frameworks */,
+				649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */,
 				649212C1293AF4120092E2DD /* Atomics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,8 +284,8 @@
 		648C832229DBEFDE00007603 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */,
 				647A796729E7E77D00497CE1 /* libzip.5.5-license.md */,
-				648C832329DBF01600007603 /* libzip.5.5.dylib */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 				64C334D12922523600BB8570 /* Sources */,
 				64C334D22922523600BB8570 /* Frameworks */,
 				64C334D32922523600BB8570 /* Resources */,
-				643B3A1129274FCB00AEC71C /* Embed Frameworks */,
+				649EA76529EC262100BD77EA /* Embed Libraries */,
 			);
 			buildRules = (
 			);
