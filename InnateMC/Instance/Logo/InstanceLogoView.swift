@@ -25,7 +25,11 @@ struct InstanceLogoView: View {
         ZStack {
             let logo = self.logo ?? instance.logo
             if logo.logoType == .file {
-                AsynchronousImage(instance.getLogoPath())
+                AsyncImage(url: instance.getLogoPath(), content: {
+                    $0.resizable().scaledToFit()
+                }) {
+                    Image(systemName: "tray.circle").resizable()
+                }
             } else if logo.logoType == .symbol {
                 Image(systemName: logo.string)
                     .resizable()

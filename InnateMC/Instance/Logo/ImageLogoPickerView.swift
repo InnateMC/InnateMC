@@ -25,7 +25,11 @@ struct ImageLogoPickerView: View {
     var body: some View {
         VStack {
             if showImagePreview {
-                AsynchronousImage(instance.getLogoPath())
+                AsyncImage(url: instance.getLogoPath(), content: {
+                    $0.resizable().scaledToFit()
+                }) {
+                    Image(systemName: "tray.circle").resizable()
+                }
             }
             Button(i18n("open")) {
                 shouldShowFileImporter = true

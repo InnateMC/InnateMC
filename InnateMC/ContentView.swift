@@ -30,7 +30,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                createMacOS11TextField()
+                TextField(i18n("search"), text: $searchTerm)
+                    .padding(.trailing, 8.0)
+                    .padding(.leading, 10.0)
+                    .padding([.top, .bottom], 9.0)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 List {
                     ForEach(instances) { instance in
                         createInstanceNavigationLink(instance: instance)
@@ -52,7 +56,6 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
-        .macOS12Searchable(text: $searchTerm)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 createLeadingToolbar() // TODO: move this to on top of the sidebar somehow
@@ -120,42 +123,8 @@ struct ContentView: View {
             Image(systemName: "sidebar.leading")
         }
     }
-    
-    @ViewBuilder
-    func createMacOS11TextField() -> some View {
-        if #available(macOS 12.0, *) {
-        } else {
-            TextField(i18n("search"), text: $searchTerm)
-                .padding(.trailing, 8.0)
-                .padding(.leading, 10.0)
-                .padding([.top, .bottom], 9.0)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
-    }
 }
 
 func i18n(_ str: String) -> LocalizedStringKey {
     return LocalizedStringKey(str)
-}
-
-extension NavigationView {
-    @ViewBuilder
-    func macOS12Searchable(text: Binding<String>) -> some View {
-        if #available(macOS 12.0, *) {
-            self.searchable(text: text, placement: .sidebar)
-        } else {
-            self
-        }
-    }
-}
-
-extension View {
-    @ViewBuilder
-    func regularMaterialBackground() -> some View {
-        if #available(macOS 12, *) {
-            background(.regularMaterial)
-        } else {
-            self
-        }
-    }
 }

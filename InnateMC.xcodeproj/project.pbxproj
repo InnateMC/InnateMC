@@ -18,7 +18,6 @@
 		64373BA329C0A430001DBD4C /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64373BA229C0A430001DBD4C /* InstanceTests.swift */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
-		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
 		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
 		646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DF2977E3A700BA9477 /* SymbolPicker.swift */; };
@@ -120,7 +119,6 @@
 		64373BA229C0A430001DBD4C /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
-		644FC66F29376FC7003797D9 /* AsynchronousImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousImage.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		6459E124297700D5006DB3A4 /* InstanceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				64F7C615297D7EE40086ABC1 /* Symbols */,
-				644FC66F29376FC7003797D9 /* AsynchronousImage.swift */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
 				647A796929E8166600497CE1 /* ConsoleTextView.swift */,
@@ -624,7 +621,6 @@
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
-				644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */,
 				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
 				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,

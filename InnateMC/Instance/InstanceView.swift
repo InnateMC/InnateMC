@@ -180,7 +180,7 @@ struct InstanceView: View {
             .padding()
             .keyboardShortcut(.cancelAction)
         }
-        .regularMaterialBackground()
+        .background(.regularMaterial)
         .padding(.all, 15)
     }
 }

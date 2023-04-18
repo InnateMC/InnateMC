@@ -33,6 +33,5 @@ struct SymbolLogoPickerView: View {
                 try! instance.save()
             }
         }))
-        // TODO: implement it
     }
 }
