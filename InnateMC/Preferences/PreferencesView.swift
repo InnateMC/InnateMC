@@ -24,11 +24,7 @@ struct PreferencesView: View {
         TabView(selection: $launcherData.selectedPreferenceTab) {
             RuntimePreferencesView()
                 .tabItem({
-                    if #available(macOS 12.0, *) {
-                        Label(i18n("runtime"), systemImage: "cup.and.saucer")
-                    } else {
-                        Label(i18n("runtime"), systemImage: "square.stack.3d.up")
-                    }
+                    Label(i18n("runtime"), systemImage: "cup.and.saucer")
                 })
                 .tag(SelectedPreferenceTab.runtime)
             AccountsPreferencesView()
