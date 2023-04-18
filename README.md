@@ -14,7 +14,7 @@ Check out the [current milestone](https://github.com/InnateMC/InnateMC/milestone
 InnateMC is heavily under development and does not provide a binary at the moment. You can build the project in Xcode if you wish.
 
 ## Supported macOS versions
-macOS 11 (Big Sur) and above are supported.
+macOS 12 (Monterey) and above are supported.
 
 ## License
 This software is licensed under the GNU General Public License Version 3
