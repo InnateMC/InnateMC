@@ -22,46 +22,11 @@ struct InstanceCommands: Commands {
     public var launcherData: LauncherData
     @State private var instanceIsntSelected: Bool = false
     @FocusedValue(\.selectedInstance) private var selectedInstance: Instance?
-    
+    @State private var instanceStarred: Bool = false
+
     var body: some Commands {
         CommandMenu(i18n("instance")) {
-            Button(action: {
-                if let instance = selectedInstance {
-                    instance.isStarred = !instance.isStarred
-                }
-            }) {
-                if selectedInstance?.isStarred ?? false {
-                    Label {
-                        Text(i18n("unstar"))
-                    } icon: {
-                        Image(systemName: "star.slash")
-                    }
-                } else {
-                    Label {
-                        Text(i18n("star"))
-                    } icon: {
-                        Image(systemName: "star")
-                    }
-                }
-            }
-            .disabled(selectedInstance == nil)
-            .keyboardShortcut("f")
-            Button(action: {
-                // TODO: implement
-            }) {
-                Label { Text(i18n("launch")) } icon: { Image(systemName: "paperplane") }
-            }
-            .keyboardShortcut(KeyEquivalent.return)
-            .disabled(selectedInstance == nil)
-            Button(action: {
-                NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!.getPath().path)
-            }) {
-                Label { Text(i18n("open_in_finder")) } icon: { Image(systemName: "folder") }
-            }
-            .keyboardShortcut(KeyEquivalent.upArrow)
-            .disabled(selectedInstance == nil)
-            
-            Divider()
+            buildSpecificCommands()
             
             Button(i18n("open_instances_folder")) {
                 NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileHandler.instancesFolder.path)
@@ -74,5 +39,52 @@ struct InstanceCommands: Commands {
             }
             .keyboardShortcut("n")
         }
+    }
+    
+    @ViewBuilder
+    func buildSpecificCommands() -> some View {
+        Button(action: {
+            if let instance = selectedInstance {
+                instance.isStarred = !instance.isStarred
+                instanceStarred = instance.isStarred
+            }
+        }) {
+            if instanceStarred {
+                Label {
+                    Text(i18n("unstar"))
+                } icon: {
+                    Image(systemName: "star.slash")
+                }
+            } else {
+                Label {
+                    Text(i18n("star"))
+                } icon: {
+                    Image(systemName: "star")
+                }
+            }
+        }
+        .disabled(selectedInstance == nil)
+        .keyboardShortcut("f")
+        .onChange(of: selectedInstance) { newValue in
+            if let newValue = newValue {
+                self.instanceStarred = newValue.isStarred
+            }
+        }
+        Button(action: {
+            // TODO: implement
+        }) {
+            Label { Text(i18n("launch")) } icon: { Image(systemName: "paperplane") }
+        }
+        .keyboardShortcut(KeyEquivalent.return)
+        .disabled(selectedInstance == nil)
+        Button(action: {
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!.getPath().path)
+        }) {
+            Label { Text(i18n("open_in_finder")) } icon: { Image(systemName: "folder") }
+        }
+        .keyboardShortcut(KeyEquivalent.upArrow)
+        .disabled(selectedInstance == nil)
+        
+        Divider()
     }
 }

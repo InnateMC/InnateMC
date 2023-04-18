@@ -26,6 +26,7 @@ struct ContentView: View {
     @State var isSidebarHidden = false
     @State var showNewInstanceSheet: Bool = false
     @State var tempSel: String = "e"
+    @State var selectedInstance: Instance? = nil
     
     var body: some View {
         NavigationView {
@@ -35,7 +36,7 @@ struct ContentView: View {
                     .padding(.leading, 10.0)
                     .padding([.top, .bottom], 9.0)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                List {
+                List(selection: $selectedInstance) {
                     ForEach(instances) { instance in
                         createInstanceNavigationLink(instance: instance)
                     }
@@ -56,6 +57,7 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundColor(.gray)
         }
+        .bindInstanceFocusValue(selectedInstance)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 createLeadingToolbar() // TODO: move this to on top of the sidebar somehow
@@ -121,6 +123,17 @@ struct ContentView: View {
             NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
         }) {
             Image(systemName: "sidebar.leading")
+        }
+    }
+}
+
+extension NavigationView {
+    @ViewBuilder
+    func bindInstanceFocusValue(_ i: Instance?) -> some View {
+        if #available(macOS 13, *) {
+            self.focusedValue(\.selectedInstance, i)
+        } else {
+            self
         }
     }
 }
