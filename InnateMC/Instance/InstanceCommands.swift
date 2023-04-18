@@ -17,6 +17,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct InstanceCommands: Commands {
     public var launcherData: LauncherData
@@ -46,7 +47,6 @@ struct InstanceCommands: Commands {
         Button(action: {
             if let instance = selectedInstance {
                 instance.isStarred = !instance.isStarred
-                instanceStarred = instance.isStarred
             }
         }) {
             if instanceStarred {
@@ -85,6 +85,13 @@ struct InstanceCommands: Commands {
         .keyboardShortcut(KeyEquivalent.upArrow)
         .disabled(selectedInstance == nil)
         
-        Divider()
+        if let selectedInstance = selectedInstance {
+            Divider()
+                .onReceive(selectedInstance.$isStarred) { value in
+                    self.instanceStarred = value
+                }
+        } else {
+            Divider()
+        }
     }
 }

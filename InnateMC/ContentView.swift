@@ -88,13 +88,21 @@ struct ContentView: View {
         }
         .frame(height: 40)
     }
-    
+
     @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
         if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
             InstanceNavigationLink(instance: instance)
             .tag(instance)
             .padding(.all, 4)
+//            .onTapGesture(count: 2) {
+//                if let selectedInstance = self.selectedInstance {
+//                    if selectedInstance == instance {
+//                        launcherData.instanceLaunchRequested = true
+//                    }
+//                }
+//            }
+            .frame(width: .infinity)
         }
     }
 

@@ -77,6 +77,7 @@ struct InstanceNavigationLink: View {
                 }
                 Spacer()
             }
+            .frame(maxWidth: .infinity)
         }
         .contextMenu {
             if (instanceStarred ?? instance.isStarred) {
