@@ -126,7 +126,6 @@ struct InstanceLaunchView: View {
                     .onReceive(downloadProgress.$current, perform: {
                         progress = Float($0) / Float(downloadProgress.total)
                     })
-                    .animation(nil)
                 Button(i18n("abort")) {
                     self.downloadSession?.invalidateAndCancel()
                     showPreLaunchSheet = false

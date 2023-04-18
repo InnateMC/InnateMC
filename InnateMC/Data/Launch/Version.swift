@@ -214,27 +214,6 @@ public class Version {
     }
 }
 
-extension Version {
-    public func downloadLibraries() -> TaskProgress {
-        var tasks: [DownloadTask] = []
-        for library in libraries {
-            let pathComponents = library.downloads.artifact.path.split(separator: "/")
-            var fileUrl = FileHandler.librariesFolder
-            for component in pathComponents {
-                fileUrl = fileUrl.appendingPathComponent(String(component))
-            }
-            let task = DownloadTask(sourceUrl: URL(string: library.downloads.artifact.url)!, filePath: fileUrl, sha1: nil)
-            print(task.sourceUrl)
-            print(task.filePath)
-            print("")
-            tasks.append(task)
-        }
-        let progress = TaskProgress()
-        ParallelExecutor.download(tasks, progress: progress) {}
-        return progress
-    }
-}
-
 extension PartialAssetIndex {
     public static func deserialize(_ assetIndexObj: [String: Any]) -> PartialAssetIndex {
         PartialAssetIndex(id: assetIndexObj["id"] as! String, sha1: assetIndexObj["sha1"] as! String, url: assetIndexObj["url"] as! String)

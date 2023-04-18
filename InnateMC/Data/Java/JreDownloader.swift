@@ -19,9 +19,8 @@ import Foundation
 
 public final class JreDownloader {
     public static func download(version: Int) throws {
-        let url = URL(string: getUrl(version: version))!
-        let data = try Data(contentsOf: url)
-        
+//        let url = URL(string: getUrl(version: version))!
+//        let data = try Data(contentsOf: url)
     }
     
     private static func getUrl(version: Int) -> String {

@@ -22,9 +22,6 @@ public struct SFSymbolsList {
         if #available(macOS 13, *) {
             return SFSymbols13List.getAll()
         }
-        if #available(macOS 12, *) {
-            return SFSymbols12List.getAll()
-        }
-        return SFSymbols11List.getAll()
+        return SFSymbols12List.getAll()
     }
 }

@@ -21,7 +21,6 @@
 		644FC67029376FC7003797D9 /* AsynchronousImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66F29376FC7003797D9 /* AsynchronousImage.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
 		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
-		646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DD2977E2D300BA9477 /* SFSymbols11List.swift */; };
 		646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DF2977E3A700BA9477 /* SymbolPicker.swift */; };
 		646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E12977E88700BA9477 /* SFSymbols12List.swift */; };
 		646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E32977E95300BA9477 /* SFSymbols13List.swift */; };
@@ -125,7 +124,6 @@
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
 		6459E124297700D5006DB3A4 /* InstanceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoView.swift; sourceTree = "<group>"; };
 		645AFA94292C9E1500CD3F7E /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
-		646139DD2977E2D300BA9477 /* SFSymbols11List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols11List.swift; sourceTree = "<group>"; };
 		646139DF2977E3A700BA9477 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		646139E12977E88700BA9477 /* SFSymbols12List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols12List.swift; sourceTree = "<group>"; };
 		646139E32977E95300BA9477 /* SFSymbols13List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols13List.swift; sourceTree = "<group>"; };
@@ -476,7 +474,6 @@
 			isa = PBXGroup;
 			children = (
 				646139E52977EA0300BA9477 /* SFSymbolsList.swift */,
-				646139DD2977E2D300BA9477 /* SFSymbols11List.swift */,
 				646139E12977E88700BA9477 /* SFSymbols12List.swift */,
 				646139E32977E95300BA9477 /* SFSymbols13List.swift */,
 			);
@@ -609,7 +606,6 @@
 			files = (
 				64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */,
 				64A5151029E2DEE900AFE3AE /* Library.swift in Sources */,
-				646139DE2977E2D300BA9477 /* SFSymbols11List.swift in Sources */,
 				64F7C60B297D65390086ABC1 /* LinkedJavaInstallation.swift in Sources */,
 				64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */,
 				64A5151629E2DF2300AFE3AE /* InstanceLogo.swift in Sources */,
@@ -795,7 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -852,7 +848,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -881,6 +877,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
 				INFOPLIST_FILE = InnateMC/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 InnateMC & Contributors";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -890,7 +887,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -923,6 +920,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
 				INFOPLIST_FILE = InnateMC/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 InnateMC & Contributors";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -932,7 +930,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.boogiemonster1o1.InnateMC;
 				PRODUCT_NAME = "$(TARGET_NAME)";

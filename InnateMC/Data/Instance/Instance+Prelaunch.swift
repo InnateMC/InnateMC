@@ -40,13 +40,6 @@ extension Instance {
         //        args.append("\(getMcJarPath().path)") // DEBUG
     }
     
-    public func downloadMcJar() throws {
-        if (self.minecraftJar.type == .local) {
-            return
-        }
-        ParallelExecutor.download([DownloadTask(sourceUrl: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1)], progress: TaskProgress(), callback: {})
-    }
-    
     public func extractNatives(progress: TaskProgress) {
         if !FileManager.default.fileExists(atPath: getNativesPath().path) {
             try! FileManager.default.createDirectory(at: getNativesPath(), withIntermediateDirectories: true)
@@ -111,19 +104,9 @@ extension Instance {
         }
     }
     
-    public func downloadLibs(progress: TaskProgress) {
-        let tasks = getLibrariesAsTasks()
-        ParallelExecutor.download(tasks, progress: progress, callback: {})
-    }
-    
     public func downloadLibs(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession {
         let tasks = getLibrariesAsTasks()
         return ParallelDownloader.download(tasks, progress: progress, onFinish: onFinish, onError: onError)
-    }
-    
-    public func downloadAssets(progress: TaskProgress) {
-        let index = try! AssetIndex.get(version: self.assetIndex.id, urlStr: self.assetIndex.url)
-        try! index.downloadParallel(progress: progress, callback: {})
     }
     
     public func downloadAssets(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession? {
