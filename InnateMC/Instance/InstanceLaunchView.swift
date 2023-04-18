@@ -53,9 +53,7 @@ struct InstanceLaunchView: View {
                     })
                 } else {
                     Button(action: {
-                        print(instance.getPath().absoluteString)
-                        showPreLaunchSheet = true
-                        downloadProgress.cancelled = false
+                        launcherData.instanceLaunchRequested = true
                     }, label: {
                         Text(i18n("launch"))
                             .font(.title2)
@@ -65,6 +63,13 @@ struct InstanceLaunchView: View {
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
+            }
+            .onReceive(launcherData.$instanceLaunchRequested) { value in
+                if value {
+                    showPreLaunchSheet = true
+                    downloadProgress.cancelled = false
+                    launcherData.instanceLaunchRequested = false
+                }
             }
             .onAppear {
                 launchedInstanceProcess = launcherData.launchedInstances[instance]

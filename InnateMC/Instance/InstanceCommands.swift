@@ -71,7 +71,7 @@ struct InstanceCommands: Commands {
             }
         }
         Button(action: {
-            // TODO: implement
+            launcherData.instanceLaunchRequested = true
         }) {
             Label { Text(i18n("launch")) } icon: { Image(systemName: "paperplane") }
         }

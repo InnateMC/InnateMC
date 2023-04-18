@@ -27,6 +27,7 @@ public class LauncherData: ObservableObject {
     @Published var javaInstallations: [SavedJavaInstallation] = []
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
     @Published var newInstanceRequested: Bool = false
+    @Published var instanceLaunchRequested: Bool = false
     @Published var accountManager: AccountManager = AccountManager()
     @Published var selectedPreferenceTab: SelectedPreferenceTab = .ui
     private var initializedPreferenceListener: Bool = false
