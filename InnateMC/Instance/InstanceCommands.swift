@@ -27,7 +27,9 @@ struct InstanceCommands: Commands {
 
     var body: some Commands {
         CommandMenu(i18n("instance")) {
-            buildSpecificCommands()
+            if #available(macOS 13, *) {
+                buildSpecificCommands()
+            }
             
             Button(i18n("open_instances_folder")) {
                 NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileHandler.instancesFolder.path)
@@ -50,17 +52,11 @@ struct InstanceCommands: Commands {
             }
         }) {
             if instanceStarred {
-                Label {
-                    Text(i18n("unstar"))
-                } icon: {
-                    Image(systemName: "star.slash")
-                }
+                Text(i18n("unstar"))
+                Image(systemName: "star.slash")
             } else {
-                Label {
-                    Text(i18n("star"))
-                } icon: {
-                    Image(systemName: "star")
-                }
+                Text(i18n("star"))
+                Image(systemName: "star")
             }
         }
         .disabled(selectedInstance == nil)
@@ -73,14 +69,16 @@ struct InstanceCommands: Commands {
         Button(action: {
             launcherData.instanceLaunchRequested = true
         }) {
-            Label { Text(i18n("launch")) } icon: { Image(systemName: "paperplane") }
+            Text(i18n("launch"))
+            Image(systemName: "paperplane")
         }
         .keyboardShortcut(KeyEquivalent.return)
         .disabled(selectedInstance == nil)
         Button(action: {
             NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: selectedInstance!.getPath().path)
         }) {
-            Label { Text(i18n("open_in_finder")) } icon: { Image(systemName: "folder") }
+            Text(i18n("open_in_finder"))
+            Image(systemName: "folder")
         }
         .keyboardShortcut(KeyEquivalent.upArrow)
         .disabled(selectedInstance == nil)
