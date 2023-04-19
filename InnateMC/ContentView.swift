@@ -105,6 +105,7 @@ struct ContentView: View {
                 Image(systemName: "star")
             }
         }
+        .help(i18n("show_only_starred"))
         Button(action: {
             showNewInstanceSheet = true
         }) {

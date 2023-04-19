@@ -54,7 +54,7 @@ public class LauncherData: ObservableObject {
             }
         }
         DispatchQueue.global().async {
-            let javaInstallations = try! SavedJavaInstallation.load()
+            let javaInstallations = SavedJavaInstallation.load()
             DispatchQueue.main.async {
                 self.javaInstallations = javaInstallations
             }

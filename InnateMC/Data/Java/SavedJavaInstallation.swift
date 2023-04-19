@@ -91,12 +91,13 @@ extension SavedJavaInstallation {
     public static let encoder = PropertyListEncoder()
     public static let decoder = PropertyListDecoder()
     
-    public static func load() throws -> [SavedJavaInstallation] {
-        let data = try FileHandler.getData(filePath)
+    // TODO: handle errors
+    public static func load() -> [SavedJavaInstallation] {
+        let data = try? FileHandler.getData(filePath)
         
         guard let data = data else {
             let saved = LinkedJavaInstallation.getAll().toSaved()
-            try saved.save()
+            try? saved.save()
             return saved
         }
         do {

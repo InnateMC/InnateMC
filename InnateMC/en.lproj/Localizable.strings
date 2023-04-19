@@ -57,3 +57,4 @@
 "compact_instance_logo" = "Compact Instance Logo";
 "manage_java_versions" = "Manage Java Versions";
 "java_executable" = "Java Executable";
+"show_only_starred" = "Show only Starred instances";
