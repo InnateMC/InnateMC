@@ -20,34 +20,49 @@ import SwiftUI
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
+    @State var cachedJavaInstallations: [SavedJavaInstallation] = []
 
     var body: some View {
-        Form {
-            Picker(i18n("java"), selection: $launcherData.globalPreferences.runtime.defaultJava) {
-                PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
+        VStack {
+            Form {
+                Text("\(launcherData.globalPreferences.runtime.defaultJava.javaExecutable)")
+                    .frame(alignment: .center)
+                    .foregroundColor(.secondary)
+                TextField(i18n("default_min_mem"), value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField(i18n("default_max_mem"), value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField(i18n("default_java_args"), text: $launcherData.globalPreferences.runtime.javaArgs)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            .onAppear {
+                self.cachedJavaInstallations = self.launcherData.javaInstallations
+            }
+            .onReceive(launcherData.$javaInstallations, perform: {
+                self.cachedJavaInstallations = $0
+            })
+            .padding(.all, 16.0)
+            Table(of: SavedJavaInstallation.self, selection: Binding(get: {
+                return launcherData.globalPreferences.runtime.defaultJava
+            }, set: {
+                launcherData.globalPreferences.runtime.defaultJava = $0 ?? SavedJavaInstallation.systemDefault
+            })) {
+                TableColumn("Version") {
+                    Text($0.getDebugString())
+                }
+                .width(max: 200)
+                TableColumn("Path", value: \.javaExecutable)
+            } rows: {
+                TableRow(SavedJavaInstallation.systemDefault)
                 ForEach(launcherData.javaInstallations) {
-                    PickableJavaVersion(installation: $0)
+                    TableRow($0)
                 }
             }
-            TextField(i18n("default_min_mem"), value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
-                .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField(i18n("default_max_mem"), value: $launcherData.globalPreferences.runtime.maxMemory, formatter: NumberFormatter())
-                .frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField(i18n("default_java_args"), text: $launcherData.globalPreferences.runtime.javaArgs).frame(minWidth: nil, idealWidth: nil, maxWidth: 700, minHeight: nil, maxHeight: nil, alignment: .leading)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button(i18n("add_java_version")) {
-                let windw = NSApp.keyWindow
-                print(windw!.title)
-                print(type(of: windw!.contentViewController!))
-                NSApp.windows.forEach { window in
-                    print(type(of: window.contentViewController!))
-                    print(window.title)
-                }
-            }
+            .padding()
         }
-        .padding(.all, 16.0)
     }
 }
 

@@ -19,6 +19,9 @@ import Foundation
 
 public class SavedJavaInstallation: Codable, Identifiable {
     public static let systemDefault = SavedJavaInstallation(javaHomePath: "/usr", javaVendor: "System Default", javaVersion: "")
+    public var id: SavedJavaInstallation {
+        return self
+    }
     public let javaExecutable: String
     public let javaVendor: String?
     public let javaVersion: String?
@@ -58,6 +61,22 @@ public class SavedJavaInstallation: Codable, Identifiable {
         }
 
         return "\(javaVersion) | \(javaVendor) at \(javaExecutable)"
+    }
+    
+    public func getDebugString() -> String { // TODO: computed property? allows using a keypath in Table
+        if let javaVersion = javaVersion {
+            if let javaVendor = javaVendor {
+                return "\(javaVendor) \(javaVersion)"
+            } else {
+                return javaVersion
+            }
+        } else {
+            if let javaVendor = javaVendor {
+                return javaVendor
+            } else {
+                return "Unknown"
+            }
+        }
     }
     
     public enum InstallationType: Codable, Hashable, Equatable {
