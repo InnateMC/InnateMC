@@ -17,12 +17,12 @@
 
 import Foundation
 
-public class SavedJavaInstallation: Codable, Identifiable {
+public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
     public static let systemDefault = SavedJavaInstallation(javaHomePath: "/usr", javaVendor: "System Default", javaVersion: "")
     public var id: SavedJavaInstallation {
         return self
     }
-    public let javaExecutable: String
+    @Published public var javaExecutable: String
     public let javaVendor: String?
     public let javaVersion: String?
     public let installationType: InstallationType

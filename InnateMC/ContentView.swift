@@ -63,7 +63,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     func createTrailingToolbar() -> some View {
         Spacer()
@@ -84,17 +84,17 @@ struct ContentView: View {
         }
         .frame(height: 40)
     }
-
+    
     @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
         if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
             InstanceNavigationLink(instance: instance)
-            .tag(instance)
-            .padding(.all, 4)
-            .frame(width: .infinity)
+                .tag(instance)
+                .padding(.all, 4)
+                .frame(width: .infinity)
         }
     }
-
+    
     @ViewBuilder
     func createLeadingToolbar() -> some View {
         Spacer()

@@ -19,11 +19,12 @@ import SwiftUI
 
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
+    @State var cachedDefaultJava: SavedJavaInstallation = SavedJavaInstallation.systemDefault
 
     var body: some View {
         VStack {
             Form {
-                Text("\(launcherData.globalPreferences.runtime.defaultJava.javaExecutable)")
+                Text(cachedDefaultJava.javaExecutable)
                     .frame(alignment: .center)
                     .foregroundColor(.secondary)
                 TextField(i18n("default_min_mem"), value: $launcherData.globalPreferences.runtime.minMemory, formatter: NumberFormatter())
@@ -36,6 +37,12 @@ struct RuntimePreferencesView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
+            .onAppear {
+                self.cachedDefaultJava = launcherData.globalPreferences.runtime.defaultJava
+            }
+            .onReceive(launcherData.globalPreferences.runtime.$defaultJava, perform: {
+                self.cachedDefaultJava = $0
+            })
             .padding(.all, 16.0)
             Table(of: SavedJavaInstallation.self, selection: Binding(get: {
                 return launcherData.globalPreferences.runtime.defaultJava
