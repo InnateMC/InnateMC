@@ -19,7 +19,6 @@ import SwiftUI
 
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
-    @State var cachedJavaInstallations: [SavedJavaInstallation] = []
 
     var body: some View {
         VStack {
@@ -37,12 +36,6 @@ struct RuntimePreferencesView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            .onAppear {
-                self.cachedJavaInstallations = self.launcherData.javaInstallations
-            }
-            .onReceive(launcherData.$javaInstallations, perform: {
-                self.cachedJavaInstallations = $0
-            })
             .padding(.all, 16.0)
             Table(of: SavedJavaInstallation.self, selection: Binding(get: {
                 return launcherData.globalPreferences.runtime.defaultJava

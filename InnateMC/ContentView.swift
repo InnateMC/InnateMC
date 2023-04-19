@@ -22,7 +22,6 @@ struct ContentView: View {
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
-    @State var instances: [Instance] = []
     @State var isSidebarHidden = false
     @State var showNewInstanceSheet: Bool = false
     @State var tempSel: String = "e"
@@ -37,15 +36,12 @@ struct ContentView: View {
                     .padding([.top, .bottom], 9.0)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 List(selection: $selectedInstance) {
-                    ForEach(instances) { instance in
+                    ForEach(launcherData.instances) { instance in
                         createInstanceNavigationLink(instance: instance)
                     }
                     .onMove { indices, newOffset in
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
                     }
-                }
-                .onReceive(launcherData.$instances) { new in
-                    instances = new
                 }
             }
             .sheet(isPresented: $showNewInstanceSheet) {
@@ -76,7 +72,7 @@ struct ContentView: View {
             NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
         Picker(i18n("account"), selection: $tempSel) {
-            ForEach(instances) { thing in // TODO: implement
+            ForEach(launcherData.instances) { thing in // TODO: implement
                 HStack(alignment: .center) {
                     Image("steve")
                     Text("Dev\(thing.name)")
@@ -95,13 +91,6 @@ struct ContentView: View {
             InstanceNavigationLink(instance: instance)
             .tag(instance)
             .padding(.all, 4)
-//            .onTapGesture(count: 2) {
-//                if let selectedInstance = self.selectedInstance {
-//                    if selectedInstance == instance {
-//                        launcherData.instanceLaunchRequested = true
-//                    }
-//                }
-//            }
             .frame(width: .infinity)
         }
     }

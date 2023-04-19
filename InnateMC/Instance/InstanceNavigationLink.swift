@@ -21,8 +21,6 @@ struct InstanceNavigationLink: View {
     @EnvironmentObject var launcherData: LauncherData
     @StateObject var instance: Instance
     @State var starHovered: Bool = false
-    @State var compactList: Bool? = nil
-    @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var showDeleteSheet: Bool = false
 
     var body: some View {
@@ -32,7 +30,7 @@ struct InstanceNavigationLink: View {
         } label: {
             HStack {
                 ZStack(alignment: .topTrailing) {
-                    if (compactList ?? launcherData.globalPreferences.ui.compactList) {
+                    if launcherData.globalPreferences.ui.compactList {
                         InstanceLogoView(instance: instance)
                             .frame(width: 32, height: 32)
                     } else {
@@ -41,7 +39,7 @@ struct InstanceNavigationLink: View {
                     }
                     
                     ZStack {
-                        if (launchedInstances ?? launcherData.launchedInstances).keys.contains(self.instance) {
+                        if launcherData.launchedInstances.keys.contains(self.instance) {
                             Image(systemName: "arrowtriangle.right.circle.fill")
                                 .foregroundColor(.green)
                                 .frame(width: 8, height: 8)
@@ -52,12 +50,6 @@ struct InstanceNavigationLink: View {
                         }
                     }
                     .frame(width: 8, height: 8)
-                }
-                .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
-                    compactList = value
-                }
-                .onReceive(launcherData.$launchedInstances) { value in
-                    launchedInstances = value
                 }
                 VStack {
                     HStack {

@@ -18,26 +18,21 @@
 import SwiftUI
 
 struct InstanceLogoView: View {
-    let instance: Instance
-    @State var logo: InstanceLogo? = nil
+    @StateObject var instance: Instance
     
     var body: some View {
         ZStack {
-            let logo = self.logo ?? instance.logo
-            if logo.logoType == .file {
+            if instance.logo.logoType == .file {
                 AsyncImage(url: instance.getLogoPath(), content: {
                     $0.resizable().scaledToFit()
                 }) {
                     Image(systemName: "tray.circle").resizable()
                 }
-            } else if logo.logoType == .symbol {
-                Image(systemName: logo.string)
+            } else if instance.logo.logoType == .symbol {
+                Image(systemName: instance.logo.string)
                     .resizable()
                     .scaledToFit()
             }
-        }
-        .onReceive(instance.$logo) { value in
-            logo = value
         }
     }
 }
