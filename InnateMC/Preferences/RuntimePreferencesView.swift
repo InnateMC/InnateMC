@@ -19,7 +19,6 @@ import SwiftUI
 
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
-    let columns = [GridItem(.fixed(200), alignment: .trailing), GridItem(.flexible(), alignment: .leading)]
     @State var cachedJavaInstallations: [SavedJavaInstallation] = []
 
     var body: some View {

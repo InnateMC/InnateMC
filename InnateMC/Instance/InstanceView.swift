@@ -18,10 +18,9 @@
 import SwiftUI
 
 struct InstanceView: View {
-    @State var instance: Instance
+    @StateObject var instance: Instance
     @State var disabled: Bool = false
     @EnvironmentObject var launcherData: LauncherData
-    @State var instanceStarred: Bool = false
     @State var starHovered: Bool = false
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
@@ -49,11 +48,6 @@ struct InstanceView: View {
                         }
                     }
                 }
-                .onReceive(instance.$isStarred) { value in
-                    withAnimation {
-                        instanceStarred = value
-                    }
-                }
                 .sheet(isPresented: $showLogoSheet) {
                     createLogoSheet()
                 }
@@ -71,24 +65,19 @@ struct InstanceView: View {
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
             }
-            .onReceive(launcherData.globalPreferences.ui.$compactInstanceLogo) { value in
-                compactInstanceLogo = value
-            }
-            .onAppear {
-                instanceStarred = instance.isStarred
-                compactInstanceLogo = launcherData.globalPreferences.ui.compactInstanceLogo
-            }
         }
     }
     
     @ViewBuilder
     func createInstanceStar() -> some View {
-        if instanceStarred {
+        if instance.isStarred {
             Image(systemName: "star.fill")
                 .resizable()
                 .foregroundColor(starHovered ? .gray : .yellow)
                 .onTapGesture {
-                    instance.isStarred = false
+                    withAnimation {
+                        instance.isStarred = false
+                    }
                 }
                 .frame(width: 16, height: 16)
             
@@ -97,7 +86,9 @@ struct InstanceView: View {
                 .resizable()
                 .foregroundColor(starHovered ? .yellow : .gray)
                 .onTapGesture {
-                    instance.isStarred = true
+                    withAnimation {
+                        instance.isStarred = true
+                    }
                 }
                 .frame(width: 16, height: 16)
                 .onHover { hoverValue in
@@ -115,7 +106,7 @@ struct InstanceView: View {
                 .tabItem {
                     Label(i18n("launch"), systemImage: "bolt")
                 }
-            InstanceRuntimeView(instance: $instance)
+            InstanceRuntimeView(instance: instance)
                 .tabItem {
                     Label(i18n("runtime"), systemImage: "bolt")
                 }
@@ -144,7 +135,7 @@ struct InstanceView: View {
     
     @ViewBuilder
     func createLogo() -> some View {
-        let size = self.compactInstanceLogo ? 64.0 : 128.0
+        let size = launcherData.globalPreferences.ui.compactInstanceLogo ? 64.0 : 128.0
         InstanceLogoView(instance: instance)
             .frame(width: size, height: size)
             .padding(.all, 20)

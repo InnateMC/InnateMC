@@ -19,15 +19,13 @@ import SwiftUI
 
 struct InstanceNavigationLink: View {
     @EnvironmentObject var launcherData: LauncherData
-    @State var instance: Instance
+    @StateObject var instance: Instance
     @State var starHovered: Bool = false
-    @State var instanceStarred: Bool? = nil
     @State var compactList: Bool? = nil
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var showDeleteSheet: Bool = false
 
     var body: some View {
-//        NavigationLink(tag: instance, selection: $launcherData.selectedInstance) {
         NavigationLink {
             InstanceView(instance: instance)
                 .padding(.top, 10)
@@ -47,15 +45,12 @@ struct InstanceNavigationLink: View {
                             Image(systemName: "arrowtriangle.right.circle.fill")
                                 .foregroundColor(.green)
                                 .frame(width: 8, height: 8)
-                        } else if (instanceStarred ?? instance.isStarred) {
+                        } else if instance.isStarred {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
                                 .frame(width: 8, height: 8)
                         }
                     }
-                    .onReceive(instance.$isStarred, perform: { value in
-                        instanceStarred = value
-                    })
                     .frame(width: 8, height: 8)
                 }
                 .onReceive(launcherData.globalPreferences.ui.$compactList) { value in
@@ -80,13 +75,17 @@ struct InstanceNavigationLink: View {
             .frame(maxWidth: .infinity)
         }
         .contextMenu {
-            if (instanceStarred ?? instance.isStarred) {
+            if instance.isStarred {
                 Button(i18n("unstar")) {
-                    instance.isStarred = false
+                    withAnimation {
+                        instance.isStarred = false
+                    }
                 }
             } else {
                 Button(i18n("star")) {
-                    instance.isStarred = true
+                    withAnimation {
+                        instance.isStarred = true
+                    }
                 }
             }
             Button(i18n("delete")) {

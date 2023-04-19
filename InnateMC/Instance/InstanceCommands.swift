@@ -48,7 +48,9 @@ struct InstanceCommands: Commands {
     func buildSpecificCommands() -> some View {
         Button(action: {
             if let instance = selectedInstance {
-                instance.isStarred = !instance.isStarred
+                withAnimation {
+                    instance.isStarred = !instance.isStarred
+                }
             }
         }) {
             if instanceStarred {

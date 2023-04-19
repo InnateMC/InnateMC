@@ -20,7 +20,7 @@ import SwiftUI
 
 struct InstanceRuntimeView: View {
     @EnvironmentObject var launcherData: LauncherData
-    @Binding var instance: Instance
+    @StateObject var instance: Instance
     
     var body: some View {
         VStack {
