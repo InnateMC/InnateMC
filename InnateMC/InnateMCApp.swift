@@ -27,7 +27,6 @@ struct InnateMCApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(launcherData)
-                .environment(\.versionManifest, VersionManifest.downloadThrow())
         }
         .commands {
             InstanceCommands(launcherData: launcherData)

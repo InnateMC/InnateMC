@@ -18,7 +18,7 @@
 import SwiftUI
 
 struct NewVanillaInstanceView: View {
-    @Environment(\.versionManifest) var versionManifest: [PartialVersion]
+    @State var versionManifest: [PartialVersion] = []
     @EnvironmentObject var launcherData: LauncherData
     @State var showSnapshots = false
     @State var showBeta = false
@@ -29,7 +29,7 @@ struct NewVanillaInstanceView: View {
     @Binding var showNewInstanceSheet: Bool
     @State var showNoNamePopover = false
     @State var showDuplicateNamePopover = false
-    
+
     var body: some View {
         VStack {
             Spacer()
@@ -80,6 +80,7 @@ struct NewVanillaInstanceView: View {
             }
         }
         .onAppear {
+            self.versionManifest = self.launcherData.versionManifest
             recomputeVersions()
         }
         .onChange(of: showAlpha) { _ in

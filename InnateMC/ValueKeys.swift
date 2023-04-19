@@ -17,17 +17,6 @@
 
 import SwiftUI
 
-struct VersionManifestKey: EnvironmentKey {
-    static let defaultValue: [PartialVersion] = VersionManifest.downloadThrow()
-}
-
-extension EnvironmentValues {
-    var versionManifest: [PartialVersion] {
-        get { self[VersionManifestKey.self] }
-        set { self[VersionManifestKey.self] = newValue }
-    }
-}
-
 struct SelectedInstanceKey: FocusedValueKey {
     typealias Value = Instance
 }

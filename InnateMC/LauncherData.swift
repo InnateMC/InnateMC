@@ -30,6 +30,7 @@ public class LauncherData: ObservableObject {
     @Published var instanceLaunchRequested: Bool = false
     @Published var accountManager: AccountManager = AccountManager()
     @Published var selectedPreferenceTab: SelectedPreferenceTab = .ui
+    @Published var versionManifest: [PartialVersion] = []
     private var initializedPreferenceListener: Bool = false
     
     public func initializePreferenceListenerIfNot() {
@@ -56,6 +57,12 @@ public class LauncherData: ObservableObject {
             let javaInstallations = try! SavedJavaInstallation.load()
             DispatchQueue.main.async {
                 self.javaInstallations = javaInstallations
+            }
+        }
+        DispatchQueue.global().async {
+            let manifest = VersionManifest.downloadThrow()
+            DispatchQueue.main.async {
+                self.versionManifest = manifest
             }
         }
         currentInstance = self
