@@ -20,8 +20,8 @@
 "open" = "Open";
 "close" = "Close";
 "java" = "Java";
-"default_min_mem" = "Default Minimum Memory (MiB)";
-"default_max_mem" = "Default Maximum Memory (MiB)";
+"default_min_mem" = "Minimum Memory (MiB)";
+"default_max_mem" = "Maximum Memory (MiB)";
 "default_java_args" = "Default Java arguments";
 "add_java_version" = "Add Java Version";
 "launch" = "Launch";

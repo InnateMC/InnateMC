@@ -65,6 +65,12 @@ public class LauncherData: ObservableObject {
                 self.versionManifest = manifest
             }
         }
+        DispatchQueue.global().async {
+            let accountManager = AccountManager.load()
+            DispatchQueue.main.async {
+                self.accountManager = accountManager
+            }
+        }
         currentInstance = self
     }
 }

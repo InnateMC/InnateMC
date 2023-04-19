@@ -26,8 +26,20 @@ protocol MinecraftAccount: Codable {
     func getUUID() -> UUID
     
     // TODO: add more launch related methods
+    
+    static func createFromDict(_ dict: [String:Any]) -> Self
 }
 
-enum MinecraftAccountType {
+extension MinecraftAccount {
+    static func createFromDict(_ dict: [String:Any]) -> Self {
+        let data = try! PropertyListSerialization.data(fromPropertyList: dict, format: .binary, options: 0)
+        let decoded = try! minecraftAccountDecoder.decode(Self.self, from: data)
+        return decoded
+    }
+}
+
+internal let minecraftAccountDecoder = PropertyListDecoder()
+
+enum MinecraftAccountType: String, Codable {
     case microsoft, offline
 }

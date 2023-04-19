@@ -19,6 +19,8 @@ import Foundation
 import SwiftUI
 
 struct OfflineAccount: MinecraftAccount {
+    private static let decoder = JSONDecoder()
+    var type: MinecraftAccountType = .offline
     var username: String
     var uuid: UUID
 
