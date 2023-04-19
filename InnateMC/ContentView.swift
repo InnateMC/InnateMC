@@ -65,27 +65,6 @@ struct ContentView: View {
     }
     
     @ViewBuilder
-    func createTrailingToolbar() -> some View {
-        Spacer()
-        Button(i18n("manage_accounts")) {
-            launcherData.selectedPreferenceTab = .accounts
-            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-        }
-        Picker(i18n("account"), selection: $tempSel) {
-            ForEach(launcherData.instances) { thing in // TODO: implement
-                HStack(alignment: .center) {
-                    Image("steve")
-                    Text("Dev\(thing.name)")
-                        .font(.title2)
-                }
-                .padding(.all)
-                .tag(thing.name)
-            }
-        }
-        .frame(height: 40)
-    }
-    
-    @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
         if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
             InstanceNavigationLink(instance: instance)
@@ -98,6 +77,13 @@ struct ContentView: View {
     @ViewBuilder
     func createLeadingToolbar() -> some View {
         Spacer()
+        
+        Button(action: {
+            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        }) {
+            Image(systemName: "sidebar.leading")
+        }
+        
         Toggle(isOn: $starredOnly) {
             if(starredOnly) {
                 Image(systemName: "star.fill")
@@ -106,6 +92,7 @@ struct ContentView: View {
             }
         }
         .help(i18n("show_only_starred"))
+        
         Button(action: {
             showNewInstanceSheet = true
         }) {
@@ -116,12 +103,33 @@ struct ContentView: View {
                 launcherData.newInstanceRequested = false
             }
         }
+    }
+    
+    @ViewBuilder
+    func createTrailingToolbar() -> some View {
+        Spacer()
         
-        Button(action: {
-            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-        }) {
-            Image(systemName: "sidebar.leading")
+        Button(i18n("manage_accounts")) {
+            launcherData.selectedPreferenceTab = .accounts
+            if #available(macOS 13, *) {
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            } else {
+                NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+            }
         }
+        
+        Picker(i18n("account"), selection: $tempSel) {
+            ForEach(Array(launcherData.accountManager.accounts.keys), id: \.self) { key in
+                HStack(alignment: .center) {
+                    Image("steve")
+                    Text(launcherData.accountManager.accounts[key]!.getUsername())
+                        .font(.title2)
+                }
+                .padding(.all)
+                .tag(key)
+            }
+        }
+        .frame(height: 40)
     }
 }
 

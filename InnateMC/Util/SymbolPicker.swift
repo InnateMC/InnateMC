@@ -235,7 +235,6 @@ public struct SymbolPicker: View {
         #else
         searchableSymbolGrid
             .frame(width: 540, height: 320, alignment: .center)
-            .background(.regularMaterial)
         #endif
     }
 

@@ -25,7 +25,6 @@ struct InstanceView: View {
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
-    @State var compactInstanceLogo: Bool = false
     
     var body: some View {
         ZStack {
@@ -171,7 +170,6 @@ struct InstanceView: View {
             .padding()
             .keyboardShortcut(.cancelAction)
         }
-        .background(.regularMaterial)
         .padding(.all, 15)
     }
 }
