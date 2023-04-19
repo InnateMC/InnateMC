@@ -32,6 +32,7 @@
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
+		6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
 		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -138,6 +139,7 @@
 		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
 		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
+		6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineAccountView.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
@@ -215,9 +217,9 @@
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				6497595A29F056CF00D0194E /* Accounts */,
 				64C33504292252B500BB8570 /* PreferencesView.swift */,
 				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
-				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
 				641678542923B70F0012C9CC /* GamePreferencesView.swift */,
 				641678562923B7220012C9CC /* ConsolePreferencesView.swift */,
 				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
@@ -285,6 +287,15 @@
 				647A796729E7E77D00497CE1 /* libzip.5.5-license.md */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		6497595A29F056CF00D0194E /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
+				6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */,
+			);
+			path = Accounts;
 			sourceTree = "<group>";
 		};
 		649762BC2935A2D600977467 /* Create */ = {
@@ -632,6 +643,7 @@
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */,
+				6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */,
 				647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */,
 				64A5151E29E2DFE000AFE3AE /* Instance+Prelaunch.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */,

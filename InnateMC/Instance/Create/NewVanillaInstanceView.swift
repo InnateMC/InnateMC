@@ -36,11 +36,11 @@ struct NewVanillaInstanceView: View {
             Form {
                 TextField(i18n("name"), text: $name).frame(width: 400, height: nil, alignment: .leading).textFieldStyle(RoundedBorderTextFieldStyle())
                     .popover(isPresented: $showNoNamePopover, arrowEdge: .bottom) {
-                        Text("Enter a name")
+                        Text(i18n("enter_a_name"))
                             .padding()
                     }
                     .popover(isPresented: $showDuplicateNamePopover, arrowEdge: .bottom) {
-                        Text("Enter a unique name")
+                        Text(i18n("enter_unique_name"))
                             .padding()
                     }
                 Picker(i18n("version"), selection: $selectedVersion) {

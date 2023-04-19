@@ -58,3 +58,10 @@
 "manage_java_versions" = "Manage Java Versions";
 "java_executable" = "Java Executable";
 "show_only_starred" = "Show starred instances";
+"type" = "Type";
+"add_offline" = "Add Offline Account";
+"add_microsoft" = "Add Microsoft Account";
+"username" = "Username";
+"enter_a_name" = "Enter a name";
+"enter_unique_name" = "Enter a unique name";
+"enter_a_username" = "Enter a username";

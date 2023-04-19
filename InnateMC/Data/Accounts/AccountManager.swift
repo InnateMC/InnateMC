@@ -23,6 +23,7 @@ class AccountManager: ObservableObject {
     @Published public var currentSelected: UUID = UUID()
     @Published public var accounts: [UUID:MinecraftAccount] = [:]
     
+    
     public static func load() -> AccountManager {
         let manager = AccountManager()
         
@@ -34,10 +35,10 @@ class AccountManager: ObservableObject {
             var deserializedAccounts: [UUID:MinecraftAccount] = [:]
             for (_, account) in accounts {
                 let type = account["type"] as! String
-                if type == "offline" {
+                if type == "Offline" {
                     let acc = OfflineAccount.createFromDict(account)
                     deserializedAccounts[acc.uuid] = acc
-                } else if type == "microsoft" {
+                } else if type == "Microsoft" {
                     // TODO: implement
                 }
             }

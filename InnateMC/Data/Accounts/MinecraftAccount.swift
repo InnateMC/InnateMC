@@ -18,19 +18,31 @@
 import Foundation
 import SwiftUI
 
-protocol MinecraftAccount: Codable {
-    func getType() -> MinecraftAccountType
+open class MinecraftAccount: Codable, Identifiable {
+    public var id: UUID {
+        return getUUID()
+    }
     
-    func getUsername() -> String
+    public var strType: String {
+        return getType().rawValue
+    }
     
-    func getUUID() -> UUID
+    public var username: String {
+        return getUsername()
+    }
     
-    // TODO: add more launch related methods
+    func getType() -> MinecraftAccountType {
+        fatalError("Must be implemented by subclasses")
+    }
     
-    static func createFromDict(_ dict: [String:Any]) -> Self
-}
-
-extension MinecraftAccount {
+    func getUsername() -> String {
+        fatalError("Must be implemented by subclasses")
+    }
+    
+    func getUUID() -> UUID {
+        fatalError("Must be implemented by subclasses")
+    }
+    
     static func createFromDict(_ dict: [String:Any]) -> Self {
         let data = try! PropertyListSerialization.data(fromPropertyList: dict, format: .binary, options: 0)
         let decoded = try! minecraftAccountDecoder.decode(Self.self, from: data)
@@ -38,8 +50,10 @@ extension MinecraftAccount {
     }
 }
 
+
 internal let minecraftAccountDecoder = PropertyListDecoder()
 
 enum MinecraftAccountType: String, Codable {
-    case microsoft, offline
+    case microsoft = "Microsoft"
+    case offline = "Offline"
 }

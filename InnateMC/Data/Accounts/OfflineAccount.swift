@@ -18,25 +18,52 @@
 import Foundation
 import SwiftUI
 
-struct OfflineAccount: MinecraftAccount {
+class OfflineAccount: MinecraftAccount {
     private static let decoder = JSONDecoder()
     var type: MinecraftAccountType = .offline
-    var username: String
+    var uname: String
     var uuid: UUID
-
+    
+    init(username: String, uuid: UUID) {
+        self.uname = username
+        self.uuid = uuid
+        super.init()
+    }
+    
     public static func createFromUsername(_ username: String) -> OfflineAccount {
         return OfflineAccount(username: username, uuid: UUID())
     }
-
-    func getType() -> MinecraftAccountType {
+    
+    override func getType() -> MinecraftAccountType {
         return .offline
     }
-
-    func getUsername() -> String {
-        return username
+    
+    override func getUsername() -> String {
+        return self.uname
     }
-
-    func getUUID() -> UUID {
+    
+    override func getUUID() -> UUID {
         return uuid
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decode(MinecraftAccountType.self, forKey: .type)
+        self.uname = try container.decode(String.self, forKey: .username)
+        self.uuid = try container.decode(UUID.self, forKey: .uuid)
+        super.init()
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encode(username, forKey: .username)
+        try container.encode(uuid, forKey: .uuid)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case username
+        case uuid
     }
 }
