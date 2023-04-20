@@ -25,6 +25,14 @@ struct NewInstanceView: View {
                 .tabItem {
                     Text(i18n("vanilla"))
                 }
+//            TodoView()
+//                .tabItem {
+//                    Text(i18n("modrinth"))
+//                }
+//            TodoView()
+//                .tabItem {
+//                    Text(i18n("import"))
+//                }
         }
         .border(.red, width: 0)
         .padding(.all, 14.0)
