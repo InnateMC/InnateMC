@@ -66,24 +66,29 @@ struct NewVanillaInstanceView: View {
                         showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button(i18n("done")) {
+                        let trimmedName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if trimmedName.isEmpty { // TODO: also check for spaces
+                            self.showNoNamePopover = true
+                            return
+                        }
+                        if launcherData.instances.map({ $0.name }).contains(where: { $0.lowercased() == trimmedName.lowercased()}) {
+                            self.showDuplicateNamePopover = true
+                            return
+                        }
                         if !self.versionManifest.contains(where: { $0 == self.selectedVersion }) {
                             self.showInvalidVersionPopover = true
                             return
                         }
+                        self.showNoNamePopover = false
+                        self.showDuplicateNamePopover = false
                         self.showInvalidVersionPopover = false
-                        let trimmedName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
-                        if trimmedName.isEmpty { // TODO: also check for spaces
-                            showNoNamePopover = true
-                        } else {
-                            showNoNamePopover = false
-                            let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string:selectedVersion.url)!, sha1: selectedVersion.sha1, description: nil, data: launcherData)
-                            do {
-                                launcherData.instances.append(try instance.install())
-                                showNewInstanceSheet = false
-                            } catch {
-                                // TODO: handle this error
-                                print("something was thrown sad emojy")
-                            }
+                        let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string: self.selectedVersion.url)!, sha1: self.selectedVersion.sha1, description: nil, data: self.launcherData)
+                        do {
+                            self.launcherData.instances.append(try instance.install())
+                            self.showNewInstanceSheet = false
+                        } catch {
+                            NSLog("Error creating instance \(trimmedName)")
+                            // TODO: show a warning dialog
                         }
                     }.keyboardShortcut(.defaultAction)
                 }.padding(.trailing).padding(.bottom)
