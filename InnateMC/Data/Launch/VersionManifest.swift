@@ -21,9 +21,9 @@ public class VersionManifest {
     private static var cached: [PartialVersion]? = nil
     private static let decoder = JSONDecoder()
     
-    public static func downloadThrow() -> [PartialVersion] {
+    public static func getOrCreate() throws -> [PartialVersion] {
         if cached == nil {
-            cached = try! download()
+            cached = try download()
         }
         return cached!
     }
@@ -66,6 +66,10 @@ public struct PartialVersion: Codable, Hashable, Identifiable {
         case releaseTime
         case sha1
         case complianceLevel
+    }
+    
+    public static func createBlank() -> PartialVersion {
+        return PartialVersion(id: "no", version: "no", type: "no", url: "no", time: "no", releaseTime: "no", sha1: "no", complianceLevel: 0)
     }
     
     public init(id: String, version: String, type: String, url: String, time: String, releaseTime: String, sha1: String, complianceLevel: Int) {

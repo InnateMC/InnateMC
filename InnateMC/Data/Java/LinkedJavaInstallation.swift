@@ -31,15 +31,15 @@ public class LinkedJavaInstallation: Codable {
 extension LinkedJavaInstallation {
     private static let decoder: PropertyListDecoder = PropertyListDecoder()
     
-    public static func getAll() -> [LinkedJavaInstallation] {
+    public static func getAll() throws -> [LinkedJavaInstallation] {
         let p = Process()
         p.executableURL = URL(fileURLWithPath: "/usr/libexec/java_home")
         p.arguments = ["-X"]
         let pipe = Pipe()
-        p.standardOutput = pipe // TODO: error handling
+        p.standardOutput = pipe
         p.launch()
         let data: Data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let installations = try! decoder.decode([LinkedJavaInstallation].self, from: data)
+        let installations = try decoder.decode([LinkedJavaInstallation].self, from: data)
         return installations
     }
 }

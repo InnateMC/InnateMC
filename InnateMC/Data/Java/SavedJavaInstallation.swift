@@ -92,19 +92,19 @@ extension SavedJavaInstallation {
     public static let decoder = PropertyListDecoder()
     
     // TODO: handle errors
-    public static func load() -> [SavedJavaInstallation] {
+    public static func load() throws -> [SavedJavaInstallation] {
         let data = try? FileHandler.getData(filePath)
         
         guard let data = data else {
-            let saved = LinkedJavaInstallation.getAll().toSaved()
-            try? saved.save()
+            let saved = try LinkedJavaInstallation.getAll().toSaved()
+            try saved.save()
             return saved
         }
         do {
             let versions: [SavedJavaInstallation] = try decoder.decode([SavedJavaInstallation].self, from: data)
             return versions
         } catch {
-            try! FileManager.default.removeItem(at: filePath)
+            try FileManager.default.removeItem(at: filePath)
             return []
         }
     }

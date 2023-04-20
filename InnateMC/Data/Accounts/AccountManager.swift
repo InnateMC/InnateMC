@@ -24,12 +24,12 @@ class AccountManager: ObservableObject {
     @Published public var accounts: [UUID:MinecraftAccount] = [:]
     
     
-    public static func load() -> AccountManager {
+    public static func load() throws -> AccountManager {
         let manager = AccountManager()
         
         // TODO: error handling
-        if let data = try! FileHandler.getData(AccountManager.accountsPath) {
-            let plist: [String:Any] = try! PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
+        if let data = try FileHandler.getData(AccountManager.accountsPath) {
+            let plist: [String:Any] = try PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
             let currentSelected = UUID(uuidString: plist["Current"] as! String)!
             let accounts = plist["Accounts"] as! [String:[String:Any]]
             var deserializedAccounts: [UUID:MinecraftAccount] = [:]

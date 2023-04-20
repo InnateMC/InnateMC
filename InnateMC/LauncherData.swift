@@ -48,27 +48,43 @@ public class LauncherData: ObservableObject {
     
     init() {
         DispatchQueue.global().async {
-            let globalPreferences = GlobalPreferences.load()
-            DispatchQueue.main.async {
-                self.globalPreferences = globalPreferences
+            do {
+                let globalPreferences = try GlobalPreferences.load()
+                DispatchQueue.main.async {
+                    self.globalPreferences = globalPreferences
+                }
+            } catch {
+                NSLog("Error loading preferences - Using default values")
             }
         }
         DispatchQueue.global().async {
-            let javaInstallations = SavedJavaInstallation.load()
-            DispatchQueue.main.async {
-                self.javaInstallations = javaInstallations
+            do {
+                let javaInstallations = try SavedJavaInstallation.load()
+                DispatchQueue.main.async {
+                    self.javaInstallations = javaInstallations
+                }
+            } catch {
+                NSLog("Error loading saved java versions - Java runtime support is limited")
             }
         }
         DispatchQueue.global().async {
-            let manifest = VersionManifest.downloadThrow()
-            DispatchQueue.main.async {
-                self.versionManifest = manifest
+            do {
+                let manifest = try VersionManifest.getOrCreate()
+                DispatchQueue.main.async {
+                    self.versionManifest = manifest
+                }
+            } catch {
+                NSLog("Error downloading version manifest - Instance creation support is limited")
             }
         }
         DispatchQueue.global().async {
-            let accountManager = AccountManager.load()
-            DispatchQueue.main.async {
-                self.accountManager = accountManager
+            do {
+                let accountManager = try AccountManager.load()
+                DispatchQueue.main.async {
+                    self.accountManager = accountManager
+                }
+            } catch {
+                NSLog("Error loading account manager - Account switching support is limited")
             }
         }
         currentInstance = self

@@ -23,12 +23,13 @@ struct NewVanillaInstanceView: View {
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
-    @State var selectedVersion: PartialVersion = VersionManifest.downloadThrow().first!
+    @State var selectedVersion: PartialVersion = (try? VersionManifest.getOrCreate().first) ?? PartialVersion.createBlank()
     @State var name = ""
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
     @State var showNoNamePopover = false
     @State var showDuplicateNamePopover = false
+    @State var showInvalidVersionPopover = false
 
     var body: some View {
         VStack {
@@ -40,6 +41,7 @@ struct NewVanillaInstanceView: View {
                             .padding()
                     }
                     .popover(isPresented: $showDuplicateNamePopover, arrowEdge: .bottom) {
+                        // TODO: implement
                         Text(i18n("enter_unique_name"))
                             .padding()
                     }
@@ -48,6 +50,10 @@ struct NewVanillaInstanceView: View {
                         Text(ver.version)
                             .tag(ver)
                     }
+                }
+                .popover(isPresented: $showInvalidVersionPopover, arrowEdge: .bottom) {
+                    Text(i18n("choose_valid_version"))
+                        .padding()
                 }
                 Toggle(i18n("show_snapshots"), isOn: $showSnapshots)
                 Toggle(i18n("show_old_beta"), isOn: $showBeta)
@@ -60,6 +66,11 @@ struct NewVanillaInstanceView: View {
                         showNewInstanceSheet = false
                     }.keyboardShortcut(.cancelAction)
                     Button(i18n("done")) {
+                        if !self.versionManifest.contains(where: { $0 == self.selectedVersion }) {
+                            self.showInvalidVersionPopover = true
+                            return
+                        }
+                        self.showInvalidVersionPopover = false
                         let trimmedName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
                         if trimmedName.isEmpty { // TODO: also check for spaces
                             showNoNamePopover = true
@@ -95,6 +106,9 @@ struct NewVanillaInstanceView: View {
     }
     
     func recomputeVersions() {
+        if self.versionManifest.isEmpty {
+            return
+        }
         DispatchQueue.global().async {
             let newVersions = self.versionManifest.filter { version in
                 return version.type == "old_alpha" && showAlpha ||

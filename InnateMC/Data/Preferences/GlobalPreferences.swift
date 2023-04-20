@@ -25,16 +25,13 @@ public class GlobalPreferences: Codable, ObservableObject {
 extension GlobalPreferences {
     public static let filePath = try! FileHandler.getOrCreateFolder().appendingPathComponent("Preferences.plist")
     
-    public static func load() -> GlobalPreferences {
-        do {
-            let data = try FileHandler.getData(filePath)
-            if let data = data {
-                return try PropertyListDecoder().decode(GlobalPreferences.self, from: data)
-            } else {
-                return GlobalPreferences()
-            }
-        } catch {
-            return GlobalPreferences() // fallback
+    public static func load() throws -> GlobalPreferences {
+        if let data = try FileHandler.getData(filePath) {
+            return try PropertyListDecoder().decode(GlobalPreferences.self, from: data)
+        } else {
+            let prefs = GlobalPreferences()
+            prefs.save()
+            return prefs
         }
     }
     
