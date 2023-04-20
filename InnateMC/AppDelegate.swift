@@ -22,9 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let m = NSApp.mainMenu?.item(withTitle: "Edit") {
-            NSApp.mainMenu?.removeItem(m)
-        }
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {
