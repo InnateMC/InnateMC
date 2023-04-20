@@ -43,6 +43,11 @@ struct ContentView: View {
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
+                .toolbar {
+                    ToolbarItemGroup {
+                        createLeadingToolbar()
+                    }
+                }
             }
             .sheet(isPresented: $showNewInstanceSheet) {
                 NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
@@ -55,9 +60,7 @@ struct ContentView: View {
         }
         .bindInstanceFocusValue(selectedInstance)
         .toolbar {
-            ToolbarItemGroup(placement: .navigation) {
-                createLeadingToolbar() // TODO: move this to on top of the sidebar somehow
-            }
+            
             ToolbarItemGroup(placement: .primaryAction) {
                 createTrailingToolbar()
             }
