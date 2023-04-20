@@ -24,7 +24,7 @@ struct NewVanillaInstanceView: View {
     @State var showBeta = false
     @State var showAlpha = false
     @State var selectedVersion: PartialVersion = (try? VersionManifest.getOrCreate().first) ?? PartialVersion.createBlank()
-    @State var name = ""
+    @AppStorage("newVanillaInstance.cachedName") var name = ""
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
     @State var showNoNamePopover = false
@@ -85,6 +85,7 @@ struct NewVanillaInstanceView: View {
                         let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string: self.selectedVersion.url)!, sha1: self.selectedVersion.sha1, description: nil, data: self.launcherData)
                         do {
                             self.launcherData.instances.append(try instance.install())
+                            self.name = ""
                             self.showNewInstanceSheet = false
                         } catch {
                             NSLog("Error creating instance \(trimmedName)")
