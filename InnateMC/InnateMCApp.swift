@@ -35,7 +35,7 @@ struct InnateMCApp: App {
         Settings {
             PreferencesView()
                 .environmentObject(launcherData)
-                .frame(width: 800, height: 400)
+                .frame(width: 900, height: 450)
         }
     }
 }
