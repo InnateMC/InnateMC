@@ -81,7 +81,7 @@ struct NewVanillaInstanceView: View {
                         self.showNoNamePopover = false
                         self.showDuplicateNamePopover = false
                         self.showInvalidVersionPopover = false
-                        let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string: self.selectedVersion.url)!, sha1: self.selectedVersion.sha1, description: nil, data: self.launcherData)
+                        let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string: self.selectedVersion.url)!, sha1: self.selectedVersion.sha1, notes: nil, data: self.launcherData)
                         do {
                             self.launcherData.instances.append(try instance.install())
                             self.name = ""

@@ -27,8 +27,8 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public var minecraftJar: MinecraftJar
     @Published public var isStarred: Bool
     @Published public var logo: InstanceLogo
-    @Published public var description: String?
-    public var synopsis: String?
+    @Published public var notes: String?
+    @Published public var synopsis: String?
     public var synopsisOrVersion: String {
         get { return synopsis ?? assetIndex.id }
         set(newValue) { self.synopsis = newValue }
@@ -56,9 +56,13 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         self.minecraftJar = minecraftJar
         self.isStarred = isStarred
         self.logo = logo
-        self.description = description
+        self.notes = description
         self.synopsis = synopsis
         self.gameArguments = gameArguments
+    }
+    
+    public static func getInstancePath(for name: String) -> URL {
+        return FileHandler.instancesFolder.appendingPathComponent(name + ".innate", isDirectory: true)
     }
     
     public func setPreferences(_ prefs: InstancePreferences) {
@@ -70,7 +74,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func getPath() -> URL {
-        return FileHandler.instancesFolder.appendingPathComponent(self.name + ".innate", isDirectory: true)
+        return Instance.getInstancePath(for: self.name)
     }
     
     public func getGamePath() -> URL {
@@ -102,7 +106,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
-        hasher.combine(self.description)
+        hasher.combine(self.notes)
         hasher.combine(self.synopsisOrVersion)
     }
 }

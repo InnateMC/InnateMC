@@ -78,4 +78,18 @@ extension Instance {
             // TODO: handle error
         }
     }
+    
+    public func renameAsync(to newName: String) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            // TODO: handle the errors
+            let original = self.getPath()
+            try! FileManager.default.copyItem(at: original, to: Instance.getInstancePath(for: newName))
+            DispatchQueue.main.async {
+                self.name = newName
+                DispatchQueue.global(qos: .userInteractive).async {
+                    try! FileManager.default.removeItem(at: original)
+                }
+            }
+        }
+    }
 }

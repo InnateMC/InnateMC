@@ -21,14 +21,14 @@ public class VanillaInstanceCreator: InstanceCreator {
     public let name: String
     public let versionUrl: URL
     public let sha1: String
-    public let description: String?
+    public let notes: String?
     public let data: LauncherData
     
-    public init(name: String, versionUrl: URL, sha1: String, description: String?, data: LauncherData) {
+    public init(name: String, versionUrl: URL, sha1: String, notes: String?, data: LauncherData) {
         self.name = name
         self.versionUrl = versionUrl
         self.sha1 = sha1
-        self.description = description
+        self.notes = notes
         self.data = data
     }
     
@@ -42,7 +42,7 @@ public class VanillaInstanceCreator: InstanceCreator {
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
         let logo = InstanceLogo(logoType: .symbol, string: "tray.circle")
-        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, synopsis: nil, gameArguments: version.arguments.game)
+        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.notes, synopsis: nil, gameArguments: version.arguments.game)
         let prefs = InstancePreferences()
         prefs.runtime = data.globalPreferences.runtime
         if (version.arguments.jvm.contains("-XstartOnFirstThread")) {

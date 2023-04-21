@@ -26,6 +26,8 @@ struct InstanceView: View {
     @State var showLogoSheet: Bool = false
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @StateObject var editingViewModel = InstanceEditingViewModel()
+    @State var showNoNamePopover: Bool = false
+    @State var showDuplicatePopover: Bool = false
     
     var body: some View {
         ZStack {
@@ -34,18 +36,26 @@ struct InstanceView: View {
                     createLogo()
                     VStack {
                         HStack {
-                            if editingViewModel.editMode {
-                                TextField(i18n("name"), text: $editingViewModel.editName)
+                            if editingViewModel.inEditMode {
+                                TextField(i18n("name"), text: $editingViewModel.name)
                                     .font(.largeTitle)
                                     .labelsHidden()
                                     .fixedSize(horizontal: true, vertical: false)
                                     .frame(height: 20)
+                                    .popover(isPresented: $showNoNamePopover, arrowEdge: .trailing) {
+                                        Text(i18n("enter_a_name"))
+                                            .padding()
+                                    }
+                                    .popover(isPresented: $showDuplicatePopover, arrowEdge: .trailing) {
+                                        // TODO: implement
+                                        Text(i18n("enter_unique_name"))
+                                            .padding()
+                                    }
                                 
                                 createInstanceStar()
                                 
-                                Button("Save") {
-                                    editingViewModel.editMode = false
-                                    // TODO: implement
+                                Button(i18n("save")) {
+                                    editingViewModel.commit(to: self.instance, showNoNamePopover: $showNoNamePopover, showDuplicateNamePopover: $showDuplicatePopover, data: self.launcherData)
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -57,10 +67,8 @@ struct InstanceView: View {
                                 
                                 createInstanceStar()
                                     
-                                Button("Edit") {
-                                    editingViewModel.editName = instance.name
-                                    editingViewModel.editDebugString = instance.synopsis ?? ""
-                                    editingViewModel.editMode = true
+                                Button(i18n("edit")) {
+                                    editingViewModel.start(from: self.instance)
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -68,8 +76,8 @@ struct InstanceView: View {
                             Spacer()
                         }
                         HStack {
-                            if editingViewModel.editMode {
-                                TextField("", text: $editingViewModel.editDebugString, prompt: Text(instance.assetIndex.id))
+                            if editingViewModel.inEditMode {
+                                TextField("", text: $editingViewModel.synopsis, prompt: Text(instance.assetIndex.id))
                                     .fixedSize(horizontal: true, vertical: false)
                                     .font(.caption)
                                     .padding(.vertical, 6)
@@ -91,9 +99,20 @@ struct InstanceView: View {
                     createLogoSheet()
                 }
                 HStack {
-                    if instance.description != nil {
-                        Text(instance.description!)
+                    if editingViewModel.inEditMode {
+                        TextField("", text: $editingViewModel.notes, prompt: Text(i18n("notes")))
                             .font(.body)
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.leading)
+                            .frame(minWidth: 50)
+                            .padding(.leading, 3)
+                    } else {
+                        if instance.notes != nil {
+                            Text(instance.notes!)
+                                .font(.body)
+                                .frame(minWidth: 50)
+                                .padding(.leading, 3)
+                        }
                     }
                     Spacer()
                 }
