@@ -18,7 +18,6 @@
 import SwiftUI
 
 struct NewVanillaInstanceView: View {
-    @State var versionManifest: [PartialVersion] = []
     @EnvironmentObject var launcherData: LauncherData
     @State var showSnapshots = false
     @State var showBeta = false
@@ -75,7 +74,7 @@ struct NewVanillaInstanceView: View {
                             self.showDuplicateNamePopover = true
                             return
                         }
-                        if !self.versionManifest.contains(where: { $0 == self.selectedVersion }) {
+                        if !self.launcherData.versionManifest.contains(where: { $0 == self.selectedVersion }) {
                             self.showInvalidVersionPopover = true
                             return
                         }
@@ -97,9 +96,11 @@ struct NewVanillaInstanceView: View {
             }
         }
         .onAppear {
-            self.versionManifest = self.launcherData.versionManifest
             recomputeVersions()
         }
+        .onReceive(self.launcherData.$versionManifest, perform: { _ in
+            recomputeVersions()
+        })
         .onChange(of: showAlpha) { _ in
             recomputeVersions()
         }
@@ -112,11 +113,11 @@ struct NewVanillaInstanceView: View {
     }
     
     func recomputeVersions() {
-        if self.versionManifest.isEmpty {
+        if launcherData.versionManifest.isEmpty {
             return
         }
         DispatchQueue.global().async {
-            let newVersions = self.versionManifest.filter { version in
+            let newVersions = self.launcherData.versionManifest.filter { version in
                 return version.type == "old_alpha" && showAlpha ||
                 version.type == "old_beta" && showBeta ||
                 version.type == "snapshot" && showSnapshots ||

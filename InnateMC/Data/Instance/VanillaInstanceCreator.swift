@@ -42,7 +42,7 @@ public class VanillaInstanceCreator: InstanceCreator {
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
         let logo = InstanceLogo(logoType: .symbol, string: "tray.circle")
-        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, debugString: version.id, gameArguments: version.arguments.game)
+        let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.description, synopsis: nil, gameArguments: version.arguments.game)
         let prefs = InstancePreferences()
         prefs.runtime = data.globalPreferences.runtime
         if (version.arguments.jvm.contains("-XstartOnFirstThread")) {

@@ -45,6 +45,7 @@ struct InstanceView: View {
                                 
                                 Button("Save") {
                                     editingViewModel.editMode = false
+                                    // TODO: implement
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -58,6 +59,7 @@ struct InstanceView: View {
                                     
                                 Button("Edit") {
                                     editingViewModel.editName = instance.name
+                                    editingViewModel.editDebugString = instance.synopsis ?? ""
                                     editingViewModel.editMode = true
                                 }
                                 .padding(.horizontal)
@@ -66,12 +68,23 @@ struct InstanceView: View {
                             Spacer()
                         }
                         HStack {
-                            Text(instance.debugStringOrVersion)
-                                .font(.caption)
-                                .padding(.vertical, 6)
-                                .foregroundColor(.gray)
+                            if editingViewModel.editMode {
+                                TextField("", text: $editingViewModel.editDebugString, prompt: Text(instance.assetIndex.id))
+                                    .fixedSize(horizontal: true, vertical: false)
+                                    .font(.caption)
+                                    .padding(.vertical, 6)
+                                    .foregroundColor(.gray)
+                                    .frame(height: 10)
+                            } else {
+                                Text(instance.synopsisOrVersion)
+                                    .font(.caption)
+                                    .padding(.vertical, 6)
+                                    .foregroundColor(.gray)
+                                    .frame(height: 10)
+                            }
                             Spacer()
                         }
+                        .padding(.top, 10)
                     }
                 }
                 .sheet(isPresented: $showLogoSheet) {

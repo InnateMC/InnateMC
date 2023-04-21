@@ -20,4 +20,6 @@ import Foundation
 public class InstanceEditingViewModel: ObservableObject {
     @Published var editMode: Bool = false
     @Published var editName: String = ""
+    @Published var editDebugString: String = ""
+    @Published var editDescription: String = ""
 }

@@ -28,10 +28,10 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var isStarred: Bool
     @Published public var logo: InstanceLogo
     @Published public var description: String?
-    public var debugString: String? // TODO: what even is this?
-    public var debugStringOrVersion: String {
-        get { return debugString ?? assetIndex.id }
-        set(newValue) { self.debugString = newValue }
+    public var synopsis: String?
+    public var synopsisOrVersion: String {
+        get { return synopsis ?? assetIndex.id }
+        set(newValue) { self.synopsis = newValue }
     }
     public var lastPlayed: Date?
     public var preferences = InstancePreferences()
@@ -46,7 +46,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 isStarred: Bool,
                 logo: InstanceLogo,
                 description: String?,
-                debugString: String?,
+                synopsis: String?,
                 gameArguments: [String]
     ) {
         self.name = name
@@ -57,7 +57,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         self.isStarred = isStarred
         self.logo = logo
         self.description = description
-        self.debugString = debugString
+        self.synopsis = synopsis
         self.gameArguments = gameArguments
     }
     
@@ -93,7 +93,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         if term.isEmpty {
             return true
         }
-        return self.name.localizedCaseInsensitiveContains(term) || self.debugStringOrVersion.localizedCaseInsensitiveContains(term)
+        return self.name.localizedCaseInsensitiveContains(term) || self.synopsisOrVersion.localizedCaseInsensitiveContains(term)
     }
     
     public static func == (lhs: Instance, rhs: Instance) -> Bool {
@@ -103,6 +103,6 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
         hasher.combine(self.description)
-        hasher.combine(self.debugStringOrVersion)
+        hasher.combine(self.synopsisOrVersion)
     }
 }
