@@ -25,8 +25,7 @@ struct InstanceView: View {
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
-    @State var editMode: Bool = false
-    @State var editName: String = ""
+    @StateObject var editingViewModel = InstanceEditingViewModel()
     
     var body: some View {
         ZStack {
@@ -35,8 +34,8 @@ struct InstanceView: View {
                     createLogo()
                     VStack {
                         HStack {
-                            if editMode {
-                                TextField(i18n("name"), text: $editName)
+                            if editingViewModel.editMode {
+                                TextField(i18n("name"), text: $editingViewModel.editName)
                                     .font(.largeTitle)
                                     .labelsHidden()
                                     .fixedSize(horizontal: true, vertical: false)
@@ -45,7 +44,7 @@ struct InstanceView: View {
                                 createInstanceStar()
                                 
                                 Button("Save") {
-                                    editMode = false
+                                    editingViewModel.editMode = false
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -58,8 +57,8 @@ struct InstanceView: View {
                                 createInstanceStar()
                                     
                                 Button("Edit") {
-                                    self.editName = instance.name
-                                    self.editMode = true
+                                    editingViewModel.editName = instance.name
+                                    editingViewModel.editMode = true
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)

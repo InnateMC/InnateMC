@@ -33,6 +33,7 @@
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
 		649212C1293AF4120092E2DD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 649212C0293AF4120092E2DD /* Atomics */; };
 		6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */; };
+		6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
 		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
 		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -140,6 +141,7 @@
 		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
 		6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineAccountView.swift; sourceTree = "<group>"; };
+		6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceEditingViewModel.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				6459E11A2976E215006DB3A4 /* Preferences */,
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
+				6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */,
 			);
@@ -674,6 +677,7 @@
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
+				6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */,
 				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
