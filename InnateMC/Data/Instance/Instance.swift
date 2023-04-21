@@ -29,8 +29,9 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var logo: InstanceLogo
     @Published public var notes: String?
     @Published public var synopsis: String?
+    public var debugString: String
     public var synopsisOrVersion: String {
-        get { return synopsis ?? assetIndex.id }
+        get { return synopsis ?? debugString }
         set(newValue) { self.synopsis = newValue }
     }
     public var lastPlayed: Date?
@@ -46,7 +47,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 isStarred: Bool,
                 logo: InstanceLogo,
                 description: String?,
-                synopsis: String?,
+                debugString: String,
                 gameArguments: [String]
     ) {
         self.name = name
@@ -57,7 +58,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         self.isStarred = isStarred
         self.logo = logo
         self.notes = description
-        self.synopsis = synopsis
+        self.debugString = debugString
         self.gameArguments = gameArguments
     }
     

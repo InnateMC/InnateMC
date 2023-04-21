@@ -47,6 +47,16 @@ public class LauncherData: ObservableObject {
     }
     
     init() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                let manifest = try VersionManifest.getOrCreate()
+                DispatchQueue.main.async {
+                    self.versionManifest = manifest
+                }
+            } catch {
+                NSLog("Error downloading version manifest - Instance creation support is limited")
+            }
+        }
         DispatchQueue.global().async {
             do {
                 let globalPreferences = try GlobalPreferences.load()
@@ -65,16 +75,6 @@ public class LauncherData: ObservableObject {
                 }
             } catch {
                 NSLog("Error loading saved java versions - Java runtime support is limited")
-            }
-        }
-        DispatchQueue.global().async {
-            do {
-                let manifest = try VersionManifest.getOrCreate()
-                DispatchQueue.main.async {
-                    self.versionManifest = manifest
-                }
-            } catch {
-                NSLog("Error downloading version manifest - Instance creation support is limited")
             }
         }
         DispatchQueue.global().async {

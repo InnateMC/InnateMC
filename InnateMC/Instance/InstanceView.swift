@@ -77,7 +77,7 @@ struct InstanceView: View {
                         }
                         HStack {
                             if editingViewModel.inEditMode {
-                                TextField("", text: $editingViewModel.synopsis, prompt: Text(instance.assetIndex.id))
+                                TextField("", text: $editingViewModel.synopsis, prompt: Text(instance.debugString))
                                     .fixedSize(horizontal: true, vertical: false)
                                     .font(.caption)
                                     .padding(.vertical, 6)
