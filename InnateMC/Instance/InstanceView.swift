@@ -25,6 +25,8 @@ struct InstanceView: View {
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
+    @State var editMode: Bool = false
+    @State var editName: String = ""
     
     var body: some View {
         ZStack {
@@ -33,15 +35,41 @@ struct InstanceView: View {
                     createLogo()
                     VStack {
                         HStack {
-                            Text(instance.name)
-                                .font(.largeTitle)
-                            createInstanceStar()
+                            if editMode {
+                                TextField(i18n("name"), text: $editName)
+                                    .font(.largeTitle)
+                                    .labelsHidden()
+                                    .fixedSize(horizontal: true, vertical: false)
+                                    .frame(height: 20)
+                                
+                                createInstanceStar()
+                                
+                                Button("Save") {
+                                    editMode = false
+                                }
+                                .padding(.horizontal)
+                                .buttonStyle(.borderless)
+                            } else {
+                                Text(instance.name)
+                                    .font(.largeTitle)
+                                    .frame(height: 20)
+                                    .padding(.trailing, 8)
+                                
+                                createInstanceStar()
+                                    
+                                Button("Edit") {
+                                    self.editName = instance.name
+                                    self.editMode = true
+                                }
+                                .padding(.horizontal)
+                                .buttonStyle(.borderless)
+                            }
                             Spacer()
                         }
                         HStack {
-                            Text(instance.someDebugString)
+                            Text(instance.debugStringOrVersion)
                                 .font(.caption)
-                                .padding(.all, 6)
+                                .padding(.vertical, 6)
                                 .foregroundColor(.gray)
                             Spacer()
                         }

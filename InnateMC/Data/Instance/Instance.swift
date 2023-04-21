@@ -20,7 +20,7 @@ import SwiftUI
 import Combine
 
 public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
-    public var name: String // TODO: make published
+    @Published public var name: String
     public var assetIndex: PartialAssetIndex
     public var libraries: [Library]
     public var mainClass: String
@@ -29,7 +29,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var logo: InstanceLogo
     @Published public var description: String?
     public var debugString: String? // TODO: what even is this?
-    public var someDebugString: String { // TODO: rename this
+    public var debugStringOrVersion: String {
         get { return debugString ?? assetIndex.id }
         set(newValue) { self.debugString = newValue }
     }
@@ -93,7 +93,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         if term.isEmpty {
             return true
         }
-        return self.name.localizedCaseInsensitiveContains(term) || self.someDebugString.localizedCaseInsensitiveContains(term)
+        return self.name.localizedCaseInsensitiveContains(term) || self.debugStringOrVersion.localizedCaseInsensitiveContains(term)
     }
     
     public static func == (lhs: Instance, rhs: Instance) -> Bool {
@@ -103,6 +103,6 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
         hasher.combine(self.description)
-        hasher.combine(self.someDebugString)
+        hasher.combine(self.debugStringOrVersion)
     }
 }

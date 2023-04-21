@@ -91,7 +91,6 @@ extension SavedJavaInstallation {
     public static let encoder = PropertyListEncoder()
     public static let decoder = PropertyListDecoder()
     
-    // TODO: handle errors
     public static func load() throws -> [SavedJavaInstallation] {
         let data = try? FileHandler.getData(filePath)
         

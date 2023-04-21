@@ -64,7 +64,6 @@ public class AssetIndex: Codable {
         let fm = FileManager.default
         let objects: URL = FileHandler.assetsFolder.appendingPathComponent("objects", isDirectory: true)
         if !fm.fileExists(atPath: AssetIndex.objectsDir.path) {
-            // TODO: handle the error
             try fm.createDirectory(at: objects, withIntermediateDirectories: true)
         }
         if !fm.fileExists(atPath: AssetIndex.indexesDir.path) {

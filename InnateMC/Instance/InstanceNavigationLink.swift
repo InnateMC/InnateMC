@@ -57,7 +57,7 @@ struct InstanceNavigationLink: View {
                         Spacer()
                     }
                     HStack {
-                        Text(instance.someDebugString)
+                        Text(instance.debugStringOrVersion)
                             .foregroundColor(.gray)
                         Spacer()
                     }
