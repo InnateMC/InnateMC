@@ -18,7 +18,16 @@
 import Foundation
 import SwiftUI
 
-open class MinecraftAccount: Codable, Identifiable {
+open class MinecraftAccount: Codable, Identifiable, Hashable {
+    public static func == (lhs: MinecraftAccount, rhs: MinecraftAccount) -> Bool {
+        return lhs.id == rhs.id && lhs.username == rhs.username
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.getUUID())
+        hasher.combine(self.username)
+    }
+    
     public var id: UUID {
         return getUUID()
     }

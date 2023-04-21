@@ -69,3 +69,5 @@
 "notes" = "Notes";
 "edit" = "Edit";
 "save" = "Save";
+"delete_selected" = "Delete Selected";
+"invalid_username" = "Invalid username";

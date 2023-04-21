@@ -21,14 +21,11 @@ struct AccountsPreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var showAddOfflineSheet: Bool = false
     @State var cachedAccounts: [UUID:MinecraftAccount] = [:]
+    @State var selectedAccountIds: Set<UUID> = []
     
     var body: some View {
         VStack {
-            Table(of: MinecraftAccount.self, selection: Binding(get: {
-                return launcherData.accountManager.currentSelected
-            }, set: { (a, b) in
-                launcherData.accountManager.currentSelected = a ?? UUID()
-            })) {
+            Table(of: MinecraftAccount.self, selection: $selectedAccountIds) {
                 TableColumn(i18n("name"), value: \.username)
                 TableColumn(i18n("type"), value: \.strType)
                 .width(max: 100)
@@ -48,6 +45,17 @@ struct AccountsPreferencesView: View {
                     print("no")
                 }
                 .padding()
+                Button(i18n("delete_selected")) {
+                    for id in selectedAccountIds {
+                        self.launcherData.accountManager.accounts.removeValue(forKey: id)
+                    }
+                    self.selectedAccountIds = []
+                    DispatchQueue.global(qos: .utility).async {
+                        self.launcherData.accountManager.saveThrow() // TODO: handle error
+                    }
+                }
+                .disabled(selectedAccountIds.isEmpty)
+                .padding()
                 Spacer()
             }
         }
@@ -60,7 +68,10 @@ struct AccountsPreferencesView: View {
         .sheet(isPresented: $showAddOfflineSheet) {
             AddOfflineAccountView(showSheet: $showAddOfflineSheet) {
                 let acc = OfflineAccount.createFromUsername($0)
-                launcherData.accountManager.accounts[acc.uuid] = acc
+                self.launcherData.accountManager.accounts[acc.uuid] = acc
+                DispatchQueue.global(qos: .utility).async {
+                    self.launcherData.accountManager.saveThrow() // TODO: handle error
+                }
             }
         }
     }
