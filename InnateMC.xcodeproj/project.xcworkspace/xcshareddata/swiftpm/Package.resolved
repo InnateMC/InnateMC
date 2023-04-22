@@ -1,34 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Preferences",
-        "repositoryURL": "https://github.com/sindresorhus/Preferences",
-        "state": {
-          "branch": null,
-          "revision": "ffeaaad1def45d0625720dc1adae3789cd9c167d",
-          "version": "2.5.0"
-        }
-      },
-      {
-        "package": "swift-atomics",
-        "repositoryURL": "https://github.com/apple/swift-atomics.git",
-        "state": {
-          "branch": null,
-          "revision": "ff3d2212b6b093db7f177d0855adbc4ef9c5f036",
-          "version": "1.0.3"
-        }
-      },
-      {
-        "package": "SymbolPicker",
-        "repositoryURL": "https://github.com/xnth97/SymbolPicker.git",
-        "state": {
-          "branch": null,
-          "revision": "1e81757fc81fdee86f48d101eab0d0f8e9e0ec3d",
-          "version": "1.4.2"
-        }
+  "pins" : [
+    {
+      "identity" : "microsoft-authentication-library-for-objc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
+      "state" : {
+        "revision" : "60c0db27a7c305a9f5b4b65f638caf76dbb75a8f",
+        "version" : "1.2.11"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "preferences",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Preferences",
+      "state" : {
+        "revision" : "ffeaaad1def45d0625720dc1adae3789cd9c167d",
+        "version" : "2.5.0"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "ff3d2212b6b093db7f177d0855adbc4ef9c5f036",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "symbolpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/xnth97/SymbolPicker.git",
+      "state" : {
+        "revision" : "1e81757fc81fdee86f48d101eab0d0f8e9e0ec3d",
+        "version" : "1.4.2"
+      }
+    }
+  ],
+  "version" : 2
 }
