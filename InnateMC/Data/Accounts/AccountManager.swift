@@ -47,6 +47,11 @@ class AccountManager: ObservableObject {
                     // TODO: implement
                 }
             }
+            if let e = currentSelected {
+                if !deserializedAccounts.keys.contains(e) {
+                    currentSelected = nil
+                }
+            }
             manager.currentSelected = currentSelected
             manager.accounts = deserializedAccounts
         }

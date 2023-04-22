@@ -145,6 +145,9 @@ struct ContentView: View {
         }
         .onChange(of: self.selectedAccount) { newValue in
             launcherData.accountManager.currentSelected = newValue == ContentView.nullUuid ? nil : newValue
+            DispatchQueue.global(qos: .utility).async {
+                launcherData.accountManager.saveThrow()
+            }
         }
     }
 }
