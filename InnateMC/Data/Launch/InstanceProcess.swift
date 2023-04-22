@@ -22,7 +22,7 @@ public class InstanceProcess: ObservableObject  {
     @Published public var terminated = false
     @Published public var logMessages: [String] = []
     
-    public init(instance: Instance) {
+    public init(instance: Instance, account: MinecraftAccount) {
         let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.javaExecutable)
         process.executableURL = javaExec
         var allArgs = [
@@ -36,12 +36,12 @@ public class InstanceProcess: ObservableObject  {
         let mcArgs = ArgumentProvider()
         mcArgs.clientId("todo")
         mcArgs.xuid("todo")
-        mcArgs.username("Player")
+        mcArgs.username(account.username)
         mcArgs.version("todo")
         mcArgs.gameDir(instance.getGamePath())
         mcArgs.assetsDir(FileHandler.assetsFolder)
         mcArgs.assetIndex(instance.assetIndex.id)
-        mcArgs.uuid(UUID())
+        mcArgs.uuid(account.id)
         mcArgs.accessToken("todo")
         mcArgs.userType("todo")
         mcArgs.versionType("todo")

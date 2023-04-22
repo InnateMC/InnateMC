@@ -22,6 +22,9 @@ class AccountManager: ObservableObject {
     public static let plistEncoder = PropertyListEncoder()
     @Published public var currentSelected: UUID? = nil
     @Published public var accounts: [UUID:MinecraftAccount] = [:]
+    public var selectedAccount: MinecraftAccount {
+        return accounts[currentSelected!]!
+    }
     
     public static func load() throws -> AccountManager {
         let manager = AccountManager()

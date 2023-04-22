@@ -67,7 +67,7 @@ struct InstanceLaunchView: View {
             }
             .onReceive(launcherData.$instanceLaunchRequested) { value in
                 if value {
-                    if let accountId = launcherData.accountManager.currentSelected {
+                    if launcherData.accountManager.currentSelected != nil {
                         showPreLaunchSheet = true
                         downloadProgress.cancelled = false
                         launcherData.instanceLaunchRequested = false
@@ -160,7 +160,7 @@ struct InstanceLaunchView: View {
                     showPreLaunchSheet = false
                     if !(downloadProgress.cancelled) {
                         withAnimation {
-                            let process = InstanceProcess(instance: instance)
+                            let process = InstanceProcess(instance: instance, account: launcherData.accountManager.selectedAccount)
                             launcherData.launchedInstances[instance] = process
                             launchedInstanceProcess = process
                         }
