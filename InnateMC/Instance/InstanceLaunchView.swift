@@ -27,6 +27,7 @@ struct InstanceLaunchView: View {
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var launchedInstanceProcess: InstanceProcess? = nil
     @State var showErrorSheet: Bool = false
+    @State var showChooseAccountSheet: Bool = false
     @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
     @State var downloadSession: URLSession? = nil
     @State var logMessages: [String] = []
@@ -66,9 +67,13 @@ struct InstanceLaunchView: View {
             }
             .onReceive(launcherData.$instanceLaunchRequested) { value in
                 if value {
-                    showPreLaunchSheet = true
-                    downloadProgress.cancelled = false
-                    launcherData.instanceLaunchRequested = false
+                    if let accountId = launcherData.accountManager.currentSelected {
+                        showPreLaunchSheet = true
+                        downloadProgress.cancelled = false
+                        launcherData.instanceLaunchRequested = false
+                    } else {
+                        showChooseAccountSheet = true
+                    }
                 }
             }
             .onAppear {
@@ -109,12 +114,9 @@ struct InstanceLaunchView: View {
             }
             Spacer()
         }
-        .sheet(isPresented: $showPreLaunchSheet) {
-            createPrelaunchSheet()
-        }
-        .sheet(isPresented: $showErrorSheet) {
-            createErrorSheet()
-        }
+        .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
+        .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
+        .sheet(isPresented: $showChooseAccountSheet, content: createChooseAccountSheet)
     }
     
     @ViewBuilder
@@ -200,6 +202,26 @@ struct InstanceLaunchView: View {
                 Button(i18n("close")) {
                     self.showErrorSheet = false
                 }
+                .keyboardShortcut(.cancelAction)
+                .padding()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func createChooseAccountSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text(i18n("no_account_selected"))
+                    Spacer()
+                }
+                .padding()
+                Button(i18n("close")) {
+                    self.showChooseAccountSheet = false
+                }
+                .keyboardShortcut(.cancelAction)
                 .padding()
             }
         }

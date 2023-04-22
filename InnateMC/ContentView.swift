@@ -19,13 +19,14 @@ import SwiftUI
 import AppKit
 
 struct ContentView: View {
+    private static let nullUuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     @State var searchTerm: String = ""
     @State var starredOnly = false
     @EnvironmentObject var launcherData: LauncherData
     @State var isSidebarHidden = false
     @State var showNewInstanceSheet: Bool = false
-    @State var tempSel: String = "e"
     @State var selectedInstance: Instance? = nil
+    @State var selectedAccount: UUID = ContentView.nullUuid
     
     var body: some View {
         NavigationView {
@@ -121,18 +122,30 @@ struct ContentView: View {
             }
         }
         
-        Picker(i18n("account"), selection: $tempSel) {
-            ForEach(Array(launcherData.accountManager.accounts.keys), id: \.self) { key in
+        Picker(i18n("account"), selection: $selectedAccount) {
+            Text(i18n("no_account_selected"))
+                .tag(ContentView.nullUuid)
+            ForEach(Array(launcherData.accountManager.accounts.values)) { value in
                 HStack(alignment: .center) {
                     Image("steve")
-                    Text(launcherData.accountManager.accounts[key]!.getUsername())
+                    Text(value.getUsername())
                         .font(.title2)
+                        .frame(height: 32)
                 }
                 .padding(.all)
-                .tag(key)
+                .tag(value.id)
             }
         }
         .frame(height: 40)
+        .onAppear {
+            self.selectedAccount = launcherData.accountManager.currentSelected ?? ContentView.nullUuid
+        }
+        .onReceive(launcherData.accountManager.$currentSelected) {
+            self.selectedAccount = $0 ?? ContentView.nullUuid
+        }
+        .onChange(of: self.selectedAccount) { newValue in
+            launcherData.accountManager.currentSelected = newValue == ContentView.nullUuid ? nil : newValue
+        }
     }
 }
 

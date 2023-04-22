@@ -20,9 +20,8 @@ import Foundation
 class AccountManager: ObservableObject {
     public static let accountsPath: URL = try! FileHandler.getOrCreateFolder().appendingPathComponent("Accounts.plist")
     public static let plistEncoder = PropertyListEncoder()
-    @Published public var currentSelected: UUID = UUID()
+    @Published public var currentSelected: UUID? = nil
     @Published public var accounts: [UUID:MinecraftAccount] = [:]
-    
     
     public static func load() throws -> AccountManager {
         let manager = AccountManager()
@@ -30,7 +29,10 @@ class AccountManager: ObservableObject {
         // TODO: error handling
         if let data = try FileHandler.getData(AccountManager.accountsPath) {
             let plist: [String:Any] = try PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
-            let currentSelected = UUID(uuidString: plist["Current"] as! String)!
+            var currentSelected: UUID? = nil
+            if let currentSelectedE = plist["Current"] as? String {
+                currentSelected = UUID(uuidString: currentSelectedE)!
+            }
             let accounts = plist["Accounts"] as! [String:[String:Any]]
             var deserializedAccounts: [UUID:MinecraftAccount] = [:]
             for (_, account) in accounts {
@@ -51,7 +53,9 @@ class AccountManager: ObservableObject {
     
     public func saveThrow() {
         var plist: [String:Any] = [:]
-        plist["Current"] = currentSelected.uuidString
+        if let currentSelected = currentSelected {
+            plist["Current"] = currentSelected.uuidString
+        }
         var accounts: [String:Any] = [:]
         for (thing, account) in self.accounts {
             accounts[thing.uuidString] = try! PropertyListSerialization.propertyList(from: try! AccountManager.plistEncoder.encode(account), format: nil)
