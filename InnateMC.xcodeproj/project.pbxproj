@@ -80,7 +80,7 @@
 		64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60C297D654A0086ABC1 /* JreDownloader.swift */; };
 		64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */; };
 		64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */; };
-		64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */; };
+		64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,7 +192,7 @@
 		64F7C60C297D654A0086ABC1 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
 		64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJavaInstallation.swift; sourceTree = "<group>"; };
 		64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
-		64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLaunchView.swift; sourceTree = "<group>"; };
+		64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceConsoleView.swift; sourceTree = "<group>"; };
 		FB618B9329EB3ACD005418E5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,7 +260,7 @@
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
 				6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
-				64FE2D3F293BA78B007414CB /* InstanceLaunchView.swift */,
+				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -676,7 +676,7 @@
 				64A5151A29E2DF6500AFE3AE /* Published+Coding.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
-				64FE2D40293BA78B007414CB /* InstanceLaunchView.swift in Sources */,
+				64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
 				6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */,
 				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,

@@ -29,7 +29,14 @@ struct InstanceView: View {
     @State var showNoNamePopover: Bool = false
     @State var showDuplicatePopover: Bool = false
     @State var showErrorSheet: Bool = false
+    @State var showPreLaunchSheet: Bool = false
+    @State var showChooseAccountSheet: Bool = false
     @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
+    @State var downloadSession: URLSession? = nil
+    @State var downloadMessage: LocalizedStringKey = i18n("downloading_libs")
+    @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
+    @State var progress: Float = 0
+    @State var launchedInstanceProcess: InstanceProcess? = nil
     
     var body: some View {
         ZStack {
@@ -129,6 +136,26 @@ struct InstanceView: View {
                 launcherData.instanceLaunchRequested = false
             }
             .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
+            .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
+            .sheet(isPresented: $showChooseAccountSheet, content: createChooseAccountSheet)
+            .onReceive(launcherData.$launchedInstances) { value in
+                launchedInstances = value
+                launchedInstanceProcess = launcherData.launchedInstances[instance]
+            }
+            .onReceive(launcherData.$instanceLaunchRequested) { value in
+                if value {
+                    if launcherData.accountManager.currentSelected != nil {
+                        showPreLaunchSheet = true
+                        downloadProgress.cancelled = false
+                        launcherData.instanceLaunchRequested = false
+                    } else {
+                        showChooseAccountSheet = true
+                    }
+                }
+            }
+            .onAppear {
+                launchedInstanceProcess = launcherData.launchedInstances[instance]
+            }
         }
     }
     
@@ -166,9 +193,9 @@ struct InstanceView: View {
     @ViewBuilder
     func createTabView() -> some View {
         TabView {
-            InstanceLaunchView(instance: instance, showErrorSheet: $showErrorSheet, errorMessageKey: $errorMessageKey)
+            InstanceConsoleView(instance: instance, launchedInstanceProcess: $launchedInstanceProcess)
                 .tabItem {
-                    Label(i18n("launch"), systemImage: "bolt")
+                    Label(i18n("console"), systemImage: "bolt")
                 }
             InstanceRuntimeView(instance: instance)
                 .tabItem {
@@ -255,5 +282,94 @@ struct InstanceView: View {
             .keyboardShortcut(.cancelAction)
         }
         .padding(.all, 15)
+    }
+    
+    @ViewBuilder
+    func createPrelaunchSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text(downloadMessage)
+                    Spacer()
+                }
+                .padding()
+                ProgressView(value: progress)
+                    .onReceive(downloadProgress.$current, perform: {
+                        progress = Float($0) / Float(downloadProgress.total)
+                    })
+                Button(i18n("abort")) {
+                    self.downloadSession?.invalidateAndCancel()
+                    showPreLaunchSheet = false
+                    self.downloadProgress.cancelled = true
+                    self.downloadProgress = TaskProgress(current: 0, total: 1)
+                }
+                .padding()
+            }
+        }
+        // TODO: error handling
+        .onAppear(perform: {
+            onPrelaunchSheetAppear()
+        })
+        .padding(.all, 10)
+    }
+    
+    func onPrelaunchSheetAppear() {
+        self.downloadProgress.cancelled = false
+        downloadMessage = i18n("downloading_libs")
+        downloadSession = instance.downloadLibs(progress: downloadProgress) {
+            downloadMessage = i18n("downloading_assets")
+            downloadSession = instance.downloadAssets(progress: downloadProgress) {
+                downloadMessage = i18n("extracting_natives")
+                downloadProgress.callback = {
+                    showPreLaunchSheet = false
+                    if !(downloadProgress.cancelled) {
+                        withAnimation {
+                            let process = InstanceProcess(instance: instance, account: launcherData.accountManager.selectedAccount)
+                            launcherData.launchedInstances[instance] = process
+                            launchedInstanceProcess = process
+                        }
+                    }
+                    downloadProgress.callback = {}
+                }
+                instance.extractNatives(progress: downloadProgress)
+            } onError: {
+                onPrelaunchError($0)
+            }
+        } onError: {
+            onPrelaunchError($0)
+        }
+    }
+    
+    func onPrelaunchError(_ error: ParallelDownloadError) {
+        if (showErrorSheet) {
+            return
+        }
+        showPreLaunchSheet = false
+        showErrorSheet = true
+        switch(error) {
+        case .downloadFailed(let errorKey):
+            errorMessageKey = LocalizedStringKey(errorKey)
+            break
+        }
+    }
+    
+    @ViewBuilder
+    func createChooseAccountSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text(i18n("no_account_selected"))
+                    Spacer()
+                }
+                .padding()
+                Button(i18n("close")) {
+                    self.showChooseAccountSheet = false
+                }
+                .keyboardShortcut(.cancelAction)
+                .padding()
+            }
+        }
     }
 }

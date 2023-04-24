@@ -24,7 +24,7 @@
 "default_max_mem" = "Maximum Memory (MiB)";
 "default_java_args" = "Default Java arguments";
 "add_java_version" = "Add Java Version";
-"launch" = "Launch";
+"console" = "Console";
 "runtime" = "Runtime";
 "mods" = "Mods";
 "resource_packs" = "Resource Packs";
@@ -72,3 +72,4 @@
 "delete_selected" = "Delete Selected";
 "invalid_username" = "Invalid username";
 "no_account_selected" = "No account selected";
+"launch" = "Launch";
