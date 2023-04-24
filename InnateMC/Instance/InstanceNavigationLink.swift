@@ -20,6 +20,7 @@ import SwiftUI
 struct InstanceNavigationLink: View {
     @EnvironmentObject var launcherData: LauncherData
     @StateObject var instance: Instance
+    @Binding var selectedInstance: Instance?
     @State var starHovered: Bool = false
     @State var showDeleteSheet: Bool = false
 
@@ -90,6 +91,11 @@ struct InstanceNavigationLink: View {
                 HStack {
                     Button(LocalizedStringKey("delete")) {
                         if let index = launcherData.instances.firstIndex(of: instance) {
+                            if let selectedInstance = selectedInstance {
+                                if selectedInstance.name == self.instance.name {
+                                    self.selectedInstance = nil
+                                }
+                            }
                             launcherData.instances.remove(at: index)
                             instance.delete()
                         }

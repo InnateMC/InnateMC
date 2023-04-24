@@ -61,7 +61,6 @@ struct ContentView: View {
         }
         .bindInstanceFocusValue(selectedInstance)
         .toolbar {
-            
             ToolbarItemGroup(placement: .primaryAction) {
                 createTrailingToolbar()
             }
@@ -71,7 +70,7 @@ struct ContentView: View {
     @ViewBuilder
     func createInstanceNavigationLink(instance: Instance) -> some View {
         if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
-            InstanceNavigationLink(instance: instance)
+            InstanceNavigationLink(instance: instance, selectedInstance: $selectedInstance)
                 .tag(instance)
                 .padding(.all, 4)
                 .frame(width: .infinity)
