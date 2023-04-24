@@ -26,35 +26,6 @@ struct InstanceConsoleView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                if let launchedInstanceProcess = launchedInstanceProcess {
-                    HStack {
-                        Button(action: {
-                            // TODO: show a warning message
-                            kill(launchedInstanceProcess.process.processIdentifier, SIGKILL)
-                            launcherData.launchedInstances.removeValue(forKey: instance)
-                        }, label: {
-                            Text(i18n("force_quit"))
-                                .font(.title2)
-                        })
-                    }
-                    .onReceive(launchedInstanceProcess.$terminated, perform: { value in
-                        if value {
-                            self.launchedInstanceProcess = nil
-                            launcherData.launchedInstances.removeValue(forKey: instance)
-                        }
-                    })
-                } else {
-                    Button(action: {
-                        launcherData.instanceLaunchRequested = true
-                    }, label: {
-                        Text(i18n("launch"))
-                            .font(.title2)
-                    })
-                }
-            }
-            .padding()
-            
             ScrollViewReader { proxy in
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 8) {
