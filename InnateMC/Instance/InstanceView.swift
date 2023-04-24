@@ -28,6 +28,8 @@ struct InstanceView: View {
     @StateObject var editingViewModel = InstanceEditingViewModel()
     @State var showNoNamePopover: Bool = false
     @State var showDuplicatePopover: Bool = false
+    @State var showErrorSheet: Bool = false
+    @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
     
     var body: some View {
         ZStack {
@@ -123,6 +125,10 @@ struct InstanceView: View {
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstances = value
             }
+            .onAppear {
+                launcherData.instanceLaunchRequested = false
+            }
+            .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
         }
     }
     
@@ -160,7 +166,7 @@ struct InstanceView: View {
     @ViewBuilder
     func createTabView() -> some View {
         TabView {
-            InstanceLaunchView(instance: instance)
+            InstanceLaunchView(instance: instance, showErrorSheet: $showErrorSheet, errorMessageKey: $errorMessageKey)
                 .tabItem {
                     Label(i18n("launch"), systemImage: "bolt")
                 }
@@ -206,6 +212,25 @@ struct InstanceView: View {
             .onTapGesture {
                 showLogoSheet = true
             }
+    }
+    
+    @ViewBuilder
+    func createErrorSheet() -> some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text(self.errorMessageKey)
+                    Spacer()
+                }
+                .padding()
+                Button(i18n("close")) {
+                    self.showErrorSheet = false
+                }
+                .keyboardShortcut(.cancelAction)
+                .padding()
+            }
+        }
     }
 
     @ViewBuilder

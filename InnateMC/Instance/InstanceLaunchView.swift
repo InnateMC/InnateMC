@@ -19,6 +19,8 @@ import SwiftUI
 
 struct InstanceLaunchView: View {
     var instance: Instance
+    @Binding var showErrorSheet: Bool
+    @Binding var errorMessageKey: LocalizedStringKey
     @EnvironmentObject var launcherData: LauncherData
     @State var showPreLaunchSheet: Bool = false
     @State var progress: Float = 0
@@ -26,9 +28,7 @@ struct InstanceLaunchView: View {
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @State var launchedInstanceProcess: InstanceProcess? = nil
-    @State var showErrorSheet: Bool = false
     @State var showChooseAccountSheet: Bool = false
-    @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
     @State var downloadSession: URLSession? = nil
     @State var logMessages: [String] = []
     
@@ -115,7 +115,6 @@ struct InstanceLaunchView: View {
             Spacer()
         }
         .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
-        .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
         .sheet(isPresented: $showChooseAccountSheet, content: createChooseAccountSheet)
     }
     
@@ -186,25 +185,6 @@ struct InstanceLaunchView: View {
         case .downloadFailed(let errorKey):
             errorMessageKey = LocalizedStringKey(errorKey)
             break
-        }
-    }
-    
-    @ViewBuilder
-    func createErrorSheet() -> some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text(i18n("error_launching"))
-                    Spacer()
-                }
-                .padding()
-                Button(i18n("close")) {
-                    self.showErrorSheet = false
-                }
-                .keyboardShortcut(.cancelAction)
-                .padding()
-            }
         }
     }
     

@@ -22,69 +22,74 @@ public struct ParallelDownloader {
     public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession {
         progress.current = 0
         progress.total = tasks.count
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForResource = 180
+        config.timeoutIntervalForRequest = 180
         
-        let session = URLSession(configuration: URLSessionConfiguration.ephemeral, delegate: nil, delegateQueue: nil)
+        let session = URLSession(configuration: config, delegate: nil, delegateQueue: nil)
         
         let downloadGroup = DispatchGroup()
         
         for (_, task) in tasks.enumerated() {
             downloadGroup.enter()
             
-            let taskUrl = task.sourceUrl
-            let downloadTask = session.downloadTask(with: taskUrl) { (tempUrl, response, error) in
-                if error != nil {
-                    session.invalidateAndCancel()
-                    DispatchQueue.main.async {
-                        onError(ParallelDownloadError.downloadFailed(errorKey: "error_downloading"))
+            let destinationUrl = task.filePath
+            
+            DispatchQueue.global(qos: .utility).async {
+                let fileExists = FileManager.default.fileExists(atPath: destinationUrl.path)
+                
+                if fileExists {
+                    let isHashValid = checkHash(path: destinationUrl, expected: task.sha1)
+                    if isHashValid {
+                        DispatchQueue.main.async {
+                            progress.inc()
+                            downloadGroup.leave()
+                        }
+                        return
                     }
-                    return
-                } else if let tempUrl = tempUrl {
-                    do {
-                        // TODO: verify sha hash
-                        let fileManager = FileManager.default
-                        let destinationUrl = task.filePath
-                        var fileExists = fileManager.fileExists(atPath: destinationUrl.path)
-                        if fileExists {
-                            if !checkHash(path: destinationUrl, expected: task.sha1) {
-                                do {
-                                    try fileManager.removeItem(at: destinationUrl)
-                                } catch {
-                                    throw ParallelDownloadError.downloadFailed(errorKey: "error_deleting_corrupt_item")
+                }
+                
+                let taskUrl = task.sourceUrl
+                let downloadTask = session.downloadTask(with: taskUrl) { (tempUrl, response, error) in
+                    if error != nil {
+                        session.invalidateAndCancel()
+                        DispatchQueue.main.async {
+                            onError(ParallelDownloadError.downloadFailed(errorKey: "error_downloading"))
+                        }
+                        downloadGroup.leave()
+                        return
+                    } else if let tempUrl = tempUrl {
+                        do {
+                            // Verify sha hash
+                            if !checkHash(path: tempUrl, expected: task.sha1) {
+                                throw ParallelDownloadError.downloadFailed(errorKey: "invalid_sha_hash_error")
+                            }
+                            let fileManager = FileManager.default
+                            if !fileExists {
+                                try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
+                                try fileManager.moveItem(at: tempUrl, to: destinationUrl)
+                            }
+                            DispatchQueue.main.async {
+                                progress.inc()
+                            }
+                        } catch {
+                            session.invalidateAndCancel()
+                            if let error = error as? ParallelDownloadError {
+                                DispatchQueue.main.async {
+                                    onError(error)
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
                                 }
                             }
                         }
-                        if !checkHash(path: tempUrl, expected: task.sha1) {
-                            throw ParallelDownloadError.downloadFailed(errorKey: "invalid_sha_hash_error")
-                        }
-                        fileExists = fileManager.fileExists(atPath: destinationUrl.path)
-                        if !fileExists {
-                            do {
-                                try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
-                                try fileManager.moveItem(at: tempUrl, to: destinationUrl)
-                            } catch {
-                                throw ParallelDownloadError.downloadFailed(errorKey: "error_creating_file")
-                            }
-                        }
-                        DispatchQueue.main.async {
-                            progress.inc()
-                        }
-                    } catch {
-                        session.invalidateAndCancel()
-                        if let error = error as? ParallelDownloadError {
-                            DispatchQueue.main.async {
-                                onError(error)
-                            }
-                        } else {
-                            DispatchQueue.main.async {
-                                onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
-                            }
-                        }
                     }
+                    downloadGroup.leave()
                 }
-                downloadGroup.leave()
+                
+                downloadTask.resume()
             }
-            
-            downloadTask.resume()
         }
         
         downloadGroup.notify(queue: .main) {

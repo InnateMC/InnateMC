@@ -93,15 +93,11 @@ struct InstanceNavigationLink: View {
                             launcherData.instances.remove(at: index)
                             instance.delete()
                         }
-                        withAnimation {
-                            showDeleteSheet = false
-                        }
+                        showDeleteSheet = false
                     }
                     .padding()
                     Button(LocalizedStringKey("cancel")) {
-                        withAnimation {
-                            showDeleteSheet = false
-                        }
+                        showDeleteSheet = false
                     }
                     .padding()
                 }
