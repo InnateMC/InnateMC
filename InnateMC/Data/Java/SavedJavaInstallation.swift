@@ -23,8 +23,8 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
         return self
     }
     @Published public var javaExecutable: String
-    public let javaVendor: String?
-    public let javaVersion: String?
+    @Published public var javaVendor: String?
+    @Published public var javaVersion: String?
     public let installationType: InstallationType
     
     public init(javaHomePath: String, javaVendor: String?, javaVersion: String?) {
@@ -46,6 +46,20 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
         self.javaVendor = linkedJavaInstallation.JVMVendor
         self.javaVersion = linkedJavaInstallation.JVMVersion
         self.installationType = .detected
+    }
+    
+    public func setVersionAsync() {
+        DispatchQueue.global(qos: .utility).async {
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: self.javaExecutable)
+            process.arguments = ["--version"]
+            let pipe = Pipe()
+            process.standardOutput = pipe
+            process.launch()
+            let data: Data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let string = String(data: data, encoding: .utf8) ?? "no u"
+            print(string)
+        }
     }
     
     public func getString() -> String {
