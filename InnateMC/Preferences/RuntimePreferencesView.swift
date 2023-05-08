@@ -50,10 +50,10 @@ struct RuntimePreferencesView: View {
                 print("ok")
                 self.showJavaFilePicker = true
             }
-            .fileImporter(isPresented: $showJavaFilePicker, allowedContentTypes: [.unixExecutable, .executable, .exe]) { result in
+            .fileImporter(isPresented: $showJavaFilePicker, allowedContentTypes: [.folder]) { result in
                 let url = try? result.get()
                 if let url = url {
-                    let installation = SavedJavaInstallation(javaExecutable: url.path)
+                    let installation: SavedJavaInstallation = .init(javaHomePath: url.path)
                     installation.setVersionAsync()
                     launcherData.javaInstallations.append(installation)
                 } else {
