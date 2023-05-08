@@ -20,7 +20,6 @@ import SwiftUI
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var cachedDefaultJava: SavedJavaInstallation = SavedJavaInstallation.systemDefault
-    @State var showJavaFilePicker: Bool = false
 
     var body: some View {
         VStack {
@@ -46,20 +45,6 @@ struct RuntimePreferencesView: View {
             })
             .padding([.leading, .trailing, .top], 16.0)
             .padding(.bottom, 5)
-            Button("Add Java Version") {
-                print("ok")
-                self.showJavaFilePicker = true
-            }
-            .fileImporter(isPresented: $showJavaFilePicker, allowedContentTypes: [.folder]) { result in
-                let url = try? result.get()
-                if let url = url {
-                    let installation: SavedJavaInstallation = .init(javaHomePath: url.path)
-                    installation.setVersionAsync()
-                    launcherData.javaInstallations.append(installation)
-                } else {
-                    NSLog("Error importing java version")
-                }
-            }
             Table(of: SavedJavaInstallation.self, selection: Binding(get: {
                 return launcherData.globalPreferences.runtime.defaultJava
             }, set: {
