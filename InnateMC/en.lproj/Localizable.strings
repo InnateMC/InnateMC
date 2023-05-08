@@ -73,3 +73,4 @@
 "invalid_username" = "Invalid username";
 "no_account_selected" = "No account selected";
 "launch" = "Launch";
+"override_default_runtime" = "Override default runtime settings";

@@ -20,8 +20,8 @@ import AppKit
 import Combine
 
 public class LauncherData: ObservableObject {
-    private var currentInstance: LauncherData? = nil
-    internal var currentInstanceUnsafe: LauncherData { currentInstance! }
+    private static var currentInstance: LauncherData? = nil
+    internal static var currentInstanceUnsafe: LauncherData { currentInstance! }
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []
@@ -87,7 +87,7 @@ public class LauncherData: ObservableObject {
                 NSLog("Error loading account manager - Account switching support is limited")
             }
         }
-        currentInstance = self
+        LauncherData.currentInstance = self
     }
 }
 

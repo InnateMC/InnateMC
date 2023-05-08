@@ -35,7 +35,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         set(newValue) { self.synopsis = newValue }
     }
     public var lastPlayed: Date?
-    public var preferences = InstancePreferences()
+    public var preferences: InstancePreferences = .init()
     public var startOnFirstThread: Bool = false
     public var gameArguments: [String]
     

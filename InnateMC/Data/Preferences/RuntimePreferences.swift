@@ -24,9 +24,23 @@ public class RuntimePreferences: Codable, ObservableObject {
     @Published public var javaArgs: String = ""
     @Published public var valid: Bool = true
     
+    public init() {
+    }
+    
+    public init(_ prefs: RuntimePreferences) {
+        self.defaultJava = prefs.defaultJava
+        self.minMemory = prefs.minMemory
+        self.maxMemory = prefs.maxMemory
+        self.javaArgs = prefs.javaArgs
+        self.valid = prefs.valid
+    }
+    
+    public func invalidate() -> RuntimePreferences {
+        self.valid = false
+        return self
+    }
+    
     public static func invalid() -> RuntimePreferences {
-        let prefs = RuntimePreferences()
-        prefs.valid = false
-        return prefs
+        return .init().invalidate()
     }
 }

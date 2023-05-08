@@ -21,31 +21,47 @@ import SwiftUI
 struct InstanceRuntimeView: View {
     @EnvironmentObject var launcherData: LauncherData
     @StateObject var instance: Instance
+    @State var valid: Bool = false
+    @State var selectedJava: SavedJavaInstallation = SavedJavaInstallation.systemDefault
     
     var body: some View {
         VStack {
             Form {
-                Picker(i18n("java"), selection: $instance.preferences.runtime.defaultJava) {
+                Toggle(isOn: $instance.preferences.runtime.valid, label: { Text(i18n("Override default runtime settings")) })
+                    .padding(.bottom, 5)
+                Picker(i18n("java"), selection: $selectedJava) {
                     PickableJavaVersion(installation: SavedJavaInstallation.systemDefault)
                     ForEach(launcherData.javaInstallations) {
                         PickableJavaVersion(installation: $0)
                     }
                 }
-                .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil)
+                .disabled(!valid)
                 TextField(i18n("default_min_mem"), value: $instance.preferences.runtime.minMemory, formatter: NumberFormatter())
-                    .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .disabled(!valid)
                 TextField(i18n("default_max_mem"), value: $instance.preferences.runtime.maxMemory, formatter: NumberFormatter())
-                    .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .disabled(!valid)
                 TextField(i18n("default_java_args"), text: $instance.preferences.runtime.javaArgs)
-                    .frame(minWidth: nil, idealWidth: nil, maxWidth: 550, minHeight: nil, maxHeight: nil, alignment: .leading)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(i18n("add_java_version")) {
-                }
+                    .disabled(!valid)
             }
             .padding(.all, 16.0)
             Spacer()
+        }
+        .onAppear {
+            valid = instance.preferences.runtime.valid
+            selectedJava = instance.preferences.runtime.defaultJava
+        }
+        .onChange(of: selectedJava, perform: { newValue in
+            instance.preferences.runtime.defaultJava = newValue
+        })
+        .onReceive(instance.preferences.runtime.$valid) {
+            if !$0 && valid {
+                instance.preferences.runtime = .init(launcherData.globalPreferences.runtime).invalidate()
+                selectedJava = launcherData.globalPreferences.runtime.defaultJava
+            }
+            valid = $0
         }
     }
 }
