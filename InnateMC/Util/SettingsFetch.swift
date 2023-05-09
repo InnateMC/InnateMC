@@ -17,6 +17,10 @@
 
 import Foundation
 
-public class InstancePreferences: ObservableObject, Codable {
-    @Published public var runtime: RuntimePreferences = .init().invalidate()
+public func setting<T>(_ path: KeyPath<GlobalPreferences, T>) -> T {
+    return LauncherData.currentInstanceUnsafe.globalPreferences[keyPath: path]
+}
+
+public func setting<T>(_ path: KeyPath<InstancePreferences, T>, for instance: Instance) -> T {
+    return instance.preferences[keyPath: path]
 }

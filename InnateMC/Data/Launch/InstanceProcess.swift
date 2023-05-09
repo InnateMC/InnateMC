@@ -23,11 +23,19 @@ public class InstanceProcess: ObservableObject  {
     @Published public var logMessages: [String] = []
     
     public init(instance: Instance, account: MinecraftAccount) {
-        let javaExec = URL(fileURLWithPath: instance.preferences.runtime.defaultJava.javaExecutable)
+        var maxMemory = setting(\.runtime.maxMemory)
+        var minMemory = setting(\.runtime.minMemory)
+        var javaInstallation = setting(\.runtime.defaultJava)
+        if instance.preferences.runtime.valid {
+            maxMemory = setting(\.runtime.maxMemory, for: instance)
+            minMemory = setting(\.runtime.minMemory, for: instance)
+            javaInstallation = setting(\.runtime.defaultJava, for: instance)
+        }
+        let javaExec = URL(fileURLWithPath: javaInstallation.javaExecutable)
         process.executableURL = javaExec
         var allArgs = [
-            "-Xmx\(instance.preferences.runtime.maxMemory)M",
-            "-Xms\(instance.preferences.runtime.minMemory)M",
+            "-Xmx\(maxMemory)M",
+            "-Xms\(minMemory)M",
             "-Djava.library.path=\(instance.getPath().appendingPathComponent("natives").path)"
         ]
         if instance.startOnFirstThread {
