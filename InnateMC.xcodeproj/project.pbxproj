@@ -894,7 +894,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
 				INFOPLIST_FILE = InnateMC/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 InnateMC & Contributors";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -937,7 +937,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
 				INFOPLIST_FILE = InnateMC/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 InnateMC & Contributors";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

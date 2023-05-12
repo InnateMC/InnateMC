@@ -20,6 +20,7 @@ import SwiftUI
 struct RuntimePreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var cachedDefaultJava: SavedJavaInstallation = SavedJavaInstallation.systemDefault
+    @State var showFileImporter: Bool = false
 
     var body: some View {
         VStack {
@@ -63,6 +64,17 @@ struct RuntimePreferencesView: View {
             }
             .padding([.leading, .trailing, .bottom])
             .padding(.top, 4)
+            Button(i18n("add_java_version")) {
+                showFileImporter = true
+            }
+            .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.unixExecutable, .executable, .exe]) { result in
+                if let url = try? result.get() {
+                    let install: SavedJavaInstallation = .init(javaExecutable: url.path)
+                    install.setupAsNewVersion(launcherData: launcherData)
+                } else {
+                    NSLog("Unknown error importing java runtime")
+                }
+            }
         }
     }
 }

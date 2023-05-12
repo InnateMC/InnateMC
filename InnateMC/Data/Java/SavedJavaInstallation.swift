@@ -19,6 +19,7 @@ import Foundation
 
 public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
     public static let systemDefault = SavedJavaInstallation(javaHomePath: "/usr", javaVendor: "System Default", javaVersion: "")
+    private static let regex = try! NSRegularExpression(pattern: "\"([^\"]+)\"", options: [])
     public var id: SavedJavaInstallation {
         return self
     }
@@ -48,20 +49,58 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
         self.installationType = .detected
     }
     
-    public func setVersionAsync() {
-        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 4) {
+    public func setupAsNewVersion(launcherData: LauncherData) {
+//        if launcherData.javaInstallations
+//            .map({ $0.javaExecutable })
+//            .contains(where: { $0 == self.javaExecutable }) {
+//            return
+//        }
+        
+        DispatchQueue.global(qos: .utility).async {
             let process = Process()
-            process.executableURL = URL(fileURLWithPath: self.javaExecutable)
-            print(process.executableURL!.path)
-            print(self.javaExecutable)
-            process.arguments = ["--version"]
             let pipe = Pipe()
+            process.executableURL = URL(fileURLWithPath: self.javaExecutable)
+            process.arguments = ["-XshowSettings:properties", "-version"]
             process.standardOutput = pipe
-            try! process.run()
-//            let data: Data = pipe.fileHandleForReading.readDataToEndOfFile()
-//            let string = String(data: data, encoding: .utf8) ?? "no u"
-//            print(string)
+            process.standardError = pipe
+            process.launch()
+            process.waitUntilExit()
+            let data: Data = pipe.fileHandleForReading.availableData
+            let string = String(data: data, encoding: .utf8) ?? "NO U"
+            
+            if let vendor = self.extractProperty(from: string, key: "java.vendor"),
+               let version = self.extractProperty(from: string, key: "java.version") {
+                self.javaVendor = vendor
+                self.javaVersion = version
+            } else {
+                print("Unable to extract properties")
+            }
+            
+            DispatchQueue.main.async {
+                launcherData.javaInstallations.append(self)
+            }
+            
+            DispatchQueue.global(qos: .utility).async {
+                do {
+                    try launcherData.javaInstallations.save()
+                } catch {
+                    NSLog("Error saving java versions")
+                }
+            }
         }
+    }
+    
+    private func extractProperty(from output: String, key: String) -> String? {
+        let lines = output.components(separatedBy: .newlines)
+        for line in lines {
+            if line.contains(key) {
+                let components = line.components(separatedBy: "=")
+                if components.count == 2 {
+                    return components[1].trimmingCharacters(in: .whitespaces)
+                }
+            }
+        }
+        return nil
     }
     
     public func getString() -> String {
@@ -71,11 +110,11 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
             }
             return "\(javaVendor) at \(javaExecutable)"
         }
-
+        
         guard let javaVendor = javaVendor else {
             return "\(javaVersion) | \(javaExecutable)"
         }
-
+        
         return "\(javaVersion) | \(javaVendor) at \(javaExecutable)"
     }
     
