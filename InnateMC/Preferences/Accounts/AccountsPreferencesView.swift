@@ -20,6 +20,7 @@ import SwiftUI
 struct AccountsPreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var showAddOfflineSheet: Bool = false
+    @StateObject var msAccountViewModel: MicrosoftAccountViewModel = .init()
     @State var cachedAccounts: [UUID:MinecraftAccount] = [:]
     @State var selectedAccountIds: Set<UUID> = []
     
@@ -42,7 +43,7 @@ struct AccountsPreferencesView: View {
                 }
                 .padding()
                 Button(i18n("add_microsoft")) {
-                    print("no")
+                    self.msAccountViewModel.prepareAndOpenSheet(launcherData: self.launcherData)
                 }
                 .padding()
                 Button(i18n("delete_selected")) {
@@ -54,7 +55,7 @@ struct AccountsPreferencesView: View {
                         self.launcherData.accountManager.saveThrow() // TODO: handle error
                     }
                 }
-                .disabled(selectedAccountIds.isEmpty)
+                .disabled(self.selectedAccountIds.isEmpty)
                 .padding()
                 Spacer()
             }
@@ -73,6 +74,10 @@ struct AccountsPreferencesView: View {
                     self.launcherData.accountManager.saveThrow() // TODO: handle error
                 }
             }
+        }
+        .sheet(isPresented: $msAccountViewModel.showMicrosoftAccountSheet) {
+            Text("no u")
+                .padding()
         }
     }
 }

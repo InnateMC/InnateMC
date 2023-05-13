@@ -21,7 +21,7 @@ import WebKit
 @main
 struct InnateMCApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var launcherData = LauncherData()
+    @StateObject private var launcherData: LauncherData = .init()
 
     var body: some Scene {
         WindowGroup {

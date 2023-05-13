@@ -16,14 +16,58 @@
 //
 
 import Foundation
+import Swifter
 
 class AccountManager: ObservableObject {
     public static let accountsPath: URL = try! FileHandler.getOrCreateFolder().appendingPathComponent("Accounts.plist")
     public static let plistEncoder = PropertyListEncoder()
+    private let authUrl: URL
+    private let server: HttpServer
+    private let serverThread: DispatchQueue
     @Published public var currentSelected: UUID? = nil
     @Published public var accounts: [UUID:MinecraftAccount] = [:]
     public var selectedAccount: MinecraftAccount {
         return accounts[currentSelected!]!
+    }
+    
+    public init() {
+        let baseURL = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize"
+        
+        var urlComponents: URLComponents = .init(string: baseURL)!
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: "a6d48d61-71a0-45eb-8957-f6d2e760f8f6"),
+            URLQueryItem(name: "redirect_uri", value: "http://localhost:1989"),
+            URLQueryItem(name: "scope", value: "XboxLive.signin"),
+            URLQueryItem(name: "state", value: "nou")
+        ]
+        
+        self.authUrl = urlComponents.url!
+        
+        self.server = .init()
+        self.server["/"] = { request in
+            if let code = request.queryParams.first(where: { $0.0 == "code" })?.1 {
+                return HttpResponse.ok(.text("<html><body>Code value: \(code)</body></html>"))
+            } else {
+                return HttpResponse.badRequest(nil)
+            }
+        }
+        
+        self.serverThread = .init(label: "server")
+        
+        self.serverThread.async {
+            do {
+                try self.server.start(1989)
+                NSLog("Started authentication handler server")
+            } catch {
+                NSLog("Error starting authentication handler server - adding microsoft account support is limited")
+            }
+        }
+    }
+    
+    public func createAuthWindow() -> WebViewWindow {
+        return .init(url: self.authUrl)
     }
     
     public static func load() throws -> AccountManager {

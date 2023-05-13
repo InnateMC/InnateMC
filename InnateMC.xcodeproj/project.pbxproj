@@ -17,7 +17,6 @@
 		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
 		64373BA329C0A430001DBD4C /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64373BA229C0A430001DBD4C /* InstanceTests.swift */; };
-		644D708B29F3C80C0007C7F4 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 644D708A29F3C80C0007C7F4 /* MSAL */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
@@ -81,6 +80,9 @@
 		64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60C297D654A0086ABC1 /* JreDownloader.swift */; };
 		64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */; };
 		64F7C612297D658D0086ABC1 /* RuntimePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */; };
+		64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 64FA2A912A0F73BD0042A4A7 /* Swifter */; };
+		64FA2A942A0F767F0042A4A7 /* WebViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */; };
+		64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */; };
 		64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +196,8 @@
 		64F7C60C297D654A0086ABC1 /* JreDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JreDownloader.swift; sourceTree = "<group>"; };
 		64F7C60E297D65620086ABC1 /* SavedJavaInstallation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJavaInstallation.swift; sourceTree = "<group>"; };
 		64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
+		64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWindow.swift; sourceTree = "<group>"; };
+		64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAccountViewModel.swift; sourceTree = "<group>"; };
 		64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceConsoleView.swift; sourceTree = "<group>"; };
 		FB618B9329EB3ACD005418E5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,7 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */,
-				644D708B29F3C80C0007C7F4 /* MSAL in Frameworks */,
+				64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +253,7 @@
 				64C33506292256C500BB8570 /* TodoView.swift */,
 				647A796929E8166600497CE1 /* ConsoleTextView.swift */,
 				640CCF542A09F0FA0080F574 /* SettingsFetch.swift */,
+				64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			children = (
 				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
 				6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */,
+				64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -530,7 +536,7 @@
 			);
 			name = InnateMC;
 			packageProductDependencies = (
-				644D708A29F3C80C0007C7F4 /* MSAL */,
+				64FA2A912A0F73BD0042A4A7 /* Swifter */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -572,6 +578,7 @@
 				649212BF293AF4120092E2DD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 				6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
 				644D708929F3C80C0007C7F4 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
+				64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */,
 			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
@@ -628,6 +635,7 @@
 				64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */,
 				64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */,
 				64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */,
+				64FA2A942A0F767F0042A4A7 /* WebViewWindow.swift in Sources */,
 				64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				64A5151C29E2DFAD00AFE3AE /* Instance+Storage.swift in Sources */,
@@ -675,6 +683,7 @@
 				644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */,
 				64F7C5F3297D64370086ABC1 /* TaskProgress.swift in Sources */,
 				64F7C600297D64B50086ABC1 /* InstanceCreator.swift in Sources */,
+				64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 				64C41C1429366CAF00014E0F /* ValueKeys.swift in Sources */,
 				64A5151A29E2DF6500AFE3AE /* Published+Coding.swift in Sources */,
@@ -1024,13 +1033,21 @@
 				version = 2.5.0;
 			};
 		};
+		64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		644D708A29F3C80C0007C7F4 /* MSAL */ = {
+		64FA2A912A0F73BD0042A4A7 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 644D708929F3C80C0007C7F4 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
-			productName = MSAL;
+			package = 64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
