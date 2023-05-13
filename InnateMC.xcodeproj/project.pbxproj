@@ -62,6 +62,9 @@
 		64C5621429C083AA003402F0 /* InstanceProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5621329C083AA003402F0 /* InstanceProcess.swift */; };
 		64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE1091297864A700366372 /* ImageLogoPickerView.swift */; };
 		64DC9E4829E67427005DE585 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64DC9E4A29E67427005DE585 /* Localizable.strings */; };
+		64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1F8C62A0FBB31006D68B6 /* MicrosoftAccessToken.swift */; };
+		64E1F8C92A0FBDE7006D68B6 /* MicrosoftAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1F8C82A0FBDE7006D68B6 /* MicrosoftAuthError.swift */; };
+		64E1F8CC2A0FC1AD006D68B6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 64E1F8CB2A0FC1AD006D68B6 /* Alamofire */; };
 		64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */; };
 		64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E459F22938C7AC00F82A2B /* LauncherData.swift */; };
 		64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */; };
@@ -83,6 +86,7 @@
 		64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 64FA2A912A0F73BD0042A4A7 /* Swifter */; };
 		64FA2A942A0F767F0042A4A7 /* WebViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */; };
 		64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */; };
+		64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */; };
 		64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +181,8 @@
 		64C5621329C083AA003402F0 /* InstanceProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceProcess.swift; sourceTree = "<group>"; };
 		64CE1091297864A700366372 /* ImageLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLogoPickerView.swift; sourceTree = "<group>"; };
 		64DC9E4929E67427005DE585 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64E1F8C62A0FBB31006D68B6 /* MicrosoftAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAccessToken.swift; sourceTree = "<group>"; };
+		64E1F8C82A0FBDE7006D68B6 /* MicrosoftAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAuthError.swift; sourceTree = "<group>"; };
 		64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCommands.swift; sourceTree = "<group>"; };
 		64E459F22938C7AC00F82A2B /* LauncherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherData.swift; sourceTree = "<group>"; };
 		64EB537E2929CD7800D6CDDD /* DownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		64F7C611297D658D0086ABC1 /* RuntimePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferences.swift; sourceTree = "<group>"; };
 		64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWindow.swift; sourceTree = "<group>"; };
 		64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAccountViewModel.swift; sourceTree = "<group>"; };
+		64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XboxLiveAuth.swift; sourceTree = "<group>"; };
 		64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceConsoleView.swift; sourceTree = "<group>"; };
 		FB618B9329EB3ACD005418E5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E1F8CC2A0FC1AD006D68B6 /* Alamofire in Frameworks */,
 				649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */,
 				64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */,
 			);
@@ -287,6 +295,7 @@
 				64821E0929E44B78006012F7 /* MinecraftAccount.swift */,
 				64821E0B29E44C13006012F7 /* OfflineAccount.swift */,
 				64821E0D29E459FA006012F7 /* AccountManager.swift */,
+				64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -306,6 +315,8 @@
 				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
 				6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */,
 				64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */,
+				64E1F8C62A0FBB31006D68B6 /* MicrosoftAccessToken.swift */,
+				64E1F8C82A0FBDE7006D68B6 /* MicrosoftAuthError.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -537,6 +548,7 @@
 			name = InnateMC;
 			packageProductDependencies = (
 				64FA2A912A0F73BD0042A4A7 /* Swifter */,
+				64E1F8CB2A0FC1AD006D68B6 /* Alamofire */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -579,6 +591,7 @@
 				6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
 				644D708929F3C80C0007C7F4 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
 				64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */,
+				64E1F8CA2A0FC1AC006D68B6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
@@ -642,14 +655,17 @@
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
+				64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */,
 				6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
 				641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */,
 				64F7C60F297D65620086ABC1 /* SavedJavaInstallation.swift in Sources */,
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
 				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
+				64E1F8C92A0FBDE7006D68B6 /* MicrosoftAuthError.swift in Sources */,
 				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,
 				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelExecutor.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
@@ -1025,6 +1041,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		64E1F8CA2A0FC1AC006D68B6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		64E900372935EC500035181B /* XCRemoteSwiftPackageReference "Preferences" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Preferences";
@@ -1044,6 +1068,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		64E1F8CB2A0FC1AD006D68B6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64E1F8CA2A0FC1AC006D68B6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		64FA2A912A0F73BD0042A4A7 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */;

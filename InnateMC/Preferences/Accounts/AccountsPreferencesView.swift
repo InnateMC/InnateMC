@@ -66,6 +66,11 @@ struct AccountsPreferencesView: View {
         .onReceive(launcherData.accountManager.$accounts) {
             self.cachedAccounts = $0
         }
+        .onReceive(msAccountViewModel.$showMicrosoftAccountSheet, perform: {
+            if !$0 {
+                launcherData.accountManager.msAccountViewModel = nil
+            }
+        })
         .sheet(isPresented: $showAddOfflineSheet) {
             AddOfflineAccountView(showSheet: $showAddOfflineSheet) {
                 let acc = OfflineAccount.createFromUsername($0)
@@ -76,8 +81,11 @@ struct AccountsPreferencesView: View {
             }
         }
         .sheet(isPresented: $msAccountViewModel.showMicrosoftAccountSheet) {
-            Text("no u")
-                .padding()
+            HStack {
+                Text(msAccountViewModel.message)
+                    .padding()
+            }
+            .frame(idealWidth: 400)
         }
     }
 }

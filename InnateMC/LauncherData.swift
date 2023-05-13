@@ -83,6 +83,7 @@ public class LauncherData: ObservableObject {
                 DispatchQueue.main.async {
                     self.accountManager = accountManager
                 }
+                accountManager.setupForAuth()
             } catch {
                 NSLog("Error loading account manager - Account switching support is limited")
             }

@@ -16,12 +16,32 @@
 //
 
 import Foundation
+import SwiftUI
 
 class MicrosoftAccountViewModel: ObservableObject {
     @Published var showMicrosoftAccountSheet: Bool = false
+    @Published var message: LocalizedStringKey = i18n("authenticating_with_microsoft")
+    @Published var error: MicrosoftAuthError = .noError
+    
+    func error(_ error: MicrosoftAuthError) {
+        self.error = error
+    }
     
     func prepareAndOpenSheet(launcherData: LauncherData) {
         self.showMicrosoftAccountSheet = true
+        launcherData.accountManager.msAccountViewModel = self
         launcherData.accountManager.createAuthWindow().showWindow(InnateMCApp.self)
+    }
+    
+    func setAuthWithXboxLive() {
+        message = i18n("authenticating_with_xbox_live")
+    }
+    
+    func setAuthWithXboxXSTS() {
+        message = i18n("authenticating_with_xbox_xsts")
+    }
+    
+    func setFetchingProfile() {
+        message = i18n("fetching_profile")
     }
 }
