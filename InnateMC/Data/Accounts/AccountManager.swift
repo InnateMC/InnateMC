@@ -48,27 +48,27 @@ class AccountManager: ObservableObject {
             do {
                 let msAccessToken: MicrosoftAccessToken = try await MicrosoftAuthentication.createMsAccount(code: code, clientId: self.clientId)
                 DispatchQueue.main.async {
-                    self.msAccountViewModel?.setAuthWithXboxLive()
+                    msAccountViewModel.setAuthWithXboxLive()
                 }
                 let xblResponse = try await MicrosoftAuthentication.authenticateWithXBL(msAccessToken: msAccessToken.token)
                 DispatchQueue.main.async {
-                    self.msAccountViewModel?.setAuthWithXboxXSTS()
+                    msAccountViewModel.setAuthWithXboxXSTS()
                 }
                 let xstsResponse: XboxAuthResponse = try await MicrosoftAuthentication.authenticateWithXSTS(xblToken: xblResponse.token)
                 DispatchQueue.main.async {
-                    self.msAccountViewModel?.setFetchingProfile()
+                    msAccountViewModel.setFetchingProfile()
                 }
                 let mcResponse: MinecraftAuthResponse = try await MicrosoftAuthentication.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
                 let profile: MinecraftProfile = try await MicrosoftAuthentication.getProfile(accessToken: mcResponse.accessToken)
                 let account: MicrosoftAccount = .init(profile: profile, token: msAccessToken)
                 self.accounts[account.id] = account
                 DispatchQueue.main.async {
-                    self.msAccountViewModel?.closeSheet()
+                    msAccountViewModel.closeSheet()
                     self.msAccountViewModel = nil
                 }
             } catch let error as MicrosoftAuthError {
                 DispatchQueue.main.async {
-                    self.msAccountViewModel?.error(error)
+                    msAccountViewModel.error(error)
                     self.msAccountViewModel = nil
                 }
                 return
