@@ -27,7 +27,6 @@ struct MinecraftProfile: Codable {
         let state: String
         let url: String
         let variant: String
-        let alias: String
     }
     
     func activeSkin() -> Skin? {

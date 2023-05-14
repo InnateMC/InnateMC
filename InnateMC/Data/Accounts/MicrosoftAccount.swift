@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import Darwin
 
 struct MicrosoftAccount: MinecraftAccount {
     private static let decoder = JSONDecoder()
@@ -26,11 +27,20 @@ struct MicrosoftAccount: MinecraftAccount {
         profile.name
     }
     var id: UUID {
-        UUID(uuidString: profile.id)!
+        UUID(uuidString: hyphenateUuid(profile.id))!
     }
     
     public init(profile: MinecraftProfile, token: MicrosoftAccessToken) {
         self.profile = profile
         self.token = token
     }
+}
+
+private func hyphenateUuid(_ thing: String) -> String {
+    var uuid = thing
+    uuid.insert("-", at: uuid.index(uuid.startIndex, offsetBy: 8))
+    uuid.insert("-", at: uuid.index(uuid.startIndex, offsetBy: 13))
+    uuid.insert("-", at: uuid.index(uuid.startIndex, offsetBy: 18))
+    uuid.insert("-", at: uuid.index(uuid.startIndex, offsetBy: 23))
+    return uuid
 }

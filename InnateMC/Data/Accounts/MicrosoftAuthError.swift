@@ -27,6 +27,8 @@ enum MicrosoftAuthError: Error {
     case xstsInvalidResponse
     case minecraftCouldNotConnect
     case minecraftInvalidResponse
+    case profileCouldNotConnect
+    case profileInvalidResponse
     
     var localizedDescription: String {
         switch (self) {
@@ -48,6 +50,10 @@ enum MicrosoftAuthError: Error {
             return "Could not connect to Minecraft authentication server"
         case .minecraftInvalidResponse:
             return "Invalid response received from Minecraft authentication server"
+        case .profileCouldNotConnect:
+            return "Could not connect to Minecraft profile server"
+        case .profileInvalidResponse:
+            return "Invalid response received from Minecraft profile server"
         }
     }
 }

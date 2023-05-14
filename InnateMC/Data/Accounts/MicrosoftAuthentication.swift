@@ -161,19 +161,19 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.minecraftInvalidResponse
+                throw MicrosoftAuthError.profileInvalidResponse
             }
 
             do {
                 let token = try JSONDecoder().decode(MinecraftProfile.self, from: data)
                 return token
             } catch {
-                throw MicrosoftAuthError.minecraftInvalidResponse
+                throw MicrosoftAuthError.profileInvalidResponse
             }
         } catch let err as MicrosoftAuthError {
             throw err
         } catch {
-            throw MicrosoftAuthError.minecraftCouldNotConnect
+            throw MicrosoftAuthError.profileCouldNotConnect
         }
     }
 }
