@@ -127,10 +127,10 @@ struct ContentView: View {
                 .tag(ContentView.nullUuid)
             ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
-                    Image("steve")
+                   
+                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=20"))
                     Text(value.username)
-                        .font(.title2)
-                        .frame(height: 32)
+                        
                 }
                 .padding(.all)
                 .tag(value.id)
