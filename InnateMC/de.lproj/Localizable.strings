@@ -54,3 +54,15 @@
 "invalid_sha_hash_error" = "Invalider SHA hash gefunden";
 "error_unknown_download" = "Ein unbekannter Fehler beim downloaden ist aufgetreten. Das ist ein Bug!";
 "force_quit" = "Beenden erzwingen";
+"add_offline" = "Offline Account hinzufügen";
+"add_microsoft" = "Microsoft Account hinzufügen";
+"delete_selected" = "Ausgewählten Account löschen";
+"compact_instance_logo" = "Kompakte Instanzen Logos";
+"username" = "Benutzername";
+"invalid_username" = "Ungültiger Benutzername";
+"enter_a_username" = "Gib einen Nutzernamen ein";
+"authenticating_with_microsoft" = "Authentifiziere mit Microsoft";
+"no_account_selected" = "Kein Account Ausgewählt";
+"edit" = "Bearbeiten";
+"save" = "Speichern";
+"notes" = "Notizen";
