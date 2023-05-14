@@ -64,8 +64,6 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                print("HECK YEAH")
-                print(String(data: data, encoding: .utf8)!)
                 throw MicrosoftAuthError.xboxInvalidResponse
             }
             
@@ -73,8 +71,6 @@ struct MicrosoftAuthentication {
                 let result = try JSONDecoder().decode(XboxAuthResponse.self, from: data)
                 return result
             } catch {
-                print("HECK YEAH NO")
-                print(String(data: data, encoding: .utf8)!)
                 throw MicrosoftAuthError.xboxInvalidResponse
             }
         } catch let err as MicrosoftAuthError {
