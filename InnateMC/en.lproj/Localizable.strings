@@ -74,3 +74,4 @@
 "no_account_selected" = "No account selected";
 "launch" = "Launch";
 "override_default_runtime" = "Override default runtime settings";
+"login_with_microsoft" = "Login with Microsoft"

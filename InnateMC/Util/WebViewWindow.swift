@@ -29,6 +29,7 @@ class WebViewWindow: NSWindowController {
         webView.load(URLRequest(url: url))
         let window: NSWindow = .init(contentRect: NSRect(x: 0, y: 0, width: 400, height: 600), styleMask: [.titled, .closable], backing: .buffered, defer: false)
         window.contentView = webView
+        window.title = NSLocalizedString("login_with_microsoft", comment: "no u")
         self.init(window: window)
         Self.current = self
     }
