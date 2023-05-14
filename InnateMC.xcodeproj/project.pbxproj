@@ -331,6 +331,7 @@
 				648445832A10D69F00049986 /* Dictionary+Encoding.swift */,
 				648445852A10D6B100049986 /* CharacterSet+EncodingValidation.swift */,
 				648445872A10DE9200049986 /* MinecraftProfile.swift */,
+				64E1F8C62A0FBB31006D68B6 /* MicrosoftAccessToken.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -350,7 +351,6 @@
 				641678522923B6F90012C9CC /* AccountsPreferencesView.swift */,
 				6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */,
 				64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */,
-				64E1F8C62A0FBB31006D68B6 /* MicrosoftAccessToken.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";

@@ -74,4 +74,9 @@
 "no_account_selected" = "No account selected";
 "launch" = "Launch";
 "override_default_runtime" = "Override default runtime settings";
-"login_with_microsoft" = "Login with Microsoft"
+"login_with_microsoft" = "Login with Microsoft";
+"authenticating_with_microsoft" = "Authenticating with Microsoft";
+"authenticating_with_xbox_live" = "Authenticating with Xbox Live";
+"authenticating_with_xbox_xsts" = "Authenticating with Xbox XSTS";
+"authenticating_with_minecraft" = "Authenticating with Minecraft";
+"fetching_profile" = "Fetching Profile";

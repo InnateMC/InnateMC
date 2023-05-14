@@ -82,16 +82,19 @@ struct AccountsPreferencesView: View {
         .sheet(isPresented: $msAccountViewModel.showMicrosoftAccountSheet) {
             HStack {
                 if msAccountViewModel.error == .noError {
-                    Text(msAccountViewModel.message)
-                        .padding()
+                    VStack {
+                        Text(msAccountViewModel.message)
+                    }
+                    .padding()
                 } else {
                     VStack {
-                        Text("Error launching: \(msAccountViewModel.error.localizedDescription)")
-                            .padding()
+                        Text(msAccountViewModel.error.localizedDescription).padding()
                         Button("Close") {
                             msAccountViewModel.closeSheet()
                         }
+                        .padding()
                     }
+                    .padding()
                 }
             }
             .frame(idealWidth: 400)
