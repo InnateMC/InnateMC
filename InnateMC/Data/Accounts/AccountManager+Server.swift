@@ -36,7 +36,11 @@ extension AccountManager {
                 } else {
                     return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
                 }
-                return HttpResponse.ok(.text("<html><body>\(code)</body></html>"))
+                DispatchQueue.main.async {
+                    WebViewWindow.current?.window?.close()
+                    WebViewWindow.current = nil
+                }
+                return HttpResponse.ok(.text("<html><body>You may close this window now</body></html>"))
             } else {
                 return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
             }
