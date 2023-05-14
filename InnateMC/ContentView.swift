@@ -27,6 +27,7 @@ struct ContentView: View {
     @State var showNewInstanceSheet: Bool = false
     @State var selectedInstance: Instance? = nil
     @State var selectedAccount: UUID = ContentView.nullUuid
+    @State var cachedAccounts: [AdaptedAccount] = []
     
     var body: some View {
         NavigationView {
@@ -124,7 +125,7 @@ struct ContentView: View {
         Picker(i18n("account"), selection: $selectedAccount) {
             Text(i18n("no_account_selected"))
                 .tag(ContentView.nullUuid)
-            ForEach(Array(launcherData.accountManager.accounts.values).map({AdaptedAccount(from: $0)})) { value in
+            ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
                     Image("steve")
                     Text(value.username)
@@ -147,6 +148,12 @@ struct ContentView: View {
             DispatchQueue.global(qos: .utility).async {
                 launcherData.accountManager.saveThrow()
             }
+        }
+        .onAppear {
+            self.cachedAccounts = Array(launcherData.accountManager.accounts.values).map({ AdaptedAccount(from: $0)})
+        }
+        .onReceive(launcherData.accountManager.$accounts) {
+            self.cachedAccounts = Array($0.values).map({ AdaptedAccount(from: $0)})
         }
     }
 }
