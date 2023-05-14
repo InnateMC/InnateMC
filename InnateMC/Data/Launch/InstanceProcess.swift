@@ -22,7 +22,7 @@ public class InstanceProcess: ObservableObject  {
     @Published public var terminated = false
     @Published public var logMessages: [String] = []
     
-    public init(instance: Instance, account: MinecraftAccount) {
+    init(instance: Instance, account: any MinecraftAccount) {
         var maxMemory = setting(\.runtime.maxMemory)
         var minMemory = setting(\.runtime.minMemory)
         var javaInstallation = setting(\.runtime.defaultJava)

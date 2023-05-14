@@ -21,21 +21,18 @@ struct AccountsPreferencesView: View {
     @EnvironmentObject var launcherData: LauncherData
     @State var showAddOfflineSheet: Bool = false
     @StateObject var msAccountViewModel: MicrosoftAccountViewModel = .init()
-    @State var cachedAccounts: [UUID:MinecraftAccount] = [:]
+    @State var cachedAccounts: [UUID:any MinecraftAccount] = [:]
+    @State var cachedAccountsOnly: [AdaptedAccount] = []
     @State var selectedAccountIds: Set<UUID> = []
     
     var body: some View {
         VStack {
-            Table(of: MinecraftAccount.self, selection: $selectedAccountIds) {
+            Table(cachedAccountsOnly, selection: $selectedAccountIds) {
                 TableColumn(i18n("name"), value: \.username)
-                TableColumn(i18n("type"), value: \.strType)
+                TableColumn(i18n("type"), value: \.type.rawValue)
                 .width(max: 100)
-            } rows: {
-                ForEach(Array(cachedAccounts.values)) { account in
-                    TableRow(account)
-                }
             }
-            .padding()
+            
             HStack {
                 Spacer()
                 Button(i18n("add_offline")) {
@@ -62,9 +59,11 @@ struct AccountsPreferencesView: View {
         }
         .onAppear {
             self.cachedAccounts = launcherData.accountManager.accounts
+            self.cachedAccountsOnly = Array(self.cachedAccounts.values).map({ AdaptedAccount(from: $0)})
         }
         .onReceive(launcherData.accountManager.$accounts) {
             self.cachedAccounts = $0
+            self.cachedAccountsOnly = Array($0.values).map({ AdaptedAccount(from: $0)})
         }
         .onReceive(msAccountViewModel.$showMicrosoftAccountSheet, perform: {
             if !$0 {
@@ -74,7 +73,7 @@ struct AccountsPreferencesView: View {
         .sheet(isPresented: $showAddOfflineSheet) {
             AddOfflineAccountView(showSheet: $showAddOfflineSheet) {
                 let acc = OfflineAccount.createFromUsername($0)
-                self.launcherData.accountManager.accounts[acc.uuid] = acc
+                self.launcherData.accountManager.accounts[acc.id] = acc
                 DispatchQueue.global(qos: .utility).async {
                     self.launcherData.accountManager.saveThrow() // TODO: handle error
                 }
@@ -82,8 +81,18 @@ struct AccountsPreferencesView: View {
         }
         .sheet(isPresented: $msAccountViewModel.showMicrosoftAccountSheet) {
             HStack {
-                Text(msAccountViewModel.message)
-                    .padding()
+                if msAccountViewModel.error == .noError {
+                    Text(msAccountViewModel.message)
+                        .padding()
+                } else {
+                    VStack {
+                        Text("Error launching: \(msAccountViewModel.error.localizedDescription)")
+                            .padding()
+                        Button("Close") {
+                            msAccountViewModel.closeSheet()
+                        }
+                    }
+                }
             }
             .frame(idealWidth: 400)
         }
@@ -93,5 +102,17 @@ struct AccountsPreferencesView: View {
 struct AccountsPreferencesView_Previews: PreviewProvider {
     static var previews: some View {
         AccountsPreferencesView()
+    }
+}
+
+class AdaptedAccount: Identifiable {
+    var id: UUID
+    var username: String
+    var type: MinecraftAccountType
+    
+    init(from acc: any MinecraftAccount) {
+        self.id = acc.id
+        self.username = acc.username
+        self.type = acc.type
     }
 }

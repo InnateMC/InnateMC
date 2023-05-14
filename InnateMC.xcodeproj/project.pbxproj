@@ -48,6 +48,8 @@
 		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
 		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EA76629EC27F300BD77EA /* UIPreferences.swift */; };
+		64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1139D2A110ACC00E48761 /* MicrosoftAccount.swift */; };
+		64A113A02A110D2500E48761 /* MinecraftAccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1139F2A110D2500E48761 /* MinecraftAccountType.swift */; };
 		64A5150E29E2DED100AFE3AE /* MinecraftJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */; };
 		64A5151029E2DEE900AFE3AE /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5150F29E2DEE900AFE3AE /* Library.swift */; };
 		64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */; };
@@ -173,6 +175,8 @@
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
 		649EA76629EC27F300BD77EA /* UIPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreferences.swift; sourceTree = "<group>"; };
+		64A1139D2A110ACC00E48761 /* MicrosoftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAccount.swift; sourceTree = "<group>"; };
+		64A1139F2A110D2500E48761 /* MinecraftAccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccountType.swift; sourceTree = "<group>"; };
 		64A5150D29E2DED100AFE3AE /* MinecraftJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftJar.swift; sourceTree = "<group>"; };
 		64A5150F29E2DEE900AFE3AE /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialAssetIndex.swift; sourceTree = "<group>"; };
@@ -311,7 +315,9 @@
 			isa = PBXGroup;
 			children = (
 				64821E0929E44B78006012F7 /* MinecraftAccount.swift */,
+				64A1139F2A110D2500E48761 /* MinecraftAccountType.swift */,
 				64821E0B29E44C13006012F7 /* OfflineAccount.swift */,
+				64A1139D2A110ACC00E48761 /* MicrosoftAccount.swift */,
 				64821E0D29E459FA006012F7 /* AccountManager.swift */,
 				648445892A10F69600049986 /* AccountManager+Storage.swift */,
 				6484458B2A10F6BC00049986 /* AccountManager+Server.swift */,
@@ -674,6 +680,7 @@
 				64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */,
 				64A5151629E2DF2300AFE3AE /* InstanceLogo.swift in Sources */,
 				64F7C602297D64CA0086ABC1 /* InstancePreferences.swift in Sources */,
+				64A113A02A110D2500E48761 /* MinecraftAccountType.swift in Sources */,
 				64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */,
 				64A5151229E2DEFD00AFE3AE /* PartialAssetIndex.swift in Sources */,
 				64F7C5FE297D64A40086ABC1 /* Instance.swift in Sources */,
@@ -743,6 +750,7 @@
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */,
+				64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
 				6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */,
 				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,

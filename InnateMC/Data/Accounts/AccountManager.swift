@@ -22,11 +22,11 @@ import CryptoKit
 class AccountManager: ObservableObject {
     public static let accountsPath: URL = try! FileHandler.getOrCreateFolder().appendingPathComponent("Accounts.plist")
     public static let plistEncoder = PropertyListEncoder()
-    private let server: HttpServer
-    private var serverThread: DispatchQueue?
+    public let server: HttpServer
+    public var serverThread: DispatchQueue?
     @Published public var currentSelected: UUID? = nil
-    @Published public var accounts: [UUID:MinecraftAccount] = [:]
-    public var selectedAccount: MinecraftAccount {
+    @Published public var accounts: [UUID:any MinecraftAccount] = [:]
+    public var selectedAccount: any MinecraftAccount {
         return accounts[currentSelected!]!
     }
     public let clientId = "a6d48d61-71a0-45eb-8957-f6d2e760f8f6"
@@ -35,5 +35,46 @@ class AccountManager: ObservableObject {
     
     public init() {
         self.server = .init()
+    }
+    
+    public func setupMicrosoftAccount(code: String) {
+        print("your face is \(code)")
+        
+        guard let msAccountViewModel = self.msAccountViewModel else {
+            return
+        }
+        
+        Task(priority: .high) {
+            do {
+                let msAccessToken: MicrosoftAccessToken = try await MicrosoftAuthentication.createMsAccount(code: code, clientId: self.clientId)
+                DispatchQueue.main.async {
+                    self.msAccountViewModel?.setAuthWithXboxLive()
+                }
+                let xblResponse = try await MicrosoftAuthentication.authenticateWithXBL(msAccessToken: msAccessToken.token)
+                DispatchQueue.main.async {
+                    self.msAccountViewModel?.setAuthWithXboxXSTS()
+                }
+                let xstsResponse: XboxAuthResponse = try await MicrosoftAuthentication.authenticateWithXSTS(xblToken: xblResponse.token)
+                DispatchQueue.main.async {
+                    self.msAccountViewModel?.setFetchingProfile()
+                }
+                let mcResponse: MinecraftAuthResponse = try await MicrosoftAuthentication.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
+                let profile: MinecraftProfile = try await MicrosoftAuthentication.getProfile(accessToken: mcResponse.accessToken)
+                let account: MicrosoftAccount = .init(profile: profile, token: msAccessToken)
+                self.accounts[account.id] = account
+                DispatchQueue.main.async {
+                    self.msAccountViewModel?.closeSheet()
+                    self.msAccountViewModel = nil
+                }
+            } catch let error as MicrosoftAuthError {
+                DispatchQueue.main.async {
+                    self.msAccountViewModel?.error(error)
+                    self.msAccountViewModel = nil
+                }
+                return
+            } catch {
+                fatalError("Unknown error - this is bug - \(error)")
+            }
+        }
     }
 }

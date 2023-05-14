@@ -12,23 +12,12 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+// along with this program.  If not, see http://www.gnu.org/licenses/
 //
 
 import Foundation
-import SwiftUI
 
-struct OfflineAccount: MinecraftAccount {
-    var type: MinecraftAccountType = .offline
-    var username: String
-    var id: UUID
-    
-    init(username: String, uuid: UUID) {
-        self.username = username
-        self.id = uuid
-    }
-    
-    public static func createFromUsername(_ username: String) -> OfflineAccount {
-        return .init(username: username, uuid: UUID())
-    }
+enum MinecraftAccountType: String, Codable {
+    case microsoft = "Microsoft"
+    case offline = "Offline"
 }

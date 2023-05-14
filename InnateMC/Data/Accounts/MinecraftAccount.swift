@@ -18,51 +18,31 @@
 import Foundation
 import SwiftUI
 
-open class MinecraftAccount: Codable, Identifiable, Hashable {
-    public static func == (lhs: MinecraftAccount, rhs: MinecraftAccount) -> Bool {
+protocol MinecraftAccount: Codable, Hashable {
+    var id: UUID { get }
+    
+    var type: MinecraftAccountType { get }
+    
+    var username: String { get }
+    
+    static func createFromDict(_ dict: [String:Any]) -> Self
+}
+
+fileprivate let minecraftAccountDecoder = PropertyListDecoder()
+
+extension MinecraftAccount {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id && lhs.username == rhs.username
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.getUUID())
+        hasher.combine(self.id)
         hasher.combine(self.username)
     }
-    
-    public var id: UUID {
-        return getUUID()
-    }
-    
-    public var strType: String {
-        return getType().rawValue
-    }
-    
-    public var username: String {
-        return getUsername()
-    }
-    
-    func getType() -> MinecraftAccountType {
-        fatalError("Must be implemented by subclasses")
-    }
-    
-    func getUsername() -> String {
-        fatalError("Must be implemented by subclasses")
-    }
-    
-    func getUUID() -> UUID {
-        fatalError("Must be implemented by subclasses")
-    }
-    
+
     static func createFromDict(_ dict: [String:Any]) -> Self {
         let data = try! PropertyListSerialization.data(fromPropertyList: dict, format: .binary, options: 0)
         let decoded = try! minecraftAccountDecoder.decode(Self.self, from: data)
         return decoded
     }
-}
-
-
-internal let minecraftAccountDecoder = PropertyListDecoder()
-
-enum MinecraftAccountType: String, Codable {
-    case microsoft = "Microsoft"
-    case offline = "Offline"
 }

@@ -24,7 +24,7 @@ struct MinecraftAuth: Codable {
         self.identityToken = identityToken
     }
     
-    init(fromXboxAuthResponse xboxAuthResponse: XboxAuthResponse) {
+    init(xsts xboxAuthResponse: XboxAuthResponse) {
         guard let userHash = xboxAuthResponse.userHash else {
             fatalError("Invalid XSTS auth response.")
         }

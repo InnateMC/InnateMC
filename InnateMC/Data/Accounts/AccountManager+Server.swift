@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import Swifter
 
 extension AccountManager {
     public func setupForAuth() {
@@ -65,9 +66,7 @@ extension AccountManager {
         
         let authUrl = urlComponents.url!
         let window: WebViewWindow = .init(url: authUrl)
-        self.stateCallbacks[state] = { code in
-            print(code)
-        }
+        self.stateCallbacks[state] = setupMicrosoftAccount
         return window
     }
     

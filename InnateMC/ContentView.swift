@@ -124,10 +124,10 @@ struct ContentView: View {
         Picker(i18n("account"), selection: $selectedAccount) {
             Text(i18n("no_account_selected"))
                 .tag(ContentView.nullUuid)
-            ForEach(Array(launcherData.accountManager.accounts.values)) { value in
+            ForEach(Array(launcherData.accountManager.accounts.values).map({AdaptedAccount(from: $0)})) { value in
                 HStack(alignment: .center) {
                     Image("steve")
-                    Text(value.getUsername())
+                    Text(value.username)
                         .font(.title2)
                         .frame(height: 32)
                 }

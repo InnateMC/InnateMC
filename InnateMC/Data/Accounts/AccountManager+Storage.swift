@@ -29,14 +29,15 @@ extension AccountManager {
                 currentSelected = UUID(uuidString: currentSelectedE)!
             }
             let accounts = plist["Accounts"] as! [String:[String:Any]]
-            var deserializedAccounts: [UUID:MinecraftAccount] = [:]
+            var deserializedAccounts: [UUID:any MinecraftAccount] = [:]
             for (_, account) in accounts {
                 let type = account["type"] as! String
                 if type == "Offline" {
                     let acc = OfflineAccount.createFromDict(account)
-                    deserializedAccounts[acc.uuid] = acc
+                    deserializedAccounts[acc.id] = acc
                 } else if type == "Microsoft" {
-                    // TODO: implement
+                    let acc = MicrosoftAccount.createFromDict(account)
+                    deserializedAccounts[acc.id] = acc
                 }
             }
             if let e = currentSelected {

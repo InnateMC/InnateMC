@@ -23,25 +23,31 @@ class MicrosoftAccountViewModel: ObservableObject {
     @Published var message: LocalizedStringKey = i18n("authenticating_with_microsoft")
     @Published var error: MicrosoftAuthError = .noError
     
-    func error(_ error: MicrosoftAuthError) {
+    @MainActor func error(_ error: MicrosoftAuthError) {
         self.error = error
     }
     
-    func prepareAndOpenSheet(launcherData: LauncherData) {
+    @MainActor func prepareAndOpenSheet(launcherData: LauncherData) {
         self.showMicrosoftAccountSheet = true
         launcherData.accountManager.msAccountViewModel = self
         launcherData.accountManager.createAuthWindow().showWindow(InnateMCApp.self)
     }
     
-    func setAuthWithXboxLive() {
-        message = i18n("authenticating_with_xbox_live")
+    @MainActor func closeSheet() {
+        self.showMicrosoftAccountSheet = false
+        self.error(.noError)
+        self.message = i18n("authenticating_with_microsoft")
     }
     
-    func setAuthWithXboxXSTS() {
-        message = i18n("authenticating_with_xbox_xsts")
+    @MainActor func setAuthWithXboxLive() {
+        self.message = i18n("authenticating_with_xbox_live")
     }
     
-    func setFetchingProfile() {
-        message = i18n("fetching_profile")
+    @MainActor func setAuthWithXboxXSTS() {
+        self.message = i18n("authenticating_with_xbox_xsts")
+    }
+    
+    @MainActor func setFetchingProfile() {
+        self.message = i18n("fetching_profile")
     }
 }
