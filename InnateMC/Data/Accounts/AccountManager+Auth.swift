@@ -18,8 +18,49 @@
 import Foundation
 import Combine
 
-struct MicrosoftAuthentication {
-    static func authenticateWithMinecraft(using auth: MinecraftAuth) async throws -> MinecraftAuthResponse {
+extension AccountManager {
+    public func setupMicrosoftAccount(code: String) {
+        print("your face is \(code)")
+        
+        guard let msAccountViewModel = self.msAccountViewModel else {
+            return
+        }
+        
+        Task(priority: .high) {
+            do {
+                let msAccessToken: MicrosoftAccessToken = try await self.authenticateWithMicrosoft(code: code, clientId: self.clientId)
+                DispatchQueue.main.async {
+                    msAccountViewModel.setAuthWithXboxLive()
+                }
+                let xblResponse = try await self.authenticateWithXBL(msAccessToken: msAccessToken.token)
+                DispatchQueue.main.async {
+                    msAccountViewModel.setAuthWithXboxXSTS()
+                }
+                let xstsResponse: XboxAuthResponse = try await self.authenticateWithXSTS(xblToken: xblResponse.token)
+                DispatchQueue.main.async {
+                    msAccountViewModel.setFetchingProfile()
+                }
+                let mcResponse: MinecraftAuthResponse = try await self.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
+                let profile: MinecraftProfile = try await self.getProfile(accessToken: mcResponse.accessToken)
+                let account: MicrosoftAccount = .init(profile: profile, token: msAccessToken)
+                self.accounts[account.id] = account
+                DispatchQueue.main.async {
+                    msAccountViewModel.closeSheet()
+                    self.msAccountViewModel = nil
+                }
+            } catch let error as MicrosoftAuthError {
+                DispatchQueue.main.async {
+                    msAccountViewModel.error(error)
+                    self.msAccountViewModel = nil
+                }
+                return
+            } catch {
+                fatalError("Unknown error - this is bug - \(error)")
+            }
+        }
+    }
+    
+    func authenticateWithMinecraft(using auth: MinecraftAuth) async throws -> MinecraftAuthResponse {
         let url = URL(string: "https://api.minecraftservices.com/authentication/login_with_xbox")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -45,7 +86,7 @@ struct MicrosoftAuthentication {
         }
     }
     
-    static func authenticateWithXBL(msAccessToken: String) async throws -> XboxAuthResponse {
+    func authenticateWithXBL(msAccessToken: String) async throws -> XboxAuthResponse {
         let xboxLiveParameters = XboxLiveAuth.fromToken(msAccessToken)
         let headers: [String: String] = [
             "Content-Type": "application/json",
@@ -80,7 +121,7 @@ struct MicrosoftAuthentication {
         }
     }
     
-    static func authenticateWithXSTS(xblToken: String) async throws -> XboxAuthResponse {
+    func authenticateWithXSTS(xblToken: String) async throws -> XboxAuthResponse {
         let xstsAuthParameters = XstsAuth.fromXblToken(xblToken)
         let headers: [String: String] = [
             "Content-Type": "application/json",
@@ -117,7 +158,7 @@ struct MicrosoftAuthentication {
         }
     }
     
-    static func createMsAccount(code: String, clientId: String) async throws -> MicrosoftAccessToken {
+    func authenticateWithMicrosoft(code: String, clientId: String) async throws -> MicrosoftAccessToken {
         let msParameters: [String: String] = [
             "client_id": clientId,
             "scope": "XboxLive.signin offline_access",
@@ -151,7 +192,41 @@ struct MicrosoftAuthentication {
         }
     }
     
-    static func getProfile(accessToken: String) async throws -> MinecraftProfile {
+    func refreshMicrosoftToken(_ token: MicrosoftAccessToken) async throws -> MicrosoftAccessToken {
+        let msParameters: [String: String] = [
+            "client_id": clientId,
+            "scope": "XboxLive.signin offline_access",
+            "refresh_token": token.refreshToken,
+            "grant_type": "refresh_token"
+        ]
+        
+        let url = URL(string: "https://login.microsoftonline.com")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = msParameters.percentEncoded()
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                throw MicrosoftAuthError.microsoftInvalidResponse
+            }
+
+            do {
+                let token = try MicrosoftAccessToken.fromJson(json: data)
+                return token
+            } catch {
+                throw MicrosoftAuthError.microsoftInvalidResponse
+            }
+        } catch let err as MicrosoftAuthError {
+            throw err
+        } catch {
+            throw MicrosoftAuthError.microsoftCouldNotConnect
+        }
+    }
+    
+    func getProfile(accessToken: String) async throws -> MinecraftProfile {
         let url = URL(string: "https://api.minecraftservices.com/minecraft/profile")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

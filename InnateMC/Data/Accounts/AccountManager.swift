@@ -36,45 +36,4 @@ class AccountManager: ObservableObject {
     public init() {
         self.server = .init()
     }
-    
-    public func setupMicrosoftAccount(code: String) {
-        print("your face is \(code)")
-        
-        guard let msAccountViewModel = self.msAccountViewModel else {
-            return
-        }
-        
-        Task(priority: .high) {
-            do {
-                let msAccessToken: MicrosoftAccessToken = try await MicrosoftAuthentication.createMsAccount(code: code, clientId: self.clientId)
-                DispatchQueue.main.async {
-                    msAccountViewModel.setAuthWithXboxLive()
-                }
-                let xblResponse = try await MicrosoftAuthentication.authenticateWithXBL(msAccessToken: msAccessToken.token)
-                DispatchQueue.main.async {
-                    msAccountViewModel.setAuthWithXboxXSTS()
-                }
-                let xstsResponse: XboxAuthResponse = try await MicrosoftAuthentication.authenticateWithXSTS(xblToken: xblResponse.token)
-                DispatchQueue.main.async {
-                    msAccountViewModel.setFetchingProfile()
-                }
-                let mcResponse: MinecraftAuthResponse = try await MicrosoftAuthentication.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
-                let profile: MinecraftProfile = try await MicrosoftAuthentication.getProfile(accessToken: mcResponse.accessToken)
-                let account: MicrosoftAccount = .init(profile: profile, token: msAccessToken)
-                self.accounts[account.id] = account
-                DispatchQueue.main.async {
-                    msAccountViewModel.closeSheet()
-                    self.msAccountViewModel = nil
-                }
-            } catch let error as MicrosoftAuthError {
-                DispatchQueue.main.async {
-                    msAccountViewModel.error(error)
-                    self.msAccountViewModel = nil
-                }
-                return
-            } catch {
-                fatalError("Unknown error - this is bug - \(error)")
-            }
-        }
-    }
 }

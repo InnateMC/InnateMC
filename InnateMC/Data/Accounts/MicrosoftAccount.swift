@@ -34,6 +34,32 @@ struct MicrosoftAccount: MinecraftAccount {
         self.profile = profile
         self.token = token
     }
+    
+    func createAccessToken() async throws -> String {
+        let manager = LauncherData.currentInstanceUnsafe.accountManager
+        
+        if token.hasExpired() {
+            do {
+                let newToken = try await manager.refreshMicrosoftToken(self.token)
+                let newAccount = MicrosoftAccount(profile: self.profile, token: newToken)
+                manager.accounts[self.id] = newAccount
+                DispatchQueue.global(qos: .utility).async {
+                    manager.saveThrow()
+                }
+                return try await newAccount.createAccessToken()
+            } catch let err as MicrosoftAuthError {
+                NSLog("Error refreshing token - this will lead to undefined results - \(err.localizedDescription)")
+                return "nou"
+            } catch {
+                fatalError("no this cant happen")
+            }
+        }
+        
+        let xblResponse = try await manager.authenticateWithXBL(msAccessToken: self.token.token)
+        let xstsResponse: XboxAuthResponse = try await manager.authenticateWithXSTS(xblToken: xblResponse.token)
+        let mcResponse: MinecraftAuthResponse = try await manager.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
+        return mcResponse.accessToken
+    }
 }
 
 private func hyphenateUuid(_ thing: String) -> String {

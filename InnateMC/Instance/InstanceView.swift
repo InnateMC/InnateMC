@@ -37,6 +37,7 @@ struct InstanceView: View {
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
     @State var progress: Float = 0
     @State var launchedInstanceProcess: InstanceProcess? = nil
+    @State var indeterminateProgress: Bool = false
     
     var body: some View {
         ZStack {
@@ -75,7 +76,7 @@ struct InstanceView: View {
                                     .padding(.trailing, 8)
                                 
                                 createInstanceStar()
-                                    
+                                
                                 Button(i18n("edit")) {
                                     editingViewModel.start(from: self.instance)
                                 }
@@ -325,16 +326,20 @@ struct InstanceView: View {
                     Spacer()
                 }
                 .padding()
-                ProgressView(value: progress)
-                    .onReceive(downloadProgress.$current, perform: {
-                        progress = Float($0) / Float(downloadProgress.total)
-                    })
+                if indeterminateProgress {
+                    ProgressView()
+                } else {
+                    ProgressView(value: progress)
+                }
                 Button(i18n("abort")) {
                     self.downloadSession?.invalidateAndCancel()
                     showPreLaunchSheet = false
                     self.downloadProgress.cancelled = true
                     self.downloadProgress = TaskProgress(current: 0, total: 1)
                 }
+                .onReceive(downloadProgress.$current, perform: {
+                    progress = Float($0) / Float(downloadProgress.total)
+                })
                 .padding()
             }
         }
@@ -346,6 +351,7 @@ struct InstanceView: View {
     }
     
     func onPrelaunchSheetAppear() {
+        self.indeterminateProgress = false
         self.downloadProgress.cancelled = false
         downloadMessage = i18n("downloading_libs")
         downloadSession = instance.downloadLibs(progress: downloadProgress) {
@@ -353,12 +359,24 @@ struct InstanceView: View {
             downloadSession = instance.downloadAssets(progress: downloadProgress) {
                 downloadMessage = i18n("extracting_natives")
                 downloadProgress.callback = {
-                    showPreLaunchSheet = false
                     if !(downloadProgress.cancelled) {
-                        withAnimation {
-                            let process = InstanceProcess(instance: instance, account: launcherData.accountManager.selectedAccount)
-                            launcherData.launchedInstances[instance] = process
-                            launchedInstanceProcess = process
+                        indeterminateProgress = true
+                        Task {
+                            do {
+                                let accessToken = try await launcherData.accountManager.selectedAccount.createAccessToken()
+                                DispatchQueue.main.async {
+                                    withAnimation {
+                                        let process = InstanceProcess(instance: instance, account: launcherData.accountManager.selectedAccount, accessToken: accessToken)
+                                        launcherData.launchedInstances[instance] = process
+                                        launchedInstanceProcess = process
+                                        showPreLaunchSheet = false
+                                    }
+                                }
+                            } catch {
+                                DispatchQueue.main.async {
+                                    onPrelaunchError(ParallelDownloadError.downloadFailed(errorKey: "error_fetching_access_token"))
+                                }
+                            }
                         }
                     }
                     downloadProgress.callback = {}

@@ -32,7 +32,7 @@
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
 		64821E0E29E459FC006012F7 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0D29E459FA006012F7 /* AccountManager.swift */; };
-		648445772A10C25D00049986 /* MicrosoftAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445762A10C25D00049986 /* MicrosoftAuthentication.swift */; };
+		648445772A10C25D00049986 /* AccountManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445762A10C25D00049986 /* AccountManager+Auth.swift */; };
 		6484457C2A10D03200049986 /* XboxAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484457B2A10D03200049986 /* XboxAuthResponse.swift */; };
 		6484457E2A10D12400049986 /* XstsAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484457D2A10D12400049986 /* XstsAuth.swift */; };
 		648445802A10D44A00049986 /* MinecraftTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484457F2A10D44A00049986 /* MinecraftTokenResponse.swift */; };
@@ -154,7 +154,7 @@
 		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
 		64821E0B29E44C13006012F7 /* OfflineAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAccount.swift; sourceTree = "<group>"; };
 		64821E0D29E459FA006012F7 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
-		648445762A10C25D00049986 /* MicrosoftAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAuthentication.swift; sourceTree = "<group>"; };
+		648445762A10C25D00049986 /* AccountManager+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountManager+Auth.swift"; sourceTree = "<group>"; };
 		6484457B2A10D03200049986 /* XboxAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XboxAuthResponse.swift; sourceTree = "<group>"; };
 		6484457D2A10D12400049986 /* XstsAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XstsAuth.swift; sourceTree = "<group>"; };
 		6484457F2A10D44A00049986 /* MinecraftTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftTokenResponse.swift; sourceTree = "<group>"; };
@@ -321,8 +321,8 @@
 				64821E0D29E459FA006012F7 /* AccountManager.swift */,
 				648445892A10F69600049986 /* AccountManager+Storage.swift */,
 				6484458B2A10F6BC00049986 /* AccountManager+Server.swift */,
+				648445762A10C25D00049986 /* AccountManager+Auth.swift */,
 				64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */,
-				648445762A10C25D00049986 /* MicrosoftAuthentication.swift */,
 				64E1F8C82A0FBDE7006D68B6 /* MicrosoftAuthError.swift */,
 				6484457B2A10D03200049986 /* XboxAuthResponse.swift */,
 				6484457D2A10D12400049986 /* XstsAuth.swift */,
@@ -745,7 +745,7 @@
 				64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */,
 				64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */,
 				64C41C1429366CAF00014E0F /* ValueKeys.swift in Sources */,
-				648445772A10C25D00049986 /* MicrosoftAuthentication.swift in Sources */,
+				648445772A10C25D00049986 /* AccountManager+Auth.swift in Sources */,
 				64A5151A29E2DF6500AFE3AE /* Published+Coding.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,

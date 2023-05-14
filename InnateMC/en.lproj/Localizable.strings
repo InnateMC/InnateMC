@@ -80,3 +80,4 @@
 "authenticating_with_xbox_xsts" = "Authenticating with Xbox XSTS";
 "authenticating_with_minecraft" = "Authenticating with Minecraft";
 "fetching_profile" = "Fetching Profile";
+"error_fetching_access_token" = "Couldn't fetch Minecraft access token";

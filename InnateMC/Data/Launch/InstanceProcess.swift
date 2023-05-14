@@ -22,7 +22,7 @@ public class InstanceProcess: ObservableObject  {
     @Published public var terminated = false
     @Published public var logMessages: [String] = []
     
-    init(instance: Instance, account: any MinecraftAccount) {
+    init(instance: Instance, account: any MinecraftAccount, accessToken: String = "nou") {
         var maxMemory = setting(\.runtime.maxMemory)
         var minMemory = setting(\.runtime.minMemory)
         var javaInstallation = setting(\.runtime.defaultJava)
@@ -50,7 +50,7 @@ public class InstanceProcess: ObservableObject  {
         mcArgs.assetsDir(FileHandler.assetsFolder)
         mcArgs.assetIndex(instance.assetIndex.id)
         mcArgs.uuid(account.id)
-        mcArgs.accessToken("todo")
+        mcArgs.accessToken(accessToken)
         mcArgs.userType("todo")
         mcArgs.versionType("todo")
         mcArgs.width(720)

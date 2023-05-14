@@ -31,4 +31,8 @@ struct OfflineAccount: MinecraftAccount {
     public static func createFromUsername(_ username: String) -> OfflineAccount {
         return .init(username: username, uuid: UUID())
     }
+    
+    func createAccessToken() async throws -> String {
+        return "nou"
+    }
 }
