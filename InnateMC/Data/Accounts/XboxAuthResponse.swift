@@ -22,9 +22,13 @@ struct XboxAuthResponse: Codable {
     var issueInstant: String
     var notAfter: String
     var token: String
-    var displayClaims: [String: XboxLiveXui]
+    var displayClaims: XboxLiveDisplayClaims
     
-    struct XboxLiveXui: Codable {
+    struct XboxLiveDisplayClaims: Codable {
+        var xui: [XboxLiveUhs]
+    }
+    
+    struct XboxLiveUhs: Codable {
         var uhs: String
     }
     
@@ -36,6 +40,6 @@ struct XboxAuthResponse: Codable {
     }
     
     var userHash: String? {
-        displayClaims["xui"]?.uhs
+        displayClaims.xui[0].uhs
     }
 }

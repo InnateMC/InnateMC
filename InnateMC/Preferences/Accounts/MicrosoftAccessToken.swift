@@ -39,7 +39,7 @@ public struct MicrosoftAccessToken: Codable {
         do {
             return try JSONDecoder().decode(RawMicrosoftAccessToken.self, from: data).convert()
         } catch {
-            throw MicrosoftAuthError.couldNotAuthenticateWithMicrosoft
+            throw MicrosoftAuthError.microsoftInvalidResponse
         }
     }
     

@@ -20,18 +20,34 @@ import Foundation
 enum MicrosoftAuthError: Error {
     case noError
     case microsoftCouldNotConnect
-    case microsoftErrorResponse
     case microsoftInvalidResponse
     case xboxCouldNotConnect
-    case xboxErrorResponse
     case xboxInvalidResponse
     case xstsCouldNotConnect
-    case xstsErrorResponse
     case xstsInvalidResponse
     case minecraftCouldNotConnect
-    case minecraftErrorResponse
     case minecraftInvalidResponse
-    case couldNotAuthenticateWithMicrosoft
-    case couldNotFetchMicrosoftTOken
-    case couldNotAuthenticateWithXboxLive
+    
+    var localizedDescription: String {
+        switch (self) {
+        case .noError:
+            return "No error!"
+        case .microsoftCouldNotConnect:
+            return "Could not connect to Microsoft authentication server"
+        case .microsoftInvalidResponse:
+            return "Invalid response received from Microsoft authentication server"
+        case .xboxCouldNotConnect:
+            return "Could not connect to Xbox Live authentication server"
+        case .xboxInvalidResponse:
+            return "Invalid response received from Xbox Live authentication server"
+        case .xstsCouldNotConnect:
+            return "Could not connect to Xbox XSTS authentication server"
+        case .xstsInvalidResponse:
+            return "Invalid response received from Xbox XSTS authentication server"
+        case .minecraftCouldNotConnect:
+            return "Could not connect to Minecraft authentication server"
+        case .minecraftInvalidResponse:
+            return "Invalid response received from Minecraft authentication server"
+        }
+    }
 }

@@ -29,7 +29,7 @@ struct MicrosoftAuthentication {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.minecraftErrorResponse
+                throw MicrosoftAuthError.minecraftInvalidResponse
             }
             
             do {
@@ -38,6 +38,8 @@ struct MicrosoftAuthentication {
             } catch {
                 throw MicrosoftAuthError.minecraftInvalidResponse
             }
+        } catch let err as MicrosoftAuthError {
+            throw err
         } catch {
             throw MicrosoftAuthError.minecraftCouldNotConnect
         }
@@ -53,7 +55,7 @@ struct MicrosoftAuthentication {
         let url = URL(string: "https://user.auth.xboxlive.com/user/authenticate")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = try! JSONSerialization.data(withJSONObject: xboxLiveParameters, options: [])
+        request.httpBody = try! JSONEncoder().encode(xboxLiveParameters)
         headers.forEach { key, value in
             request.setValue(value, forHTTPHeaderField: key)
         }
@@ -62,15 +64,21 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.xboxErrorResponse
+                print("HECK YEAH")
+                print(String(data: data, encoding: .utf8)!)
+                throw MicrosoftAuthError.xboxInvalidResponse
             }
             
             do {
                 let result = try JSONDecoder().decode(XboxAuthResponse.self, from: data)
                 return result
             } catch {
+                print("HECK YEAH NO")
+                print(String(data: data, encoding: .utf8)!)
                 throw MicrosoftAuthError.xboxInvalidResponse
             }
+        } catch let err as MicrosoftAuthError {
+            throw err
         } catch {
             throw MicrosoftAuthError.xboxCouldNotConnect
         }
@@ -97,7 +105,7 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.xstsErrorResponse
+                throw MicrosoftAuthError.xstsInvalidResponse
             }
             
             do {
@@ -106,6 +114,8 @@ struct MicrosoftAuthentication {
             } catch {
                 throw MicrosoftAuthError.xstsInvalidResponse
             }
+        } catch let err as MicrosoftAuthError {
+            throw err
         } catch {
             throw MicrosoftAuthError.xstsCouldNotConnect
         }
@@ -129,7 +139,7 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.microsoftErrorResponse
+                throw MicrosoftAuthError.microsoftInvalidResponse
             }
 
             do {
@@ -138,6 +148,8 @@ struct MicrosoftAuthentication {
             } catch {
                 throw MicrosoftAuthError.microsoftInvalidResponse
             }
+        } catch let err as MicrosoftAuthError {
+            throw err
         } catch {
             throw MicrosoftAuthError.microsoftCouldNotConnect
         }
@@ -153,7 +165,7 @@ struct MicrosoftAuthentication {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.minecraftErrorResponse
+                throw MicrosoftAuthError.minecraftInvalidResponse
             }
 
             do {
@@ -162,6 +174,8 @@ struct MicrosoftAuthentication {
             } catch {
                 throw MicrosoftAuthError.minecraftInvalidResponse
             }
+        } catch let err as MicrosoftAuthError {
+            throw err
         } catch {
             throw MicrosoftAuthError.minecraftCouldNotConnect
         }
