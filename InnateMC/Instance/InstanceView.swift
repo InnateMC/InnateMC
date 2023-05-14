@@ -361,7 +361,7 @@ struct InstanceView: View {
                 downloadProgress.callback = {
                     if !(downloadProgress.cancelled) {
                         indeterminateProgress = true
-                        Task {
+                        Task(priority: .high) {
                             do {
                                 let accessToken = try await launcherData.accountManager.selectedAccount.createAccessToken()
                                 DispatchQueue.main.async {
