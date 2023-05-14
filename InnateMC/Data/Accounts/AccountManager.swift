@@ -18,7 +18,6 @@
 import Foundation
 import Swifter
 import CryptoKit
-import Alamofire
 
 class AccountManager: ObservableObject {
     public static let accountsPath: URL = try! FileHandler.getOrCreateFolder().appendingPathComponent("Accounts.plist")
@@ -44,15 +43,20 @@ class AccountManager: ObservableObject {
         self.server["/"] = { request in
             if let code = request.queryParams.first(where: { $0.0 == "code" })?.1 {
                 if let state = request.queryParams.first(where: { $0.0 == "state" })?.1 {
-                    DispatchQueue.global().async {
-                        self.stateCallbacks[state](code)
+                    if let cb = self.stateCallbacks[state] {
+                        DispatchQueue.global().async {
+                            cb(code)
+                        }
+                    } else {
+                        NSLog("Received authentication redirect without callback being present, skipping")
+                        return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
                     }
                 } else {
-                    return HttpResponse.badRequest(nil)
+                    return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
                 }
                 return HttpResponse.ok(.text("<html><body>\(code)</body></html>"))
             } else {
-                return HttpResponse.badRequest(nil)
+                return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
             }
         }
         
@@ -80,64 +84,10 @@ class AccountManager: ObservableObject {
         
         let authUrl = urlComponents.url!
         let window: WebViewWindow = .init(url: authUrl)
-        self.stateCallbacks[state] = createMsAccount
+        self.stateCallbacks[state] = { code in
+            print(code)
+        }
         return window
-    }
-    
-    private func createMsAccount(_ msCode: String) {
-        let msParameters: Parameters = [
-            "client_id": self.clientId,
-            "scope": "XboxLive.signin offline_access",
-            "code": msCode,
-            "redirect_uri": "http://localhost:1989",
-            "grant_type": "authorization_code"
-        ]
-        
-        AF.request("https://login.microsoftonline.com/consumers/oauth2/v2.0/token",
-                   method: .post,
-                   parameters: msParameters,
-                   encoding: URLEncoding.default)
-            .validate(statusCode: 200..<300)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let token: MicrosoftAccessToken
-                    do {
-                        token = try MicrosoftAccessToken.fromJson(json: data)
-                        
-                        let xboxLiveParameters = XboxLiveAuth.fromToken(token.token)
-                        let headers: HTTPHeaders = [
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        ]
-
-                        AF.request("https://user.auth.xboxlive.com/user/authenticate", method: .post, parameters: xboxLiveParameters, encoder: JSONParameterEncoder.default, headers: headers)
-                            .validate(statusCode: 200..<300)
-                            .responseData { response in
-                                switch response.result {
-                                case .success(let data):
-                                    print(data)
-                                case .failure(_):
-                                    DispatchQueue.main.async {
-                                        self.msAccountViewModel?.error = .couldNotAuthenticateWithXboxLive
-                                    }
-                                }
-                            }
-                    } catch {
-                        DispatchQueue.main.async {
-                            self.msAccountViewModel?.error = .couldNotAuthenticateWithMicrosoft
-                        }
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.msAccountViewModel?.setAuthWithXboxLive()
-                    }
-                case .failure(_):
-                    DispatchQueue.main.async {
-                        self.msAccountViewModel?.error = .couldNotFetchMicrosoftTOken
-                    }
-                }
-            }
     }
     
     func state() -> String {
