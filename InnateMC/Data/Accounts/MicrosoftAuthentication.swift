@@ -19,6 +19,30 @@ import Foundation
 import Combine
 
 struct MicrosoftAuthentication {
+    static func authenticateWithMinecraft(using auth: MinecraftAuth) async throws -> MinecraftAuthResponse {
+        let url = URL(string: "https://api.minecraftservices.com/authentication/login_with_xbox")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try! JSONEncoder().encode(auth)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                throw MicrosoftAuthError.minecraftErrorResponse
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(MinecraftAuthResponse.self, from: data)
+                return result
+            } catch {
+                throw MicrosoftAuthError.minecraftInvalidResponse
+            }
+        } catch {
+            throw MicrosoftAuthError.minecraftCouldNotConnect
+        }
+    }
+    
     static func authenticateWithXBL(msAccessToken: String) async throws -> XboxAuthResponse {
         let xboxLiveParameters = XboxLiveAuth.fromToken(msAccessToken)
         let headers: [String: String] = [
@@ -87,30 +111,6 @@ struct MicrosoftAuthentication {
         }
     }
     
-    static func authenticateWithMinecraft(using auth: MinecraftAuth) async throws -> MinecraftAuthResponse {
-        let url = URL(string: "https://api.minecraftservices.com/authentication/login_with_xbox")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try! JSONEncoder().encode(auth)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                throw MicrosoftAuthError.minecraftErrorResponse
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(MinecraftAuthResponse.self, from: data)
-                return result
-            } catch {
-                throw MicrosoftAuthError.minecraftInvalidResponse
-            }
-        } catch {
-            throw MicrosoftAuthError.minecraftCouldNotConnect
-        }
-    }
-    
     static func createMsAccount(code: String, clientId: String) async throws -> MicrosoftAccessToken {
         let msParameters: [String: String] = [
             "client_id": clientId,
@@ -140,6 +140,30 @@ struct MicrosoftAuthentication {
             }
         } catch {
             throw MicrosoftAuthError.microsoftCouldNotConnect
+        }
+    }
+    
+    static func getProfile(accessToken: String) async throws -> MinecraftProfile {
+        let url = URL(string: "https://api.minecraftservices.com/minecraft/profile")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                throw MicrosoftAuthError.minecraftErrorResponse
+            }
+
+            do {
+                let token = try JSONDecoder().decode(MinecraftProfile.self, from: data)
+                return token
+            } catch {
+                throw MicrosoftAuthError.minecraftInvalidResponse
+            }
+        } catch {
+            throw MicrosoftAuthError.minecraftCouldNotConnect
         }
     }
 }

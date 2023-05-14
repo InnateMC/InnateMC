@@ -39,6 +39,7 @@
 		648445822A10D4FD00049986 /* MinecraftAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445812A10D4FD00049986 /* MinecraftAuth.swift */; };
 		648445842A10D69F00049986 /* Dictionary+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445832A10D69F00049986 /* Dictionary+Encoding.swift */; };
 		648445862A10D6B100049986 /* CharacterSet+EncodingValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445852A10D6B100049986 /* CharacterSet+EncodingValidation.swift */; };
+		648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445872A10DE9200049986 /* MinecraftProfile.swift */; };
 		6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */; };
 		6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
@@ -156,6 +157,7 @@
 		648445812A10D4FD00049986 /* MinecraftAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAuth.swift; sourceTree = "<group>"; };
 		648445832A10D69F00049986 /* Dictionary+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Encoding.swift"; sourceTree = "<group>"; };
 		648445852A10D6B100049986 /* CharacterSet+EncodingValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+EncodingValidation.swift"; sourceTree = "<group>"; };
+		648445872A10DE9200049986 /* MinecraftProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftProfile.swift; sourceTree = "<group>"; };
 		648C831129DB375400007603 /* InnateMC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateMC-Bridging-Header.h"; sourceTree = "<group>"; };
 		648C831529DBDD6A00007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../../../usr/local/lib/libzip.5.5.dylib; sourceTree = "<group>"; };
 		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				648445812A10D4FD00049986 /* MinecraftAuth.swift */,
 				648445832A10D69F00049986 /* Dictionary+Encoding.swift */,
 				648445852A10D6B100049986 /* CharacterSet+EncodingValidation.swift */,
+				648445872A10DE9200049986 /* MinecraftProfile.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				648445802A10D44A00049986 /* MinecraftTokenResponse.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
+				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
 				64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */,
 				6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */,
