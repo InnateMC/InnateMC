@@ -21,9 +21,11 @@ import WebKit
 
 class WebViewWindow: NSWindowController {
     convenience init(url: URL) {
-        let webView = WKWebView()
+        let config: WKWebViewConfiguration = .init()
+        config.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+        let webView: WKWebView = .init(frame: .init(x: 0, y: 0, width: 400, height: 600), configuration: config)
         webView.load(URLRequest(url: url))
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 400, height: 600), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
+        let window: NSWindow = .init(contentRect: NSRect(x: 0, y: 0, width: 400, height: 600), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
         window.contentView = webView
         self.init(window: window)
     }
