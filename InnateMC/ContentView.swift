@@ -54,6 +54,13 @@ struct ContentView: View {
             .sheet(isPresented: $showNewInstanceSheet) {
                 NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
             }
+            .onReceive(launcherData.$instances) { newValue in
+                if let selectedInstance = self.selectedInstance {
+                    if !newValue.contains(where: { $0 == selectedInstance }) {
+                        self.selectedInstance = nil
+                    }
+                }
+            }
             .navigationTitle(i18n("instances_title"))
             
             Text(i18n("select_an_instance"))
