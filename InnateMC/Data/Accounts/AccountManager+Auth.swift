@@ -200,7 +200,7 @@ extension AccountManager {
             "grant_type": "refresh_token"
         ]
         
-        let url = URL(string: "https://login.microsoftonline.com")!
+        let url = URL(string: "https://login.microsoftonline.com/consumers/oauth2/v2.0/token")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = msParameters.percentEncoded()
@@ -210,6 +210,8 @@ extension AccountManager {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                print("1 yes")
+                print(String(data: data, encoding: .utf8)!)
                 throw MicrosoftAuthError.microsoftInvalidResponse
             }
 
