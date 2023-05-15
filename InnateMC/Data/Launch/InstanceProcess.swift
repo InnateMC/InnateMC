@@ -79,7 +79,7 @@ public class InstanceProcess: ObservableObject  {
             self.process.launch()
             self.process.waitUntilExit()
             DispatchQueue.main.async {
-                self.terminated = true
+                LauncherData.instance.launchedInstances.removeValue(forKey: instance)
             }
         }
         

@@ -118,9 +118,6 @@ struct InstanceView: View {
                 createTabView()
             }
             .padding(.all, 6)
-            .onReceive(launcherData.$launchedInstances) { value in
-                launchedInstances = value
-            }
             .onAppear {
                 launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
             }
