@@ -42,6 +42,7 @@
 		648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445872A10DE9200049986 /* MinecraftProfile.swift */; };
 		6484458A2A10F69600049986 /* AccountManager+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648445892A10F69600049986 /* AccountManager+Storage.swift */; };
 		6484458C2A10F6BC00049986 /* AccountManager+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484458B2A10F6BC00049986 /* AccountManager+Server.swift */; };
+		649620D02A124EA500733AB6 /* InstanceExportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */; };
 		6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */; };
 		6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
@@ -171,6 +172,7 @@
 		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
 		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
+		649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceExportSheet.swift; sourceTree = "<group>"; };
 		6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineAccountView.swift; sourceTree = "<group>"; };
 		6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceEditingViewModel.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
 				64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */,
 				64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */,
+				649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */,
 				6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */,
 				64E1F8C92A0FBDE7006D68B6 /* MicrosoftAuthError.swift in Sources */,
+				649620D02A124EA500733AB6 /* InstanceExportSheet.swift in Sources */,
 				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,

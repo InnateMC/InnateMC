@@ -30,6 +30,7 @@ struct ContentView: View {
     @State var cachedAccounts: [AdaptedAccount] = []
     @State var showDuplicateInstanceSheet: Bool = false
     @State var showDeleteInstanceSheet: Bool = false
+    @State var showExportInstanceSheet: Bool = false
     
     var body: some View {
         NavigationView {
@@ -41,7 +42,12 @@ struct ContentView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 List(selection: $selectedInstance) {
                     ForEach(launcherData.instances) { instance in
-                        createInstanceNavigationLink(instance: instance)
+                        if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
+                            InstanceNavigationLink(instance: instance, selectedInstance: $selectedInstance)
+                                .tag(instance)
+                                .padding(.all, 4)
+                                .frame(maxWidth: .infinity)
+                        }
                     }
                     .onMove { indices, newOffset in
                         launcherData.instances.move(fromOffsets: indices, toOffset: newOffset)
@@ -49,7 +55,7 @@ struct ContentView: View {
                 }
                 .toolbar {
                     ToolbarItemGroup {
-                        createLeadingToolbar()
+                        createSidebarToolbar()
                     }
                 }
             }
@@ -62,6 +68,9 @@ struct ContentView: View {
             .sheet(isPresented: $showDuplicateInstanceSheet) {
                 InstanceDuplicationSheet(showDuplicationSheet: $showDuplicateInstanceSheet, instance: self.selectedInstance!)
             }
+            .sheet(isPresented: $showExportInstanceSheet, content: {
+                InstanceExportSheet(showExportSheet: $showExportInstanceSheet, instance: self.selectedInstance!)
+            })
             .onReceive(launcherData.$instances) { newValue in
                 if let selectedInstance = self.selectedInstance {
                     if !newValue.contains(where: { $0 == selectedInstance }) {
@@ -87,17 +96,7 @@ struct ContentView: View {
     }
     
     @ViewBuilder
-    func createInstanceNavigationLink(instance: Instance) -> some View {
-        if ((!starredOnly || instance.isStarred) && instance.matchesSearchTerm(searchTerm)) {
-            InstanceNavigationLink(instance: instance, selectedInstance: $selectedInstance)
-                .tag(instance)
-                .padding(.all, 4)
-                .frame(maxWidth: .infinity)
-        }
-    }
-    
-    @ViewBuilder
-    func createLeadingToolbar() -> some View {
+    func createSidebarToolbar() -> some View {
         Spacer()
         
         Button(action: {
@@ -146,7 +145,7 @@ struct ContentView: View {
         .help(i18n("duplicate"))
         
         Button {
-            
+            self.showExportInstanceSheet = true
         } label: {
             Image(systemName: "square.and.arrow.up")
         }
@@ -172,7 +171,7 @@ struct ContentView: View {
         }
         .disabled(selectedInstance == nil)
         .help(i18n("launch"))
-
+        
         Button {
             launcherData.instanceEditRequested = true
         } label: {
@@ -191,10 +190,10 @@ struct ContentView: View {
                 .tag(ContentView.nullUuid)
             ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
-                   
+                    
                     AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=16"))
                     Text(value.username)
-                        
+                    
                 }
                 .padding(.all)
                 .tag(value.id)
