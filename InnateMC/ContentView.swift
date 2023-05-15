@@ -81,57 +81,7 @@ struct ContentView: View {
                 createTrailingToolbar()
             }
             ToolbarItemGroup(placement: .primaryAction) {
-                Button {
-                    self.showDeleteInstanceSheet = true
-                } label: {
-                    Image(systemName: "trash")
-                }
-                .disabled(selectedInstance == nil)
-                .help(i18n("delete"))
-                
-                Button {
-                    self.showDuplicateInstanceSheet = true
-                } label: {
-                    Image(systemName: "doc.on.doc")
-                }
-                .disabled(selectedInstance == nil)
-                .help(i18n("duplicate"))
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                .disabled(selectedInstance == nil)
-                .help(i18n("share_or_export"))
-                
-                Button {
-                    if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance! }) {
-                        launcherData.instanceKillRequested = true
-                    } else {
-                        launcherData.instanceLaunchRequested = true
-                    }
-                } label: {
-                    if let selectedInstance = selectedInstance {
-                        if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance }) {
-                            Image(systemName: "square.fill")
-                        } else {
-                            Image(systemName: "arrowtriangle.forward.fill")
-                        }
-                    } else {
-                        Image(systemName: "arrowtriangle.forward.fill")
-                    }
-                }
-                .disabled(selectedInstance == nil)
-                .help(i18n("launch"))
-
-                Button {
-                    launcherData.instanceEditRequested = true
-                } label: {
-                    Image(systemName: "pencil")
-                }
-                .disabled(selectedInstance == nil)
-                .help(i18n("edit"))
+                createPrimaryToolbar()
             }
         }
     }
@@ -178,6 +128,61 @@ struct ContentView: View {
     }
     
     @ViewBuilder
+    func createPrimaryToolbar() -> some View {
+        Button {
+            self.showDeleteInstanceSheet = true
+        } label: {
+            Image(systemName: "trash")
+        }
+        .disabled(selectedInstance == nil)
+        .help(i18n("delete"))
+        
+        Button {
+            self.showDuplicateInstanceSheet = true
+        } label: {
+            Image(systemName: "doc.on.doc")
+        }
+        .disabled(selectedInstance == nil)
+        .help(i18n("duplicate"))
+        
+        Button {
+            
+        } label: {
+            Image(systemName: "square.and.arrow.up")
+        }
+        .disabled(selectedInstance == nil)
+        .help(i18n("share_or_export"))
+        
+        Button {
+            if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance! }) {
+                launcherData.instanceKillRequested = true
+            } else {
+                launcherData.instanceLaunchRequested = true
+            }
+        } label: {
+            if let selectedInstance = selectedInstance {
+                if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance }) {
+                    Image(systemName: "square.fill")
+                } else {
+                    Image(systemName: "arrowtriangle.forward.fill")
+                }
+            } else {
+                Image(systemName: "arrowtriangle.forward.fill")
+            }
+        }
+        .disabled(selectedInstance == nil)
+        .help(i18n("launch"))
+
+        Button {
+            launcherData.instanceEditRequested = true
+        } label: {
+            Image(systemName: "pencil")
+        }
+        .disabled(selectedInstance == nil)
+        .help(i18n("edit"))
+    }
+    
+    @ViewBuilder
     func createTrailingToolbar() -> some View {
         Spacer()
         
@@ -187,7 +192,7 @@ struct ContentView: View {
             ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
                    
-                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=24"))
+                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=16"))
                     Text(value.username)
                         
                 }
@@ -236,8 +241,4 @@ extension NavigationView {
             self
         }
     }
-}
-
-func i18n(_ str: String) -> LocalizedStringKey {
-    return LocalizedStringKey(str)
 }

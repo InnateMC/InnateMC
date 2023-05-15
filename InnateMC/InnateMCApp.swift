@@ -39,3 +39,7 @@ struct InnateMCApp: App {
         }
     }
 }
+
+func i18n(_ str: String) -> LocalizedStringKey {
+    return LocalizedStringKey(str)
+}

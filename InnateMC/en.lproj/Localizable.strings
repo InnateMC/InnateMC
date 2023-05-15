@@ -71,7 +71,7 @@
 "save" = "Save";
 "delete_selected" = "Delete Selected";
 "invalid_username" = "Invalid username";
-"no_account_selected" = "No account selected";
+"no_account_selected" = "No account";
 "launch" = "Launch";
 "override_default_runtime" = "Override default runtime settings";
 "login_with_microsoft" = "Login with Microsoft";
