@@ -37,9 +37,9 @@
 "open_in_finder" = "In Finder öffnen";
 "open_instances_folder" = "Instanzen Ordner öffnen";
 "new_instance" = "Neue Instanz";
-"downloading_libs" = "lade Bibliotheken herunter";
+"downloading_libs" = "Lade Bibliotheken herunter";
 "abort" = "Abbruch";
-"downloading_assets" = "lade Assets herunter";
+"downloading_assets" = "Lade Assets herunter";
 "extracting_natives" = "Extrahiere Natives";
 "error_launching" = "Fehler beim Start";
 "accounts" = "Accounts";
@@ -66,3 +66,14 @@
 "edit" = "Bearbeiten";
 "save" = "Speichern";
 "notes" = "Notizen";
+"override_default_runtime" = "Standart Runtime Einstellungen überschreiben";
+"login_with_microsoft" = "Mit Microsoft einloggen";
+"authenticating_with_microsoft" = "Authentifiziere mit Microsoft";
+"authenticating_with_xbox_live" = "Authentifiziere mit Xbox Live";
+"authenticating_with_xbox_xsts" = "Authentifiziere mit Xbox XSTS";
+"authenticating_with_minecraft" = "Authentifiziere mit Minecraft";
+"fetching_profile" = "Lade Profil";
+"error_fetching_access_token" = "Minecraft Accesstoken konnte nicht geladen werden";
+"duplicate" = "Duplizieren";
+"share_or_export" = "Teilen oder exportieren";
+"enter_a_name" = "Gib einen Namen ein";
