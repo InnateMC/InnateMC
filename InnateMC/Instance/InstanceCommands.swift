@@ -69,7 +69,7 @@ struct InstanceCommands: Commands {
             }
         }
         Button(action: {
-            launcherData.instanceLaunchRequested = true
+            LauncherData.instance.launchRequestedInstances.append(self.selectedInstance!)
         }) {
             Text(i18n("launch"))
             Image(systemName: "paperplane")

@@ -154,9 +154,9 @@ struct ContentView: View {
         
         Button {
             if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance! }) {
-                launcherData.instanceKillRequested = true
+                launcherData.killRequestedInstances.append(selectedInstance!)
             } else {
-                launcherData.instanceLaunchRequested = true
+                launcherData.launchRequestedInstances.append(selectedInstance!)
             }
         } label: {
             if let selectedInstance = selectedInstance {
@@ -173,7 +173,7 @@ struct ContentView: View {
         .help(i18n("launch"))
         
         Button {
-            launcherData.instanceEditRequested = true
+            launcherData.editRequestedInstances.append(selectedInstance!)
         } label: {
             Image(systemName: "pencil")
         }
@@ -190,11 +190,14 @@ struct ContentView: View {
                 .tag(ContentView.nullUuid)
             ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
-                    
-                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=16"))
+                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=16"), scale: 1, content: { $0 }) {
+                        Image("steve")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                    }
                     Text(value.username)
-                    
                 }
+                .background(.ultraThickMaterial)
                 .padding(.all)
                 .tag(value.id)
             }

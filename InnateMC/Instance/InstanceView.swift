@@ -78,7 +78,7 @@ struct InstanceView: View {
                                 createInstanceStar()
                                 
                                 Button(i18n("edit")) {
-                                    launcherData.instanceEditRequested = true
+                                    launcherData.editRequestedInstances.append(self.instance)
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -134,7 +134,7 @@ struct InstanceView: View {
                 launchedInstances = value
             }
             .onAppear {
-                launcherData.instanceLaunchRequested = false
+                launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
             }
             .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
             .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
@@ -143,28 +143,28 @@ struct InstanceView: View {
                 launchedInstances = value
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
-            .onReceive(launcherData.$instanceLaunchRequested) { value in
-                if value {
+            .onReceive(launcherData.$launchRequestedInstances) { value in
+                if value.contains(where: { $0 == self.instance}) {
                     if launcherData.accountManager.currentSelected != nil {
                         showPreLaunchSheet = true
                         downloadProgress.cancelled = false
-                        launcherData.instanceLaunchRequested = false
                     } else {
                         showChooseAccountSheet = true
                     }
+                    launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
-            .onReceive(launcherData.$instanceEditRequested) { value in
-                if value {
+            .onReceive(launcherData.$editRequestedInstances) { value in
+                if value.contains(where: { $0 == self.instance}) {
                     self.editingViewModel.start(from: self.instance)
-                    launcherData.instanceEditRequested = false
+                    launcherData.editRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
-            .onReceive(launcherData.$instanceKillRequested) { value in
-                if value {
+            .onReceive(launcherData.$killRequestedInstances) { value in
+                if value.contains(where: { $0 == self.instance})  {
                     kill(launchedInstanceProcess!.process.processIdentifier, SIGKILL)
                     launcherData.launchedInstances.removeValue(forKey: instance)
-                    launcherData.instanceKillRequested = false
+                    launcherData.killRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
             .onAppear {
