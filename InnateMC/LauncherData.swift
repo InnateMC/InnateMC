@@ -31,7 +31,7 @@ public class LauncherData: ObservableObject {
     @Published var selectedPreferenceTab: SelectedPreferenceTab = .ui
     @Published var versionManifest: [PartialVersion] = []
     @Published var launchRequestedInstances: [Instance] = []
-    @Published var editRequestedInstances: [Instance] = []
+    @Published var editModeInstances: [Instance] = []
     @Published var killRequestedInstances: [Instance] = []
     private var initializedPreferenceListener: Bool = false
     

@@ -63,12 +63,6 @@ struct InstanceView: View {
                                     }
                                 
                                 createInstanceStar()
-                                
-                                Button(i18n("save")) {
-                                    editingViewModel.commit(to: self.instance, showNoNamePopover: $showNoNamePopover, showDuplicateNamePopover: $showDuplicatePopover, data: self.launcherData)
-                                }
-                                .padding(.horizontal)
-                                .buttonStyle(.borderless)
                             } else {
                                 Text(instance.name)
                                     .font(.largeTitle)
@@ -76,12 +70,6 @@ struct InstanceView: View {
                                     .padding(.trailing, 8)
                                 
                                 createInstanceStar()
-                                
-                                Button(i18n("edit")) {
-                                    launcherData.editRequestedInstances.append(self.instance)
-                                }
-                                .padding(.horizontal)
-                                .buttonStyle(.borderless)
                             }
                             Spacer()
                         }
@@ -154,10 +142,11 @@ struct InstanceView: View {
                     launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
-            .onReceive(launcherData.$editRequestedInstances) { value in
+            .onReceive(launcherData.$editModeInstances) { value in
                 if value.contains(where: { $0 == self.instance}) {
                     self.editingViewModel.start(from: self.instance)
-                    launcherData.editRequestedInstances.removeAll(where: { $0 == self.instance })
+                } else if self.editingViewModel.inEditMode {
+                    self.editingViewModel.commit(to: self.instance, showNoNamePopover: $showNoNamePopover, showDuplicateNamePopover: $showDuplicatePopover, data: self.launcherData)
                 }
             }
             .onReceive(launcherData.$killRequestedInstances) { value in

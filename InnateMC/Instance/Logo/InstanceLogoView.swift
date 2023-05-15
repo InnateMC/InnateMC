@@ -32,6 +32,10 @@ struct InstanceLogoView: View {
                 Image(systemName: instance.logo.string)
                     .resizable()
                     .scaledToFit()
+            } else if instance.logo.logoType == .builtin {
+                Image(instance.logo.string)
+                    .resizable()
+                    .scaledToFit()
             }
         }
     }

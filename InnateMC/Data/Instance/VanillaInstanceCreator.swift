@@ -41,7 +41,7 @@ public class VanillaInstanceCreator: InstanceCreator {
             )
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
-        let logo = InstanceLogo(logoType: .symbol, string: "tray.circle")
+        let logo = InstanceLogo(logoType: .builtin, string: "icon")
         let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.notes, debugString: version.id, gameArguments: version.arguments.game)
         if (version.arguments.jvm.contains("-XstartOnFirstThread")) {
             instance.setStartOnFirstThread()

@@ -29,5 +29,6 @@ public class InstanceLogo: Codable, InstanceData {
     public enum LogoType: Codable {
         case symbol
         case file
+        case builtin
     }
 }

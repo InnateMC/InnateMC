@@ -173,9 +173,21 @@ struct ContentView: View {
         .help(i18n("launch"))
         
         Button {
-            launcherData.editRequestedInstances.append(selectedInstance!)
+            if launcherData.editModeInstances.contains(where: { $0 == selectedInstance! }) {
+                launcherData.editModeInstances.removeAll(where: { $0 == selectedInstance! })
+            } else {
+                launcherData.editModeInstances.append(self.selectedInstance!)
+            }
         } label: {
-            Image(systemName: "pencil")
+            if let selectedInstance = self.selectedInstance {
+                if launcherData.editModeInstances.contains(where: { $0 == selectedInstance }) {
+                    Image(systemName: "checkmark")
+                } else {
+                    Image(systemName: "pencil")
+                }
+            } else {
+                Image(systemName: "pencil")
+            }
         }
         .disabled(selectedInstance == nil)
         .help(i18n("edit"))
