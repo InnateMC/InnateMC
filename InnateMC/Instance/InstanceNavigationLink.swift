@@ -67,6 +67,9 @@ struct InstanceNavigationLink: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .sheet(isPresented: $showDeleteSheet) {
+            InstanceDeleteSheet(showDeleteSheet: $showDeleteSheet, selectedInstance: $selectedInstance, instanceToDelete: self.instance)
+        }
         .contextMenu {
             if instance.isStarred {
                 Button(i18n("unstar")) {
@@ -84,31 +87,6 @@ struct InstanceNavigationLink: View {
             Button(i18n("delete")) {
                 showDeleteSheet = true
             }
-        }
-        .sheet(isPresented: $showDeleteSheet) {
-            VStack(alignment: .center) {
-                Text(LocalizedStringKey("are_you_sure_delete_instance"))
-                HStack {
-                    Button(LocalizedStringKey("delete")) {
-                        if let index = launcherData.instances.firstIndex(of: instance) {
-                            if let selectedInstance = selectedInstance {
-                                if selectedInstance.name == self.instance.name {
-                                    self.selectedInstance = nil
-                                }
-                            }
-                            launcherData.instances.remove(at: index)
-                            instance.delete()
-                        }
-                        showDeleteSheet = false
-                    }
-                    .padding()
-                    Button(LocalizedStringKey("cancel")) {
-                        showDeleteSheet = false
-                    }
-                    .padding()
-                }
-            }
-            .padding(.all, 20)
         }
     }
 }

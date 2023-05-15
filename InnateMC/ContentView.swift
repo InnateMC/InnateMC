@@ -28,6 +28,8 @@ struct ContentView: View {
     @State var selectedInstance: Instance? = nil
     @State var selectedAccount: UUID = ContentView.nullUuid
     @State var cachedAccounts: [AdaptedAccount] = []
+    @State var showDuplicateInstanceSheet: Bool = false
+    @State var showDeleteInstanceSheet: Bool = false
     
     var body: some View {
         NavigationView {
@@ -54,6 +56,12 @@ struct ContentView: View {
             .sheet(isPresented: $showNewInstanceSheet) {
                 NewInstanceView(showNewInstanceSheet: $showNewInstanceSheet)
             }
+            .sheet(isPresented: $showDeleteInstanceSheet) {
+                InstanceDeleteSheet(showDeleteSheet: $showDeleteInstanceSheet, selectedInstance: $selectedInstance, instanceToDelete: self.selectedInstance!)
+            }
+            .sheet(isPresented: $showDuplicateInstanceSheet) {
+                InstanceDuplicationSheet(showDuplicationSheet: $showDuplicateInstanceSheet, instance: self.selectedInstance!)
+            }
             .onReceive(launcherData.$instances) { newValue in
                 if let selectedInstance = self.selectedInstance {
                     if !newValue.contains(where: { $0 == selectedInstance }) {
@@ -74,7 +82,7 @@ struct ContentView: View {
             }
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
-                    
+                    self.showDeleteInstanceSheet = true
                 } label: {
                     Image(systemName: "trash")
                 }
@@ -82,7 +90,7 @@ struct ContentView: View {
                 .help(i18n("delete"))
                 
                 Button {
-                    
+                    self.showDuplicateInstanceSheet = true
                 } label: {
                     Image(systemName: "doc.on.doc")
                 }

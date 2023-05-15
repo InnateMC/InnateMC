@@ -62,6 +62,8 @@
 		64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5151F29E2E6A300AFE3AE /* InstanceData.swift */; };
 		64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */; };
 		64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */; };
+		64C09B6C2A1212CF00867038 /* InstanceDuplicationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */; };
+		64C09B702A12145900867038 /* InstanceDeleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
 		64C334DB2922523600BB8570 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334DA2922523600BB8570 /* ContentView.swift */; };
 		64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C334DC2922523F00BB8570 /* Assets.xcassets */; };
@@ -189,6 +191,8 @@
 		64A5151F29E2E6A300AFE3AE /* InstanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceData.swift; sourceTree = "<group>"; };
 		64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolLogoPickerView.swift; sourceTree = "<group>"; };
 		64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRuntimeView.swift; sourceTree = "<group>"; };
+		64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDuplicationSheet.swift; sourceTree = "<group>"; };
+		64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDeleteSheet.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C334D82922523600BB8570 /* InnateMCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateMCApp.swift; sourceTree = "<group>"; };
 		64C334DA2922523600BB8570 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */,
 				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
+				64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */,
+				64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				640CCF552A09F0FA0080F574 /* SettingsFetch.swift in Sources */,
 				64C33505292252B500BB8570 /* PreferencesView.swift in Sources */,
 				64F7C604297D64DD0086ABC1 /* VanillaInstanceCreator.swift in Sources */,
+				64C09B702A12145900867038 /* InstanceDeleteSheet.swift in Sources */,
 				6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */,
 				647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */,
 				64A5151E29E2DFE000AFE3AE /* Instance+Prelaunch.swift in Sources */,
@@ -749,6 +756,7 @@
 				64A5151A29E2DF6500AFE3AE /* Published+Coding.swift in Sources */,
 				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
+				64C09B6C2A1212CF00867038 /* InstanceDuplicationSheet.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */,
 				64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
