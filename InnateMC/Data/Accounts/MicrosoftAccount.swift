@@ -62,7 +62,6 @@ struct MicrosoftAccount: MinecraftAccount {
         let xblResponse = try await manager.authenticateWithXBL(msAccessToken: self.token.token)
         let xstsResponse: XboxAuthResponse = try await manager.authenticateWithXSTS(xblToken: xblResponse.token)
         let mcResponse: MinecraftAuthResponse = try await manager.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
-        NSLog(String(data: try! JSONEncoder().encode(mcResponse), encoding: .utf8)!)
         return mcResponse.accessToken
     }
 }

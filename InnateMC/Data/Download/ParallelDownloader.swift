@@ -73,15 +73,14 @@ public struct ParallelDownloader {
                                 progress.inc()
                             }
                         } catch {
+                            session.invalidateAndCancel()
                             if let error = error as? ParallelDownloadError {
                                 DispatchQueue.main.async {
                                     onError(error)
                                 }
-                                session.invalidateAndCancel()
                             } else {
                                 DispatchQueue.main.async {
-//                                    onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
-                                    NSLog(error.localizedDescription)
+                                    onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
                                 }
                             }
                         }

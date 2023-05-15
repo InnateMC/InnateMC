@@ -210,8 +210,6 @@ extension AccountManager {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                print("1 yes")
-                print(String(data: data, encoding: .utf8)!)
                 throw MicrosoftAuthError.microsoftInvalidResponse
             }
 
