@@ -81,3 +81,5 @@
 "authenticating_with_minecraft" = "Authenticating with Minecraft";
 "fetching_profile" = "Fetching Profile";
 "error_fetching_access_token" = "Couldn't fetch Minecraft access token";
+"duplicate" = "Duplicate";
+"share_or_export" = "Share or Export";

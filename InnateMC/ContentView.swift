@@ -63,6 +63,33 @@ struct ContentView: View {
         .bindInstanceFocusValue(selectedInstance)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
+                createTrailingToolbar()
+            }
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "trash")
+                }
+                .disabled(selectedInstance == nil)
+                .help(i18n("delete"))
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "doc.on.doc")
+                }
+                .disabled(selectedInstance == nil)
+                .help(i18n("duplicate"))
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .disabled(selectedInstance == nil)
+                .help(i18n("share_or_export"))
+                
                 Button {
                     if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance! }) {
                         launcherData.instanceKillRequested = true
@@ -90,9 +117,6 @@ struct ContentView: View {
                 }
                 .disabled(selectedInstance == nil)
                 .help(i18n("edit"))
-            }
-            ToolbarItemGroup(placement: .primaryAction) {
-                createTrailingToolbar()
             }
         }
     }
@@ -142,15 +166,6 @@ struct ContentView: View {
     func createTrailingToolbar() -> some View {
         Spacer()
         
-        Button(i18n("manage_accounts")) {
-            launcherData.selectedPreferenceTab = .accounts
-            if #available(macOS 13, *) {
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-            } else {
-                NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-            }
-        }
-        
         Picker(i18n("account"), selection: $selectedAccount) {
             Text(i18n("no_account_selected"))
                 .tag(ContentView.nullUuid)
@@ -168,6 +183,7 @@ struct ContentView: View {
         .frame(height: 40)
         .onAppear {
             self.selectedAccount = launcherData.accountManager.currentSelected ?? ContentView.nullUuid
+            self.cachedAccounts = Array(launcherData.accountManager.accounts.values).map({ AdaptedAccount(from: $0)})
         }
         .onReceive(launcherData.accountManager.$currentSelected) {
             self.selectedAccount = $0 ?? ContentView.nullUuid
@@ -178,12 +194,21 @@ struct ContentView: View {
                 launcherData.accountManager.saveThrow()
             }
         }
-        .onAppear {
-            self.cachedAccounts = Array(launcherData.accountManager.accounts.values).map({ AdaptedAccount(from: $0)})
-        }
         .onReceive(launcherData.accountManager.$accounts) {
             self.cachedAccounts = Array($0.values).map({ AdaptedAccount(from: $0)})
         }
+        
+        Button {
+            launcherData.selectedPreferenceTab = .accounts
+            if #available(macOS 13, *) {
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            } else {
+                NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+            }
+        } label: {
+            Image(systemName: "person.circle")
+        }
+        .help("manage_accounts")
     }
 }
 
