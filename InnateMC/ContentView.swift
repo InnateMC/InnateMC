@@ -62,6 +62,35 @@ struct ContentView: View {
         }
         .bindInstanceFocusValue(selectedInstance)
         .toolbar {
+            ToolbarItemGroup(placement: .navigation) {
+                Button {
+                    if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance! }) {
+                        launcherData.instanceKillRequested = true
+                    } else {
+                        launcherData.instanceLaunchRequested = true
+                    }
+                } label: {
+                    if let selectedInstance = selectedInstance {
+                        if launcherData.launchedInstances.contains(where: { $0.0 == selectedInstance }) {
+                            Image(systemName: "square.fill")
+                        } else {
+                            Image(systemName: "arrowtriangle.forward.fill")
+                        }
+                    } else {
+                        Image(systemName: "arrowtriangle.forward.fill")
+                    }
+                }
+                .disabled(selectedInstance == nil)
+                .help(i18n("launch"))
+
+                Button {
+                    launcherData.instanceEditRequested = true
+                } label: {
+                    Image(systemName: "pencil")
+                }
+                .disabled(selectedInstance == nil)
+                .help(i18n("edit"))
+            }
             ToolbarItemGroup(placement: .primaryAction) {
                 createTrailingToolbar()
             }

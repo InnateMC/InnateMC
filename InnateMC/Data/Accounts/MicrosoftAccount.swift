@@ -42,20 +42,21 @@ struct MicrosoftAccount: MinecraftAccount {
         let manager = LauncherData.instance.accountManager
         
         if token.hasExpired() {
+            let newAccount: MicrosoftAccount
+            
             do {
                 let newToken = try await manager.refreshMicrosoftToken(self.token)
-                let newAccount = MicrosoftAccount(profile: self.profile, token: newToken)
+                newAccount = MicrosoftAccount(profile: self.profile, token: newToken)
                 manager.accounts[self.id] = newAccount
                 DispatchQueue.global(qos: .utility).async {
                     manager.saveThrow()
                 }
-                return try await newAccount.createAccessToken()
             } catch let err as MicrosoftAuthError {
                 NSLog("Error refreshing token - this will lead to undefined results - \(err.localizedDescription)")
                 return "nou"
-            } catch {
-                fatalError("no this cant happen")
             }
+            
+            return try await newAccount.createAccessToken()
         }
         
         let xblResponse = try await manager.authenticateWithXBL(msAccessToken: self.token.token)

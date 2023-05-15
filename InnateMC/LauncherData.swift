@@ -28,6 +28,8 @@ public class LauncherData: ObservableObject {
     @Published var launchedInstances: [Instance: InstanceProcess] = [:]
     @Published var newInstanceRequested: Bool = false
     @Published var instanceLaunchRequested: Bool = false
+    @Published var instanceEditRequested: Bool = false
+    @Published var instanceKillRequested: Bool = false
     @Published var accountManager: AccountManager = AccountManager()
     @Published var selectedPreferenceTab: SelectedPreferenceTab = .ui
     @Published var versionManifest: [PartialVersion] = []

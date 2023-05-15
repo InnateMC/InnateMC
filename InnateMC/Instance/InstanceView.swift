@@ -78,7 +78,7 @@ struct InstanceView: View {
                                 createInstanceStar()
                                 
                                 Button(i18n("edit")) {
-                                    editingViewModel.start(from: self.instance)
+                                    launcherData.instanceEditRequested = true
                                 }
                                 .padding(.horizontal)
                                 .buttonStyle(.borderless)
@@ -103,37 +103,6 @@ struct InstanceView: View {
                             Spacer()
                         }
                         .padding(.top, 10)
-                        
-                        HStack {
-                            if let launchedInstanceProcess = launchedInstanceProcess {
-                                HStack {
-                                    Button(action: {
-                                        // TODO: show a warning message
-                                        kill(launchedInstanceProcess.process.processIdentifier, SIGKILL)
-                                        launcherData.launchedInstances.removeValue(forKey: instance)
-                                    }, label: {
-                                        Text(i18n("force_quit"))
-                                            .font(.title2)
-                                    })
-                                }
-                                .onReceive(launchedInstanceProcess.$terminated, perform: { value in
-                                    if value {
-                                        self.launchedInstanceProcess = nil
-                                        launcherData.launchedInstances.removeValue(forKey: instance)
-                                    }
-                                })
-                            } else {
-                                Button(action: {
-                                    launcherData.instanceLaunchRequested = true
-                                }, label: {
-                                    Text(i18n("launch"))
-                                        .font(.title2)
-                                })
-                            }
-                            Spacer()
-                        }
-                        .padding(.top, 6)
-                        .padding(.trailing, 5)
                     }
                 }
                 .sheet(isPresented: $showLogoSheet) {
@@ -183,6 +152,19 @@ struct InstanceView: View {
                     } else {
                         showChooseAccountSheet = true
                     }
+                }
+            }
+            .onReceive(launcherData.$instanceEditRequested) { value in
+                if value {
+                    self.editingViewModel.start(from: self.instance)
+                    launcherData.instanceEditRequested = false
+                }
+            }
+            .onReceive(launcherData.$instanceKillRequested) { value in
+                if value {
+                    kill(launchedInstanceProcess!.process.processIdentifier, SIGKILL)
+                    launcherData.launchedInstances.removeValue(forKey: instance)
+                    launcherData.instanceKillRequested = false
                 }
             }
             .onAppear {
@@ -362,6 +344,7 @@ struct InstanceView: View {
                 downloadProgress.callback = {
                     if !downloadProgress.cancelled {
                         self.indeterminateProgress = true
+                        downloadMessage = i18n("authenticating_with_minecraft")
                         Task(priority: .high) {
                             do {
                                 let accessToken = try await launcherData.accountManager.selectedAccount.createAccessToken()
