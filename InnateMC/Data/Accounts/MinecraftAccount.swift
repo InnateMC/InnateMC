@@ -25,6 +25,8 @@ protocol MinecraftAccount: Codable, Hashable {
     
     var username: String { get }
     
+    var xuid: String { get }
+    
     static func createFromDict(_ dict: [String:Any]) -> Self
     
     func createAccessToken() async throws -> String

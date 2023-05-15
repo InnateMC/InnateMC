@@ -18,7 +18,7 @@
 import Foundation
 
 public func setting<T>(_ path: KeyPath<GlobalPreferences, T>) -> T {
-    return LauncherData.currentInstanceUnsafe.globalPreferences[keyPath: path]
+    return LauncherData.instance.globalPreferences[keyPath: path]
 }
 
 public func setting<T>(_ path: KeyPath<InstancePreferences, T>, for instance: Instance) -> T {

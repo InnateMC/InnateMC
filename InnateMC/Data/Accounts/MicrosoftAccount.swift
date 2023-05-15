@@ -29,6 +29,9 @@ struct MicrosoftAccount: MinecraftAccount {
     var id: UUID {
         UUID(uuidString: hyphenateUuid(profile.id))!
     }
+    var xuid: String {
+        username // TODO: decode JWT?
+    }
     
     public init(profile: MinecraftProfile, token: MicrosoftAccessToken) {
         self.profile = profile
@@ -36,7 +39,7 @@ struct MicrosoftAccount: MinecraftAccount {
     }
     
     func createAccessToken() async throws -> String {
-        let manager = LauncherData.currentInstanceUnsafe.accountManager
+        let manager = LauncherData.instance.accountManager
         
         if token.hasExpired() {
             do {
@@ -58,6 +61,7 @@ struct MicrosoftAccount: MinecraftAccount {
         let xblResponse = try await manager.authenticateWithXBL(msAccessToken: self.token.token)
         let xstsResponse: XboxAuthResponse = try await manager.authenticateWithXSTS(xblToken: xblResponse.token)
         let mcResponse: MinecraftAuthResponse = try await manager.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
+        NSLog(String(data: try! JSONEncoder().encode(mcResponse), encoding: .utf8)!)
         return mcResponse.accessToken
     }
 }

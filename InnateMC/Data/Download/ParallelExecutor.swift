@@ -22,15 +22,13 @@ public class ParallelExecutor {
     public static func run(_ tasks: [() -> Void], progress: TaskProgress) {
         progress.current = 0
         progress.total = tasks.count
-        @Sendable func dispatch(_ task: @escaping () -> Void)  {
-            let _: Task<(), Never> = Task.init(priority: .medium, operation: {
-                task()
-                await progress.inc()
-            })
-        }
-        
         for task in tasks {
-            dispatch(task)
+            Task(priority: .medium) {
+                task()
+                DispatchQueue.main.async {
+                    progress.inc()
+                }
+            }
         }
     }
     

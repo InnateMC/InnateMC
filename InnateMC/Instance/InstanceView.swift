@@ -328,6 +328,7 @@ struct InstanceView: View {
                 .padding()
                 if indeterminateProgress {
                     ProgressView()
+                        .progressViewStyle(.linear)
                 } else {
                     ProgressView(value: progress)
                 }
@@ -359,8 +360,8 @@ struct InstanceView: View {
             downloadSession = instance.downloadAssets(progress: downloadProgress) {
                 downloadMessage = i18n("extracting_natives")
                 downloadProgress.callback = {
-                    if !(downloadProgress.cancelled) {
-                        indeterminateProgress = true
+                    if !downloadProgress.cancelled {
+                        self.indeterminateProgress = true
                         Task(priority: .high) {
                             do {
                                 let accessToken = try await launcherData.accountManager.selectedAccount.createAccessToken()
@@ -374,11 +375,12 @@ struct InstanceView: View {
                                 }
                             } catch {
                                 DispatchQueue.main.async {
-                                    onPrelaunchError(ParallelDownloadError.downloadFailed(errorKey: "error_fetching_access_token"))
+                                    onPrelaunchError(.downloadFailed(errorKey: "error_fetching_access_token"))
                                 }
                             }
                         }
                     }
+                    
                     downloadProgress.callback = {}
                 }
                 instance.extractNatives(progress: downloadProgress)
@@ -390,12 +392,14 @@ struct InstanceView: View {
         }
     }
     
+    @MainActor
     func onPrelaunchError(_ error: ParallelDownloadError) {
         if (showErrorSheet) {
             return
         }
         showPreLaunchSheet = false
         showErrorSheet = true
+        downloadProgress.cancelled = true
         switch(error) {
         case .downloadFailed(let errorKey):
             errorMessageKey = LocalizedStringKey(errorKey)

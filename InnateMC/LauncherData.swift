@@ -21,7 +21,7 @@ import Combine
 
 public class LauncherData: ObservableObject {
     private static var currentInstance: LauncherData? = nil
-    public static var currentInstanceUnsafe: LauncherData { currentInstance! }
+    public static var instance: LauncherData { currentInstance! }
     @Published var instances: [Instance] = Instance.loadInstancesThrow()
     @Published var globalPreferences: GlobalPreferences = GlobalPreferences()
     @Published var javaInstallations: [SavedJavaInstallation] = []

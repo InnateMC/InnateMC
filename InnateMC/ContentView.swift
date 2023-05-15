@@ -74,7 +74,7 @@ struct ContentView: View {
             InstanceNavigationLink(instance: instance, selectedInstance: $selectedInstance)
                 .tag(instance)
                 .padding(.all, 4)
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
         }
     }
     
@@ -128,7 +128,7 @@ struct ContentView: View {
             ForEach(self.cachedAccounts) { value in
                 HStack(alignment: .center) {
                    
-                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=20"))
+                    AsyncImage(url: URL(string: "https://crafatar.com/avatars/" + value.id.uuidString + "?overlay&size=24"))
                     Text(value.username)
                         
                 }
