@@ -24,7 +24,8 @@ struct NewVanillaInstanceView: View {
     @State var showBeta = false
     @State var showAlpha = false
     @State var selectedVersion: PartialVersion = PartialVersion.createBlank()
-    @AppStorage("newVanillaInstance.cachedName") var name = ""
+    @AppStorage("newVanillaInstance.cachedName") var name = NSLocalizedString("new_instance_default", comment: "New Instance")
+    @AppStorage("newVanillaInstance.cachedVersion") var cachedVersionId: String = ""
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
     @State var showNoNamePopover = false
@@ -85,7 +86,8 @@ struct NewVanillaInstanceView: View {
                         let instance = VanillaInstanceCreator(name: trimmedName, versionUrl: URL(string: self.selectedVersion.url)!, sha1: self.selectedVersion.sha1, notes: nil, data: self.launcherData)
                         do {
                             self.launcherData.instances.append(try instance.install())
-                            self.name = ""
+                            self.name = NSLocalizedString("new_instance_default", comment: "New Instance")
+                            self.cachedVersionId = ""
                             self.showNewInstanceSheet = false
                         } catch {
                             NSLog("Error creating instance \(trimmedName)")
@@ -113,6 +115,9 @@ struct NewVanillaInstanceView: View {
         .onChange(of: showSnapshots) { _ in
             recomputeVersions()
         }
+        .onChange(of: selectedVersion) { _ in
+            self.cachedVersionId = self.selectedVersion.version
+        }
     }
     
     func recomputeVersions() {
@@ -129,7 +134,9 @@ struct NewVanillaInstanceView: View {
             let notContained = !newVersions.contains(self.selectedVersion)
             DispatchQueue.main.async {
                 self.versions = newVersions
-                if notContained {
+                if let cached = self.versions.filter({ $0.version == self.cachedVersionId}).first {
+                    self.selectedVersion = cached
+                } else if notContained {
                     self.selectedVersion = newVersions.first!
                 }
             }

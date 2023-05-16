@@ -83,3 +83,4 @@
 "error_fetching_access_token" = "Couldn't fetch Minecraft access token";
 "duplicate" = "Duplicate";
 "share_or_export" = "Share or Export";
+"new_instance_default" = "New Instance";
