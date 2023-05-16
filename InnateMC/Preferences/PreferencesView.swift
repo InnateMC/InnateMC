@@ -37,6 +37,11 @@ struct PreferencesView: View {
                     Label(i18n("user_interface"), systemImage: "paintbrush.pointed")
                 })
                 .tag(SelectedPreferenceTab.ui)
+            MiscPreferencesView()
+                .tabItem({
+                    Label(i18n("misc"), systemImage: "slider.horizontal.3")
+                })
+                .tag(SelectedPreferenceTab.misc)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

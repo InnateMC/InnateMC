@@ -24,6 +24,8 @@
 		643E455A2A1332BE00687839 /* InstanceSynopsisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45592A1332BE00687839 /* InstanceSynopsisView.swift */; };
 		643E455C2A13331100687839 /* InstanceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E455B2A13331100687839 /* InstanceTitleView.swift */; };
 		643E45632A133A3F00687839 /* InstanceSpecificCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */; };
+		643E45662A13A61000687839 /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45652A13A60F00687839 /* MiscPreferencesView.swift */; };
+		643E45682A13A9A800687839 /* DeveloperModeCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45672A13A9A800687839 /* DeveloperModeCommands.swift */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
@@ -155,6 +157,8 @@
 		643E45592A1332BE00687839 /* InstanceSynopsisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSynopsisView.swift; sourceTree = "<group>"; };
 		643E455B2A13331100687839 /* InstanceTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTitleView.swift; sourceTree = "<group>"; };
 		643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSpecificCommands.swift; sourceTree = "<group>"; };
+		643E45652A13A60F00687839 /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
+		643E45672A13A9A800687839 /* DeveloperModeCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperModeCommands.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
 				6497595A29F056CF00D0194E /* Accounts */,
 				644FC6712937B243003797D9 /* UiPreferencesView.swift */,
+				643E45652A13A60F00687839 /* MiscPreferencesView.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			children = (
 				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
 				643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */,
+				643E45672A13A9A800687839 /* DeveloperModeCommands.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -774,6 +780,7 @@
 				649620D02A124EA500733AB6 /* InstanceExportSheet.swift in Sources */,
 				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
+				643E45682A13A9A800687839 /* DeveloperModeCommands.swift in Sources */,
 				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,
 				643E45542A13314E00687839 /* LaunchErrorSheet.swift in Sources */,
 				643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */,
@@ -824,6 +831,7 @@
 				643E45632A133A3F00687839 /* InstanceSpecificCommands.swift in Sources */,
 				64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */,
 				643E45562A1331B700687839 /* InteractiveStarView.swift in Sources */,
+				643E45662A13A61000687839 /* MiscPreferencesView.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
 				6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */,
 				6484457E2A10D12400049986 /* XstsAuth.swift in Sources */,

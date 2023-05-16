@@ -84,3 +84,5 @@
 "duplicate" = "Duplicate";
 "share_or_export" = "Share or Export";
 "new_instance_default" = "New Instance";
+"develop" = "Develop";
+"show_console" = "Show console";

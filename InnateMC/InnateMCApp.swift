@@ -31,6 +31,7 @@ struct InnateMCApp: App {
         .commands {
             InstanceCommands()
             SidebarCommands()
+            DeveloperModeCommands()
         }
         Settings {
             PreferencesView()

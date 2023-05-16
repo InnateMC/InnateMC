@@ -149,7 +149,7 @@ struct ContentView: View {
         } label: {
             Image(systemName: "square.and.arrow.up")
         }
-        .disabled(selectedInstance == nil)
+        .disabled(true)
         .help(i18n("share_or_export"))
         
         Button {
