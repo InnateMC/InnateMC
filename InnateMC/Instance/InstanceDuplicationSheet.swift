@@ -35,12 +35,11 @@ struct InstanceDuplicationSheet: View {
             HStack {
                 Button(i18n("duplicate")) {
                     let newInstance = Instance(name: self.newName, assetIndex: instance.assetIndex, libraries: instance.libraries, mainClass: instance.mainClass, minecraftJar: instance.minecraftJar, isStarred: false, logo: instance.logo, description: instance.notes, debugString: instance.debugString, gameArguments: instance.gameArguments)
-                    DispatchQueue.global().async {
+                    DispatchQueue.global(qos: .userInteractive).async {
                         do {
-                            try newInstance.save()
+                            try newInstance.createAsNewInstance()
                         } catch {
                             NSLog("Error duplicating instance")
-                            return
                         }
                     }
                     self.launcherData.instances.append(newInstance)
