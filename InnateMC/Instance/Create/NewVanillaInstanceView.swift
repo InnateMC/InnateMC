@@ -19,11 +19,11 @@ import SwiftUI
 
 struct NewVanillaInstanceView: View {
     @EnvironmentObject var launcherData: LauncherData
-    @State var versionManifest = (try? VersionManifest.getOrCreate()) ?? []
+    @State var versionManifest: [PartialVersion] = []
     @State var showSnapshots = false
     @State var showBeta = false
     @State var showAlpha = false
-    @State var selectedVersion: PartialVersion = (try? VersionManifest.getOrCreate().first) ?? PartialVersion.createBlank()
+    @State var selectedVersion: PartialVersion = PartialVersion.createBlank()
     @AppStorage("newVanillaInstance.cachedName") var name = ""
     @State var versions: [PartialVersion] = []
     @Binding var showNewInstanceSheet: Bool
@@ -97,6 +97,7 @@ struct NewVanillaInstanceView: View {
             }
         }
         .onAppear {
+            self.versionManifest = self.launcherData.versionManifest
             recomputeVersions()
         }
         .onReceive(self.launcherData.$versionManifest, perform: {
