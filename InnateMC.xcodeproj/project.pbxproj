@@ -13,9 +13,6 @@
 		64148DDA296E80E400E5EAD3 /* GlobalPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */; };
 		641678512923B6D40012C9CC /* RuntimePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678502923B6D40012C9CC /* RuntimePreferencesView.swift */; };
 		641678532923B6FA0012C9CC /* AccountsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678522923B6F90012C9CC /* AccountsPreferencesView.swift */; };
-		641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678542923B70F0012C9CC /* GamePreferencesView.swift */; };
-		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
-		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
 		64373BA329C0A430001DBD4C /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64373BA229C0A430001DBD4C /* InstanceTests.swift */; };
 		643E454C2A1291CC00687839 /* LaunchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E454B2A1291CC00687839 /* LaunchError.swift */; };
 		643E454E2A13300900687839 /* InstanceLogoPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E454D2A13300900687839 /* InstanceLogoPickerSheet.swift */; };
@@ -26,6 +23,7 @@
 		643E45582A13327900687839 /* InstanceNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45572A13327900687839 /* InstanceNotesView.swift */; };
 		643E455A2A1332BE00687839 /* InstanceSynopsisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45592A1332BE00687839 /* InstanceSynopsisView.swift */; };
 		643E455C2A13331100687839 /* InstanceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E455B2A13331100687839 /* InstanceTitleView.swift */; };
+		643E45632A133A3F00687839 /* InstanceSpecificCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
@@ -146,9 +144,6 @@
 		64148DD9296E80E400E5EAD3 /* GlobalPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPreferences.swift; sourceTree = "<group>"; };
 		641678502923B6D40012C9CC /* RuntimePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimePreferencesView.swift; sourceTree = "<group>"; };
 		641678522923B6F90012C9CC /* AccountsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesView.swift; sourceTree = "<group>"; };
-		641678542923B70F0012C9CC /* GamePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreferencesView.swift; sourceTree = "<group>"; };
-		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
-		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
 		64373BA229C0A430001DBD4C /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
 		643E454B2A1291CC00687839 /* LaunchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchError.swift; sourceTree = "<group>"; };
 		643E454D2A13300900687839 /* InstanceLogoPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoPickerSheet.swift; sourceTree = "<group>"; };
@@ -159,6 +154,7 @@
 		643E45572A13327900687839 /* InstanceNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNotesView.swift; sourceTree = "<group>"; };
 		643E45592A1332BE00687839 /* InstanceSynopsisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSynopsisView.swift; sourceTree = "<group>"; };
 		643E455B2A13331100687839 /* InstanceTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTitleView.swift; sourceTree = "<group>"; };
+		643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSpecificCommands.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
@@ -279,12 +275,9 @@
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				6497595A29F056CF00D0194E /* Accounts */,
 				64C33504292252B500BB8570 /* PreferencesView.swift */,
 				641678502923B6D40012C9CC /* RuntimePreferencesView.swift */,
-				641678542923B70F0012C9CC /* GamePreferencesView.swift */,
-				641678562923B7220012C9CC /* ConsolePreferencesView.swift */,
-				641678582923B7330012C9CC /* MiscPreferencesView.swift */,
+				6497595A29F056CF00D0194E /* Accounts */,
 				644FC6712937B243003797D9 /* UiPreferencesView.swift */,
 			);
 			path = Preferences;
@@ -297,6 +290,38 @@
 				648C831529DBDD6A00007603 /* libzip.5.5.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		643E455D2A1338CC00687839 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */,
+				643E45552A1331B700687839 /* InteractiveStarView.swift */,
+				643E45572A13327900687839 /* InstanceNotesView.swift */,
+				643E45592A1332BE00687839 /* InstanceSynopsisView.swift */,
+				643E455B2A13331100687839 /* InstanceTitleView.swift */,
+			);
+			name = Description;
+			sourceTree = "<group>";
+		};
+		643E45602A13396D00687839 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */,
+				64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */,
+				649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */,
+				643E45532A13314E00687839 /* InstanceErrorSheet.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		643E45612A1339AD00687839 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
+				643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 		644DE1D12937C0D300C4A03E /* Util */ = {
@@ -315,23 +340,16 @@
 		644DE1D22937C13F00C4A03E /* Instance */ = {
 			isa = PBXGroup;
 			children = (
+				643E45602A13396D00687839 /* Action */,
+				643E45612A1339AD00687839 /* Commands */,
+				643E455D2A1338CC00687839 /* Description */,
 				649762BC2935A2D600977467 /* Create */,
 				64F7C614297D7E320086ABC1 /* Logo */,
 				6459E11A2976E215006DB3A4 /* Preferences */,
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
-				6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */,
-				64E459EE2938BBEF00F82A2B /* InstanceCommands.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
-				64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */,
-				64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */,
-				649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */,
-				643E45532A13314E00687839 /* InstanceErrorSheet.swift */,
 				643E45512A1330F600687839 /* InstanceChooseAccountSheet.swift */,
-				643E45552A1331B700687839 /* InteractiveStarView.swift */,
-				643E45572A13327900687839 /* InstanceNotesView.swift */,
-				643E45592A1332BE00687839 /* InstanceSynopsisView.swift */,
-				643E455B2A13331100687839 /* InstanceTitleView.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -750,7 +768,6 @@
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,
 				643E45542A13314E00687839 /* InstanceErrorSheet.swift in Sources */,
-				641678552923B70F0012C9CC /* GamePreferencesView.swift in Sources */,
 				643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelExecutor.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
@@ -793,15 +810,14 @@
 				648445772A10C25D00049986 /* AccountManager+Auth.swift in Sources */,
 				64A5151A29E2DF6500AFE3AE /* Published+Coding.swift in Sources */,
 				643E455A2A1332BE00687839 /* InstanceSynopsisView.swift in Sources */,
-				641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */,
 				640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */,
 				64C09B6C2A1212CF00867038 /* InstanceDuplicationSheet.swift in Sources */,
 				64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */,
+				643E45632A133A3F00687839 /* InstanceSpecificCommands.swift in Sources */,
 				64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */,
 				643E45562A1331B700687839 /* InteractiveStarView.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
 				6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */,
-				641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */,
 				6484457E2A10D12400049986 /* XstsAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,7 +29,7 @@ struct InnateMCApp: App {
                 .environmentObject(launcherData)
         }
         .commands {
-            InstanceCommands(launcherData: launcherData)
+            InstanceCommands()
             SidebarCommands()
         }
         Settings {
