@@ -42,87 +42,50 @@ struct InstanceView: View {
         ZStack {
             VStack {
                 HStack {
-                    createLogo()
+                    InstanceInterativeLogoView(instance: self.instance, showLogoSheet: $showLogoSheet, logoHovered: $logoHovered)
                     VStack {
                         HStack {
-                            if editingViewModel.inEditMode {
-                                TextField(i18n("name"), text: $editingViewModel.name)
-                                    .font(.largeTitle)
-                                    .labelsHidden()
-                                    .fixedSize(horizontal: true, vertical: false)
-                                    .frame(height: 20)
-                                    .popover(isPresented: $showNoNamePopover, arrowEdge: .trailing) {
-                                        Text(i18n("enter_a_name"))
-                                            .padding()
-                                    }
-                                    .popover(isPresented: $showDuplicatePopover, arrowEdge: .trailing) {
-                                        // TODO: implement
-                                        Text(i18n("enter_unique_name"))
-                                            .padding()
-                                    }
-                                
-                                createInstanceStar()
-                            } else {
-                                Text(instance.name)
-                                    .font(.largeTitle)
-                                    .frame(height: 20)
-                                    .padding(.trailing, 8)
-                                
-                                createInstanceStar()
-                            }
+                            InstanceTitleView(editingViewModel: self.editingViewModel, instance: self.instance, showNoNamePopover: $showNoNamePopover, showDuplicatePopover: $showDuplicatePopover, starHovered: $starHovered)
                             Spacer()
                         }
                         HStack {
-                            if editingViewModel.inEditMode {
-                                TextField("", text: $editingViewModel.synopsis, prompt: Text(instance.debugString))
-                                    .fixedSize(horizontal: true, vertical: false)
-                                    .font(.caption)
-                                    .padding(.vertical, 6)
-                                    .foregroundColor(.gray)
-                                    .frame(height: 10)
-                            } else {
-                                Text(instance.synopsisOrVersion)
-                                    .font(.caption)
-                                    .padding(.vertical, 6)
-                                    .foregroundColor(.gray)
-                                    .frame(height: 10)
-                            }
+                            InstanceSynopsisView(editingViewModel: self.editingViewModel, instance: self.instance)
                             Spacer()
                         }
                         .padding(.top, 10)
                     }
                 }
                 .sheet(isPresented: $showLogoSheet) {
-                    createLogoSheet()
+                    InstanceLogoSheet(instance: self.instance, showLogoSheet: $showLogoSheet)
                 }
                 HStack {
-                    if editingViewModel.inEditMode {
-                        TextField("", text: $editingViewModel.notes, prompt: Text(i18n("notes")))
-                            .font(.body)
-                            .lineLimit(nil)
-                            .multilineTextAlignment(.leading)
-                            .frame(minWidth: 50)
-                            .padding(.leading, 3)
-                    } else {
-                        if instance.notes != nil {
-                            Text(instance.notes!)
-                                .font(.body)
-                                .frame(minWidth: 50)
-                                .padding(.leading, 3)
-                        }
-                    }
+                    InstanceNotesView(editingViewModel: self.editingViewModel, instance: self.instance)
                     Spacer()
                 }
                 Spacer()
-                createTabView()
+                TabView {
+                    InstanceConsoleView(instance: instance, launchedInstanceProcess: $launchedInstanceProcess)
+                        .tabItem {
+                            Label(i18n("console"), systemImage: "bolt")
+                        }
+                    InstanceRuntimeView(instance: instance)
+                        .tabItem {
+                            Label(i18n("runtime"), systemImage: "bolt")
+                        }
+                }.padding(.all, 4)
             }
             .padding(.all, 6)
             .onAppear {
                 launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
+                launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
-            .sheet(isPresented: $showErrorSheet, content: createErrorSheet)
+            .sheet(isPresented: $showErrorSheet) {
+                InstanceErrorSheet(launchError: $launchError, showErrorSheet: $showErrorSheet)
+            }
             .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
-            .sheet(isPresented: $showChooseAccountSheet, content: createChooseAccountSheet)
+            .sheet(isPresented: $showChooseAccountSheet) {
+                InstanceChooseAccountSheet(showChooseAccountSheet: $showChooseAccountSheet)
+            }
             .onReceive(launcherData.$launchedInstances) { value in
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
@@ -150,142 +113,7 @@ struct InstanceView: View {
                     launcherData.killRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
-            .onAppear {
-                launchedInstanceProcess = launcherData.launchedInstances[instance]
-            }
         }
-    }
-    
-    @ViewBuilder
-    func createInstanceStar() -> some View {
-        if instance.isStarred {
-            Image(systemName: "star.fill")
-                .resizable()
-                .foregroundColor(starHovered ? .gray : .yellow)
-                .onTapGesture {
-                    withAnimation {
-                        instance.isStarred = false
-                    }
-                }
-                .frame(width: 16, height: 16)
-            
-        } else {
-            Image(systemName: "star")
-                .resizable()
-                .foregroundColor(starHovered ? .yellow : .gray)
-                .onTapGesture {
-                    withAnimation {
-                        instance.isStarred = true
-                    }
-                }
-                .frame(width: 16, height: 16)
-                .onHover { hoverValue in
-                    withAnimation {
-                        starHovered = hoverValue
-                    }
-                }
-        }
-    }
-    
-    @ViewBuilder
-    func createTabView() -> some View {
-        TabView {
-            InstanceConsoleView(instance: instance, launchedInstanceProcess: $launchedInstanceProcess)
-                .tabItem {
-                    Label(i18n("console"), systemImage: "bolt")
-                }
-            InstanceRuntimeView(instance: instance)
-                .tabItem {
-                    Label(i18n("runtime"), systemImage: "bolt")
-                }
-//            TodoView()
-//                .tabItem {
-//                    Label(i18n("mods"), systemImage: "bolt")
-//                }
-//            TodoView()
-//                .tabItem {
-//                    Label(i18n("resource_packs"), systemImage: "bolt")
-//                }
-//            TodoView()
-//                .tabItem {
-//                    Label(i18n("worlds"), systemImage: "bolt")
-//                }
-//            TodoView()
-//                .tabItem {
-//                    Label(i18n("screenshots"), systemImage: "bolt")
-//                }
-//            TodoView()
-//                .tabItem {
-//                    Label(i18n("misc"), systemImage: "bolt")
-//                }
-        }.padding(.all, 4)
-    }
-    
-    @ViewBuilder
-    func createLogo() -> some View {
-        let size = launcherData.globalPreferences.ui.compactInstanceLogo ? 64.0 : 128.0
-        InstanceLogoView(instance: instance)
-            .frame(width: size, height: size)
-            .padding(.all, 20)
-            .opacity(logoHovered ? 0.75 : 1)
-            .onHover(perform: { value in
-                withAnimation {
-                    logoHovered = value
-                }
-            })
-            .onTapGesture {
-                showLogoSheet = true
-            }
-    }
-    
-    @ViewBuilder
-    func createErrorSheet() -> some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    VStack {
-                        if let launchError = self.launchError {
-                            Text(launchError.localizedDescription)
-                            if let err = launchError.suppressed {
-                                Text(err.localizedDescription)
-                            }
-                        }
-                    }
-                    Spacer()
-                }
-                .padding()
-                Button(i18n("close")) {
-                    self.showErrorSheet = false
-                }
-                .keyboardShortcut(.cancelAction)
-                .padding()
-            }
-        }
-    }
-
-    @ViewBuilder
-    func createLogoSheet() -> some View {
-        VStack {
-            TabView {
-                ImageLogoPickerView(instance: instance)
-                    .tabItem {
-                        Text(i18n("image"))
-                    }
-                SymbolLogoPickerView(instance: instance, logo: $instance.logo)
-                    .tabItem {
-                        Text(i18n("symbol"))
-                    }
-            }
-            Button(i18n("done")) {
-                withAnimation {
-                    showLogoSheet = false
-                }
-            }
-            .padding()
-            .keyboardShortcut(.cancelAction)
-        }
-        .padding(.all, 15)
     }
     
     @ViewBuilder
@@ -374,24 +202,5 @@ struct InstanceView: View {
         self.showErrorSheet = true
         self.downloadProgress.cancelled = true
         self.launchError = error
-    }
-    
-    @ViewBuilder
-    func createChooseAccountSheet() -> some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text(i18n("no_account_selected"))
-                    Spacer()
-                }
-                .padding()
-                Button(i18n("close")) {
-                    self.showChooseAccountSheet = false
-                }
-                .keyboardShortcut(.cancelAction)
-                .padding()
-            }
-        }
     }
 }
