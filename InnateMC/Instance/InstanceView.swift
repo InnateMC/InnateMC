@@ -80,7 +80,7 @@ struct InstanceView: View {
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
             .sheet(isPresented: $showErrorSheet) {
-                InstanceErrorSheet(launchError: $launchError, showErrorSheet: $showErrorSheet)
+                LaunchErrorSheet(launchError: $launchError, showErrorSheet: $showErrorSheet)
             }
             .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
             .sheet(isPresented: $showChooseAccountSheet) {

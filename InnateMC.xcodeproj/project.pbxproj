@@ -18,7 +18,7 @@
 		643E454E2A13300900687839 /* InstanceLogoPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E454D2A13300900687839 /* InstanceLogoPickerSheet.swift */; };
 		643E45502A13308700687839 /* InstanceInterativeLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E454F2A13308700687839 /* InstanceInterativeLogoView.swift */; };
 		643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45512A1330F600687839 /* InstanceChooseAccountSheet.swift */; };
-		643E45542A13314E00687839 /* InstanceErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45532A13314E00687839 /* InstanceErrorSheet.swift */; };
+		643E45542A13314E00687839 /* LaunchErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45532A13314E00687839 /* LaunchErrorSheet.swift */; };
 		643E45562A1331B700687839 /* InteractiveStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45552A1331B700687839 /* InteractiveStarView.swift */; };
 		643E45582A13327900687839 /* InstanceNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45572A13327900687839 /* InstanceNotesView.swift */; };
 		643E455A2A1332BE00687839 /* InstanceSynopsisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E45592A1332BE00687839 /* InstanceSynopsisView.swift */; };
@@ -149,7 +149,7 @@
 		643E454D2A13300900687839 /* InstanceLogoPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceLogoPickerSheet.swift; sourceTree = "<group>"; };
 		643E454F2A13308700687839 /* InstanceInterativeLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceInterativeLogoView.swift; sourceTree = "<group>"; };
 		643E45512A1330F600687839 /* InstanceChooseAccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceChooseAccountSheet.swift; sourceTree = "<group>"; };
-		643E45532A13314E00687839 /* InstanceErrorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceErrorSheet.swift; sourceTree = "<group>"; };
+		643E45532A13314E00687839 /* LaunchErrorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchErrorSheet.swift; sourceTree = "<group>"; };
 		643E45552A1331B700687839 /* InteractiveStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveStarView.swift; sourceTree = "<group>"; };
 		643E45572A13327900687839 /* InstanceNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNotesView.swift; sourceTree = "<group>"; };
 		643E45592A1332BE00687839 /* InstanceSynopsisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSynopsisView.swift; sourceTree = "<group>"; };
@@ -310,7 +310,6 @@
 				64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */,
 				64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */,
 				649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */,
-				643E45532A13314E00687839 /* InstanceErrorSheet.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -322,6 +321,15 @@
 				643E45622A133A3F00687839 /* InstanceSpecificCommands.swift */,
 			);
 			path = Commands;
+			sourceTree = "<group>";
+		};
+		643E45642A1341A900687839 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				643E45532A13314E00687839 /* LaunchErrorSheet.swift */,
+				643E45512A1330F600687839 /* InstanceChooseAccountSheet.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		644DE1D12937C0D300C4A03E /* Util */ = {
@@ -343,13 +351,13 @@
 				643E45602A13396D00687839 /* Action */,
 				643E45612A1339AD00687839 /* Commands */,
 				643E455D2A1338CC00687839 /* Description */,
+				643E45642A1341A900687839 /* Error */,
 				649762BC2935A2D600977467 /* Create */,
 				64F7C614297D7E320086ABC1 /* Logo */,
-				6459E11A2976E215006DB3A4 /* Preferences */,
 				644FC66D29375852003797D9 /* InstanceNavigationLink.swift */,
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
-				643E45512A1330F600687839 /* InstanceChooseAccountSheet.swift */,
+				6459E11A2976E215006DB3A4 /* Preferences */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -767,7 +775,7 @@
 				64F7C5ED297D63D00086ABC1 /* ArgumentProvider.swift in Sources */,
 				64C334DB2922523600BB8570 /* ContentView.swift in Sources */,
 				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,
-				643E45542A13314E00687839 /* InstanceErrorSheet.swift in Sources */,
+				643E45542A13314E00687839 /* LaunchErrorSheet.swift in Sources */,
 				643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelExecutor.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,

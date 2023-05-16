@@ -17,7 +17,7 @@
 
 import SwiftUI
 
-struct InstanceErrorSheet: View {
+struct LaunchErrorSheet: View {
     @Binding var launchError: LaunchError?
     @Binding var showErrorSheet: Bool
     
