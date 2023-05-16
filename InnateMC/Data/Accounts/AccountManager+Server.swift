@@ -23,25 +23,23 @@ extension AccountManager {
         self.serverThread = .init(label: "server")
         
         self.server["/"] = { request in
-            if let code = request.queryParams.first(where: { $0.0 == "code" })?.1 {
-                if let state = request.queryParams.first(where: { $0.0 == "state" })?.1 {
-                    if let cb = self.stateCallbacks[state] {
-                        DispatchQueue.global().async {
-                            cb(code)
-                        }
-                    } else {
-                        NSLog("Received authentication redirect without callback being present, skipping")
-                        return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
+            if let code = request.queryParams.first(where: { $0.0 == "code" })?.1, let state = request.queryParams.first(where: { $0.0 == "state" })?.1 {
+                if let cb = self.stateCallbacks[state] {
+                    DispatchQueue.global().async {
+                        cb(code)
                     }
                 } else {
+                    logger.warning("Received authentication redirect without callback being present, skipping")
                     return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
                 }
                 DispatchQueue.main.async {
                     WebViewWindow.current?.window?.close()
                     WebViewWindow.current = nil
                 }
+                logger.debug("Received succesful authentication redirect")
                 return HttpResponse.ok(.text("<html><body>You may close this window now</body></html>"))
             } else {
+                logger.error("Missing code/state parameters in request: \(request.queryParams)")
                 return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
             }
         }
@@ -49,8 +47,10 @@ extension AccountManager {
         self.serverThread?.async {
             do {
                 try self.server.start(1989)
+                logger.info("Started authentication redirect handler server on port 1989")
             } catch {
-                NSLog("Error starting redirect handler server - adding microsoft account support is limited")
+                logger.error("Could not start authentication redirect handler server", error: error)
+                logger.error("Adding microsoft accounts support will be limited")
             }
         }
     }

@@ -82,10 +82,12 @@ public class InstanceProcess: ObservableObject  {
             self.process.launch()
             self.process.waitUntilExit()
             DispatchQueue.main.async {
+                logger.debug("Instance \(instance.name) terminated")
                 LauncherData.instance.launchedInstances.removeValue(forKey: instance)
             }
         }
         
+        logger.info("Launching Instance \(instance.name)")
         logMessages.append("InnateMC: Launching Instance \(instance.name)")
     }
 }

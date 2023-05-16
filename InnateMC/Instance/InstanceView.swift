@@ -118,33 +118,31 @@ struct InstanceView: View {
     
     @ViewBuilder
     func createPrelaunchSheet() -> some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text(downloadMessage)
-                    Spacer()
-                }
-                .padding()
-                if indeterminateProgress {
-                    ProgressView()
-                        .progressViewStyle(.linear)
-                } else {
-                    ProgressView(value: progress)
-                }
-                Button(i18n("abort")) {
-                    self.downloadSession?.invalidateAndCancel()
-                    showPreLaunchSheet = false
-                    self.downloadProgress.cancelled = true
-                    self.downloadProgress = TaskProgress(current: 0, total: 1)
-                }
-                .onReceive(downloadProgress.$current, perform: {
-                    progress = Float($0) / Float(downloadProgress.total)
-                })
-                .padding()
+        VStack {
+            HStack {
+                Spacer()
+                Text(downloadMessage)
+                Spacer()
             }
+            .padding()
+            if indeterminateProgress {
+                ProgressView()
+                    .progressViewStyle(.linear)
+            } else {
+                ProgressView(value: progress)
+            }
+            Button(i18n("abort")) {
+                logger.info("Aborting instance launch")
+                self.downloadSession?.invalidateAndCancel()
+                showPreLaunchSheet = false
+                self.downloadProgress.cancelled = true
+                self.downloadProgress = TaskProgress(current: 0, total: 1)
+            }
+            .onReceive(downloadProgress.$current, perform: {
+                progress = Float($0) / Float(downloadProgress.total)
+            })
+            .padding()
         }
-        // TODO: error handling
         .onAppear(perform: {
             onPrelaunchSheetAppear()
         })
@@ -152,17 +150,22 @@ struct InstanceView: View {
     }
     
     func onPrelaunchSheetAppear() {
+        logger.info("Preparing to launch \(self.instance.name)")
         self.indeterminateProgress = false
         self.downloadProgress.cancelled = false
         downloadMessage = i18n("downloading_libs")
+        logger.info("Downloading libraries")
         downloadSession = instance.downloadLibs(progress: downloadProgress) {
             downloadMessage = i18n("downloading_assets")
+            logger.info("Downloading assets")
             downloadSession = instance.downloadAssets(progress: downloadProgress) {
                 downloadMessage = i18n("extracting_natives")
+                logger.info("Extracting natives")
                 downloadProgress.callback = {
                     if !downloadProgress.cancelled {
                         self.indeterminateProgress = true
                         downloadMessage = i18n("authenticating_with_minecraft")
+                        logger.info("Fetching access token")
                         Task(priority: .high) {
                             do {
                                 let accessToken = try await launcherData.accountManager.selectedAccount.createAccessToken()
@@ -196,7 +199,15 @@ struct InstanceView: View {
     @MainActor
     func onPrelaunchError(_ error: LaunchError) {
         if (self.showErrorSheet) {
+            logger.debug("Suppressed error during prelaunch: \(error.localizedDescription)")
+            if let sup = error.suppressed {
+                logger.debug("Cause: \(sup.localizedDescription)")
+            }
             return
+        }
+        logger.error("Caught error during prelaunch", error: error)
+        if let sup = error.suppressed {
+            logger.error("Cause", error: sup)
         }
         self.showPreLaunchSheet = false
         self.showErrorSheet = true

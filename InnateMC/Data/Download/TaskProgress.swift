@@ -39,8 +39,10 @@ open class TaskProgress: ObservableObject {
     open func inc() {
         self.current += 1
         if (self.current == self.total) {
+            logger.debug("Sending download progress callback")
             callback?()
         }
+        logger.trace("Incremented task progress to \(self.current)")
     }
     
     public func intPercent() -> Int {

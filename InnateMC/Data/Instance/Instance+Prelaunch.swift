@@ -37,7 +37,6 @@ extension Instance {
             return lib.getAbsolutePath().path
         }.joined(separator: ":")
         args.append("\(getMcJarPath().path):\(libString)");
-        //        args.append("\(getMcJarPath().path)") // DEBUG
     }
     
     public func extractNatives(progress: TaskProgress) {
@@ -53,6 +52,7 @@ extension Instance {
             }
         }
         ParallelExecutor.run(extractTasks, progress: progress)
+        logger.debug("Extracted \(extractTasks.count) natives")
     }
     
     private static func extractNativesFrom(library input: URL, output: URL) {
@@ -63,7 +63,7 @@ extension Instance {
         
         zip_file = zip_open(inputStr, 0, nil)
         if zip_file == nil {
-            print("Failed to open zip file \(inputStr)")
+            logger.error("Could not open zip file \(inputStr)")
             return
         }
         
@@ -73,6 +73,7 @@ extension Instance {
             zip_stat_index(zip_file!, zip_uint64_t(Int32(i)), 0, &stat)
             
             let filename = String(cString: stat.name!)
+            logger.trace("Reading \(filename) in \(inputStr)")
             if let ext = filename.split(separator: ".").last,
                (ext == "dylib" || ext == "jnilib") {
                 
@@ -80,12 +81,12 @@ extension Instance {
                 
                 file = zip_fopen_index(zip_file!, zip_uint64_t(Int32(i)), 0)
                 if file == nil {
-                    print("Failed to open file \(filename) in zip")
+                    logger.error("Failed to read \(filename) in zip file \(inputStr)")
                     continue
                 }
                 
                 guard let output_file = fopen(output_filename, "wb") else {
-                    print("Failed to create output file \(output_filename)")
+                    logger.error("Failed to write \(filename) in zip file \(inputStr) to \(output_filename)")
                     zip_fclose(file!)
                     continue
                 }

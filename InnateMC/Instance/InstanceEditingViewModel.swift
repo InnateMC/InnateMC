@@ -48,6 +48,7 @@ public class InstanceEditingViewModel: ObservableObject {
                 return
             }
             instance.renameAsync(to: self.name)
+            logger.info("Successfully edited instance \(instance.name)")
         }
     }
 }

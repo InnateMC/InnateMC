@@ -35,10 +35,9 @@ extension DownloadedJavaInstallation {
         }
         do {
             let versions: [DownloadedJavaInstallation] = try decoder.decode([DownloadedJavaInstallation].self, from: data)
+            logger.info("Loaded \(versions.count) downloaded java installations")
             return versions
         } catch {
-            try! FileManager.default.removeItem(at: FileHandler.javaFolder)
-            try! FileManager.default.createDirectory(at: FileHandler.javaFolder, withIntermediateDirectories: true)
             return []
         }
     }

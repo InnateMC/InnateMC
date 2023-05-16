@@ -53,17 +53,18 @@ struct InstanceSpecificCommands: View {
                 self.instanceIsntInEdit = true
             }
             self.instanceIsntSelected = newValue == nil
+            logger.trace("\(selectedInstance?.name ?? "No instance") has been selected")
         }
         .onReceive(LauncherData.instance.$launchedInstances) { value in
             if let selectedInstance = selectedInstance {
-                self.instanceIsntLaunched = !value.contains(where: { $0.0 == self.selectedInstance })
+                self.instanceIsntLaunched = !value.contains(where: { $0.0 == selectedInstance })
             } else {
                 self.instanceIsntLaunched = true
             }
         }
         .onReceive(LauncherData.instance.$editModeInstances) { value in
             if let selectedInstance = selectedInstance {
-                self.instanceIsntInEdit = !value.contains(where: { $0 == self.selectedInstance })
+                self.instanceIsntInEdit = !value.contains(where: { $0 == selectedInstance })
             } else {
                 self.instanceIsntInEdit = true
             }

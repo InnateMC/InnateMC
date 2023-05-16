@@ -44,19 +44,34 @@ public class LauncherData: ObservableObject {
         NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: preferencesWindow, queue: .main) { notification in
             DispatchQueue.global().async {
                 self.globalPreferences.save()
+                logger.debug("Saved preferences")
             }
         }
+        logger.info("Initialized preferences save handler")
     }
     
     init() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                let instances = try Instance.loadInstances()
+                DispatchQueue.main.async {
+                    self.instances = instances
+                }
+                logger.info("Loaded \(instances.count) instances")
+            } catch {
+                logger.error("Could not load instances", error: error)
+            }
+        }
         DispatchQueue.global(qos: .userInteractive).async {
             do {
                 let manifest = try VersionManifest.getOrCreate()
                 DispatchQueue.main.async {
                     self.versionManifest = manifest
                 }
+                logger.info("Downloaded version manifest")
             } catch {
-                NSLog("Error downloading version manifest - Instance creation support is limited")
+                logger.error("Could not download version manifest", error: error)
+                logger.error("Instance creation support is limited")
             }
         }
         DispatchQueue.global().async {
@@ -65,8 +80,10 @@ public class LauncherData: ObservableObject {
                 DispatchQueue.main.async {
                     self.globalPreferences = globalPreferences
                 }
+                logger.info("Loaded preferences")
             } catch {
-                NSLog("Error loading preferences - Using default values")
+                logger.error("Could not load preferences", error: error)
+                logger.error("Using default values")
             }
         }
         DispatchQueue.global().async {
@@ -75,8 +92,10 @@ public class LauncherData: ObservableObject {
                 DispatchQueue.main.async {
                     self.javaInstallations = javaInstallations
                 }
+                logger.info("Loaded saved java runtimes")
             } catch {
-                NSLog("Error loading saved java versions - Java runtime support is limited")
+                logger.error("Could not load saved java runtimes", error: error)
+                logger.error("Instance launch support is limited")
             }
         }
         DispatchQueue.global().async {
@@ -86,11 +105,14 @@ public class LauncherData: ObservableObject {
                     self.accountManager = accountManager
                 }
                 accountManager.setupForAuth()
+                logger.info("Initialized account manager")
             } catch {
-                NSLog("Error loading account manager - Account switching support is limited")
+                logger.error("Could not load account manager", error: error)
+                logger.error("Accounts support is limited")
             }
         }
         LauncherData.currentInstance = self
+        logger.debug("Initialized launcher data")
     }
 }
 

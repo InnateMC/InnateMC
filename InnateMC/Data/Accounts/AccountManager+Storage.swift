@@ -48,6 +48,7 @@ extension AccountManager {
             manager.currentSelected = currentSelected
             manager.accounts = deserializedAccounts
         }
+        logger.debug("Loaded \(manager.accounts.count) accounts")
         
         return manager
     }

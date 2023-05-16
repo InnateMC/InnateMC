@@ -86,3 +86,5 @@
 "new_instance_default" = "New Instance";
 "develop" = "Develop";
 "show_console" = "Show console";
+"show_error_tracker" = "Show error tracker";
+"developer_mode" = "Developer Mode";

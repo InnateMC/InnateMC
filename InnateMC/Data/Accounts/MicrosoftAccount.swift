@@ -39,6 +39,7 @@ struct MicrosoftAccount: MinecraftAccount {
     }
     
     func createAccessToken() async throws -> String {
+        logger.debug("Fetching access token for \(profile.name):\(profile.id)")
         let manager = LauncherData.instance.accountManager
         
         if token.hasExpired() {
@@ -52,7 +53,7 @@ struct MicrosoftAccount: MinecraftAccount {
                     manager.saveThrow()
                 }
             } catch let err as MicrosoftAuthError {
-                NSLog("Error refreshing token - this will lead to undefined results - \(err.localizedDescription)")
+                logger.error("Could not refresh token", error: err)
                 return "nou"
             }
             
@@ -60,8 +61,11 @@ struct MicrosoftAccount: MinecraftAccount {
         }
         
         let xblResponse = try await manager.authenticateWithXBL(msAccessToken: self.token.token)
+        logger.debug("Authenticated with xbox live")
         let xstsResponse: XboxAuthResponse = try await manager.authenticateWithXSTS(xblToken: xblResponse.token)
+        logger.debug("Authenticated with xbox xsts")
         let mcResponse: MinecraftAuthResponse = try await manager.authenticateWithMinecraft(using: .init(xsts: xstsResponse))
+        logger.debug("Authenticated with minecraft")
         return mcResponse.accessToken
     }
 }

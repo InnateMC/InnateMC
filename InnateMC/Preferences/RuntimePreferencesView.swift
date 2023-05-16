@@ -43,6 +43,7 @@ struct RuntimePreferencesView: View {
             }
             .onReceive(launcherData.globalPreferences.runtime.$defaultJava, perform: {
                 self.cachedDefaultJava = $0
+                logger.debug("Default java runtime changed to \($0.javaExecutable)")
             })
             .padding([.leading, .trailing, .top], 16.0)
             .padding(.bottom, 5)
@@ -68,12 +69,17 @@ struct RuntimePreferencesView: View {
                 showFileImporter = true
             }
             .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.unixExecutable, .executable, .exe]) { result in
-                if let url = try? result.get() {
-                    let install: SavedJavaInstallation = .init(javaExecutable: url.path)
-                    install.setupAsNewVersion(launcherData: launcherData)
-                } else {
-                    NSLog("Unknown error importing java runtime")
+                let url: URL
+                do {
+                    url = try result.get()
+                } catch {
+                    logger.error("Error importing java runtime: \(error.localizedDescription)")
+                    return
                 }
+                
+                let install: SavedJavaInstallation = .init(javaExecutable: url.path)
+                install.setupAsNewVersion(launcherData: launcherData)
+                logger.info("Set up java runtime from \(install.javaExecutable)")
             }
         }
     }

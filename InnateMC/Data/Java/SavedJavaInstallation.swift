@@ -50,12 +50,6 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
     }
     
     public func setupAsNewVersion(launcherData: LauncherData) {
-//        if launcherData.javaInstallations
-//            .map({ $0.javaExecutable })
-//            .contains(where: { $0 == self.javaExecutable }) {
-//            return
-//        }
-        
         DispatchQueue.global(qos: .utility).async {
             let process = Process()
             let pipe = Pipe()
@@ -73,7 +67,8 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
                 self.javaVendor = vendor
                 self.javaVersion = version
             } else {
-                print("Unable to extract properties")
+                logger.warning("Unable to extract properties from selected java runtime")
+                logger.warning("Use Java 7 or above to suppress this warning")
             }
             
             DispatchQueue.main.async {
@@ -84,7 +79,7 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
                 do {
                     try launcherData.javaInstallations.save()
                 } catch {
-                    NSLog("Error saving java versions")
+                    logger.error("Could not save java runtime index", error: error)
                 }
             }
         }

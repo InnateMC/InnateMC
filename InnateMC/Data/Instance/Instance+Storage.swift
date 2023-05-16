@@ -52,6 +52,7 @@ extension Instance {
             }
             let instance = try Instance.loadFromDirectory(url)
             instances.append(instance)
+            logger.debug("Loaded instance \(instance.name)")
         }
         return instances
     }
@@ -64,22 +65,25 @@ extension Instance {
         let instancePath = getPath()
         let fm = FileManager.default
         if fm.fileExists(atPath: instancePath.path) {
+            logger.notice("Instance already exists at path, overwriting")
             try fm.removeItem(at: instancePath)
         }
         try fm.createDirectory(at: instancePath, withIntermediateDirectories: true)
         try FileHandler.saveData(instancePath.appendingPathComponent("Instance.plist"), serialize())
+        logger.info("Successfully created new instance \(self.name)")
     }
     
     public func delete() {
         do {
             try FileManager.default.removeItem(at: getPath())
+            logger.info("Successfully deleted instance \(self.name)")
         } catch {
-            // no-op
-            // TODO: handle error
+            logger.error("Error deleting instance \(self.name)", error: error)
         }
     }
     
     public func renameAsync(to newName: String) {
+        let oldName = self.name
         DispatchQueue.global(qos: .userInteractive).async {
             // TODO: handle the errors
             let original = self.getPath()
@@ -89,6 +93,7 @@ extension Instance {
                 DispatchQueue.global(qos: .userInteractive).async {
                     try! FileManager.default.removeItem(at: original)
                 }
+                logger.info("Successfully renamed instance \(oldName) to \(newName)")
             }
         }
     }

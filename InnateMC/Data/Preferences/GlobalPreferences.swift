@@ -42,9 +42,7 @@ extension GlobalPreferences {
             let data = try encoder.encode(self)
             try FileHandler.saveData(GlobalPreferences.filePath, data)
         } catch {
-            print("Error serializing config: \(error.localizedDescription)")
-            // TODO: warn
-            // no-op
+            logger.error("Could not serialize preferences")
         }
     }
 }

@@ -47,6 +47,7 @@ public class VanillaInstanceCreator: InstanceCreator {
             instance.setStartOnFirstThread()
         }
         try instance.createAsNewInstance()
+        logger.info("Successfully created vanilla instance \(self.name)")
         
         return instance
     }

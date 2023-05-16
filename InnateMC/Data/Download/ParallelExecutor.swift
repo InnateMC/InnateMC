@@ -22,6 +22,7 @@ public class ParallelExecutor {
     public static func run(_ tasks: [() -> Void], progress: TaskProgress) {
         progress.current = 0
         progress.total = tasks.count
+        logger.debug("Executing \(tasks.count) tasks")
         for task in tasks {
             Task(priority: .medium) {
                 task()

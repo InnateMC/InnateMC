@@ -17,6 +17,7 @@
 
 import SwiftUI
 import WebKit
+import os
 
 @main
 struct InnateMCApp: App {
@@ -41,6 +42,14 @@ struct InnateMCApp: App {
     }
 }
 
+public let logger = Logger()
+
 func i18n(_ str: String) -> LocalizedStringKey {
     return LocalizedStringKey(str)
+}
+
+public extension Logger {
+    func error(_ message: String, error: Error) {
+        self.error("\(message): \(error.localizedDescription)")
+    }
 }

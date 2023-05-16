@@ -47,6 +47,10 @@ class MicrosoftAccountViewModel: ObservableObject {
         self.message = i18n("authenticating_with_xbox_xsts")
     }
     
+    @MainActor func setAuthWithMinecraft() {
+        self.message = i18n("authenticating_with_minecraft")
+    }
+    
     @MainActor func setFetchingProfile() {
         self.message = i18n("fetching_profile")
     }

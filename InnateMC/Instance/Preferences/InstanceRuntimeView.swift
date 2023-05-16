@@ -57,6 +57,7 @@ struct InstanceRuntimeView: View {
             instance.preferences.runtime.defaultJava = newValue
         })
         .onReceive(instance.preferences.runtime.$valid) {
+            logger.debug("Changed runtime preferences validity for \(instance.name) to \($0)")
             if !$0 && valid {
                 instance.preferences.runtime = .init(launcherData.globalPreferences.runtime).invalidate()
                 selectedJava = launcherData.globalPreferences.runtime.defaultJava

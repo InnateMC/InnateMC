@@ -38,8 +38,9 @@ struct InstanceDuplicationSheet: View {
                     DispatchQueue.global(qos: .userInteractive).async {
                         do {
                             try newInstance.createAsNewInstance()
+                            logger.info("Successfully duplicated instance")
                         } catch {
-                            NSLog("Error duplicating instance")
+                            logger.error("Successfully duplicated instance \(newName)", error: error)
                         }
                     }
                     self.launcherData.instances.append(newInstance)
@@ -53,7 +54,7 @@ struct InstanceDuplicationSheet: View {
             }
         }
         .onAppear {
-            self.newName = "Copy of \(instance.name)"
+            self.newName = "Copy of \(instance.name)" // TODO: localize
         }
     }
 }

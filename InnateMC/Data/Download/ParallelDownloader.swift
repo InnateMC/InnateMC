@@ -20,6 +20,7 @@ import CryptoKit
 
 public struct ParallelDownloader {
     public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (LaunchError) -> Void) -> URLSession {
+        logger.debug("Downloading \(tasks.count) items")
         progress.current = 0
         progress.total = tasks.count
         let config = URLSessionConfiguration.default
@@ -96,6 +97,7 @@ public struct ParallelDownloader {
         
         downloadGroup.notify(queue: .main) {
             DispatchQueue.main.async {
+                logger.debug("Successfully downloaded \(tasks.count) items")
                 onFinish()
             }
         }
