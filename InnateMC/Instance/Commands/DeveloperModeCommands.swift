@@ -46,9 +46,6 @@ struct DeveloperModeCommands: Commands {
                         try! await workspace.openApplication(at: consoleURL, configuration: config)
                     }
                 }
-                Button(i18n("show_error_tracker")) {
-                    
-                }
             }
         }
     }
@@ -67,9 +64,6 @@ struct DeveloperModeCommands: Commands {
                     Task {
                         try! await workspace.openApplication(at: consoleURL, configuration: config)
                     }
-                }
-                Button(i18n("show_error_tracker")) {
-                    
                 }
             }
         }
