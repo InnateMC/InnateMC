@@ -70,6 +70,9 @@ public class InstanceProcess: ObservableObject  {
             guard let line = String(data: pipe.availableData, encoding: .utf8)?.trimmingCharacters(in: .newlines) else {
                 return
             }
+            if line.trimmingCharacters(in: .whitespaces).isEmpty {
+                return
+            }
             DispatchQueue.main.async {
                 self?.logMessages.append(line)
             }

@@ -19,7 +19,7 @@ import Foundation
 import CryptoKit
 
 public struct ParallelDownloader {
-    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (ParallelDownloadError) -> Void) -> URLSession {
+    public static func download(_ tasks: [DownloadTask], progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (LaunchError) -> Void) -> URLSession {
         progress.current = 0
         progress.total = tasks.count
         let config = URLSessionConfiguration.default
@@ -54,7 +54,7 @@ public struct ParallelDownloader {
                     if error != nil {
                         session.invalidateAndCancel()
                         DispatchQueue.main.async {
-                            onError(ParallelDownloadError.downloadFailed(errorKey: "error_downloading"))
+                            onError(LaunchError.errorDownloading(error: error))
                         }
                         downloadGroup.leave()
                         return
@@ -62,25 +62,27 @@ public struct ParallelDownloader {
                         do {
                             // Verify sha hash
                             if !checkHash(path: tempUrl, expected: task.sha1) {
-                                throw ParallelDownloadError.downloadFailed(errorKey: "invalid_sha_hash_error")
+                                throw LaunchError.invalidShaHash(error: nil)
                             }
                             let fileManager = FileManager.default
                             if !fileExists {
                                 try fileManager.createDirectory(at: destinationUrl.deletingLastPathComponent(), withIntermediateDirectories: true)
-                                try fileManager.moveItem(at: tempUrl, to: destinationUrl)
+                                if !FileManager.default.fileExists(atPath: destinationUrl.path) {
+                                    try fileManager.moveItem(at: tempUrl, to: destinationUrl)
+                                }
                             }
                             DispatchQueue.main.async {
                                 progress.inc()
                             }
                         } catch {
                             session.invalidateAndCancel()
-                            if let error = error as? ParallelDownloadError {
+                            if let error = error as? LaunchError {
                                 DispatchQueue.main.async {
                                     onError(error)
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    onError(ParallelDownloadError.downloadFailed(errorKey: "error_unknown_download"))
+                                    onError(LaunchError.unknownError(error: error))
                                 }
                             }
                         }
@@ -123,8 +125,4 @@ public struct ParallelDownloader {
             return true
         }
     }
-}
-
-public enum ParallelDownloadError: Error {
-    case downloadFailed(errorKey: String)
 }

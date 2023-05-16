@@ -40,7 +40,7 @@ struct InstanceNavigationLink: View {
                     }
                     
                     ZStack {
-                        if launcherData.launchedInstances.keys.contains(self.instance) {
+                        if launcherData.launchedInstances.contains(where: { $0.0 == self.instance }) {
                             Image(systemName: "arrowtriangle.right.circle.fill")
                                 .foregroundColor(.green)
                                 .frame(width: 8, height: 8)

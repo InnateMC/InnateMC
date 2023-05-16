@@ -17,6 +17,7 @@
 		641678572923B7220012C9CC /* ConsolePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678562923B7220012C9CC /* ConsolePreferencesView.swift */; };
 		641678592923B7330012C9CC /* MiscPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641678582923B7330012C9CC /* MiscPreferencesView.swift */; };
 		64373BA329C0A430001DBD4C /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64373BA229C0A430001DBD4C /* InstanceTests.swift */; };
+		643E454C2A1291CC00687839 /* LaunchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E454B2A1291CC00687839 /* LaunchError.swift */; };
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
@@ -141,6 +142,7 @@
 		641678562923B7220012C9CC /* ConsolePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePreferencesView.swift; sourceTree = "<group>"; };
 		641678582923B7330012C9CC /* MiscPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscPreferencesView.swift; sourceTree = "<group>"; };
 		64373BA229C0A430001DBD4C /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
+		643E454B2A1291CC00687839 /* LaunchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchError.swift; sourceTree = "<group>"; };
 		644DE1D32937C93600C4A03E /* InstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceView.swift; sourceTree = "<group>"; };
 		644FC66D29375852003797D9 /* InstanceNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceNavigationLink.swift; sourceTree = "<group>"; };
 		644FC6712937B243003797D9 /* UiPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiPreferencesView.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				64F7C5F6297D645A0086ABC1 /* ParallelExecutor.swift */,
 				6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */,
 				6472E47129E2C35200B4C65B /* DownloadTask.swift */,
+				643E454B2A1291CC00687839 /* LaunchError.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				6484458A2A10F69600049986 /* AccountManager+Storage.swift in Sources */,
 				64A5151C29E2DFAD00AFE3AE /* Instance+Storage.swift in Sources */,
+				643E454C2A1291CC00687839 /* LaunchError.swift in Sources */,
 				648445802A10D44A00049986 /* MinecraftTokenResponse.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,

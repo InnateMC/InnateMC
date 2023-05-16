@@ -24,14 +24,13 @@ struct InstanceView: View {
     @State var starHovered: Bool = false
     @State var logoHovered: Bool = false
     @State var showLogoSheet: Bool = false
-    @State var launchedInstances: [Instance:InstanceProcess]? = nil
     @StateObject var editingViewModel = InstanceEditingViewModel()
     @State var showNoNamePopover: Bool = false
     @State var showDuplicatePopover: Bool = false
     @State var showErrorSheet: Bool = false
     @State var showPreLaunchSheet: Bool = false
     @State var showChooseAccountSheet: Bool = false
-    @State var errorMessageKey: LocalizedStringKey = i18n("rickroll_1")
+    @State var launchError: LaunchError? = nil
     @State var downloadSession: URLSession? = nil
     @State var downloadMessage: LocalizedStringKey = i18n("downloading_libs")
     @State var downloadProgress: TaskProgress = TaskProgress(current: 0, total: 1)
@@ -125,7 +124,6 @@ struct InstanceView: View {
             .sheet(isPresented: $showPreLaunchSheet, content: createPrelaunchSheet)
             .sheet(isPresented: $showChooseAccountSheet, content: createChooseAccountSheet)
             .onReceive(launcherData.$launchedInstances) { value in
-                launchedInstances = value
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
             }
             .onReceive(launcherData.$launchRequestedInstances) { value in
@@ -149,7 +147,6 @@ struct InstanceView: View {
             .onReceive(launcherData.$killRequestedInstances) { value in
                 if value.contains(where: { $0 == self.instance})  {
                     kill(launchedInstanceProcess!.process.processIdentifier, SIGKILL)
-                    launcherData.launchedInstances.removeValue(forKey: instance)
                     launcherData.killRequestedInstances.removeAll(where: { $0 == self.instance })
                 }
             }
@@ -247,7 +244,14 @@ struct InstanceView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Text(self.errorMessageKey)
+                    VStack {
+                        if let launchError = self.launchError {
+                            Text(launchError.localizedDescription)
+                            if let err = launchError.suppressed {
+                                Text(err.localizedDescription)
+                            }
+                        }
+                    }
                     Spacer()
                 }
                 .padding()
@@ -344,7 +348,7 @@ struct InstanceView: View {
                                 }
                             } catch {
                                 DispatchQueue.main.async {
-                                    onPrelaunchError(.downloadFailed(errorKey: "error_fetching_access_token"))
+                                    onPrelaunchError(.accessTokenFetchError(error: error))
                                 }
                             }
                         }
@@ -362,18 +366,14 @@ struct InstanceView: View {
     }
     
     @MainActor
-    func onPrelaunchError(_ error: ParallelDownloadError) {
-        if (showErrorSheet) {
+    func onPrelaunchError(_ error: LaunchError) {
+        if (self.showErrorSheet) {
             return
         }
-        showPreLaunchSheet = false
-        showErrorSheet = true
-        downloadProgress.cancelled = true
-        switch(error) {
-        case .downloadFailed(let errorKey):
-            errorMessageKey = LocalizedStringKey(errorKey)
-            break
-        }
+        self.showPreLaunchSheet = false
+        self.showErrorSheet = true
+        self.downloadProgress.cancelled = true
+        self.launchError = error
     }
     
     @ViewBuilder
