@@ -6,13 +6,6 @@ body:
   attributes:
     value: |
       ## Feature Request
-- type: input
-  attributes:
-    label: Feature Request
-    description: What feature do you want?
-    placeholder: PearOS version
-  validations:
-    required: true
 - type: textarea
   attributes:
-    label: Additional Context
+    label: Describe the feature and provide any additional context
