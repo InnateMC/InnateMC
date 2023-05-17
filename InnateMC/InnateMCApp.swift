@@ -42,7 +42,7 @@ struct InnateMCApp: App {
     }
 }
 
-public let logger = Logger()
+public let logger = Logger(subsystem: "global", category: "InnateMC")
 
 func i18n(_ str: String) -> LocalizedStringKey {
     return LocalizedStringKey(str)

@@ -62,15 +62,15 @@ public class LauncherData: ObservableObject {
                 logger.error("Could not load instances", error: error)
             }
         }
-        DispatchQueue.global(qos: .userInteractive).async {
+        Task(priority: .high) {
             do {
-                let manifest = try VersionManifest.getOrCreate()
+                let manifest = try await VersionManifest.getOrCreate()
                 DispatchQueue.main.async {
                     self.versionManifest = manifest
                 }
-                logger.info("Downloaded version manifest")
+                logger.info("Loaded version manifest")
             } catch {
-                logger.error("Could not download version manifest", error: error)
+                logger.error("Could not load version manifest", error: error)
                 logger.error("Instance creation support is limited")
             }
         }

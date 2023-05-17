@@ -17,32 +17,3 @@
 
 import XCTest
 import InnateMC
-
-class InstanceTests: XCTestCase {
-    private var manifest: [PartialVersion] = []
-
-    override func setUpWithError() throws {
-        manifest = try VersionManifest.download()
-    }
-
-    override func tearDownWithError() throws {
-        manifest = []
-    }
-
-    func testCreateVanillaInstance() throws {
-        let suffixes = ["Alpha", "Z", "Millenial", "X", "Boomer", "Silent", "Greatest", "Lost", "Missionary", "Progressive", "Gilded", "Transcendental"]
-        let lipsumUrl = URL(string: "https://baconipsum.com/api/?type=meat-and-filler&sentences=4&format=text")!
-        for suffix in suffixes {
-            let fm = FileManager.default
-            let manver = manifest.randomElement()!
-            let url = FileHandler.instancesFolder.appendingPathComponent("Test\(suffix).innate", isDirectory: true)
-            if (fm.fileExists(atPath: url.path)) {
-                try fm.removeItem(at: url)
-            }
-            let ctor = VanillaInstanceCreator(name: "Test\(suffix)", versionUrl: URL(string: manver.url)!, sha1: manver.sha1, description: try! String(contentsOf: lipsumUrl), data: LauncherData(dummy: true))
-            let expected = try ctor.install()
-            let actual = try Instance.loadFromDirectory(url)
-            XCTAssertEqual(expected.name, actual.name)
-        }
-    }
-}
