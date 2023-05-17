@@ -50,7 +50,13 @@ extension Instance {
             if !url.lastPathComponent.hasSuffix(".innate") {
                 continue
             }
-            let instance = try Instance.loadFromDirectory(url)
+            let instance: Instance
+            do {
+                instance = try Instance.loadFromDirectory(url)
+            } catch {
+                logger.error("Error loading instance at \(url.path)", error: error)
+                continue
+            }
             instances.append(instance)
             logger.debug("Loaded instance \(instance.name)")
         }
