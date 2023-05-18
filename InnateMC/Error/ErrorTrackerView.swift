@@ -27,7 +27,6 @@ struct ErrorTrackerView: View {
             ForEach(errorTracker.errors, id: \.counter) { entry in
                 HStack {
                     entry.type.icon
-                        .frame(width: 48, height: 48)
                     
                     VStack {
                         HStack {

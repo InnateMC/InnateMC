@@ -29,14 +29,22 @@ enum TrackedErrorType {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundColor(.yellow)
+                .frame(width: 48, height: 48)
         case .error:
-            Image(systemName: "xmark.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .foregroundColor(.red)
+            ZStack {
+                Image(systemName: "square.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.white)
+                    .frame(width: 32, height: 32)
+                Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.red)
+                    .frame(width: 48, height: 48)
+            }
+            .frame(width: 48, height: 48)
         }
     }
 }
