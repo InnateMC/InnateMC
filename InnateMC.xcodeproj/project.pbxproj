@@ -36,6 +36,11 @@
 		646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E52977EA0300BA9477 /* SFSymbolsList.swift */; };
 		6472E47029E2BF5F00B4C65B /* ParallelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */; };
 		6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6472E47129E2C35200B4C65B /* DownloadTask.swift */; };
+		6474DC1C2A150D36001FCD4D /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC1B2A150D35001FCD4D /* ErrorTracker.swift */; };
+		6474DC1E2A150D63001FCD4D /* ErrorTrackerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC1D2A150D63001FCD4D /* ErrorTrackerEntry.swift */; };
+		6474DC202A150D77001FCD4D /* TrackedErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC1F2A150D77001FCD4D /* TrackedErrorType.swift */; };
+		6474DC242A15F952001FCD4D /* ErrorTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC232A15F952001FCD4D /* ErrorTrackerView.swift */; };
+		6474DC262A15FB83001FCD4D /* ErrorTrackerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC252A15FB83001FCD4D /* ErrorTrackerWindowController.swift */; };
 		647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */ = {isa = PBXBuildFile; fileRef = 647A796729E7E77D00497CE1 /* libzip.5.5-license.md */; };
 		647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A796929E8166600497CE1 /* ConsoleTextView.swift */; };
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
@@ -170,6 +175,11 @@
 		646139E52977EA0300BA9477 /* SFSymbolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsList.swift; sourceTree = "<group>"; };
 		6472E46F29E2BF5F00B4C65B /* ParallelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelDownloader.swift; sourceTree = "<group>"; };
 		6472E47129E2C35200B4C65B /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		6474DC1B2A150D35001FCD4D /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		6474DC1D2A150D63001FCD4D /* ErrorTrackerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTrackerEntry.swift; sourceTree = "<group>"; };
+		6474DC1F2A150D77001FCD4D /* TrackedErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedErrorType.swift; sourceTree = "<group>"; };
+		6474DC232A15F952001FCD4D /* ErrorTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTrackerView.swift; sourceTree = "<group>"; };
+		6474DC252A15FB83001FCD4D /* ErrorTrackerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTrackerWindowController.swift; sourceTree = "<group>"; };
 		647A796729E7E77D00497CE1 /* libzip.5.5-license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libzip.5.5-license.md"; sourceTree = "<group>"; };
 		647A796929E8166600497CE1 /* ConsoleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleTextView.swift; sourceTree = "<group>"; };
 		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
@@ -376,6 +386,18 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		6474DC1A2A150D13001FCD4D /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				6474DC1B2A150D35001FCD4D /* ErrorTracker.swift */,
+				6474DC1D2A150D63001FCD4D /* ErrorTrackerEntry.swift */,
+				6474DC1F2A150D77001FCD4D /* TrackedErrorType.swift */,
+				6474DC232A15F952001FCD4D /* ErrorTrackerView.swift */,
+				6474DC252A15FB83001FCD4D /* ErrorTrackerWindowController.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		64821E0829E44B4E006012F7 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +508,7 @@
 				64F7C5EA297D63800086ABC1 /* Data */,
 				644DE1D22937C13F00C4A03E /* Instance */,
 				6416784F2923B6450012C9CC /* Preferences */,
+				6474DC1A2A150D13001FCD4D /* Error */,
 				644DE1D12937C0D300C4A03E /* Util */,
 				640DC1EC2934EC2300943213 /* AppDelegate.swift */,
 				64C334DA2922523600BB8570 /* ContentView.swift */,
@@ -745,6 +768,7 @@
 				64CE1092297864A700366372 /* ImageLogoPickerView.swift in Sources */,
 				64A5151029E2DEE900AFE3AE /* Library.swift in Sources */,
 				64F7C60B297D65390086ABC1 /* LinkedJavaInstallation.swift in Sources */,
+				6474DC262A15FB83001FCD4D /* ErrorTrackerWindowController.swift in Sources */,
 				64F7C5F5297D64490086ABC1 /* FileHandler.swift in Sources */,
 				64A5151629E2DF2300AFE3AE /* InstanceLogo.swift in Sources */,
 				64F7C602297D64CA0086ABC1 /* InstancePreferences.swift in Sources */,
@@ -755,6 +779,7 @@
 				6484457C2A10D03200049986 /* XboxAuthResponse.swift in Sources */,
 				64FA2A942A0F767F0042A4A7 /* WebViewWindow.swift in Sources */,
 				64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */,
+				6474DC1C2A150D36001FCD4D /* ErrorTracker.swift in Sources */,
 				644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */,
 				6484458A2A10F69600049986 /* AccountManager+Storage.swift in Sources */,
 				64A5151C29E2DFAD00AFE3AE /* Instance+Storage.swift in Sources */,
@@ -766,6 +791,7 @@
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
 				64F7C5F9297D646C0086ABC1 /* Version.swift in Sources */,
 				64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */,
+				6474DC1E2A150D63001FCD4D /* ErrorTrackerEntry.swift in Sources */,
 				6472E47229E2C35200B4C65B /* DownloadTask.swift in Sources */,
 				648445842A10D69F00049986 /* Dictionary+Encoding.swift in Sources */,
 				649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */,
@@ -784,6 +810,7 @@
 				64E1F8C72A0FBB31006D68B6 /* MicrosoftAccessToken.swift in Sources */,
 				643E45542A13314E00687839 /* LaunchErrorSheet.swift in Sources */,
 				643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */,
+				6474DC202A150D77001FCD4D /* TrackedErrorType.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelExecutor.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */,
@@ -830,6 +857,7 @@
 				64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */,
 				643E45632A133A3F00687839 /* InstanceSpecificCommands.swift in Sources */,
 				64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */,
+				6474DC242A15F952001FCD4D /* ErrorTrackerView.swift in Sources */,
 				643E45562A1331B700687839 /* InteractiveStarView.swift in Sources */,
 				643E45662A13A61000687839 /* MiscPreferencesView.swift in Sources */,
 				649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */,
