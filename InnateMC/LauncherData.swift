@@ -104,12 +104,12 @@ public class LauncherData: ObservableObject {
                 DispatchQueue.main.async {
                     self.accountManager = accountManager
                 }
-                accountManager.setupForAuth()
                 logger.info("Initialized account manager")
             } catch {
                 logger.error("Could not load account manager", error: error)
                 logger.error("Accounts support is limited")
             }
+            self.accountManager.setupForAuth()
         }
         LauncherData.currentInstance = self
         logger.debug("Initialized launcher data")
