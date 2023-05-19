@@ -20,8 +20,6 @@ import Combine
 
 extension AccountManager {
     public func setupMicrosoftAccount(code: String) {
-        print("your face is \(code)")
-        
         guard let msAccountViewModel = self.msAccountViewModel else {
             return
         }

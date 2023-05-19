@@ -200,14 +200,16 @@ struct InstanceView: View {
     func onPrelaunchError(_ error: LaunchError) {
         if (self.showErrorSheet) {
             logger.debug("Suppressed error during prelaunch: \(error.localizedDescription)")
-            if let sup = error.suppressed {
+            if let sup = error.cause {
                 logger.debug("Cause: \(sup.localizedDescription)")
             }
             return
         }
         logger.error("Caught error during prelaunch", error: error)
-        if let sup = error.suppressed {
-            logger.error("Cause", error: sup)
+        ErrorTracker.instance.error(error: error, description: "Caught error during prelaunch")
+        if let cause = error.cause {
+            logger.error("Cause", error: cause)
+            ErrorTracker.instance.error(error: error, description: "Causative error during prelaunch")
         }
         self.showPreLaunchSheet = false
         self.showErrorSheet = true

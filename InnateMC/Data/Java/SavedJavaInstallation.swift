@@ -80,6 +80,7 @@ public class SavedJavaInstallation: Codable, Identifiable, ObservableObject {
                     try launcherData.javaInstallations.save()
                 } catch {
                     logger.error("Could not save java runtime index", error: error)
+                    ErrorTracker.instance.error(error: error, description: "Could not save java runtime index")
                 }
             }
         }

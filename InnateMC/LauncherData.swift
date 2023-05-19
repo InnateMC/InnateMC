@@ -60,6 +60,7 @@ public class LauncherData: ObservableObject {
                 logger.info("Loaded \(instances.count) instances")
             } catch {
                 logger.error("Could not load instances", error: error)
+                ErrorTracker.instance.error(error: error, description: "Could not load instances")
             }
         }
         Task(priority: .high) {
@@ -72,6 +73,7 @@ public class LauncherData: ObservableObject {
             } catch {
                 logger.error("Could not load version manifest", error: error)
                 logger.error("Instance creation support is limited")
+                ErrorTracker.instance.error(error: error, description: "Could not load version manifest")
             }
         }
         DispatchQueue.global().async {
@@ -84,6 +86,7 @@ public class LauncherData: ObservableObject {
             } catch {
                 logger.error("Could not load preferences", error: error)
                 logger.error("Using default values")
+                ErrorTracker.instance.error(error: error, description: "Could not load preferences")
             }
         }
         DispatchQueue.global().async {
@@ -96,6 +99,7 @@ public class LauncherData: ObservableObject {
             } catch {
                 logger.error("Could not load saved java runtimes", error: error)
                 logger.error("Instance launch support is limited")
+                ErrorTracker.instance.error(error: error, description: "Could not load saved java runtimes")
             }
         }
         DispatchQueue.global().async {
@@ -109,6 +113,7 @@ public class LauncherData: ObservableObject {
             } catch {
                 logger.error("Could not load account manager", error: error)
                 logger.error("Accounts support is limited")
+                ErrorTracker.instance.error(error: error, description: "Could not load account manager")
             }
         }
         LauncherData.currentInstance = self

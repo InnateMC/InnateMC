@@ -55,6 +55,7 @@ extension Instance {
                 instance = try Instance.loadFromDirectory(url)
             } catch {
                 logger.error("Error loading instance at \(url.path)", error: error)
+                ErrorTracker.instance.error(error: error, description: "Error loading instance at \(url.path)")
                 continue
             }
             instances.append(instance)
@@ -85,6 +86,7 @@ extension Instance {
             logger.info("Successfully deleted instance \(self.name)")
         } catch {
             logger.error("Error deleting instance \(self.name)", error: error)
+            ErrorTracker.instance.error(error: error, description: "Error deleting instance \(self.name)")
         }
     }
     
@@ -93,11 +95,22 @@ extension Instance {
         DispatchQueue.global(qos: .userInteractive).async {
             // TODO: handle the errors
             let original = self.getPath()
-            try! FileManager.default.copyItem(at: original, to: Instance.getInstancePath(for: newName))
+            do {
+                try FileManager.default.copyItem(at: original, to: Instance.getInstancePath(for: newName))
+            } catch {
+                logger.error("Error copying instance \(self.name) during rename", error: error)
+                ErrorTracker.instance.error(error: error, description: "Error copying instance \(self.name) during rename")
+                return
+            }
             DispatchQueue.main.async {
                 self.name = newName
                 DispatchQueue.global(qos: .userInteractive).async {
-                    try! FileManager.default.removeItem(at: original)
+                    do {
+                        try FileManager.default.removeItem(at: original)
+                    } catch {
+                        logger.error("Error deleting old instance \(self.name) during rename", error: error)
+                        ErrorTracker.instance.error(error: error, description: "Error deleting old instance \(self.name) during rename")
+                    }
                 }
                 logger.info("Successfully renamed instance \(oldName) to \(newName)")
             }

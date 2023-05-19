@@ -88,3 +88,7 @@
 "show_console" = "Show console";
 "show_error_tracker" = "Show error tracker";
 "developer_mode" = "Developer Mode";
+"error_during_microsoft_add" = "Caught error while adding microsoft account";
+"error_refreshing_token" = "Could not refresh microsoft account token";
+"error_tracker" = "Error Tracker";
+"errors" = "Errors";

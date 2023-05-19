@@ -24,6 +24,7 @@ class MicrosoftAccountViewModel: ObservableObject {
     @Published var error: MicrosoftAuthError = .noError
     
     @MainActor func error(_ error: MicrosoftAuthError) {
+        ErrorTracker.instance.error(error: error, description: NSLocalizedString("error_during_microsoft_add", comment: "Caught error while adding microsoft account"))
         self.error = error
     }
     

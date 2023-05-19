@@ -36,17 +36,25 @@ struct DeveloperModeCommands: Commands {
     func getOldCommands() -> some Commands {
         CommandMenu(i18n("develop")) {
             if developerMode {
-                Button(i18n("show_console")) {
-                    let workspace = NSWorkspace.shared
-                    let consoleURL = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app")
-                    let appURL = Bundle.main.bundleURL
-                    let config: NSWorkspace.OpenConfiguration = .init()
-                    config.arguments = [appURL.path]
-                    Task {
-                        try! await workspace.openApplication(at: consoleURL, configuration: config)
-                    }
-                }
+                createView()
             }
+        }
+    }
+    
+    @ViewBuilder
+    func createView() -> some View {
+        Button(i18n("show_console")) {
+            let workspace = NSWorkspace.shared
+            let consoleURL = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app")
+            let appURL = Bundle.main.bundleURL
+            let config: NSWorkspace.OpenConfiguration = .init()
+            config.arguments = [appURL.path]
+            Task {
+                try! await workspace.openApplication(at: consoleURL, configuration: config)
+            }
+        }
+        Button(i18n("error_tracker")) {
+            ErrorTracker.instance.showWindow()
         }
     }
     
@@ -55,16 +63,7 @@ struct DeveloperModeCommands: Commands {
     func getNewCommands() -> some Commands {
         if developerMode {
             CommandMenu(i18n("develop")) {
-                Button(i18n("show_console")) {
-                    let workspace = NSWorkspace.shared
-                    let consoleURL = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app")
-                    let appURL = Bundle.main.bundleURL
-                    let config: NSWorkspace.OpenConfiguration = .init()
-                    config.arguments = [appURL.path]
-                    Task {
-                        try! await workspace.openApplication(at: consoleURL, configuration: config)
-                    }
-                }
+                createView()
             }
         }
     }

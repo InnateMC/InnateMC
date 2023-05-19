@@ -18,11 +18,18 @@
 import Cocoa
 
 public class ErrorTracker: ObservableObject {
-    static let instance: ErrorTracker = .init()
+    static var instance: ErrorTracker = .init()
     @Published var errors: [ErrorTrackerEntry] = []
-    private let windowController: ErrorTrackerWindowController = .init()
+    private var windowController: ErrorTrackerWindowController {
+        if let windowControllerTemp = windowControllerTemp {
+            return windowControllerTemp
+        }
+        self.windowControllerTemp = .init()
+        return self.windowControllerTemp!
+    }
+    private var windowControllerTemp: ErrorTrackerWindowController? = nil
     
-    func error(error: Error, description: String) {
+    func error(error: Error? = nil, description: String) {
         self.errors.append(ErrorTrackerEntry(type: .error, description: description, error: error, timestamp: CFAbsoluteTime()))
     }
     
@@ -31,8 +38,6 @@ public class ErrorTracker: ObservableObject {
     }
     
     func showWindow() {
-        windowController.showWindow(nil)
-        windowController.window?.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        windowController.showWindow(InnateMCApp.self)
     }
 }

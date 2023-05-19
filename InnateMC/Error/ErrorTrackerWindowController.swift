@@ -20,14 +20,14 @@ import SwiftUI
 
 class ErrorTrackerWindowController: NSWindowController {
     override func windowDidLoad() {
-        super.windowDidLoad()
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-                              styleMask: [.titled, .closable, .resizable],
-                              backing: .buffered, defer: false)
+        window?.center()
+        window?.makeKeyAndOrderFront(nil)
+    }
+    
+    convenience init() {
+        let window: NSWindow = .init(contentRect: NSRect(x: 0, y: 0, width: 400, height: 600), styleMask: [.titled, .resizable, .closable], backing: .buffered, defer: false)
         window.contentView = NSHostingView(rootView: ErrorTrackerView(errorTracker: ErrorTracker.instance))
         window.title = NSLocalizedString("errors", comment: "Errors")
-        window.center()
-        window.makeKeyAndOrderFront(nil)
-        self.window = window
+        self.init(window: window)
     }
 }

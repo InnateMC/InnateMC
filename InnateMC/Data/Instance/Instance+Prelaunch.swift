@@ -82,11 +82,13 @@ extension Instance {
                 file = zip_fopen_index(zip_file!, zip_uint64_t(Int32(i)), 0)
                 if file == nil {
                     logger.error("Failed to read \(filename) in zip file \(inputStr)")
+                    ErrorTracker.instance.error(description: "Failed to read \(filename) in zip file \(inputStr)")
                     continue
                 }
                 
                 guard let output_file = fopen(output_filename, "wb") else {
                     logger.error("Failed to write \(filename) in zip file \(inputStr) to \(output_filename)")
+                    ErrorTracker.instance.error(description: "Failed to write \(filename) in zip file \(inputStr) to \(output_filename)")
                     zip_fclose(file!)
                     continue
                 }

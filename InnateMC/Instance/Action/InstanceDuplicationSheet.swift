@@ -40,7 +40,8 @@ struct InstanceDuplicationSheet: View {
                             try newInstance.createAsNewInstance()
                             logger.info("Successfully duplicated instance")
                         } catch {
-                            logger.error("Successfully duplicated instance \(newName)", error: error)
+                            logger.error("Could not duplicate instance \(newName)", error: error)
+                            ErrorTracker.instance.error(error: error, description: "Could not duplicate instance \(newName)")
                         }
                     }
                     self.launcherData.instances.append(newInstance)

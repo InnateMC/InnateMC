@@ -40,6 +40,7 @@ public class VersionManifest {
             data = try await URLSession.shared.data(from: url).0
         } catch {
             logger.error("Could not download version manifest", error: error)
+            ErrorTracker.instance.error(error: error, description: "Could not download version manifest")
             logger.error("Trying to load cached version manifest")
             let parsed = try fetchCache()
             return parsed

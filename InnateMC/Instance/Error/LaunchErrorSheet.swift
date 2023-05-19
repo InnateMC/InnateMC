@@ -29,7 +29,7 @@ struct LaunchErrorSheet: View {
                     VStack {
                         if let launchError = self.launchError {
                             Text(launchError.localizedDescription)
-                            if let err = launchError.suppressed {
+                            if let err = launchError.cause {
                                 Text(err.localizedDescription)
                             }
                         }

@@ -24,7 +24,7 @@ public enum LaunchError: Error {
     case accessTokenFetchError(error: Error?)
     case errorCreatingFile(error: Error?)
     
-    var suppressed: Error? {
+    var cause: Error? {
         switch(self) {
         case .errorDownloading(let error),
                 .invalidShaHash(let error),

@@ -43,6 +43,7 @@ extension GlobalPreferences {
             try FileHandler.saveData(GlobalPreferences.filePath, data)
         } catch {
             logger.error("Could not serialize preferences")
+            ErrorTracker.instance.error(error: error, description: "Could not serialize preferences")
         }
     }
 }
