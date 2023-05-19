@@ -18,8 +18,8 @@
 import Foundation
 import CryptoKit
 
-public struct Version {
-    public let arguments: Arguments
+public struct OldVersion {
+    public let arguments: OldArguments
     public let assetIndex: PartialAssetIndex
     public let downloads: Downloads
     public let id: String
@@ -58,10 +58,10 @@ public struct Version {
         return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, id: id, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
     
-    public struct Downloads {
+    public struct OldDownloads {
         public let client: Download
         
-        public struct Download {
+        public struct OldDownload {
             public let sha1: String
             public let url: String
             
@@ -80,18 +80,18 @@ public struct Version {
         }
     }
 
-    public struct Library {
+    public struct OldLibrary {
         public let downloads: Downloads
         public let name: String
         
-        public struct Downloads {
+        public struct OldDownloads {
             public let artifact: Artifact
             
             public init(artifact: Artifact) {
                 self.artifact = artifact
             }
             
-            public struct Artifact {
+            public struct OldArtifact {
                 public let path: String
                 public let sha1: String
                 public let url: String
@@ -137,11 +137,11 @@ public struct Version {
         }
     }
 
-    public struct Rule {
+    public struct OldRule {
         public let action: String
         public let os: OS
 
-        public struct OS {
+        public struct OldOS {
             public var name: String?
             public var arch: String?
 

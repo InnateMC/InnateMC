@@ -34,10 +34,10 @@ public class VanillaInstanceCreator: InstanceCreator {
     
     public func install() throws -> Instance {
         let version = try Version.download(versionUrl, sha1: self.sha1)
-        var libraries: [Library] = []
+        var libraries: [LibraryArtifact] = []
         for lib in version.libraries {
             libraries.append(
-                Library(type: .remote, path: lib.downloads.artifact.path, url: lib.downloads.artifact.url, sha1: lib.downloads.artifact.sha1)
+                LibraryArtifact(type: .remote, path: lib.downloads.artifact.path, url: lib.downloads.artifact.url, sha1: lib.downloads.artifact.sha1)
             )
         }
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)

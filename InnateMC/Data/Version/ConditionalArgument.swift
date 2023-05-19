@@ -12,17 +12,12 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+// along with this program.  If not, see http://www.gnu.org/licenses/
 //
 
 import Foundation
 
-public class Arguments: Codable, Identifiable, InstanceData {
-    public let game: [String]
-    public let jvm: [String]
-    
-    public init(game: [String], jvm: [String]) {
-        self.game = game
-        self.jvm = jvm
-    }
+public struct ConditionalArgument: Codable {
+    let rules: [Rule]
+    let value: String
 }

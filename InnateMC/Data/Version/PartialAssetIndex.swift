@@ -17,24 +17,8 @@
 
 import Foundation
 
-public class Library: Codable, Identifiable, InstanceData {
-    public let type: FileType
-    public let path: String
-    public let url: String?
-    public let sha1: String?
-    
-    public init(type: FileType, path: String, url: String?, sha1: String?) {
-        self.type = type
-        self.path = path
-        self.url = url
-        self.sha1 = sha1
-    }
-    
-    public func getAbsolutePath() -> URL {
-        return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: false)
-    }
-    
-    public func asDownloadTask() -> DownloadTask {
-        return DownloadTask(sourceUrl: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
-    }
+public struct PartialAssetIndex: Codable {
+    public let id: String
+    public let sha1: String
+    public let url: String
 }

@@ -22,7 +22,7 @@ import Combine
 public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var name: String
     public var assetIndex: PartialAssetIndex
-    public var libraries: [Library]
+    public var libraries: [LibraryArtifact]
     public var mainClass: String
     public var minecraftJar: MinecraftJar
     @Published public var isStarred: Bool
@@ -41,7 +41,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,
-                libraries: [Library],
+                libraries: [LibraryArtifact],
                 mainClass: String,
                 minecraftJar: MinecraftJar,
                 isStarred: Bool,

@@ -17,14 +17,17 @@
 
 import Foundation
 
-public class PartialAssetIndex: Codable, Identifiable, InstanceData {
-    public let id: String
-    public let sha1: String
-    public let url: String
+public struct LibraryArtifact: Codable {
+    public let path: String
+    public let url: String?
+    public let sha1: String?
+    public let size: Int
     
-    public init(id: String, sha1: String, url: String) {
-        self.id = id
-        self.sha1 = sha1
-        self.url = url
+    public func getAbsolutePath() -> URL {
+        return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: false)
+    }
+    
+    public func asDownloadTask() -> DownloadTask {
+        return DownloadTask(sourceUrl: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
     }
 }
