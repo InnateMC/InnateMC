@@ -18,7 +18,7 @@
 import Foundation
 import CryptoKit
 
-public class Version {
+public struct Version {
     public let arguments: Arguments
     public let assetIndex: PartialAssetIndex
     public let downloads: Downloads
@@ -27,17 +27,6 @@ public class Version {
     public let mainClass: String
     public let type: String
     public let releaseTime: String
-    
-    public init(arguments: Arguments, assetIndex: PartialAssetIndex, downloads: Downloads, id: String, libraries: [Library], mainClass: String, type: String, releaseTime: String) {
-        self.arguments = arguments
-        self.assetIndex = assetIndex
-        self.downloads = downloads
-        self.id = id
-        self.libraries = libraries
-        self.mainClass = mainClass
-        self.type = type
-        self.releaseTime = releaseTime
-    }
 
     public static func download(_ url: String, sha1: String?) throws -> Version {
         if let url = URL(string: url) {
@@ -69,12 +58,8 @@ public class Version {
         return Version(arguments: args, assetIndex: assetIndex, downloads: downloads, id: id, libraries: libraries, mainClass: mainClass, type: type, releaseTime: releaseTime)
     }
     
-    public class Downloads {
+    public struct Downloads {
         public let client: Download
-        
-        public init(client: Download) {
-            self.client = client
-        }
         
         public struct Download {
             public let sha1: String
@@ -95,32 +80,21 @@ public class Version {
         }
     }
 
-    public class Library {
+    public struct Library {
         public let downloads: Downloads
         public let name: String
         
-        public init(downloads: Downloads, name: String) {
-            self.downloads = downloads
-            self.name = name
-        }
-        
-        public class Downloads {
+        public struct Downloads {
             public let artifact: Artifact
             
             public init(artifact: Artifact) {
                 self.artifact = artifact
             }
             
-            public class Artifact {
+            public struct Artifact {
                 public let path: String
                 public let sha1: String
                 public let url: String
-                
-                public init(path: String, sha1: String, url: String) {
-                    self.path = path
-                    self.sha1 = sha1
-                    self.url = url
-                }
 
                 public static func deserialize(_ artifactObj: [String: Any]) -> Artifact {
                     Artifact(path: artifactObj["path"] as! String, sha1: artifactObj["sha1"] as! String, url: artifactObj["url"] as! String)
@@ -163,23 +137,13 @@ public class Version {
         }
     }
 
-    public class Rule {
+    public struct Rule {
         public let action: String
         public let os: OS
-        
-        public init(action: String, os: OS) {
-            self.action = action
-            self.os = os
-        }
 
-        public class OS {
-            public let name: String?
-            public let arch: String?
-            
-            public init(name: String?, arch: String?) {
-                self.name = name
-                self.arch = arch
-            }
+        public struct OS {
+            public var name: String?
+            public var arch: String?
 
             public static func deserialize(_ osObj: [String: Any]?) -> OS {
                 guard let osObj = osObj else {
