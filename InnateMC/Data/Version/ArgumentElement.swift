@@ -17,7 +17,7 @@
 
 import Foundation
 
-public enum ArgumentElement: Decodable, Encodable {
+public enum ArgumentElement: Codable, Equatable {
     case string(String)
     case object(ConditionalArgument)
     

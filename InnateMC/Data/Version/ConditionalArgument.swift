@@ -17,7 +17,7 @@
 
 import Foundation
 
-public struct ConditionalArgument: Codable {
+public struct ConditionalArgument: Codable, Equatable {
     let rules: [Rule]
     let value: String
 }

@@ -17,7 +17,7 @@
 
 import Foundation
 
-public struct Rule: Codable {
+public struct Rule: Codable, Equatable {
     let action: ActionType
     let features: [String: Bool]?
     let os: OS?

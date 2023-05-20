@@ -17,12 +17,12 @@
 
 import Foundation
 
-public struct Library: Codable {
+public struct Library: Codable, Equatable {
     public let downloads: LibraryDownloads
     public let name: String
     public let rules: [Rule]
 }
 
-public struct LibraryDownloads: Codable {
+public struct LibraryDownloads: Codable, Equatable {
     public let artifact: LibraryArtifact
 }

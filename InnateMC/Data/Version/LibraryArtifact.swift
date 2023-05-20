@@ -17,7 +17,7 @@
 
 import Foundation
 
-public struct LibraryArtifact: Codable {
+public struct LibraryArtifact: Codable, Equatable {
     public let path: String
     public let url: String?
     public let sha1: String?
