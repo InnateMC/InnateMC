@@ -22,20 +22,47 @@ public struct Rule: Codable, Equatable {
     let features: [String: Bool]?
     let os: OS?
     
-    public enum ActionType: String, Codable {
+    public enum ActionType: String, Codable, Equatable {
         case allow
         case disallow
     }
     
-    public struct OS: Codable {
-        let name: OSName
+    public struct OS: Codable, Equatable {
+        let name: OSName?
         let version: String?
         let arch: String?
         
-        public enum OSName: String, Codable {
+        public enum OSName: String, Codable, Equatable {
             case osx
             case linux
             case windows
         }
     }
+    
+    public func matches(givenFeatures: [String:Bool]) -> Bool {
+        var ok = true
+        if let os = os {
+            if let name = os.name {
+                ok = ok && name == .osx
+            }
+            // TODO: implement
+        }
+        if let features = features {
+            for (feature, value) in features where ok == true {
+                ok = ok && (givenFeatures[feature] == value)
+            }
+        }
+        return ok
+    }
 }
+
+extension Array where Element == Rule {
+    func allMatchRules(givenFeatures: [String:Bool]) -> Bool {
+        var ok = true
+        for rule in self where ok == true {
+            ok = ok && rule.matches(givenFeatures: givenFeatures)
+        }
+        return ok
+    }
+}
+

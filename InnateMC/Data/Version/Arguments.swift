@@ -27,4 +27,39 @@ public struct Arguments: Codable, Equatable {
         let combinedJvm = lhs.jvm + rhs.jvm
         return Arguments(game: combinedGame, jvm: combinedJvm)
     }
+    
+    public init(game: [ArgumentElement], jvm: [ArgumentElement]) {
+        self.game = game
+        self.jvm = jvm
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(game, forKey: .game)
+        try container.encode(jvm, forKey: .jvm)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        if let container = try? decoder.container(keyedBy: CodingKeys.self) {
+            game = try container.decode([ArgumentElement].self, forKey: .game)
+            jvm = try container.decode([ArgumentElement].self, forKey: .jvm)
+        } else if var unkeyedContainer = try? decoder.unkeyedContainer() {
+            var gameArray = [ArgumentElement]()
+            while !unkeyedContainer.isAtEnd {
+                if let stringValue = try? unkeyedContainer.decode(String.self) {
+                    gameArray.append(ArgumentElement.string(stringValue))
+                }
+            }
+            game = gameArray
+            jvm = []
+        } else {
+            game = []
+            jvm = []
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case game
+        case jvm
+    }
 }

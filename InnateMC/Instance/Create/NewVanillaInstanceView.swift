@@ -90,8 +90,8 @@ struct NewVanillaInstanceView: View {
                             self.cachedVersionId = ""
                             self.showNewInstanceSheet = false
                         } catch {
-                            NSLog("Error creating instance \(trimmedName)")
-                            // TODO: show a warning dialog
+                            logger.error("Error creating instance \(trimmedName)", error: error)
+                            ErrorTracker.instance.error(error: error, description: "Error creating instance")
                         }
                     }.keyboardShortcut(.defaultAction)
                 }.padding(.trailing).padding(.bottom)

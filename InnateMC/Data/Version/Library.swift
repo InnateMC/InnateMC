@@ -20,7 +20,7 @@ import Foundation
 public struct Library: Codable, Equatable {
     public let downloads: LibraryDownloads
     public let name: String
-    public let rules: [Rule]
+    public let rules: [Rule]?
 }
 
 public struct LibraryDownloads: Codable, Equatable {

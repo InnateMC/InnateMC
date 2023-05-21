@@ -53,7 +53,6 @@ public struct Version: Decodable, Equatable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
         arguments = try container.decodeIfPresent(Arguments.self, forKey: .arguments) ?? Arguments.none
         assetIndex = try container.decodeIfPresent(PartialAssetIndex.self, forKey: .assetIndex) ?? PartialAssetIndex.none
         assets = try container.decodeIfPresent(String.self, forKey: .assets) ?? "3"
@@ -85,6 +84,7 @@ public struct Version: Decodable, Equatable {
         case time
         case type
         case inheritsFrom
+        case minecraftArguments
     }
     
     public func validate() -> Bool {
@@ -133,5 +133,29 @@ public struct Version: Decodable, Equatable {
     
     public enum VersionError: Error {
         case invalidVersionData
+        case invalidParent
+    }
+    
+    private static let jsonDecoder = JSONDecoder()
+    
+    public static func download(_ url: URL, sha1: String?) throws -> Version {
+        let rawVersion = try downloadRaw(url, sha1: sha1)
+        let version = try rawVersion.flatten { versionId in
+            let parentPartial = LauncherData.instance.versionManifest.filter {
+                $0.version == versionId
+            }.first
+            guard let parentPartial = parentPartial else {
+                throw VersionError.invalidParent
+            }
+            return try downloadRaw(URL(string: parentPartial.url)!, sha1: parentPartial.sha1)
+        }
+        return version
+    }
+    
+    private static func downloadRaw(_ url: URL, sha1: String?) throws -> Version {
+        let data = try Data(contentsOf: url)
+        print(String(data: data, encoding: .utf8)!)
+        let rawVersion = try jsonDecoder.decode(Version.self, from: data)
+        return rawVersion
     }
 }

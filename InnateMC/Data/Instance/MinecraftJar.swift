@@ -19,10 +19,10 @@ import Foundation
 
 public class MinecraftJar: Codable, Identifiable, InstanceData {
     public let type: FileType
-    public let url: String?
+    public let url: URL?
     public let sha1: String?
     
-    public init(type: FileType, url: String?, sha1: String?) {
+    public init(type: FileType, url: URL?, sha1: String?) {
         self.type = type
         self.url = url
         self.sha1 = sha1

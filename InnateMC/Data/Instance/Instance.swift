@@ -36,8 +36,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     public var lastPlayed: Date?
     public var preferences: InstancePreferences = .init()
-    public var startOnFirstThread: Bool = false
-    public var gameArguments: [String]
+    public var arguments: Arguments // named for legacy reasons
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,
@@ -48,7 +47,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 logo: InstanceLogo,
                 description: String?,
                 debugString: String,
-                gameArguments: [String]
+                arguments: Arguments
     ) {
         self.name = name
         self.assetIndex = assetIndex
@@ -59,7 +58,67 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         self.logo = logo
         self.notes = description
         self.debugString = debugString
-        self.gameArguments = gameArguments
+        self.arguments = arguments
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(assetIndex, forKey: .assetIndex)
+        try container.encode(libraries, forKey: .libraries)
+        try container.encode(mainClass, forKey: .mainClass)
+        try container.encode(minecraftJar, forKey: .minecraftJar)
+        try container.encode(isStarred, forKey: .isStarred)
+        try container.encode(logo, forKey: .logo)
+        try container.encode(notes, forKey: .notes)
+        try container.encode(synopsis, forKey: .synopsis)
+        try container.encode(debugString, forKey: .debugString)
+        try container.encode(lastPlayed, forKey: .lastPlayed)
+        try container.encode(preferences, forKey: .preferences)
+        try container.encode(arguments, forKey: .arguments)
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        assetIndex = try container.decode(PartialAssetIndex.self, forKey: .assetIndex)
+        libraries = try container.decode([LibraryArtifact].self, forKey: .libraries)
+        mainClass = try container.decode(String.self, forKey: .mainClass)
+        minecraftJar = try container.decode(MinecraftJar.self, forKey: .minecraftJar)
+        isStarred = try container.decode(Bool.self, forKey: .isStarred)
+        logo = try container.decode(InstanceLogo.self, forKey: .logo)
+        notes = try container.decode(String?.self, forKey: .notes)
+        synopsis = try container.decode(String?.self, forKey: .synopsis)
+        debugString = try container.decode(String.self, forKey: .debugString)
+        lastPlayed = try container.decode(Date?.self, forKey: .lastPlayed)
+        preferences = try container.decode(InstancePreferences.self, forKey: .preferences)
+        arguments = try container.decodeIfPresent(Arguments.self, forKey: .arguments) ?? container.decode(Arguments.self, forKey: .gameArguments)
+        let startOnFirst = try container.decodeIfPresent(Bool.self, forKey: .startOnFirstThread) ?? false
+        if startOnFirst {
+            var jvm = arguments.jvm
+            jvm.append(.string("-XstartOnFirstThread"))
+            arguments = .init(game: arguments.game, jvm: jvm)
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case assetIndex
+        case libraries
+        case mainClass
+        case minecraftJar
+        case isStarred
+        case logo
+        case notes
+        case synopsis
+        case debugString
+        case synopsisOrVersion
+        case lastPlayed
+        case preferences
+        case arguments
+        // Legacy
+        case startOnFirstThread
+        case gameArguments
     }
     
     public static func getInstancePath(for name: String) -> URL {
@@ -68,10 +127,6 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     public func setPreferences(_ prefs: InstancePreferences) {
         self.preferences = prefs
-    }
-    
-    public func setStartOnFirstThread() {
-        self.startOnFirstThread = true
     }
     
     public func getPath() -> URL {
@@ -99,6 +154,18 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
             return true
         }
         return self.name.localizedCaseInsensitiveContains(term) || self.synopsisOrVersion.localizedCaseInsensitiveContains(term)
+    }
+    
+    public func processArgsByRules(_ thing: KeyPath<Arguments, [ArgumentElement]>, features: [String:Bool]) -> [String] {
+        self.arguments[keyPath: thing].filter { element in
+            switch(element) {
+            case .string:
+                return true
+            case .object(let obj):
+                return obj.rules.allMatchRules(givenFeatures: features)
+            }
+        }
+        .flatMap({ $0.actualValue })
     }
     
     public static func == (lhs: Instance, rhs: Instance) -> Bool {

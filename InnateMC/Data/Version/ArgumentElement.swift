@@ -22,15 +22,20 @@ public enum ArgumentElement: Codable, Equatable {
     case object(ConditionalArgument)
     
     public init(from decoder: Decoder) throws {
-        if let stringValue = try? decoder.singleValueContainer().decode(String.self) {
-            self = .string(stringValue)
-        } else if let objectValue = try? decoder.singleValueContainer().decode(ConditionalArgument.self) {
-            self = .object(objectValue)
+        if let str = try? decoder.singleValueContainer().decode(String.self) {
+            self = .string(str)
         } else {
-            throw DecodingError.dataCorruptedError(
-                in: try decoder.singleValueContainer(),
-                debugDescription: "Invalid array element"
-            )
+            let arg = try decoder.singleValueContainer().decode(ConditionalArgument.self)
+            self = .object(arg)
+        }
+    }
+    
+    public var actualValue: [String] {
+        switch self {
+        case .string(let value):
+            return [value]
+        case .object(let obj):
+            return obj.value
         }
     }
     

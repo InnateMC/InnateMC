@@ -56,10 +56,12 @@ extension Instance {
             } catch {
                 logger.error("Error loading instance at \(url.path)", error: error)
                 ErrorTracker.instance.error(error: error, description: "Error loading instance at \(url.path)")
+                logger.notice("Disabling invalid instance at \(url.path)")
+                try FileManager.default.moveItem(at: url, to: url.appendingPathExtension("_old"))
                 continue
             }
             instances.append(instance)
-            logger.debug("Loaded instance \(instance.name)")
+            logger.info("Loaded instance \(instance.name)")
         }
         return instances
     }

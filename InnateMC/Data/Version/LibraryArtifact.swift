@@ -19,7 +19,7 @@ import Foundation
 
 public struct LibraryArtifact: Codable, Equatable {
     public let path: String
-    public let url: String?
+    public let url: String
     public let sha1: String?
     public let size: Int
     
@@ -28,6 +28,6 @@ public struct LibraryArtifact: Codable, Equatable {
     }
     
     public func asDownloadTask() -> DownloadTask {
-        return DownloadTask(sourceUrl: URL(string: url!)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
+        return DownloadTask(sourceUrl: URL(string: url)!, filePath: self.getAbsolutePath(), sha1: self.sha1) // TODO: fix sha1 checking for libraries
     }
 }

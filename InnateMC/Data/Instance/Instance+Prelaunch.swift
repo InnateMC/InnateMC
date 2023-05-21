@@ -21,13 +21,10 @@ extension Instance {
     public func getLibrariesAsTasks() -> [DownloadTask] {
         var tasks: [DownloadTask] = []
         for library in libraries {
-            if library.type == .local {
-                continue
-            }
             tasks.append(library.asDownloadTask())
         }
         if (self.minecraftJar.type == .remote) {
-            tasks.append(DownloadTask(sourceUrl: URL(string: self.minecraftJar.url!)!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
+            tasks.append(DownloadTask(sourceUrl: self.minecraftJar.url!, filePath: self.getMcJarPath(), sha1: self.minecraftJar.sha1))
         }
         return tasks
     }    

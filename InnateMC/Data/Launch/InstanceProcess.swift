@@ -38,9 +38,7 @@ public class InstanceProcess: ObservableObject  {
             "-Xms\(minMemory)M",
             "-Djava.library.path=\(instance.getPath().appendingPathComponent("natives").path)"
         ]
-        if instance.startOnFirstThread {
-            allArgs.append("-XstartOnFirstThread")
-        }
+        allArgs.append(contentsOf: instance.processArgsByRules(\.jvm, features: [:])) // TODO: fix
         let mcArgs = ArgumentProvider()
         mcArgs.clientId(LauncherData.instance.accountManager.clientId)
         mcArgs.xuid(account.xuid)
@@ -58,7 +56,7 @@ public class InstanceProcess: ObservableObject  {
         allArgs.append("-cp")
         instance.appendClasspath(args: &allArgs)
         allArgs.append(instance.mainClass)
-        let mcArgsProcessed = mcArgs.accept(instance.gameArguments.flatMap({ $0.split(separator: " ").map { String($0) } }));
+        let mcArgsProcessed = mcArgs.accept(instance.processArgsByRules(\.game, features: [:])); // TODO: fix
         allArgs.append(contentsOf: mcArgsProcessed)
         process.arguments = allArgs
         
