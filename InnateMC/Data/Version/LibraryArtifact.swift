@@ -21,7 +21,7 @@ public struct LibraryArtifact: Codable, Equatable {
     public let path: String
     public let url: String
     public let sha1: String?
-    public let size: Int
+    public let size: Int?
     
     public func getAbsolutePath() -> URL {
         return FileHandler.librariesFolder.appendingPathComponent(self.path, isDirectory: false)
