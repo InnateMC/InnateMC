@@ -17,16 +17,11 @@
 
 import Foundation
 
-public class InstanceLogo: Codable, InstanceData {
+public struct InstanceLogo: Codable {
     public var logoType: LogoType
     public var string: String
     
-    public init(logoType: LogoType, string: String) {
-        self.logoType = logoType
-        self.string = string
-    }
-    
-    public enum LogoType: Codable {
+    public enum LogoType: String, Codable {
         case symbol
         case file
         case builtin

@@ -90,15 +90,9 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         notes = try container.decode(String?.self, forKey: .notes)
         synopsis = try container.decode(String?.self, forKey: .synopsis)
         debugString = try container.decode(String.self, forKey: .debugString)
-        lastPlayed = try container.decode(Date?.self, forKey: .lastPlayed)
+        lastPlayed = try container.decodeIfPresent(Date.self, forKey: .lastPlayed)
         preferences = try container.decode(InstancePreferences.self, forKey: .preferences)
-        arguments = try container.decodeIfPresent(Arguments.self, forKey: .arguments) ?? container.decode(Arguments.self, forKey: .gameArguments)
-        let startOnFirst = try container.decodeIfPresent(Bool.self, forKey: .startOnFirstThread) ?? false
-        if startOnFirst {
-            var jvm = arguments.jvm
-            jvm.append(.string("-XstartOnFirstThread"))
-            arguments = .init(game: arguments.game, jvm: jvm)
-        }
+        arguments = try container.decode(Arguments.self, forKey: .arguments)
     }
     
     private enum CodingKeys: String, CodingKey {
