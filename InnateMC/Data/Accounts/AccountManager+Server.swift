@@ -30,6 +30,8 @@ extension AccountManager {
                     }
                 } else {
                     logger.warning("Received authentication redirect without callback being present, skipping")
+                    logger.warning("Provided state: \(state)")
+                    print(self.stateCallbacks)
                     return HttpResponse.movedTemporarily("http://youtube.com/watch?v=dQw4w9WgXcQ")
                 }
                 DispatchQueue.main.async {
@@ -59,6 +61,7 @@ extension AccountManager {
         let baseURL = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize"
         var urlComponents: URLComponents = .init(string: baseURL)!
         let state = self.state()
+        self.stateCallbacks[state] = setupMicrosoftAccount
         
         urlComponents.queryItems = [
             URLQueryItem(name: "response_type", value: "code"),
@@ -70,7 +73,6 @@ extension AccountManager {
         
         let authUrl = urlComponents.url!
         let window: WebViewWindow = .init(url: authUrl)
-        self.stateCallbacks[state] = setupMicrosoftAccount
         return window
     }
     

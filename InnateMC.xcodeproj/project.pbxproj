@@ -87,6 +87,8 @@
 		64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5151F29E2E6A300AFE3AE /* InstanceData.swift */; };
 		64A62C8D2977B454007A9597 /* SymbolLogoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */; };
 		64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */; };
+		64BACB952A1C6EE500F7AA1C /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB942A1C6EE500F7AA1C /* Http.swift */; };
+		64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB962A1C6EF700F7AA1C /* HttpMethod.swift */; };
 		64C09B6C2A1212CF00867038 /* InstanceDuplicationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */; };
 		64C09B702A12145900867038 /* InstanceDeleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
@@ -240,6 +242,8 @@
 		64A5151F29E2E6A300AFE3AE /* InstanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceData.swift; sourceTree = "<group>"; };
 		64A62C8C2977B454007A9597 /* SymbolLogoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolLogoPickerView.swift; sourceTree = "<group>"; };
 		64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRuntimeView.swift; sourceTree = "<group>"; };
+		64BACB942A1C6EE500F7AA1C /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
+		64BACB962A1C6EF700F7AA1C /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDuplicationSheet.swift; sourceTree = "<group>"; };
 		64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDeleteSheet.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +394,7 @@
 		644DE1D12937C0D300C4A03E /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				64BACB932A1C692400F7AA1C /* Http */,
 				64F7C615297D7EE40086ABC1 /* Symbols */,
 				646139DF2977E3A700BA9477 /* SymbolPicker.swift */,
 				64C33506292256C500BB8570 /* TodoView.swift */,
@@ -499,6 +504,15 @@
 				64373BA229C0A430001DBD4C /* InstanceTests.swift */,
 			);
 			path = InnateMCTests;
+			sourceTree = "<group>";
+		};
+		64BACB932A1C692400F7AA1C /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				64BACB942A1C6EE500F7AA1C /* Http.swift */,
+				64BACB962A1C6EF700F7AA1C /* HttpMethod.swift */,
+			);
+			path = Http;
 			sourceTree = "<group>";
 		};
 		64C334CC2922523500BB8570 = {
@@ -814,6 +828,7 @@
 				643E455C2A13331100687839 /* InstanceTitleView.swift in Sources */,
 				648445802A10D44A00049986 /* MinecraftTokenResponse.swift in Sources */,
 				64337EF32A17CA040017BCB0 /* Artifact.swift in Sources */,
+				64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
@@ -861,6 +876,7 @@
 				64337EED2A17A6AA0017BCB0 /* ArgumentElement.swift in Sources */,
 				646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */,
 				64A5151829E2DF3300AFE3AE /* FileType.swift in Sources */,
+				64BACB952A1C6EE500F7AA1C /* Http.swift in Sources */,
 				64F7C60D297D654A0086ABC1 /* JreDownloader.swift in Sources */,
 				644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */,
 				64337EF12A17C9AD0017BCB0 /* Version.swift in Sources */,

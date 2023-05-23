@@ -69,14 +69,10 @@ extension AccountManager {
     }
     
     func authenticateWithMinecraft(using auth: MinecraftAuth) async throws -> MinecraftAuthResponse {
-        let url = URL(string: "https://api.minecraftservices.com/authentication/login_with_xbox")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try! JSONEncoder().encode(auth)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await Http.post("https://api.minecraftservices.com/authentication/login_with_xbox")
+                .json(auth)
+                .request()
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from minecraft authentication server")
                 throw MicrosoftAuthError.minecraftInvalidResponse
@@ -98,21 +94,12 @@ extension AccountManager {
     
     func authenticateWithXBL(msAccessToken: String) async throws -> XboxAuthResponse {
         let xboxLiveParameters = XboxLiveAuth.fromToken(msAccessToken)
-        let headers: [String: String] = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        let url = URL(string: "https://user.auth.xboxlive.com/user/authenticate")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try! JSONEncoder().encode(xboxLiveParameters)
-        headers.forEach { key, value in
-            request.setValue(value, forHTTPHeaderField: key)
-        }
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await Http.post("https://user.auth.xboxlive.com/user/authenticate")
+                .json(xboxLiveParameters)
+                .header("application/json", field: "Accept")
+                .request()
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from xbox live authentication server")
@@ -135,23 +122,12 @@ extension AccountManager {
     
     func authenticateWithXSTS(xblToken: String) async throws -> XboxAuthResponse {
         let xstsAuthParameters = XstsAuth.fromXblToken(xblToken)
-        let headers: [String: String] = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        let url = URL(string: "https://xsts.auth.xboxlive.com/xsts/authorize")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        request.httpBody = try! JSONEncoder().encode(xstsAuthParameters)
-        
-        headers.forEach { key, value in
-            request.setValue(value, forHTTPHeaderField: key)
-        }
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await Http.post("https://xsts.auth.xboxlive.com/xsts/authorize")
+                .json(xstsAuthParameters)
+                .header("application/json", field: "Accept")
+                .request()
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from xbox xsts authentication server")
@@ -181,19 +157,17 @@ extension AccountManager {
             "grant_type": "authorization_code"
         ]
         
-        let url = URL(string: "https://login.microsoftonline.com/consumers/oauth2/v2.0/token")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = msParameters.percentEncoded()
-
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-
+            let (data, response) = try await Http.post("https://login.microsoftonline.com/consumers/oauth2/v2.0/token")
+                .body(msParameters.percentEncoded())
+                .header("application/x-www-form-urlencoded", field: "Content-Type")
+                .request()
+            
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from microsoft authentication server")
                 throw MicrosoftAuthError.microsoftInvalidResponse
             }
-
+            
             do {
                 let token = try MicrosoftAccessToken.fromJson(json: data)
                 return token
@@ -216,20 +190,17 @@ extension AccountManager {
             "grant_type": "refresh_token"
         ]
         
-        let url = URL(string: "https://login.microsoftonline.com/consumers/oauth2/v2.0/token")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = msParameters.percentEncoded()
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-
+            let (data, response) = try await Http.post("https://login.microsoftonline.com/consumers/oauth2/v2.0/token")
+                .body(msParameters.percentEncoded())
+                .header("application/x-www-form-urlencoded", field: "Content-Type")
+                .request()
+            
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from microsoft refresh server")
                 throw MicrosoftAuthError.microsoftInvalidResponse
             }
-
+            
             do {
                 let token = try MicrosoftAccessToken.fromJson(json: data)
                 return token
@@ -245,19 +216,16 @@ extension AccountManager {
     }
     
     func getProfile(accessToken: String) async throws -> MinecraftProfile {
-        let url = URL(string: "https://api.minecraftservices.com/minecraft/profile")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-
+            let (data, response) = try await Http.get("https://api.minecraftservices.com/minecraft/profile")
+                .header("Bearer \(accessToken)", field: "Authorization")
+                .request()
+            
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 logger.error("Received invalid status code from minecraft profile server")
                 throw MicrosoftAuthError.profileInvalidResponse
             }
-
+            
             do {
                 let token = try JSONDecoder().decode(MinecraftProfile.self, from: data)
                 return token
