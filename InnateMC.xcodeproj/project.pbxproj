@@ -89,6 +89,8 @@
 		64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */; };
 		64BACB952A1C6EE500F7AA1C /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB942A1C6EE500F7AA1C /* Http.swift */; };
 		64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB962A1C6EF700F7AA1C /* HttpMethod.swift */; };
+		64BACB9A2A1C9F3000F7AA1C /* FabricLoaderVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB992A1C9F3000F7AA1C /* FabricLoaderVersion.swift */; };
+		64BACB9C2A1C9F5D00F7AA1C /* FabricMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BACB9B2A1C9F5D00F7AA1C /* FabricMeta.swift */; };
 		64C09B6C2A1212CF00867038 /* InstanceDuplicationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */; };
 		64C09B702A12145900867038 /* InstanceDeleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */; };
 		64C334D92922523600BB8570 /* InnateMCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C334D82922523600BB8570 /* InnateMCApp.swift */; };
@@ -244,6 +246,8 @@
 		64B01AE42940961F00B3E670 /* InstanceRuntimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRuntimeView.swift; sourceTree = "<group>"; };
 		64BACB942A1C6EE500F7AA1C /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		64BACB962A1C6EF700F7AA1C /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		64BACB992A1C9F3000F7AA1C /* FabricLoaderVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricLoaderVersion.swift; sourceTree = "<group>"; };
+		64BACB9B2A1C9F5D00F7AA1C /* FabricMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricMeta.swift; sourceTree = "<group>"; };
 		64C09B6B2A1212CF00867038 /* InstanceDuplicationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDuplicationSheet.swift; sourceTree = "<group>"; };
 		64C09B6F2A12145900867038 /* InstanceDeleteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceDeleteSheet.swift; sourceTree = "<group>"; };
 		64C334D52922523600BB8570 /* InnateMC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnateMC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +327,8 @@
 		64337EE72A17A4D10017BCB0 /* Version */ = {
 			isa = PBXGroup;
 			children = (
+				64BACB982A1C9F0100F7AA1C /* Fabric */,
+				64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */,
 				64F7C5FA297D64810086ABC1 /* VersionManifest.swift */,
 				64A5150F29E2DEE900AFE3AE /* LibraryArtifact.swift */,
 				64A5151129E2DEFD00AFE3AE /* PartialAssetIndex.swift */,
@@ -515,6 +521,15 @@
 			path = Http;
 			sourceTree = "<group>";
 		};
+		64BACB982A1C9F0100F7AA1C /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				64BACB992A1C9F3000F7AA1C /* FabricLoaderVersion.swift */,
+				64BACB9B2A1C9F5D00F7AA1C /* FabricMeta.swift */,
+			);
+			path = Fabric;
+			sourceTree = "<group>";
+		};
 		64C334CC2922523500BB8570 = {
 			isa = PBXGroup;
 			children = (
@@ -600,7 +615,6 @@
 			children = (
 				64C5621329C083AA003402F0 /* InstanceProcess.swift */,
 				64F7C5EC297D63D00086ABC1 /* ArgumentProvider.swift */,
-				64F7C5F0297D641C0086ABC1 /* AssetIndex.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -830,6 +844,7 @@
 				64337EF32A17CA040017BCB0 /* Artifact.swift in Sources */,
 				64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
+				64BACB9C2A1C9F5D00F7AA1C /* FabricMeta.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
 				64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */,
@@ -859,6 +874,7 @@
 				64337EEF2A17A80B0017BCB0 /* Arguments.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */,
 				64F7C607297D65080086ABC1 /* DownloadedJavaInstallation.swift in Sources */,
+				64BACB9A2A1C9F3000F7AA1C /* FabricLoaderVersion.swift in Sources */,
 				64337EFB2A17D66A0017BCB0 /* Library.swift in Sources */,
 				64B01AE52940961F00B3E670 /* InstanceRuntimeView.swift in Sources */,
 				640CCF552A09F0FA0080F574 /* SettingsFetch.swift in Sources */,

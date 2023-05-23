@@ -17,31 +17,32 @@
 
 import Foundation
 
-struct Http {
+public struct Http {
     private static let session = URLSession(configuration: .default)
     
-    static func `get`(_ url: String) -> RequestBuilder {
+    public static func `get`(_ url: String) -> RequestBuilder {
         return .init(url: URL(string: url)!, method: .get)
     }
     
-    static func post(_ url: String) -> RequestBuilder {
+    public static func post(_ url: String) -> RequestBuilder {
         return .init(url: URL(string: url)!, method: .post)
     }
     
-    static func `get`(url: URL) -> RequestBuilder {
+    public static func `get`(url: URL) -> RequestBuilder {
         return .init(url: url, method: .get)
     }
     
-    static func post(url: URL) -> RequestBuilder {
+    public static func post(url: URL) -> RequestBuilder {
         return .init(url: url, method: .post)
     }
     
-    struct RequestBuilder {
+    public struct RequestBuilder {
         private var urlRequest: URLRequest
         
         init(url: URL, method: InnateHttpMethod) {
             urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = method.rawValue
+            urlRequest.setValue("InnateMC", forHTTPHeaderField: "User-Agent")
         }
         
         func header(_ value: String?, field: String) -> RequestBuilder {

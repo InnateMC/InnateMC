@@ -131,6 +131,18 @@ public struct Version: Decodable, Equatable {
         return Version(arguments: newArguments, assetIndex: newAssetIndex, assets: newAssets, complianceLevel: self.complianceLevel, downloads: newDownloads, id: self.id, libraries: newLibraries, logging: newLogging, mainClass: newMainClass, minimumLauncherVersion: newNewMinLauncherVersion, releaseTime: self.releaseTime, time: self.time, type: newType, inheritsFrom: nil)
     }
     
+    public func flatten() throws -> Version {
+        return try self.flatten { versionId in
+            let parentPartial = LauncherData.instance.versionManifest.filter {
+                $0.version == versionId
+            }.first
+            guard let parentPartial = parentPartial else {
+                throw VersionError.invalidParent
+            }
+            return try Version.downloadRaw(URL(string: parentPartial.url)!, sha1: parentPartial.sha1)
+        }
+    }
+    
     public enum VersionError: Error {
         case invalidVersionData
         case invalidParent

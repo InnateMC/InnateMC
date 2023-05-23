@@ -68,6 +68,10 @@ public class LauncherData: ObservableObject {
                 let manifest = try await VersionManifest.getOrCreate()
                 DispatchQueue.main.async {
                     self.versionManifest = manifest
+//                    Task {
+//                        let ver = try! await FabricMeta.getProfile(gameVersion: "1.19.4", loaderVersion: "0.14.4")
+//                        print(try! ver.flatten())
+//                    }
                 }
                 logger.info("Loaded version manifest")
             } catch {

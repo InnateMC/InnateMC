@@ -21,6 +21,45 @@ public struct Library: Codable, Equatable {
     public let downloads: LibraryDownloads
     public let name: String
     public let rules: [Rule]?
+    
+    public init(downloads: LibraryDownloads, name: String, rules: [Rule]?) {
+        self.downloads = downloads
+        self.name = name
+        self.rules = rules
+    }
+    
+    public init(from decoder: Decoder) throws {
+        if let container = try? decoder.singleValueContainer(),
+           let artifact = try? container.decode(ConcLibrary.self) {
+            self.downloads = LibraryDownloads(artifact: LibraryArtifact(path: artifact.mavenStringToPath(), url: artifact.mavenUrl(), sha1: nil, size: nil))
+            self.name = artifact.name
+            self.rules = nil
+        } else {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.downloads = try container.decode(LibraryDownloads.self, forKey: .downloads)
+            self.name = try container.decode(String.self, forKey: .name)
+            self.rules = try container.decodeIfPresent([Rule].self, forKey: .rules)
+        }
+    }
+    
+    public struct ConcLibrary: Codable {
+        public let name: String
+        public let url: String
+        
+        func mavenStringToPath() -> String {
+            let components = self.name.components(separatedBy: ":")
+            let group = components[0].replacingOccurrences(of: ".", with: "/")
+            let artifact = components[1].replacingOccurrences(of: ".", with: "/")
+            let version = components[2]
+            let path = "\(group)/\(artifact)/\(version)"
+            
+            return path
+        }
+        
+        func mavenUrl() -> String {
+            return "\(url)\(mavenStringToPath())"
+        }
+    }
 }
 
 public struct LibraryDownloads: Codable, Equatable {
