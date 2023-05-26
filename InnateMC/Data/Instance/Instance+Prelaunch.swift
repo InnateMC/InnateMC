@@ -37,15 +37,15 @@ extension Instance {
     }
     
     public func extractNatives(progress: TaskProgress) {
-        if !FileManager.default.fileExists(atPath: getNativesPath().path) {
-            try! FileManager.default.createDirectory(at: getNativesPath(), withIntermediateDirectories: true)
+        if !FileManager.default.fileExists(atPath: getNativesFolder().path) {
+            try! FileManager.default.createDirectory(at: getNativesFolder(), withIntermediateDirectories: true)
         }
         let nativeLibraries = self.libraries.filter { $0.path.contains("natives") }
         var extractTasks: [() -> Void] = []
         for nativeLibrary in nativeLibraries {
             extractTasks.append {
                 let nativeLibraryPath = nativeLibrary.getAbsolutePath()
-                Instance.extractNativesFrom(library: nativeLibraryPath, output: self.getNativesPath())
+                Instance.extractNativesFrom(library: nativeLibraryPath, output: self.getNativesFolder())
             }
         }
         ParallelExecutor.run(extractTasks, progress: progress)

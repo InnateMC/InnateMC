@@ -29,6 +29,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var logo: InstanceLogo
     @Published public var notes: String?
     @Published public var synopsis: String?
+    @Published public var mods: [Mod] = []
     public var debugString: String
     public var synopsisOrVersion: String {
         get { return synopsis ?? debugString }
@@ -131,7 +132,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         return getPath().appendingPathComponent("minecraft", isDirectory: true)
     }
     
-    public func getNativesPath() -> URL {
+    public func getNativesFolder() -> URL {
         return getPath().appendingPathComponent("natives", isDirectory: true)
     }
     
@@ -141,6 +142,18 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     public func getLogoPath() -> URL {
         return getPath().appendingPathComponent("logo.png")
+    }
+    
+    public func getModsFolder() -> URL {
+        return getGamePath().appendingPathComponent("mods")
+    }
+    
+    public func getScreenshotsFolder() -> URL {
+        return getGamePath().appendingPathComponent("screenshots")
+    }
+    
+    public func getSavesFolder() -> URL {
+        return getGamePath().appendingPathComponent("saves")
     }
     
     public func matchesSearchTerm(_ term: String) -> Bool {
@@ -170,5 +183,26 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         hasher.combine(self.name)
         hasher.combine(self.notes)
         hasher.combine(self.synopsisOrVersion)
+    }
+    
+    public func loadModsAsync() {
+        Task {
+            let fm = FileManager.default
+            let modsFolder = self.getModsFolder()
+            var isDirectory: ObjCBool = true
+            if fm.fileExists(atPath: modsFolder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
+                let urls: [URL]
+                
+                do {
+                    urls = try fm.contentsOfDirectory(at: modsFolder, includingPropertiesForKeys: nil)
+                } catch {
+                    logger.error("Error reading mods folder for instance \(self.name)", error: error)
+                    ErrorTracker.instance.error(error: error, description: "Error reading mods folder for instance \(self.name)")
+                    return
+                }
+                
+                self.mods = urls.deserializeToMods()
+            }
+        }
     }
 }

@@ -30,6 +30,11 @@ public class ErrorTracker: ObservableObject {
     private var windowControllerTemp: ErrorTrackerWindowController? = nil
     
     func error(error: Error? = nil, description: String) {
+        if let error = error {
+            logger.error(description, error: error)
+        } else {
+            logger.error("\(description)")
+        }
         self.errors.append(ErrorTrackerEntry(type: .error, description: description, error: error, timestamp: CFAbsoluteTime()))
     }
     

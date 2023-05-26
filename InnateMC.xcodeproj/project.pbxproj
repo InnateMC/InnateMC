@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640A758D2A208BE3005CDE49 /* Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A758C2A208BE3005CDE49 /* Mod.swift */; };
+		640A758F2A20E969005CDE49 /* InstanceModsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A758E2A20E969005CDE49 /* InstanceModsView.swift */; };
 		640CCF552A09F0FA0080F574 /* SettingsFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640CCF542A09F0FA0080F574 /* SettingsFetch.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
@@ -158,6 +160,8 @@
 /* Begin PBXFileReference section */
 		64037CA8297C724D00F7FE79 /* ArgumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentTests.swift; sourceTree = "<group>"; };
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
+		640A758C2A208BE3005CDE49 /* Mod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mod.swift; sourceTree = "<group>"; };
+		640A758E2A20E969005CDE49 /* InstanceModsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceModsView.swift; sourceTree = "<group>"; };
 		640CCF542A09F0FA0080F574 /* SettingsFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFetch.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640DC1F02934F14200943213 /* NewInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstanceView.swift; sourceTree = "<group>"; };
@@ -312,6 +316,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		640A758B2A208BA5005CDE49 /* Mods */ = {
+			isa = PBXGroup;
+			children = (
+				640A758C2A208BE3005CDE49 /* Mod.swift */,
+			);
+			path = Mods;
+			sourceTree = "<group>";
+		};
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +436,7 @@
 				644DE1D32937C93600C4A03E /* InstanceView.swift */,
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
 				6459E11A2976E215006DB3A4 /* Preferences */,
+				640A758E2A20E969005CDE49 /* InstanceModsView.swift */,
 			);
 			path = Instance;
 			sourceTree = "<group>";
@@ -602,6 +615,7 @@
 				64F7C613297D7D470086ABC1 /* Download */,
 				64F7C610297D657E0086ABC1 /* Preferences */,
 				64F7C605297D64FC0086ABC1 /* Java */,
+				640A758B2A208BA5005CDE49 /* Mods */,
 				64F7C5FC297D64920086ABC1 /* Instance */,
 				64F7C5EB297D63A70086ABC1 /* Launch */,
 				64337EE72A17A4D10017BCB0 /* Version */,
@@ -845,6 +859,7 @@
 				64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				64BACB9C2A1C9F5D00F7AA1C /* FabricMeta.swift in Sources */,
+				640A758D2A208BE3005CDE49 /* Mod.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
 				64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */,
@@ -888,6 +903,7 @@
 				64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */,
 				643E45582A13327900687839 /* InstanceNotesView.swift in Sources */,
 				64A5150E29E2DED100AFE3AE /* MinecraftJar.swift in Sources */,
+				640A758F2A20E969005CDE49 /* InstanceModsView.swift in Sources */,
 				64F7C5FB297D64810086ABC1 /* VersionManifest.swift in Sources */,
 				64337EED2A17A6AA0017BCB0 /* ArgumentElement.swift in Sources */,
 				646139E42977E95300BA9477 /* SFSymbols13List.swift in Sources */,
