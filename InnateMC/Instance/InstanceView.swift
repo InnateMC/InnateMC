@@ -76,12 +76,17 @@ struct InstanceView: View {
                         .tabItem {
                             Label(i18n("mods"), systemImage: "plus.square.on.square")
                         }
+                    InstanceScreenshotsView(instance: instance)
+                        .tabItem {
+                            Label(i18n("screenshots"), systemImage: "plus.square.on.square")
+                        }
                 }.padding(.all, 4)
             }
             .padding(.all, 6)
             .onAppear {
                 launcherData.launchRequestedInstances.removeAll(where: { $0 == self.instance })
                 launchedInstanceProcess = launcherData.launchedInstances[instance]
+                instance.loadScreenshotsAsync()
             }
             .sheet(isPresented: $showErrorSheet) {
                 LaunchErrorSheet(launchError: $launchError, showErrorSheet: $showErrorSheet)

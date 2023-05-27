@@ -29,7 +29,6 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var logo: InstanceLogo
     @Published public var notes: String?
     @Published public var synopsis: String?
-    @Published public var mods: [Mod] = []
     public var debugString: String
     public var synopsisOrVersion: String {
         get { return synopsis ?? debugString }
@@ -37,7 +36,12 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     public var lastPlayed: Date?
     public var preferences: InstancePreferences = .init()
-    public var arguments: Arguments // named for legacy reasons
+    public var arguments: Arguments
+    
+    @Published public var mods: [Mod] = []
+    @Published public var screenshots: [Screenshot] = []
+    public var modsSetup: Bool = false
+    public var screenshotsSetup: Bool = false
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,
@@ -185,7 +189,35 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         hasher.combine(self.synopsisOrVersion)
     }
     
+    public func loadScreenshotsAsync() {
+        if (!screenshotsSetup) {
+            // TODO
+        }
+        Task {
+            let fm = FileManager.default
+            let folder = self.getScreenshotsFolder()
+            var isDirectory: ObjCBool = true
+            if fm.fileExists(atPath: folder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
+                let urls: [URL]
+                
+                do {
+                    urls = try fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)
+                } catch {
+                    ErrorTracker.instance.error(error: error, description: "Error reading screenshots folder for instance \(self.name)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.screenshots = urls.deserializeToScreenshots()
+                }
+            }
+        }
+    }
+    
     public func loadModsAsync() {
+        if (!modsSetup) {
+            // TODO
+        }
         Task {
             let fm = FileManager.default
             let modsFolder = self.getModsFolder()
@@ -201,7 +233,9 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                     return
                 }
                 
-                self.mods = urls.deserializeToMods()
+                DispatchQueue.main.async {
+                    self.mods = urls.deserializeToMods()
+                }
             }
         }
     }
