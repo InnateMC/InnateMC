@@ -30,11 +30,6 @@ struct ScreenshotView: View {
                     .resizable()
                     .scaledToFit()
             }
-            .onTapGesture(count: 2) {
-                withAnimation {
-                    self.sheetShown = true
-                }
-            }
             Text(screenshot.path.lastPathComponent)
                 .font(.footnote)
         }

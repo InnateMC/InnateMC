@@ -40,8 +40,10 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     
     @Published public var mods: [Mod] = []
     @Published public var screenshots: [Screenshot] = []
+    @Published public var worlds: [World] = []
     public var modsSetup: Bool = false
     public var screenshotsSetup: Bool = false
+    public var worldsSetup: Bool = false
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,

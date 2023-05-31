@@ -13,6 +13,8 @@
 		640A75942A21CEFD005CDE49 /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75932A21CEFD005CDE49 /* Screenshot.swift */; };
 		640A75962A21D021005CDE49 /* InstanceScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75952A21D021005CDE49 /* InstanceScreenshotsView.swift */; };
 		640A75B22A226411005CDE49 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75B12A226411005CDE49 /* ScreenshotView.swift */; };
+		640A75B92A226F2C005CDE49 /* InnateWorldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */; };
+		640A75BC2A226F80005CDE49 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75BB2A226F80005CDE49 /* World.swift */; };
 		640CCF552A09F0FA0080F574 /* SettingsFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640CCF542A09F0FA0080F574 /* SettingsFetch.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
 		640DC1F12934F14200943213 /* NewInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1F02934F14200943213 /* NewInstanceView.swift */; };
@@ -170,6 +172,8 @@
 		640A75932A21CEFD005CDE49 /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
 		640A75952A21D021005CDE49 /* InstanceScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceScreenshotsView.swift; sourceTree = "<group>"; };
 		640A75B12A226411005CDE49 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
+		640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateWorldsView.swift; sourceTree = "<group>"; };
+		640A75BB2A226F80005CDE49 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		640CCF542A09F0FA0080F574 /* SettingsFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFetch.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640DC1F02934F14200943213 /* NewInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstanceView.swift; sourceTree = "<group>"; };
@@ -349,6 +353,22 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
+		640A75B72A226E76005CDE49 /* Worlds */ = {
+			isa = PBXGroup;
+			children = (
+				640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */,
+			);
+			path = Worlds;
+			sourceTree = "<group>";
+		};
+		640A75BA2A226F65005CDE49 /* Worlds */ = {
+			isa = PBXGroup;
+			children = (
+				640A75BB2A226F80005CDE49 /* World.swift */,
+			);
+			path = Worlds;
+			sourceTree = "<group>";
+		};
 		6416784F2923B6450012C9CC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +483,7 @@
 				64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */,
 				6459E11A2976E215006DB3A4 /* Preferences */,
 				640A758E2A20E969005CDE49 /* InstanceModsView.swift */,
+				640A75B72A226E76005CDE49 /* Worlds */,
 				640A75B02A2263D5005CDE49 /* Screenshots */,
 			);
 			path = Instance;
@@ -644,6 +665,7 @@
 				64F7C605297D64FC0086ABC1 /* Java */,
 				640A75922A21CEDB005CDE49 /* Screenshots */,
 				640A758B2A208BA5005CDE49 /* Mods */,
+				640A75BA2A226F65005CDE49 /* Worlds */,
 				64F7C5FC297D64920086ABC1 /* Instance */,
 				64F7C5EB297D63A70086ABC1 /* Launch */,
 				64337EE72A17A4D10017BCB0 /* Version */,
@@ -888,6 +910,7 @@
 				64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				64BACB9C2A1C9F5D00F7AA1C /* FabricMeta.swift in Sources */,
+				640A75B92A226F2C005CDE49 /* InnateWorldsView.swift in Sources */,
 				640A758D2A208BE3005CDE49 /* Mod.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
@@ -914,6 +937,7 @@
 				643E45522A1330F600687839 /* InstanceChooseAccountSheet.swift in Sources */,
 				6474DC202A150D77001FCD4D /* TrackedErrorType.swift in Sources */,
 				64F7C5F7297D645A0086ABC1 /* ParallelExecutor.swift in Sources */,
+				640A75BC2A226F80005CDE49 /* World.swift in Sources */,
 				646139E62977EA0300BA9477 /* SFSymbolsList.swift in Sources */,
 				64337EEF2A17A80B0017BCB0 /* Arguments.swift in Sources */,
 				64E459F32938C7AC00F82A2B /* LauncherData.swift in Sources */,

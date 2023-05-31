@@ -24,15 +24,32 @@ struct InstanceScreenshotsView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(instance.screenshots, id: \.self) { screenshot in
-                    ScreenshotView(screenshot: screenshot)
-                        .cornerRadius(8)
+        VStack {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(instance.screenshots, id: \.self) { screenshot in
+                        HStack {
+                            ScreenshotView(screenshot: screenshot)
+                                .padding(4)
+                        }
+                        .highPriorityGesture(TapGesture()
+                            .onEnded({ i in
+                                selectedItem = screenshot
+                            }))
+                        .background(screenshot == selectedItem ? Color.blue : Color.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
                 }
             }
+            .cornerRadius(8)
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.secondary, lineWidth: 1))
+            .background(Color(NSColor.textBackgroundColor))
+            .padding()
+            .frame(maxHeight: .infinity)
+            
+            if let selectedItem = selectedItem {
+                Text(selectedItem.path.absoluteString)
+            }
         }
-        .padding()
-        .frame(maxHeight: .infinity)
     }
 }
