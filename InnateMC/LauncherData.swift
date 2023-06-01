@@ -68,10 +68,6 @@ public class LauncherData: ObservableObject {
                 let manifest = try await VersionManifest.getOrCreate()
                 DispatchQueue.main.async {
                     self.versionManifest = manifest
-//                    Task {
-//                        let ver = try! await FabricMeta.getProfile(gameVersion: "1.19.4", loaderVersion: "0.14.4")
-//                        print(try! ver.flatten())
-//                    }
                 }
                 logger.info("Loaded version manifest")
             } catch {
@@ -111,14 +107,15 @@ public class LauncherData: ObservableObject {
                 let accountManager = try AccountManager.load()
                 DispatchQueue.main.async {
                     self.accountManager = accountManager
+                    self.accountManager.setupForAuth()
                 }
                 logger.info("Initialized account manager")
             } catch {
                 logger.error("Could not load account manager", error: error)
                 logger.error("Accounts support is limited")
                 ErrorTracker.instance.error(error: error, description: "Could not load account manager")
+                self.accountManager.setupForAuth()
             }
-            self.accountManager.setupForAuth()
         }
         LauncherData.currentInstance = self
         logger.debug("Initialized launcher data")
