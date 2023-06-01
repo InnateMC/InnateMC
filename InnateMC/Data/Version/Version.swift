@@ -25,7 +25,7 @@ public struct Version: Decodable, Equatable {
     public let downloads: MainDownloads
     public let id: String
     public let libraries: [Library]
-    public let logging: LoggingConfig
+    public let logging: LoggingConfig?
     public let mainClass: String
     public let minimumLauncherVersion: Int
     public let releaseTime: String
@@ -34,7 +34,7 @@ public struct Version: Decodable, Equatable {
     public let inheritsFrom: String?
     public var isInheritor: Bool { inheritsFrom != nil }
     
-    public init(arguments: Arguments, assetIndex: PartialAssetIndex, assets: String, complianceLevel: Int, downloads: MainDownloads, id: String, libraries: [Library], logging: LoggingConfig, mainClass: String, minimumLauncherVersion: Int, releaseTime: String, time: String, type: String, inheritsFrom: String?) {
+    public init(arguments: Arguments, assetIndex: PartialAssetIndex, assets: String, complianceLevel: Int, downloads: MainDownloads, id: String, libraries: [Library], logging: LoggingConfig?, mainClass: String, minimumLauncherVersion: Int, releaseTime: String, time: String, type: String, inheritsFrom: String?) {
             self.arguments = arguments
             self.assetIndex = assetIndex
             self.assets = assets
@@ -67,7 +67,7 @@ public struct Version: Decodable, Equatable {
         downloads = try container.decodeIfPresent(MainDownloads.self, forKey: .downloads) ?? MainDownloads.none
         id = try container.decode(String.self, forKey: .id)
         libraries = try container.decodeIfPresent([Library].self, forKey: .libraries) ?? []
-        logging = try container.decodeIfPresent(LoggingConfig.self, forKey: .logging) ?? LoggingConfig.none
+        logging = try container.decodeIfPresent(LoggingConfig.self, forKey: .logging)
         mainClass = try container.decodeIfPresent(String.self, forKey: .mainClass) ?? "none"
         minimumLauncherVersion = try container.decodeIfPresent(Int.self, forKey: .minimumLauncherVersion) ?? 0
         releaseTime = try container.decode(String.self, forKey: .releaseTime)
@@ -137,7 +137,7 @@ public struct Version: Decodable, Equatable {
         let newAssets = parent.assets
         let newDownloads = self.downloads | parent.downloads
         let newLibraries = parent.libraries + self.libraries
-        let newLogging = self.logging == .none ? parent.logging : self.logging
+        let newLogging = self.logging == nil ? parent.logging : self.logging
         let newMainClass = self.mainClass == "none" ? parent.mainClass : self.mainClass
         let newNewMinLauncherVersion = self.minimumLauncherVersion
         let newType = self.type.isEmpty ? parent.type : self.type

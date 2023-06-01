@@ -31,7 +31,7 @@ public struct Library: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         if let container = try? decoder.singleValueContainer(),
            let artifact = try? container.decode(ConcLibrary.self) {
-            self.downloads = LibraryDownloads(artifact: LibraryArtifact(path: artifact.mavenStringToPath(), url: artifact.mavenUrl(), sha1: nil, size: nil))
+            self.downloads = LibraryDownloads(artifact: LibraryArtifact(path: artifact.mavenStringToPath(), url: URL(string: artifact.mavenUrl())!, sha1: nil, size: nil))
             self.name = artifact.name
             self.rules = nil
         } else {
