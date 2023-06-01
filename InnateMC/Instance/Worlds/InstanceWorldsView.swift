@@ -17,7 +17,7 @@
 
 import SwiftUI
 
-struct InnateWorldsView: View {
+struct InstanceWorldsView: View {
     @StateObject var instance: Instance
     
     var body: some View {

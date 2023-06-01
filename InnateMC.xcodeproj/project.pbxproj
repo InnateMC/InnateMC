@@ -14,7 +14,7 @@
 		640A75912A2115BA005CDE49 /* RunOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75902A2115BA005CDE49 /* RunOnce.swift */; };
 		640A75942A21CEFD005CDE49 /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75932A21CEFD005CDE49 /* Screenshot.swift */; };
 		640A75962A21D021005CDE49 /* InstanceScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75952A21D021005CDE49 /* InstanceScreenshotsView.swift */; };
-		640A75B92A226F2C005CDE49 /* InnateWorldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */; };
+		640A75B92A226F2C005CDE49 /* InstanceWorldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75B82A226F2C005CDE49 /* InstanceWorldsView.swift */; };
 		640A75BC2A226F80005CDE49 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75BB2A226F80005CDE49 /* World.swift */; };
 		640CCF552A09F0FA0080F574 /* SettingsFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640CCF542A09F0FA0080F574 /* SettingsFetch.swift */; };
 		640DC1ED2934EC2300943213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640DC1EC2934EC2300943213 /* AppDelegate.swift */; };
@@ -174,7 +174,7 @@
 		640A75902A2115BA005CDE49 /* RunOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOnce.swift; sourceTree = "<group>"; };
 		640A75932A21CEFD005CDE49 /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
 		640A75952A21D021005CDE49 /* InstanceScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceScreenshotsView.swift; sourceTree = "<group>"; };
-		640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnateWorldsView.swift; sourceTree = "<group>"; };
+		640A75B82A226F2C005CDE49 /* InstanceWorldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceWorldsView.swift; sourceTree = "<group>"; };
 		640A75BB2A226F80005CDE49 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		640CCF542A09F0FA0080F574 /* SettingsFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFetch.swift; sourceTree = "<group>"; };
 		640DC1EC2934EC2300943213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -358,7 +358,7 @@
 		640A75B72A226E76005CDE49 /* Worlds */ = {
 			isa = PBXGroup;
 			children = (
-				640A75B82A226F2C005CDE49 /* InnateWorldsView.swift */,
+				640A75B82A226F2C005CDE49 /* InstanceWorldsView.swift */,
 			);
 			path = Worlds;
 			sourceTree = "<group>";
@@ -913,7 +913,7 @@
 				64BACB972A1C6EF700F7AA1C /* HttpMethod.swift in Sources */,
 				64A5152029E2E6A300AFE3AE /* InstanceData.swift in Sources */,
 				64BACB9C2A1C9F5D00F7AA1C /* FabricMeta.swift in Sources */,
-				640A75B92A226F2C005CDE49 /* InnateWorldsView.swift in Sources */,
+				640A75B92A226F2C005CDE49 /* InstanceWorldsView.swift in Sources */,
 				640A758D2A208BE3005CDE49 /* Mod.swift in Sources */,
 				646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */,
 				648445882A10DE9300049986 /* MinecraftProfile.swift in Sources */,
