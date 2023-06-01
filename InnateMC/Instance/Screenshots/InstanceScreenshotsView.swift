@@ -19,7 +19,7 @@ import SwiftUI
 
 struct InstanceScreenshotsView: View {
     @StateObject var instance: Instance
-    @State var selectedItem: Screenshot? = nil
+    @FocusState var selectedItem: Screenshot?
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -29,8 +29,23 @@ struct InstanceScreenshotsView: View {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(instance.screenshots, id: \.self) { screenshot in
                         HStack {
-                            ScreenshotView(screenshot: screenshot)
-                                .padding(2)
+                            VStack {
+                                AsyncImage(url: screenshot.path, scale: 1) {
+                                    $0.resizable().scaledToFit()
+                                } placeholder: {
+                                    Image(systemName: "bolt")
+                                        .resizable()
+                                        .scaledToFit()
+                                }
+                                Text(screenshot.path.lastPathComponent)
+                                    .font(.footnote)
+                            }
+                            .padding(2)
+                            .focusable()
+                            .focused($selectedItem, equals: screenshot)
+                            .onCopyCommand {
+                                return [NSItemProvider(contentsOf: screenshot.path)!]
+                            }
                         }
                         .highPriorityGesture(TapGesture()
                             .onEnded({ i in
@@ -38,12 +53,6 @@ struct InstanceScreenshotsView: View {
                                     selectedItem = screenshot
                                 }
                             }))
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(screenshot == selectedItem ? Color.accentColor : Color.clear, lineWidth: 4)
-                            )
-//                        .background(screenshot == selectedItem ? Color.blue : Color.clear)
-//                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }
                 }
                 .padding(2)

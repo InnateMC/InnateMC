@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6407E6382A2791F100BB9AEA /* ImgurSharingServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407E6372A2791F100BB9AEA /* ImgurSharingServiceDelegate.swift */; };
 		6407E63A2A285B6C00BB9AEA /* ScreenshotShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407E6392A285B6B00BB9AEA /* ScreenshotShareButton.swift */; };
+		6407E63C2A286DDC00BB9AEA /* AsyncScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407E63B2A286DDC00BB9AEA /* AsyncScreenshot.swift */; };
 		640A758D2A208BE3005CDE49 /* Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A758C2A208BE3005CDE49 /* Mod.swift */; };
 		640A758F2A20E969005CDE49 /* InstanceModsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A758E2A20E969005CDE49 /* InstanceModsView.swift */; };
 		640A75912A2115BA005CDE49 /* RunOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640A75902A2115BA005CDE49 /* RunOnce.swift */; };
@@ -170,6 +171,7 @@
 		64065A942971CD85000BCE24 /* JavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaTests.swift; sourceTree = "<group>"; };
 		6407E6372A2791F100BB9AEA /* ImgurSharingServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurSharingServiceDelegate.swift; sourceTree = "<group>"; };
 		6407E6392A285B6B00BB9AEA /* ScreenshotShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotShareButton.swift; sourceTree = "<group>"; };
+		6407E63B2A286DDC00BB9AEA /* AsyncScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncScreenshot.swift; sourceTree = "<group>"; };
 		640A758C2A208BE3005CDE49 /* Mod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mod.swift; sourceTree = "<group>"; };
 		640A758E2A20E969005CDE49 /* InstanceModsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceModsView.swift; sourceTree = "<group>"; };
 		640A75902A2115BA005CDE49 /* RunOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOnce.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				640A75952A21D021005CDE49 /* InstanceScreenshotsView.swift */,
 				640A75B12A226411005CDE49 /* ScreenshotView.swift */,
 				6407E6392A285B6B00BB9AEA /* ScreenshotShareButton.swift */,
+				6407E63B2A286DDC00BB9AEA /* AsyncScreenshot.swift */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -961,6 +964,7 @@
 				64C09B702A12145900867038 /* InstanceDeleteSheet.swift in Sources */,
 				640A75942A21CEFD005CDE49 /* Screenshot.swift in Sources */,
 				6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */,
+				6407E63C2A286DDC00BB9AEA /* AsyncScreenshot.swift in Sources */,
 				647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */,
 				64A5151E29E2DFE000AFE3AE /* Instance+Prelaunch.swift in Sources */,
 				64E459EF2938BBEF00F82A2B /* InstanceCommands.swift in Sources */,

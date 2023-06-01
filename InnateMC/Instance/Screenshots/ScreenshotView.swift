@@ -17,34 +17,3 @@
 
 import SwiftUI
 
-struct ScreenshotView: View {
-    var screenshot: Screenshot
-    @State var sheetShown: Bool = false
-    
-    var body: some View {
-        VStack {
-            AsyncImage(url: screenshot.path, scale: 1) {
-                $0.resizable().scaledToFit()
-            } placeholder: {
-                Image(systemName: "bolt")
-                    .resizable()
-                    .scaledToFit()
-            }
-            Text(screenshot.path.lastPathComponent)
-                .font(.footnote)
-        }
-        .padding()
-        .sheet(isPresented: $sheetShown) {
-            VStack {
-                AsyncImage(url: screenshot.path, scale: 1)
-                Text(screenshot.path.lastPathComponent)
-                Button(i18n("cancel")) {
-                    self.sheetShown = false
-                }
-                .padding([.top])
-                .keyboardShortcut(.cancelAction)
-            }
-            .padding()
-        }
-    }
-}
