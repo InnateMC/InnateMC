@@ -17,11 +17,15 @@
 
 import Foundation
 
-public struct Screenshot: Hashable {
+public struct Screenshot: Hashable, Comparable {
     public let path: URL
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.path)
+    }
+    
+    public static func < (lhs: Screenshot, rhs: Screenshot) -> Bool {
+        return lhs.path.lastPathComponent < rhs.path.lastPathComponent
     }
 }
 

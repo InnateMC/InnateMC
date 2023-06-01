@@ -44,12 +44,16 @@ struct InstanceScreenshotsView: View {
             .cornerRadius(8)
             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.secondary, lineWidth: 1))
             .background(Color(NSColor.textBackgroundColor))
-            .padding()
             .frame(maxHeight: .infinity)
             
-            if let selectedItem = selectedItem {
-                Text(selectedItem.path.absoluteString)
+            HStack {
+                ScreenshotShareButton(selectedItem: selectedItem)
+                    .disabled(selectedItem == nil)
+                Button(i18n("open_in_finder")) {
+                    NSWorkspace.shared.selectFile(selectedItem?.path.path, inFileViewerRootedAtPath: instance.getScreenshotsFolder().path)
+                }
             }
+            .padding(.all, 5.0)
         }
     }
 }

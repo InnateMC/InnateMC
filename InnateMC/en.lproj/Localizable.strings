@@ -92,3 +92,5 @@
 "error_refreshing_token" = "Could not refresh microsoft account token";
 "error_tracker" = "Error Tracker";
 "errors" = "Errors";
+"open_in_finder" = "Open in finder";
+"share" = "Share";

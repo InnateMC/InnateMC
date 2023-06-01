@@ -210,7 +210,7 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    self.screenshots = urls.deserializeToScreenshots()
+                    self.screenshots = urls.deserializeToScreenshots().sorted()
                 }
             }
         }

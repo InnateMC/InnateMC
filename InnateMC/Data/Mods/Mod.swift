@@ -17,7 +17,7 @@
 
 import Foundation
 
-public struct Mod: Identifiable, Hashable {
+public struct Mod: Identifiable, Hashable, Comparable {
     public var id: Mod { self }
     var enabled: Bool
     var path: URL
@@ -25,6 +25,10 @@ public struct Mod: Identifiable, Hashable {
     
     public static func == (lhs: Mod, rhs: Mod) -> Bool {
         return lhs.path == rhs.path && lhs.enabled == rhs.enabled
+    }
+    
+    public static func < (lhs: Mod, rhs: Mod) -> Bool {
+        return lhs.path.lastPathComponent < rhs.path.lastPathComponent
     }
     
     public func hash(into hasher: inout Hasher) {
