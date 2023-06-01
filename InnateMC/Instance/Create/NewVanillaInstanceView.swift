@@ -90,7 +90,6 @@ struct NewVanillaInstanceView: View {
                             self.cachedVersionId = ""
                             self.showNewInstanceSheet = false
                         } catch {
-                            logger.error("Error creating instance \(trimmedName)", error: error)
                             ErrorTracker.instance.error(error: error, description: "Error creating instance")
                         }
                     }.keyboardShortcut(.defaultAction)

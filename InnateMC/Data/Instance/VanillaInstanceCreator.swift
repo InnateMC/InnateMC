@@ -36,7 +36,7 @@ public class VanillaInstanceCreator: InstanceCreator {
         let version = try Version.download(versionUrl, sha1: self.sha1)
         let libraries: [LibraryArtifact] = version.libraries.filter({ lib in
             lib.rules?.allMatchRules(givenFeatures: [:]) ?? true
-        }).map{ $0.downloads }.map { $0.artifact }
+        }).map(\.downloads).flatMap(\.artifacts)
         let mcJar = MinecraftJar(type: .remote, url: version.downloads.client.url, sha1: version.downloads.client.sha1)
         let logo = InstanceLogo(logoType: .builtin, string: "icon")
         let instance: Instance = Instance(name: self.name, assetIndex: version.assetIndex, libraries: libraries, mainClass: version.mainClass, minecraftJar: mcJar, isStarred: false, logo: logo, description: self.notes, debugString: version.id, arguments: version.arguments)

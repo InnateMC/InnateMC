@@ -36,8 +36,8 @@ public struct Library: Codable, Equatable {
             self.rules = nil
         } else {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.downloads = try container.decode(LibraryDownloads.self, forKey: .downloads)
             self.name = try container.decode(String.self, forKey: .name)
+            self.downloads = try container.decode(LibraryDownloads.self, forKey: .downloads)
             self.rules = try container.decodeIfPresent([Rule].self, forKey: .rules)
         }
     }
@@ -63,5 +63,25 @@ public struct Library: Codable, Equatable {
 }
 
 public struct LibraryDownloads: Codable, Equatable {
-    public let artifact: LibraryArtifact
+    public var artifact: LibraryArtifact?
+    public var classifiers: LibraryClassifiers? = nil
+    
+    public struct LibraryClassifiers: Codable, Equatable {
+        var nativesOsx: LibraryArtifact?
+        
+        public enum CodingKeys: String, CodingKey {
+            case nativesOsx = "natives-osx"
+        }
+    }
+    
+    public var artifacts: [LibraryArtifact] {
+        var arr: [LibraryArtifact] = []
+        if let classifiers = classifiers, let natives = classifiers.nativesOsx {
+            arr.append(natives)
+        }
+        if let artifact = self.artifact {
+            arr.append(artifact)
+        }
+        return arr
+    }
 }

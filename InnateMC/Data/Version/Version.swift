@@ -53,7 +53,14 @@ public struct Version: Decodable, Equatable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        arguments = try container.decodeIfPresent(Arguments.self, forKey: .arguments) ?? Arguments.none
+        var arguments = try container.decodeIfPresent(Arguments.self, forKey: .arguments)
+        if arguments == nil {
+            let mcArgs: String? = try container.decodeIfPresent(String.self, forKey: .minecraftArguments)
+            if let mcArgs = mcArgs {
+                arguments = Arguments(game: mcArgs.split(separator: " ").map({ ArgumentElement.string(String($0)) }), jvm: [])
+            }
+        }
+        self.arguments = arguments ?? Arguments.none
         assetIndex = try container.decodeIfPresent(PartialAssetIndex.self, forKey: .assetIndex) ?? PartialAssetIndex.none
         assets = try container.decodeIfPresent(String.self, forKey: .assets) ?? "3"
         complianceLevel = try container.decodeIfPresent(Int.self, forKey: .complianceLevel) ?? 3
@@ -89,21 +96,27 @@ public struct Version: Decodable, Equatable {
     
     public func validate() -> Bool {
         if self.isInheritor {
+            print("1")
             return false
         }
         guard self.arguments != Arguments.none else {
+            print("2")
             return false
         }
         guard self.assetIndex != PartialAssetIndex.none else {
+            print("3")
             return false
         }
         guard self.downloads != MainDownloads.none else {
+            print("4")
             return false
         }
         if self.type.isEmpty {
+            print("5")
             return false
         }
         if self.mainClass == "none" {
+            print("6")
             return false
         }
         return true
@@ -146,6 +159,15 @@ public struct Version: Decodable, Equatable {
     public enum VersionError: Error {
         case invalidVersionData
         case invalidParent
+        
+        var localizedDescription: String {
+            switch(self) {
+            case .invalidVersionData:
+                return "Invalid version data"
+            case .invalidParent:
+                return "Invalid parent"
+            }
+        }
     }
     
     private static let jsonDecoder = JSONDecoder()
