@@ -30,16 +30,23 @@ struct InstanceScreenshotsView: View {
                     ForEach(instance.screenshots, id: \.self) { screenshot in
                         HStack {
                             ScreenshotView(screenshot: screenshot)
-                                .padding(4)
+                                .padding(2)
                         }
                         .highPriorityGesture(TapGesture()
                             .onEnded({ i in
-                                selectedItem = screenshot
+                                withAnimation(Animation.linear(duration: 0.1)) {
+                                    selectedItem = screenshot
+                                }
                             }))
-                        .background(screenshot == selectedItem ? Color.blue : Color.clear)
-                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(screenshot == selectedItem ? Color.accentColor : Color.clear, lineWidth: 4)
+                            )
+//                        .background(screenshot == selectedItem ? Color.blue : Color.clear)
+//                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }
                 }
+                .padding(2)
             }
             .cornerRadius(8)
             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.secondary, lineWidth: 1))
