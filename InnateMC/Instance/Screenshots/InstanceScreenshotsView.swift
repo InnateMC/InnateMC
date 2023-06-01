@@ -46,9 +46,6 @@ struct InstanceScreenshotsView: View {
                             .onCopyCommand {
                                 return [NSItemProvider(contentsOf: screenshot.path)!]
                             }
-                            .onDrag {
-                                return NSItemProvider(contentsOf: screenshot.path)!
-                            }
                             .highPriorityGesture(TapGesture()
                                 .onEnded({ i in
                                     withAnimation(Animation.linear(duration: 0.1)) {
