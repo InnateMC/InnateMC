@@ -21,6 +21,10 @@ struct InstanceWorldsView: View {
     @StateObject var instance: Instance
     
     var body: some View {
-        Text("Hello World!")
+        VStack {
+            ForEach(instance.worlds, id: \.self) { world in
+                
+            }
+        }
     }
 }

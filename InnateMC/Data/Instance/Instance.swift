@@ -241,4 +241,29 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
             }
         }
     }
+    
+    public func loadWorldsAsync() {
+        if (!worldsSetup) {
+            // TODO
+        }
+        Task {
+            let fm = FileManager.default
+            let savesFolder = self.getSavesFolder()
+            var isDirectory: ObjCBool = true
+            if fm.fileExists(atPath: savesFolder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
+                let urls: [URL]
+                
+                do {
+                    urls = try fm.contentsOfDirectory(at: savesFolder, includingPropertiesForKeys: nil)
+                } catch {
+                    ErrorTracker.instance.error(error: error, description: "Error reading saves folder for instance \(self.name)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.worlds = urls.deserializeToWorlds()
+                }
+            }
+        }
+    }
 }
