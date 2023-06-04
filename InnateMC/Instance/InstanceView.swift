@@ -80,6 +80,10 @@ struct InstanceView: View {
                         .tabItem {
                             Label(i18n("screenshots"), systemImage: "plus.square.on.square")
                         }
+                    InstanceWorldsView(instance: instance)
+                        .tabItem {
+                            Label(i18n("worlds"), systemImage: "plus.square.on.square")
+                        }
                 }.padding(.all, 4)
             }
             .padding(.all, 6)
