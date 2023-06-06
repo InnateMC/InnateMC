@@ -255,6 +255,10 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
                 
                 do {
                     urls = try fm.contentsOfDirectory(at: savesFolder, includingPropertiesForKeys: nil)
+                        .filter { url in
+                            var isDirectory: ObjCBool = true
+                            return fm.fileExists(atPath: url.appendingPathComponent("level.dat").path, isDirectory: &isDirectory) && !isDirectory.boolValue
+                        }
                 } catch {
                     ErrorTracker.instance.error(error: error, description: "Error reading saves folder for instance \(self.name)")
                     return

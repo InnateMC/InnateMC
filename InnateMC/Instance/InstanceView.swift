@@ -68,10 +68,6 @@ struct InstanceView: View {
                         .tabItem {
                             Label(i18n("console"), systemImage: "bolt")
                         }
-                    InstanceRuntimeView(instance: instance)
-                        .tabItem {
-                            Label(i18n("runtime"), systemImage: "bolt")
-                        }
                     InstanceModsView(instance: instance)
                         .tabItem {
                             Label(i18n("mods"), systemImage: "plus.square.on.square")
@@ -83,6 +79,10 @@ struct InstanceView: View {
                     InstanceWorldsView(instance: instance)
                         .tabItem {
                             Label(i18n("worlds"), systemImage: "plus.square.on.square")
+                        }
+                    InstanceRuntimeView(instance: instance)
+                        .tabItem {
+                            Label(i18n("runtime"), systemImage: "bolt")
                         }
                 }.padding(.all, 4)
             }
