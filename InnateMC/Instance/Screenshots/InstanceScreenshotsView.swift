@@ -55,12 +55,13 @@ struct InstanceScreenshotsView: View {
                         }
                     }
                 }
-                .padding(2)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
             }
             .cornerRadius(8)
             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.secondary, lineWidth: 1))
             .background(Color(NSColor.textBackgroundColor))
-            .frame(maxHeight: .infinity)
+            .padding(.all, 7.0)
             
             HStack {
                 ScreenshotShareButton(selectedItem: selectedItem)
@@ -69,7 +70,8 @@ struct InstanceScreenshotsView: View {
                     NSWorkspace.shared.selectFile(selectedItem?.path.path, inFileViewerRootedAtPath: instance.getScreenshotsFolder().path)
                 }
             }
-            .padding(.all, 5.0)
+            .padding(.bottom, 8.0)
+            .padding([.top, .leading, .trailing], 5.0)
         }
     }
 }

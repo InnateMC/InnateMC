@@ -46,6 +46,12 @@ struct InstanceConsoleView: View {
                         .stroke(Color.secondary, lineWidth: 1)
                 )
                 .padding(.all, 7.0)
+                HStack {
+                    Button(i18n("open_logs_folder")) {
+                        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: instance.getLogsFolder().path)
+                    }
+                }
+                .padding([.top, .leading, .trailing], 5.0)
                 if self.launchedInstanceProcess != nil {
                     ZStack {
                     }

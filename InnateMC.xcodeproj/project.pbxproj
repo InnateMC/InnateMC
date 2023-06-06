@@ -80,8 +80,6 @@
 		6497595C29F0570000D0194E /* AddOfflineAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595B29F056FF00D0194E /* AddOfflineAccountView.swift */; };
 		6497595E29F25AD000D0194E /* InstanceEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */; };
 		649762C02935A46E00977467 /* NewVanillaInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */; };
-		649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
-		649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		649EA76729EC27F300BD77EA /* UIPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EA76629EC27F300BD77EA /* UIPreferences.swift */; };
 		64A1139E2A110ACD00E48761 /* MicrosoftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1139D2A110ACC00E48761 /* MicrosoftAccount.swift */; };
 		64A113A02A110D2500E48761 /* MinecraftAccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1139F2A110D2500E48761 /* MinecraftAccountType.swift */; };
@@ -138,6 +136,8 @@
 		64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */; };
 		64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */; };
 		64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */; };
+		64FF55552A2F6D230020A599 /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
+		64FF55562A2F6D230020A599 /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,13 +151,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		649EA76529EC262100BD77EA /* Embed Libraries */ = {
+		64FF55572A2F6D230020A599 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				649EA76429EC262100BD77EA /* libzip.5.5-universal.dylib in Embed Libraries */,
+				64FF55562A2F6D230020A599 /* libzip.5.5-universal.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,7 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				649EA76329EC261500BD77EA /* libzip.5.5-universal.dylib in Frameworks */,
+				64FF55552A2F6D230020A599 /* libzip.5.5-universal.dylib in Frameworks */,
 				64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,7 +786,7 @@
 				64C334D12922523600BB8570 /* Sources */,
 				64C334D22922523600BB8570 /* Frameworks */,
 				64C334D32922523600BB8570 /* Resources */,
-				649EA76529EC262100BD77EA /* Embed Libraries */,
+				64FF55572A2F6D230020A599 /* Embed Libraries */,
 			);
 			buildRules = (
 			);

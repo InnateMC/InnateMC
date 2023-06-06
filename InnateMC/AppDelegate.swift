@@ -22,6 +22,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let urk = URL(fileURLWithPath: "/Users/ShrishDeshpande/Library/Application Support/PrismLauncher/instances/Create- Above and Beyond/minecraft/logs/2022-09-01-4.log.gz")
+        let app = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app/Contents/MacOS/Console")
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = true
+        NSWorkspace.shared.open([urk], withApplicationAt: app, configuration: config)
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {

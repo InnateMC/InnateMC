@@ -158,6 +158,10 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
         return getGamePath().appendingPathComponent("screenshots")
     }
     
+    public func getLogsFolder() -> URL {
+        return getGamePath().appendingPathComponent("logs")
+    }
+    
     public func getSavesFolder() -> URL {
         return getGamePath().appendingPathComponent("saves")
     }
