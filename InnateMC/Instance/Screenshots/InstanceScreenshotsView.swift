@@ -26,33 +26,43 @@ struct InstanceScreenshotsView: View {
     var body: some View {
         VStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(instance.screenshots, id: \.self) { screenshot in
-                        HStack {
-                            VStack {
-                                AsyncImage(url: screenshot.path, scale: 1) {
-                                    $0.resizable().scaledToFit()
-                                } placeholder: {
-                                    Image(systemName: "bolt")
-                                        .resizable()
-                                        .scaledToFit()
-                                }
-                                Text(screenshot.path.lastPathComponent)
-                                    .font(.footnote)
-                            }
-                            .padding(2)
-                            .focusable()
-                            .focused($selectedItem, equals: screenshot)
-                            .onCopyCommand {
-                                return [NSItemProvider(contentsOf: screenshot.path)!]
-                            }
-                            .highPriorityGesture(TapGesture()
-                                .onEnded({ i in
-                                    withAnimation(Animation.linear(duration: 0.1)) {
-                                        selectedItem = screenshot
+                ZStack {
+                    if instance.screenshots.count > 0 {
+                        LazyVGrid(columns: columns, spacing: 16) {
+                            ForEach(instance.screenshots, id: \.self) { screenshot in
+                                HStack {
+                                    VStack {
+                                        AsyncImage(url: screenshot.path, scale: 1) {
+                                            $0.resizable().scaledToFit()
+                                        } placeholder: {
+                                            Image(systemName: "bolt")
+                                                .resizable()
+                                                .scaledToFit()
+                                        }
+                                        Text(screenshot.path.lastPathComponent)
+                                            .font(.footnote)
                                     }
-                                }))
+                                    .padding(2)
+                                    .focusable()
+                                    .focused($selectedItem, equals: screenshot)
+                                    .onCopyCommand {
+                                        return [NSItemProvider(contentsOf: screenshot.path)!]
+                                    }
+                                    .highPriorityGesture(TapGesture()
+                                        .onEnded({ i in
+                                            withAnimation(Animation.linear(duration: 0.1)) {
+                                                selectedItem = screenshot
+                                            }
+                                        }))
+                                }
+                            }
                         }
+                    } else {
+                        Text(i18n("no_screenshots"))
+                            .font(.largeTitle)
+                            .foregroundColor(Color.gray)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
                     }
                 }
                 .padding(.horizontal)
