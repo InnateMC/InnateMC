@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import Zip
 
 extension Instance {
     public func getLibrariesAsTasks() -> [DownloadTask] {
@@ -41,67 +42,52 @@ extension Instance {
             try! FileManager.default.createDirectory(at: getNativesFolder(), withIntermediateDirectories: true)
         }
         let nativeLibraries = self.libraries.filter { $0.path.contains("natives") }
+        logger.debug("Found \(nativeLibraries.count) natives to extract")
+        for i in nativeLibraries.map({ $0.getAbsolutePath().path }) {
+            print(i)
+        }
         var extractTasks: [() -> Void] = []
         for nativeLibrary in nativeLibraries {
-            extractTasks.append {
+            extractTasks.append({
                 let nativeLibraryPath = nativeLibrary.getAbsolutePath()
+                logger.info("Extracting natives in \(nativeLibraryPath.path)")
                 Instance.extractNativesFrom(library: nativeLibraryPath, output: self.getNativesFolder())
-            }
+            })
         }
         ParallelExecutor.run(extractTasks, progress: progress)
-        logger.debug("Extracted \(extractTasks.count) natives")
     }
     
     private static func extractNativesFrom(library input: URL, output: URL) {
-        let inputStr = input.path
-        var zip_file: OpaquePointer?
-        var file: OpaquePointer?
-        var stat = zip_stat()
-        
-        zip_file = zip_open(inputStr, 0, nil)
-        if zip_file == nil {
-            logger.error("Could not open zip file \(inputStr)")
-            return
-        }
-        
-        let num_files = Int(zip_get_num_files(zip_file!))
-        for i in 0..<num_files {
-            zip_stat_init(&stat)
-            zip_stat_index(zip_file!, zip_uint64_t(Int32(i)), 0, &stat)
+        do {
+            let unzipDirectory = try Zip.quickUnzipFile(input)
             
-            let filename = String(cString: stat.name!)
-            logger.trace("Reading \(filename) in \(inputStr)")
-            if let ext = filename.split(separator: ".").last,
-               (ext == "dylib" || ext == "jnilib") {
-                
-                let output_filename = output.appendingPathComponent(filename).path
-                
-                file = zip_fopen_index(zip_file!, zip_uint64_t(Int32(i)), 0)
-                if file == nil {
-                    logger.error("Failed to read \(filename) in zip file \(inputStr)")
-                    ErrorTracker.instance.error(description: "Failed to read \(filename) in zip file \(inputStr)")
-                    continue
+            let fileManager = FileManager.default
+            let files = fileManager.enumerator(atPath: unzipDirectory.path)
+            
+            while let filePath = files?.nextObject() as? String {
+                if !shouldExtract(filePath) {
+                    logger.debug("Skipping extracing \(filePath)")
+                    continue;
                 }
                 
-                guard let output_file = fopen(output_filename, "wb") else {
-                    logger.error("Failed to write \(filename) in zip file \(inputStr) to \(output_filename)")
-                    ErrorTracker.instance.error(description: "Failed to write \(filename) in zip file \(inputStr) to \(output_filename)")
-                    zip_fclose(file!)
-                    continue
+                let fileURL = URL(fileURLWithPath: filePath, relativeTo: unzipDirectory)
+                let outputURL = output.appendingPathComponent(fileURL.lastPathComponent)
+                
+                do {
+                    try fileManager.copyItem(at: fileURL, to: outputURL)
+                } catch {
+                    ErrorTracker.instance.error(description: "Failed to copy \(fileURL.path) to \(outputURL.path)")
                 }
-                
-                let buffer_size = 1024
-                var buffer = [UInt8](repeating: 0, count: buffer_size)
-                var num_bytes = 0
-                repeat {
-                    num_bytes = Int(zip_fread(file!, &buffer, zip_uint64_t(buffer_size)))
-                    fwrite(buffer, 1, num_bytes, output_file)
-                } while num_bytes > 0
-                
-                fclose(output_file)
-                zip_fclose(file!)
             }
+            
+            try fileManager.removeItem(at: unzipDirectory)
+        } catch {
+            ErrorTracker.instance.error(description: "Failed to extract zip file: \(error)")
         }
+    }
+    
+    private static func shouldExtract(_ path: String) -> Bool {
+        return path.hasSuffix("dylib") || path.hasSuffix("jnilib")
     }
     
     public func downloadLibs(progress: TaskProgress, onFinish: @escaping () -> Void, onError: @escaping (LaunchError) -> Void) -> URLSession {

@@ -46,6 +46,7 @@ public class InstanceProcess: ObservableObject  {
         mcArgs.version("todo")
         mcArgs.gameDir(instance.getGamePath())
         mcArgs.assetsDir(FileHandler.assetsFolder)
+        mcArgs.nativesDir(instance.getNativesFolder().path)
         mcArgs.assetIndex(instance.assetIndex.id)
         mcArgs.uuid(account.id)
         mcArgs.accessToken(accessToken)

@@ -48,6 +48,7 @@
 		644DE1D42937C93600C4A03E /* InstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644DE1D32937C93600C4A03E /* InstanceView.swift */; };
 		644FC66E29375853003797D9 /* InstanceNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC66D29375852003797D9 /* InstanceNavigationLink.swift */; };
 		644FC6722937B243003797D9 /* UiPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FC6712937B243003797D9 /* UiPreferencesView.swift */; };
+		64515B732A78DF34000D17A8 /* FileWatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 64515B722A78DF34000D17A8 /* FileWatcher */; };
 		6459E125297700D5006DB3A4 /* InstanceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459E124297700D5006DB3A4 /* InstanceLogoView.swift */; };
 		646139E02977E3A700BA9477 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139DF2977E3A700BA9477 /* SymbolPicker.swift */; };
 		646139E22977E88700BA9477 /* SFSymbols12List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646139E12977E88700BA9477 /* SFSymbols12List.swift */; };
@@ -60,7 +61,6 @@
 		6474DC202A150D77001FCD4D /* TrackedErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC1F2A150D77001FCD4D /* TrackedErrorType.swift */; };
 		6474DC242A15F952001FCD4D /* ErrorTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC232A15F952001FCD4D /* ErrorTrackerView.swift */; };
 		6474DC262A15FB83001FCD4D /* ErrorTrackerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474DC252A15FB83001FCD4D /* ErrorTrackerWindowController.swift */; };
-		647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */ = {isa = PBXBuildFile; fileRef = 647A796729E7E77D00497CE1 /* libzip.5.5-license.md */; };
 		647A796A29E8166700497CE1 /* ConsoleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A796929E8166600497CE1 /* ConsoleTextView.swift */; };
 		64821E0A29E44B78006012F7 /* MinecraftAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0929E44B78006012F7 /* MinecraftAccount.swift */; };
 		64821E0C29E44C14006012F7 /* OfflineAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64821E0B29E44C13006012F7 /* OfflineAccount.swift */; };
@@ -135,9 +135,8 @@
 		64FA2A942A0F767F0042A4A7 /* WebViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A932A0F767E0042A4A7 /* WebViewWindow.swift */; };
 		64FA2A962A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A952A0F76FA0042A4A7 /* MicrosoftAccountViewModel.swift */; };
 		64FA2A982A0F81D50042A4A7 /* XboxLiveAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FA2A972A0F81D50042A4A7 /* XboxLiveAuth.swift */; };
+		64FC5B292A5805FB009D0050 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 64FC5B282A5805FB009D0050 /* Zip */; };
 		64FE2D40293BA78B007414CB /* InstanceConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FE2D3F293BA78B007414CB /* InstanceConsoleView.swift */; };
-		64FF55552A2F6D230020A599 /* libzip.5.5-universal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; };
-		64FF55562A2F6D230020A599 /* libzip.5.5-universal.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,20 +148,6 @@
 			remoteInfo = InnateMC;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		64FF55572A2F6D230020A599 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				64FF55562A2F6D230020A599 /* libzip.5.5-universal.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		64037CA8297C724D00F7FE79 /* ArgumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentTests.swift; sourceTree = "<group>"; };
@@ -221,7 +206,6 @@
 		6474DC1F2A150D77001FCD4D /* TrackedErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedErrorType.swift; sourceTree = "<group>"; };
 		6474DC232A15F952001FCD4D /* ErrorTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTrackerView.swift; sourceTree = "<group>"; };
 		6474DC252A15FB83001FCD4D /* ErrorTrackerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTrackerWindowController.swift; sourceTree = "<group>"; };
-		647A796729E7E77D00497CE1 /* libzip.5.5-license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libzip.5.5-license.md"; sourceTree = "<group>"; };
 		647A796929E8166600497CE1 /* ConsoleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleTextView.swift; sourceTree = "<group>"; };
 		64821E0929E44B78006012F7 /* MinecraftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccount.swift; sourceTree = "<group>"; };
 		64821E0B29E44C13006012F7 /* OfflineAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineAccount.swift; sourceTree = "<group>"; };
@@ -238,8 +222,6 @@
 		6484458B2A10F6BC00049986 /* AccountManager+Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountManager+Server.swift"; sourceTree = "<group>"; };
 		648C831129DB375400007603 /* InnateMC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnateMC-Bridging-Header.h"; sourceTree = "<group>"; };
 		648C831529DBDD6A00007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../../../usr/local/lib/libzip.5.5.dylib; sourceTree = "<group>"; };
-		648C831829DBDDCD00007603 /* zip */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zip; sourceTree = "<group>"; };
-		648C831D29DBE9F100007603 /* zipconf */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = zipconf; sourceTree = "<group>"; };
 		648C831E29DBEE9900007603 /* libzip.5.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.5.5.dylib; path = ../../../Desktop/libzip.5.5.dylib; sourceTree = "<group>"; };
 		648EDF502A1881CE00E40B03 /* PartialVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialVersion.swift; sourceTree = "<group>"; };
 		649620CF2A124EA500733AB6 /* InstanceExportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceExportSheet.swift; sourceTree = "<group>"; };
@@ -247,7 +229,6 @@
 		6497595D29F25AD000D0194E /* InstanceEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceEditingViewModel.swift; sourceTree = "<group>"; };
 		649762BF2935A46E00977467 /* NewVanillaInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVanillaInstanceView.swift; sourceTree = "<group>"; };
 		649C8DD2297D5ABE000352F2 /* InnateMCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnateMCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libzip.5.5-universal.dylib"; sourceTree = "<group>"; };
 		649EA76629EC27F300BD77EA /* UIPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreferences.swift; sourceTree = "<group>"; };
 		64A1139D2A110ACC00E48761 /* MicrosoftAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAccount.swift; sourceTree = "<group>"; };
 		64A1139F2A110D2500E48761 /* MinecraftAccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinecraftAccountType.swift; sourceTree = "<group>"; };
@@ -322,7 +303,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64FF55552A2F6D230020A599 /* libzip.5.5-universal.dylib in Frameworks */,
+				64515B732A78DF34000D17A8 /* FileWatcher in Frameworks */,
+				64FC5B292A5805FB009D0050 /* Zip in Frameworks */,
 				64FA2A922A0F73BD0042A4A7 /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,15 +519,6 @@
 			path = Accounts;
 			sourceTree = "<group>";
 		};
-		648C832229DBEFDE00007603 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				649EA76229EC261500BD77EA /* libzip.5.5-universal.dylib */,
-				647A796729E7E77D00497CE1 /* libzip.5.5-license.md */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		6497595A29F056CF00D0194E /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,8 +570,6 @@
 		64C334CC2922523500BB8570 = {
 			isa = PBXGroup;
 			children = (
-				64E43DE829DD5C590008B0FA /* include */,
-				648C832229DBEFDE00007603 /* lib */,
 				645AFA94292C9E1500CD3F7E /* HEADER */,
 				64C3350B2922B0B400BB8570 /* LICENSE */,
 				64C3350A2922734400BB8570 /* README.md */,
@@ -647,15 +618,6 @@
 				64C334DF2922523F00BB8570 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		64E43DE829DD5C590008B0FA /* include */ = {
-			isa = PBXGroup;
-			children = (
-				648C831829DBDDCD00007603 /* zip */,
-				648C831D29DBE9F100007603 /* zipconf */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		64F7C5EA297D63800086ABC1 /* Data */ = {
@@ -786,7 +748,6 @@
 				64C334D12922523600BB8570 /* Sources */,
 				64C334D22922523600BB8570 /* Frameworks */,
 				64C334D32922523600BB8570 /* Resources */,
-				64FF55572A2F6D230020A599 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -795,6 +756,8 @@
 			name = InnateMC;
 			packageProductDependencies = (
 				64FA2A912A0F73BD0042A4A7 /* Swifter */,
+				64FC5B282A5805FB009D0050 /* Zip */,
+				64515B722A78DF34000D17A8 /* FileWatcher */,
 			);
 			productName = InnateMC;
 			productReference = 64C334D52922523600BB8570 /* InnateMC.app */;
@@ -839,6 +802,8 @@
 				64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */,
 				64E1F8CA2A0FC1AC006D68B6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				648445782A10C95100049986 /* XCRemoteSwiftPackageReference "async-http-client" */,
+				64FC5B272A5805FA009D0050 /* XCRemoteSwiftPackageReference "Zip" */,
+				64515B712A78DF34000D17A8 /* XCRemoteSwiftPackageReference "FileWatcher" */,
 			);
 			productRefGroup = 64C334D62922523600BB8570 /* Products */;
 			projectDirPath = "";
@@ -866,7 +831,6 @@
 				64C334E02922523F00BB8570 /* Preview Assets.xcassets in Resources */,
 				64C33509292272F600BB8570 /* .gitignore in Resources */,
 				64C3350C2922B0B500BB8570 /* LICENSE in Resources */,
-				647A796829E7E77D00497CE1 /* libzip.5.5-license.md in Resources */,
 				64C334DD2922523F00BB8570 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1331,6 +1295,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		64515B712A78DF34000D17A8 /* XCRemoteSwiftPackageReference "FileWatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eonist/FileWatcher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
 		6459E1212976FEDF006DB3A4 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
@@ -1379,13 +1351,31 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		64FC5B272A5805FA009D0050 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		64515B722A78DF34000D17A8 /* FileWatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64515B712A78DF34000D17A8 /* XCRemoteSwiftPackageReference "FileWatcher" */;
+			productName = FileWatcher;
+		};
 		64FA2A912A0F73BD0042A4A7 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 64FA2A902A0F73BD0042A4A7 /* XCRemoteSwiftPackageReference "swifter" */;
 			productName = Swifter;
+		};
+		64FC5B282A5805FB009D0050 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64FC5B272A5805FA009D0050 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

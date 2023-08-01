@@ -68,6 +68,10 @@ public class ArgumentProvider {
         self.values["assets_index_name"] = assetIndex
     }
     
+    public func nativesDir(_ directory: String) {
+        self.values["natives_directory"] = directory
+    }
+    
     public func uuid(_ uuid: UUID) {
         self.values["auth_uuid"] = uuid.uuidString
         self.values["uuid"] = uuid.uuidString

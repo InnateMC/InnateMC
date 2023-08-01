@@ -44,12 +44,12 @@ struct DeveloperModeCommands: Commands {
     @ViewBuilder
     func createView() -> some View {
         Button(i18n("show_console")) {
-            let workspace = NSWorkspace.shared
-            let consoleURL = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app")
-            let appURL = Bundle.main.bundleURL
-            let config: NSWorkspace.OpenConfiguration = .init()
-            config.arguments = [appURL.path]
             Task {
+                let workspace = NSWorkspace.shared
+                let consoleURL = URL(fileURLWithPath: "/System/Applications/Utilities/Console.app")
+                let appURL = Bundle.main.bundleURL
+                let config: NSWorkspace.OpenConfiguration = .init()
+                config.arguments = [appURL.path]
                 try! await workspace.openApplication(at: consoleURL, configuration: config)
             }
         }

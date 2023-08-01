@@ -18,6 +18,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import FileWatcher
 
 public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var name: String
@@ -41,9 +42,10 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     @Published public var mods: [Mod] = []
     @Published public var screenshots: [Screenshot] = []
     @Published public var worlds: [World] = []
-    public var modsSetup: Bool = false
-    public var screenshotsSetup: Bool = false
-    public var worldsSetup: Bool = false
+    
+    public var screenshotsWatcher: FileWatcher? = nil
+    public var modsWatcher: FileWatcher? = nil
+    public var worldsWatcher: FileWatcher? = nil
     
     public init(name: String,
                 assetIndex: PartialAssetIndex,
@@ -196,12 +198,21 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func loadScreenshotsAsync() {
-        if (!screenshotsSetup) {
-            // TODO
+        let folder = self.getScreenshotsFolder()
+        
+        if (self.screenshotsWatcher == nil) {
+            let watcher = FileWatcher([folder.path])
+            watcher.queue = DispatchQueue.global(qos: .background)
+            watcher.callback = { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.loadScreenshotsAsync()
+                }
+            }
+            self.screenshotsWatcher = watcher
+            watcher.start()
         }
         Task {
             let fm = FileManager.default
-            let folder = self.getScreenshotsFolder()
             var isDirectory: ObjCBool = true
             if fm.fileExists(atPath: folder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
                 let urls: [URL]
@@ -221,12 +232,21 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func loadModsAsync() {
-        if (!modsSetup) {
-            // TODO
+        let modsFolder = self.getModsFolder()
+        
+        if (self.modsWatcher == nil) {
+            let watcher = FileWatcher([modsFolder.path])
+            watcher.queue = DispatchQueue.global(qos: .background)
+            watcher.callback = { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.loadModsAsync()
+                }
+            }
+            self.modsWatcher = watcher
+            watcher.start()
         }
         Task {
             let fm = FileManager.default
-            let modsFolder = self.getModsFolder()
             var isDirectory: ObjCBool = true
             if fm.fileExists(atPath: modsFolder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
                 let urls: [URL]
@@ -247,29 +267,35 @@ public class Instance: Identifiable, Hashable, InstanceData, ObservableObject {
     }
     
     public func loadWorldsAsync() {
-        if (!worldsSetup) {
-            // TODO
+        let worldsFolder = self.getSavesFolder()
+        
+        if (self.worldsWatcher == nil) {
+            let watcher = FileWatcher([worldsFolder.path])
+            watcher.queue = DispatchQueue.global(qos: .background)
+            watcher.callback = { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.loadWorldsAsync()
+                }
+            }
+            self.worldsWatcher = watcher
+            watcher.start()
         }
         Task {
             let fm = FileManager.default
-            let savesFolder = self.getSavesFolder()
             var isDirectory: ObjCBool = true
-            if fm.fileExists(atPath: savesFolder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
+            if fm.fileExists(atPath: worldsFolder.path, isDirectory: &isDirectory) && isDirectory.boolValue {
                 let urls: [URL]
                 
                 do {
-                    urls = try fm.contentsOfDirectory(at: savesFolder, includingPropertiesForKeys: nil)
-                        .filter { url in
-                            var isDirectory: ObjCBool = true
-                            return fm.fileExists(atPath: url.appendingPathComponent("level.dat").path, isDirectory: &isDirectory) && !isDirectory.boolValue
-                        }
+                    urls = try fm.contentsOfDirectory(at: worldsFolder, includingPropertiesForKeys: nil)
                 } catch {
-                    ErrorTracker.instance.error(error: error, description: "Error reading saves folder for instance \(self.name)")
+                    logger.error("Error reading mods folder for instance \(self.name)", error: error)
+                    ErrorTracker.instance.error(error: error, description: "Error reading mods folder for instance \(self.name)")
                     return
                 }
                 
                 DispatchQueue.main.async {
-                    self.worlds = urls.deserializeToWorlds()
+                    self.mods = urls.deserializeToMods()
                 }
             }
         }
